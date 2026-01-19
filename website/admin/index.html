@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Maharaja Chef Services</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html" style="text-decoration: none; color: inherit;"><img src="../images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="admin-login" style="display: block;">
+            <h1>Admin Login</h1>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </section>
+
+        <section id="admin-dashboard" style="display: none;">
+            <h1>Admin Dashboard</h1>
+            <div class="form-icons">
+                <div class="form-icon" data-form="contact">
+                    <i class="fas fa-envelope"></i>
+                    <p>Contact Us</p>
+                </div>
+                <div class="form-icon" data-form="book-chef">
+                    <i class="fas fa-utensils"></i>
+                    <p>Book a Chef</p>
+                </div>
+                <!-- Add more icons as needed -->
+            </div>
+            <div id="form-data" style="display: none;">
+                <h2 id="form-title"></h2>
+                <div id="data-list"></div>
+                <button id="back-btn" class="btn">Back to Dashboard</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const API_URL = 'https://your-api-gateway-url.execute-api.region.amazonaws.com/prod'; // Replace with actual API URL
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            fetch(`${API_URL}/admin/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.message === 'Login successful') {
+                    document.getElementById('admin-login').style.display = 'none';
+                    document.getElementById('admin-dashboard').style.display = 'block';
+                } else {
+                    alert('Invalid credentials');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Login failed. Please try again.');
+            });
+        });
+
+        document.querySelectorAll('.form-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const formType = this.getAttribute('data-form');
+                fetchFormData(formType);
+            });
+        });
+
+        document.getElementById('back-btn').addEventListener('click', function() {
+            document.getElementById('form-data').style.display = 'none';
+            document.querySelector('.form-icons').style.display = 'flex';
+        });
+
+        function fetchFormData(formType) {
+            fetch(`${API_URL}/admin/data/${formType}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('form-title').textContent = `${formType} Submissions`;
+                const dataList = document.getElementById('data-list');
+                dataList.innerHTML = '';
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'submission-item';
+                    div.innerHTML = `<h3>Submission ID: ${item.id}</h3><p>Timestamp: ${item.timestamp}</p><pre>${JSON.stringify(item.data, null, 2)}</pre>`;
+                    dataList.appendChild(div);
+                });
+                document.querySelector('.form-icons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch data.');
+            });
+        }
+    </script>
+</body>
+</html>

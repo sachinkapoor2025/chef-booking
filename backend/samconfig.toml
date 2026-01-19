@@ -1,0 +1,13 @@
+version = 0.1
+
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "chef-services-backend"
+s3_bucket = "your-deployment-bucket"  # Replace with your S3 bucket for SAM deployments
+s3_prefix = "chef-services-backend"
+region = "us-east-1"  # Replace with your AWS region
+confirm_changeset = false
+fail_on_empty_changeset = false
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "StackName=\"chef-services-backend\""
