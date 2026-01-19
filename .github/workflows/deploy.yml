@@ -42,4 +42,10 @@ jobs:
       - name: Deploy SAM application
         run: |
           cd backend
-          sam deploy --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset
+          sam deploy \
+            --stack-name chef-services-backend \
+            --resolve-s3 \
+            --capabilities CAPABILITY_IAM \
+            --region us-east-1 \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset
