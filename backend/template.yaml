@@ -50,7 +50,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub "${AWS::StackName}-form-submission"
-      CodeUri: backend/src/
+      CodeUri: src/
       Handler: form_submission.handler
       Runtime: python3.12
       Environment:
