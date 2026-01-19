@@ -38,8 +38,29 @@
             </div>
             <div id="form-data" style="display: none;">
                 <h2 id="form-title"></h2>
-                <div id="data-list"></div>
+                <div id="data-table-container">
+                    <table id="data-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <thead>
+                            <tr style="background-color: #f8f9fa;">
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Name</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Enquiry Type</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Date</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body"></tbody>
+                    </table>
+                </div>
                 <button id="back-btn" class="btn">Back to Dashboard</button>
+            </div>
+
+            <!-- Enquiry Detail Modal -->
+            <div id="enquiry-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 2000;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 600px; width: 90%; max-height: 80%; overflow-y: auto;">
+                    <h3 id="modal-title" style="margin-top: 0;"></h3>
+                    <div id="modal-content"></div>
+                    <button id="close-modal" class="btn" style="margin-top: 20px;">Close</button>
+                </div>
             </div>
         </section>
     </main>
@@ -86,19 +107,74 @@
             document.querySelector('.form-buttons').style.display = 'block';
         });
 
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('enquiry-modal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('enquiry-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
         function fetchFormData(formType) {
             fetch(`${API_URL}/admin/data/${formType}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('form-title').textContent = `${formType} Submissions`;
-                const dataList = document.getElementById('data-list');
-                dataList.innerHTML = '';
+                const title = formType === 'contact' ? 'Contact Us' : 'Chef Enquiry';
+                document.getElementById('form-title').textContent = `${title} Submissions`;
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 4;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No submissions found.';
+                    return;
+                }
+
                 data.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'submission-item';
-                    div.innerHTML = `<h3>Submission ID: ${item.id}</h3><p>Timestamp: ${item.timestamp}</p><pre>${JSON.stringify(item.data, null, 2)}</pre>`;
-                    dataList.appendChild(div);
+                    const row = tableBody.insertRow();
+
+                    // Name cell
+                    const nameCell = row.insertCell(0);
+                    nameCell.style.border = '1px solid #ddd';
+                    nameCell.style.padding = '12px';
+                    nameCell.textContent = item.data.name || 'N/A';
+
+                    // Enquiry Type cell
+                    const typeCell = row.insertCell(1);
+                    typeCell.style.border = '1px solid #ddd';
+                    typeCell.style.padding = '12px';
+                    typeCell.textContent = title;
+
+                    // Date cell
+                    const dateCell = row.insertCell(2);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.timestamp);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(3);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Enquiry';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showEnquiryDetails(item, title));
+                    actionsCell.appendChild(viewBtn);
                 });
+
                 document.querySelector('.form-buttons').style.display = 'none';
                 document.getElementById('form-data').style.display = 'block';
             })
@@ -106,6 +182,61 @@
                 console.error('Error:', error);
                 alert('Failed to fetch data.');
             });
+        }
+
+        function showEnquiryDetails(item, title) {
+            document.getElementById('modal-title').textContent = `${title} Details - ID: ${item.id}`;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = '';
+
+            // Create a nice formatted display of the enquiry data
+            const detailsDiv = document.createElement('div');
+            detailsDiv.style.lineHeight = '1.6';
+
+            // Add submission date
+            const dateDiv = document.createElement('div');
+            dateDiv.innerHTML = `<strong>Submitted:</strong> ${new Date(item.timestamp).toLocaleString()}`;
+            dateDiv.style.marginBottom = '20px';
+            detailsDiv.appendChild(dateDiv);
+
+            // Add all form fields
+            for (const [key, value] of Object.entries(item.data)) {
+                const fieldDiv = document.createElement('div');
+                fieldDiv.style.marginBottom = '15px';
+
+                const label = document.createElement('strong');
+                label.textContent = formatFieldName(key) + ': ';
+                fieldDiv.appendChild(label);
+
+                if (key === 'message' || key === 'dietary') {
+                    // Multi-line text
+                    const textArea = document.createElement('div');
+                    textArea.textContent = value || 'N/A';
+                    textArea.style.whiteSpace = 'pre-wrap';
+                    textArea.style.backgroundColor = '#f8f9fa';
+                    textArea.style.padding = '10px';
+                    textArea.style.borderRadius = '4px';
+                    textArea.style.marginTop = '5px';
+                    fieldDiv.appendChild(textArea);
+                } else {
+                    // Regular field
+                    fieldDiv.appendChild(document.createTextNode(value || 'N/A'));
+                }
+
+                detailsDiv.appendChild(fieldDiv);
+            }
+
+            content.appendChild(detailsDiv);
+            document.getElementById('enquiry-modal').style.display = 'block';
+        }
+
+        function formatFieldName(key) {
+            // Convert camelCase/field-names to Title Case
+            return key.replace(/([A-Z])/g, ' $1')
+                     .replace(/-/g, ' ')
+                     .replace(/\b\w/g, l => l.toUpperCase())
+                     .trim();
         }
     </script>
 </body>
