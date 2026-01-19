@@ -42,4 +42,4 @@ jobs:
       - name: Deploy SAM application
         run: |
           cd backend
-          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+          sam deploy --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset
