@@ -68,7 +68,7 @@ def send_email(form_type, data):
         response = ses.send_email(
             Source='your-email@example.com',  # Replace with your verified SES email
             Destination={
-                'ToAddresses': ['admin@maharajachefservices.com']  # Replace with your admin email
+                'ToAddresses': ['chef@mydgv.com']  # Replace with your admin email
             },
             Message={
                 'Subject': {
