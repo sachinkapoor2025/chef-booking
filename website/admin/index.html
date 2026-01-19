@@ -32,9 +32,9 @@
 
         <section id="admin-dashboard" style="display: none;">
             <h1>Admin Dashboard</h1>
-            <div class="form-buttons">
-                <button class="form-btn" data-form="contact">Contact Us</button>
-                <button class="form-btn" data-form="book-chef">Enquiry</button>
+            <div class="form-buttons" style="display: flex; gap: 15px; justify-content: center; margin: 30px 0;">
+                <button class="btn" data-form="book-chef" style="padding: 12px 24px; font-size: 1rem;">Enquiry</button>
+                <button class="btn" data-form="contact" style="padding: 12px 24px; font-size: 1rem;">Contact Us</button>
             </div>
             <div id="form-data" style="display: none;">
                 <h2 id="form-title"></h2>
@@ -95,7 +95,7 @@
             });
         });
 
-        document.querySelectorAll('.form-btn').forEach(btn => {
+        document.querySelectorAll('button[data-form]').forEach(btn => {
             btn.addEventListener('click', function() {
                 const formType = this.getAttribute('data-form');
                 fetchFormData(formType);
