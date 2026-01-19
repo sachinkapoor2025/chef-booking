@@ -43,7 +43,8 @@
                         <thead>
                             <tr style="background-color: #f8f9fa;">
                                 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Name</th>
-                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Enquiry Type</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Phone</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Guests</th>
                                 <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Date</th>
                                 <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Actions</th>
                             </tr>
@@ -134,7 +135,7 @@
                 if (data.length === 0) {
                     const row = tableBody.insertRow();
                     const cell = row.insertCell(0);
-                    cell.colSpan = 4;
+                    cell.colSpan = 5;
                     cell.style.textAlign = 'center';
                     cell.style.padding = '20px';
                     cell.textContent = 'No submissions found.';
@@ -150,21 +151,31 @@
                     nameCell.style.padding = '12px';
                     nameCell.textContent = item.data.name || 'N/A';
 
-                    // Enquiry Type cell
-                    const typeCell = row.insertCell(1);
-                    typeCell.style.border = '1px solid #ddd';
-                    typeCell.style.padding = '12px';
-                    typeCell.textContent = title;
+                    // Phone cell
+                    const phoneCell = row.insertCell(1);
+                    phoneCell.style.border = '1px solid #ddd';
+                    phoneCell.style.padding = '12px';
+                    phoneCell.textContent = item.data.phone || 'N/A';
+
+                    // Guests cell (only for book-chef, empty for contact)
+                    const guestsCell = row.insertCell(2);
+                    guestsCell.style.border = '1px solid #ddd';
+                    guestsCell.style.padding = '12px';
+                    if (formType === 'book-chef') {
+                        guestsCell.textContent = item.data.guests || 'N/A';
+                    } else {
+                        guestsCell.textContent = '-';
+                    }
 
                     // Date cell
-                    const dateCell = row.insertCell(2);
+                    const dateCell = row.insertCell(3);
                     dateCell.style.border = '1px solid #ddd';
                     dateCell.style.padding = '12px';
                     const date = new Date(item.timestamp);
                     dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
 
                     // Actions cell
-                    const actionsCell = row.insertCell(3);
+                    const actionsCell = row.insertCell(4);
                     actionsCell.style.border = '1px solid #ddd';
                     actionsCell.style.padding = '12px';
                     actionsCell.style.textAlign = 'center';
