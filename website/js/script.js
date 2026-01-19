@@ -117,52 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Form submission with email sending
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Always prevent default submission
 
-            const requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-            let isValid = true;
-
-            requiredInputs.forEach(input => {
-                if (!input.value.trim()) {
-                    input.style.borderColor = '#e74c3c';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = '#ddd';
-                }
-            });
-
-            if (!isValid) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Collect form data
-            const formData = new FormData(form);
-
-            // Send email via PHP
-            fetch('send_email.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Message sent successfully!');
-                    form.reset(); // Clear the form
-                } else {
-                    alert('Failed to send message: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to send message. Please try again.');
-            });
-        });
-    });
     
     // Smooth scrolling for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
