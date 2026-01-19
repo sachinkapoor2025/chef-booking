@@ -47,7 +47,7 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
 
-# ---------- FRONTEND DEPLOY ----------
+# ---------- FRONTEND DEPLOY ----------#
       - name: Sync frontend to S3
         run: |
           aws s3 sync website/ s3://maharajachefservices.com --delete
