@@ -32,16 +32,9 @@
 
         <section id="admin-dashboard" style="display: none;">
             <h1>Admin Dashboard</h1>
-            <div class="form-icons">
-                <div class="form-icon" data-form="contact">
-                    <i class="fas fa-envelope"></i>
-                    <p>Contact Us</p>
-                </div>
-                <div class="form-icon" data-form="book-chef">
-                    <i class="fas fa-utensils"></i>
-                    <p>Book a Chef</p>
-                </div>
-                <!-- Add more icons as needed -->
+            <div class="form-buttons">
+                <button class="form-btn" data-form="contact">Contact Us</button>
+                <button class="form-btn" data-form="book-chef">Enquiry</button>
             </div>
             <div id="form-data" style="display: none;">
                 <h2 id="form-title"></h2>
@@ -81,8 +74,8 @@
             });
         });
 
-        document.querySelectorAll('.form-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
+        document.querySelectorAll('.form-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
                 const formType = this.getAttribute('data-form');
                 fetchFormData(formType);
             });
@@ -90,7 +83,7 @@
 
         document.getElementById('back-btn').addEventListener('click', function() {
             document.getElementById('form-data').style.display = 'none';
-            document.querySelector('.form-icons').style.display = 'flex';
+            document.querySelector('.form-buttons').style.display = 'block';
         });
 
         function fetchFormData(formType) {
@@ -106,7 +99,7 @@
                     div.innerHTML = `<h3>Submission ID: ${item.id}</h3><p>Timestamp: ${item.timestamp}</p><pre>${JSON.stringify(item.data, null, 2)}</pre>`;
                     dataList.appendChild(div);
                 });
-                document.querySelector('.form-icons').style.display = 'none';
+                document.querySelector('.form-buttons').style.display = 'none';
                 document.getElementById('form-data').style.display = 'block';
             })
             .catch(error => {
