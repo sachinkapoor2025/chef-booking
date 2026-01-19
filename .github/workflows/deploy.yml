@@ -6,9 +6,7 @@ on:
       - main
       - dev
       - feature/*
-    paths:
-      - dev
-      - feature/*
+
 
 jobs:
   deploy:
