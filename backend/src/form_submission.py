@@ -64,15 +64,23 @@ def send_email(form_type, data):
         for key, value in data.items():
             body += f"{key}: {value}\n"
 
+        # Set subject based on form type
+        if form_type == 'book-chef':
+            subject = 'Chef Requirement - Chef Services'
+        elif form_type == 'contact':
+            subject = 'Contact Requirement - Chef Services'
+        else:
+            subject = f'New {form_type} Submission'
+
         # Send email using SES
         response = ses.send_email(
-            Source='chef@mydgv.com',  # Replace with your verified SES email
+            Source='your-email@example.com',  # Replace with your verified SES email
             Destination={
-                'ToAddresses': ['dgv@mydgv.com']  # Replace with your admin email
+                'ToAddresses': ['admin@maharajachefservices.com']  # Replace with your admin email
             },
             Message={
                 'Subject': {
-                    'Data': f'New {form_type} Submission'
+                    'Data': subject
                 },
                 'Body': {
                     'Text': {
