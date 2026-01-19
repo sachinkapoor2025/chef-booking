@@ -47,3 +47,14 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
 
+# ---------- FRONTEND DEPLOY ----------
+      - name: Sync frontend to S3
+        run: |
+          aws s3 sync website/ s3://maharajachefservices.com --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E2E8LGASVOZ8M2 \
+            --paths "/*"
+
