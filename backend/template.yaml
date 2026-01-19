@@ -52,7 +52,7 @@ Resources:
       FunctionName: !Sub "${AWS::StackName}-form-submission"
       CodeUri: src/
       Handler: form_submission.handler
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
@@ -77,7 +77,7 @@ Resources:
       FunctionName: !Sub "${AWS::StackName}-admin"
       CodeUri: src/
       Handler: admin.handler
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
