@@ -125,6 +125,9 @@
                 const title = formType === 'contact' ? 'Contact Us' : 'Chef Enquiry';
                 document.getElementById('form-title').textContent = `${title} Submissions`;
 
+                // Sort data by timestamp (most recent first)
+                data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
                 const tableBody = document.getElementById('data-table-body');
                 tableBody.innerHTML = '';
 
