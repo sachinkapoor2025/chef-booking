@@ -25,19 +25,20 @@
                         <li><a href="special-events.html">Special Events & Gatherings</a></li>
                     </ul>
                 </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
                 <li class="dropdown">
                     <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
                         <li><a href="blogs.html">Blogs</a></li>
                         <li><a href="book-a-chef.html">Book a Chef</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
                     </ul>
                 </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="owner.html">Owner</a></li>
+                <li><a href="owner.html">Business Owner</a></li>
             </ul>
         </nav>
     </header>
@@ -65,8 +66,40 @@
                     <option value="weekly">Weekly Service</option>
                 </select>
 
-                <label for="date-time">Date & Time:</label>
-                <input type="datetime-local" id="date-time" name="date-time" required>
+                <label for="event-date">Event Date:</label>
+                <input type="date" id="event-date" name="event-date" required>
+
+                <label for="event-time">Event Time:</label>
+                <div class="time-picker">
+                    <select id="event-hour" name="event-hour" required>
+                        <option value="">Hour</option>
+                        <option value="01">1</option>
+                        <option value="02">2</option>
+                        <option value="03">3</option>
+                        <option value="04">4</option>
+                        <option value="05">5</option>
+                        <option value="06">6</option>
+                        <option value="07">7</option>
+                        <option value="08">8</option>
+                        <option value="09">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <span class="time-separator">:</span>
+                    <select id="event-minute" name="event-minute" required>
+                        <option value="">Minute</option>
+                        <option value="00">00</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+                    <select id="event-ampm" name="event-ampm" required>
+                        <option value="">AM/PM</option>
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
 
                 <label for="location">Location (US City):</label>
                 <input type="text" id="location" name="location" placeholder="e.g., San Jose, CA" required>
@@ -127,35 +160,6 @@
         </div>
     </footer>
 
-    <script>
-        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
-
-        document.getElementById('booking-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-
-            fetch(`${API_URL}/submit`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    formType: 'book-chef',
-                    data: data
-                })
-            })
-            .then(response => response.json())
-            .then(result => {
-                alert('Booking request submitted successfully!');
-                this.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to submit booking request. Please try again.');
-            });
-        });
-    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
