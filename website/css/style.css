@@ -840,6 +840,26 @@ main {
     border-radius: 4px;
 }
 
+.booking-form .time-picker {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.booking-form .time-picker select {
+    flex: 1;
+    min-width: 60px;
+    max-width: 80px;
+}
+
+.booking-form .time-separator {
+    margin: 0 0.125rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
 .booking-form .btn {
     width: 100%;
     padding: 1rem;
