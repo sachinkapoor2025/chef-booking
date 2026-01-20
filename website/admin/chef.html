@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Maharaja Chef Services</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="../index.html" style="text-decoration: none; color: inherit;"><img src="../images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="admin-login" style="display: block;">
+            <h1>Admin Login</h1>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </section>
+
+        <section id="admin-dashboard" style="display: none;">
+            <h1>Admin Dashboard</h1>
+            <div class="form-buttons" style="display: flex; gap: 15px; justify-content: center; margin: 30px 0;">
+                <button class="btn" data-form="book-chef" style="padding: 12px 24px; font-size: 1rem;">Enquiry</button>
+                <button class="btn" data-form="contact" style="padding: 12px 24px; font-size: 1rem;">Contact Us</button>
+            </div>
+            <div id="form-data" style="display: none;">
+                <h2 id="form-title"></h2>
+                <div id="data-table-container">
+                    <table id="data-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <thead>
+                            <tr style="background-color: #f8f9fa;">
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Name</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Phone</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Guests</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Date</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body"></tbody>
+                    </table>
+                </div>
+                <button id="back-btn" class="btn">Back to Dashboard</button>
+            </div>
+
+            <!-- Enquiry Detail Modal -->
+            <div id="enquiry-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 2000;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 600px; width: 90%; max-height: 80%; overflow-y: auto;">
+                    <h3 id="modal-title" style="margin-top: 0;"></h3>
+                    <div id="modal-content"></div>
+                    <button id="close-modal" class="btn" style="margin-top: 20px;">Close</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            fetch(`${API_URL}/admin/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.message === 'Login successful') {
+                    document.getElementById('admin-login').style.display = 'none';
+                    document.getElementById('admin-dashboard').style.display = 'block';
+                } else {
+                    alert('Invalid credentials');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Login failed. Please try again.');
+            });
+        });
+
+        document.querySelectorAll('button[data-form]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const formType = this.getAttribute('data-form');
+                fetchFormData(formType);
+            });
+        });
+
+        document.getElementById('back-btn').addEventListener('click', function() {
+            document.getElementById('form-data').style.display = 'none';
+            document.querySelector('.form-buttons').style.display = 'block';
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('enquiry-modal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('enquiry-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        function fetchFormData(formType) {
+            fetch(`${API_URL}/admin/data/${formType}`)
+            .then(response => response.json())
+            .then(data => {
+                const title = formType === 'contact' ? 'Contact Us' : 'Chef Enquiry';
+                document.getElementById('form-title').textContent = `${title} Submissions`;
+
+                // Sort data by timestamp (most recent first)
+                data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No submissions found.';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+
+                    // Name cell
+                    const nameCell = row.insertCell(0);
+                    nameCell.style.border = '1px solid #ddd';
+                    nameCell.style.padding = '12px';
+                    nameCell.textContent = item.data.name || 'N/A';
+
+                    // Phone cell
+                    const phoneCell = row.insertCell(1);
+                    phoneCell.style.border = '1px solid #ddd';
+                    phoneCell.style.padding = '12px';
+                    phoneCell.textContent = item.data.phone || 'N/A';
+
+                    // Guests cell (only for book-chef, empty for contact)
+                    const guestsCell = row.insertCell(2);
+                    guestsCell.style.border = '1px solid #ddd';
+                    guestsCell.style.padding = '12px';
+                    if (formType === 'book-chef') {
+                        guestsCell.textContent = item.data.guests || 'N/A';
+                    } else {
+                        guestsCell.textContent = '-';
+                    }
+
+                    // Date cell
+                    const dateCell = row.insertCell(3);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.timestamp);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Enquiry';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showEnquiryDetails(item, title));
+                    actionsCell.appendChild(viewBtn);
+                });
+
+                document.querySelector('.form-buttons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch data.');
+            });
+        }
+
+        function showEnquiryDetails(item, title) {
+            document.getElementById('modal-title').textContent = `${title} Details - ID: ${item.id}`;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = '';
+
+            // Create a nice formatted display of the enquiry data
+            const detailsDiv = document.createElement('div');
+            detailsDiv.style.lineHeight = '1.6';
+
+            // Add submission date
+            const dateDiv = document.createElement('div');
+            dateDiv.innerHTML = `<strong>Submitted:</strong> ${new Date(item.timestamp).toLocaleString()}`;
+            dateDiv.style.marginBottom = '20px';
+            detailsDiv.appendChild(dateDiv);
+
+            // Add all form fields
+            for (const [key, value] of Object.entries(item.data)) {
+                const fieldDiv = document.createElement('div');
+                fieldDiv.style.marginBottom = '15px';
+
+                const label = document.createElement('strong');
+                label.textContent = formatFieldName(key) + ': ';
+                fieldDiv.appendChild(label);
+
+                if (key === 'message' || key === 'dietary') {
+                    // Multi-line text
+                    const textArea = document.createElement('div');
+                    textArea.textContent = value || 'N/A';
+                    textArea.style.whiteSpace = 'pre-wrap';
+                    textArea.style.backgroundColor = '#f8f9fa';
+                    textArea.style.padding = '10px';
+                    textArea.style.borderRadius = '4px';
+                    textArea.style.marginTop = '5px';
+                    fieldDiv.appendChild(textArea);
+                } else {
+                    // Regular field
+                    fieldDiv.appendChild(document.createTextNode(value || 'N/A'));
+                }
+
+                detailsDiv.appendChild(fieldDiv);
+            }
+
+            content.appendChild(detailsDiv);
+            document.getElementById('enquiry-modal').style.display = 'block';
+        }
+
+        function formatFieldName(key) {
+            // Convert camelCase/field-names to Title Case
+            return key.replace(/([A-Z])/g, ' $1')
+                     .replace(/-/g, ' ')
+                     .replace(/\b\w/g, l => l.toUpperCase())
+                     .trim();
+        }
+    </script>
+</body>
+</html>

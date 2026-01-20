@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Backend infrastructure for Chef Services website with API Gateway, Lambda, and DynamoDB
+
+Parameters:
+  StackName:
+    Type: String
+    Default: chef-services-backend
+    Description: Name of the CloudFormation stack
+
+Resources:
+  # DynamoDB Tables
+  AdminCredentialsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-admin-credentials"
+      AttributeDefinitions:
+        - AttributeName: username
+          AttributeType: S
+      KeySchema:
+        - AttributeName: username
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  SubmissionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-submissions"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: formType
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: formType
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: formType-index
+          KeySchema:
+            - AttributeName: formType
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  # Lambda Functions 
+  FormSubmissionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-form-submission"
+      CodeUri: src/
+      Handler: form_submission.handler
+      Runtime: python3.12
+      Environment:
+        Variables:
+          SUBMISSIONS_TABLE: !Ref SubmissionsTable
+          ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SubmissionsTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref AdminCredentialsTable
+        - AmazonSESFullAccess
+      Events:
+        SubmitForm:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /submit
+            Method: post
+
+  AdminFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-admin"
+      CodeUri: src/
+      Handler: admin.handler
+      Runtime: python3.12
+      Environment:
+        Variables:
+          SUBMISSIONS_TABLE: !Ref SubmissionsTable
+          ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref AdminCredentialsTable
+      Events:
+        AdminLogin:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/login
+            Method: post
+        AdminData:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/data/{formType}
+            Method: get
+
+  # API Gateway
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub "${AWS::StackName}-api"
+      StageName: prod
+      Cors:
+        AllowMethods: "'POST,GET,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod"
+    Export:
+      Name: !Sub "${AWS::StackName}-api-url"

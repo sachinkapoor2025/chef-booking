@@ -1,4 +1,4 @@
-name: Deploy Backend Infrastructure for chef services
+name: Deploy Backend Infrastructure
 
 on:
   push:
@@ -6,9 +6,8 @@ on:
       - main
       - dev
       - feature/*
-    paths:
-      - dev
-      - feature/*
+
+
 
 jobs:
   deploy:
@@ -32,7 +31,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Replace with your region
+          aws-region: us-east-1  # Replace with your regio
 
       - name: Build SAM application
         run: |
@@ -42,4 +41,20 @@ jobs:
       - name: Deploy SAM application
         run: |
           cd backend
-          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+          sam deploy \
+            --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
+            --resolve-s3 \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset
+
+# ---------- FRONTEND DEPLOY ----------#
+      - name: Sync frontend to S3
+        run: |
+          aws s3 sync website/ s3://maharajachefservices.com --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E2E8LGASVOZ8M2 \
+            --paths "/*"
+
