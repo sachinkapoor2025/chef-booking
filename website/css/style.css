@@ -94,6 +94,7 @@ a:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
     background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white !important;
 }
 
 .btn:active {
@@ -180,22 +181,36 @@ nav {
 }
 
 .nav-menu a {
-    color: #1e293b;
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    display: inline-block;
-    transition: all 0.3s ease;
-    position: relative;
+    height: 52px;                /* ✅ fixed height */
+    padding: 0 22px;             /* ✅ flexible width from text */
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-weight: 600;
     font-size: 0.95rem;
     letter-spacing: 0.025em;
+    white-space: nowrap;         /* prevents ugly line breaks */
+
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     cursor: pointer;
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+    transition: all 0.3s ease;
 }
+
+.nav-menu a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.45);
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
 
 .nav-menu a:hover {
     transform: translateY(-2px);
@@ -582,6 +597,8 @@ main {
     background-color: #f8f9fa;
     border-radius: 8px 8px 0 0;
     transition: background-color 0.3s;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .faq-item h3:hover {
@@ -1692,15 +1709,7 @@ footer {
     font-weight: 600;
 }
 
-.footer-column h3::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background-color: #007bff;
-}
+
 
 .footer-column p {
     color: #cccccc;
