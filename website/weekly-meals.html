@@ -83,99 +83,9 @@
                     <p>Meals prepared and delivered fresh to your door at your preferred schedule.</p>
                 </div>
             </div>
-            <a href="#book-weekly-service" class="btn">Book Weekly Service</a>
+            <a href="book-weekly-service.html" class="btn">Book Weekly Service</a>
         </section>
     </main>
-
-    <section id="book-weekly-service">
-        <h1>Book Weekly Service</h1>
-        <p>Request a weekly meal service. Fill out the form below and we'll get back to you promptly.</p>
-        <form id="weekly-booking-form" class="booking-form">
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="start-date" required>
-
-            <label for="start-time">Start Time:</label>
-            <div class="time-picker">
-                <select id="start-hour" name="start-hour" required>
-                    <option value="">HH</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
-                <span class="time-separator">:</span>
-                <select id="start-minute" name="start-minute" required>
-                    <option value="">MM</option>
-                    <option value="00">00</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                </select>
-                <select id="start-ampm" name="start-ampm" required>
-                    <option value="">AM/PM</option>
-                    <option value="AM">AM</option>
-                    <option value="PM">PM</option>
-                </select>
-            </div>
-
-            <label for="end-date">End Date:</label>
-            <input type="date" id="end-date" name="end-date" required>
-
-            <label for="end-time">End Time:</label>
-            <div class="time-picker">
-                <select id="end-hour" name="end-hour" required>
-                    <option value="">HH</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
-                <span class="time-separator">:</span>
-                <select id="end-minute" name="end-minute" required>
-                    <option value="">MM</option>
-                    <option value="00">00</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                </select>
-                <select id="end-ampm" name="end-ampm" required>
-                    <option value="">AM/PM</option>
-                    <option value="AM">AM</option>
-                    <option value="PM">PM</option>
-                </select>
-            </div>
-
-            <label for="location">Location (US City):</label>
-            <input type="text" id="location" name="location" placeholder="e.g., San Jose, CA" required>
-
-            <label for="guests">Number of Guests:</label>
-            <input type="number" id="guests" name="guests" min="1" required>
-
-            <label for="dietary">Dietary Preferences:</label>
-            <textarea id="dietary" name="dietary" placeholder="e.g., Vegetarian, Gluten-Free"></textarea>
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" placeholder="Additional details or requests"></textarea>
-
-            <button type="submit" class="btn">Submit Weekly Service Request</button>
-        </form>
-    </section>
 
     <footer>
         <div class="footer-content">
@@ -219,35 +129,6 @@
         </div>
     </footer>
 
-    <script>
-        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
-
-        document.getElementById('weekly-booking-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-
-            fetch(`${API_URL}/submit`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    formType: 'book-weekly',
-                    data: data
-                })
-            })
-            .then(response => response.json())
-            .then(result => {
-                alert('Weekly service booking request submitted successfully! We will contact you soon.');
-                this.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to submit booking request. Please try again.');
-            });
-        });
-    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
