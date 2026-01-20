@@ -160,6 +160,43 @@
         </div>
     </footer>
 
+    <script>
+        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
+
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Convert time fields to a single time string
+            if (data['event-hour'] && data['event-minute'] && data['event-ampm']) {
+                data.eventTime = `${data['event-hour']}:${data['event-minute']} ${data['event-ampm']}`;
+                delete data['event-hour'];
+                delete data['event-minute'];
+                delete data['event-ampm'];
+            }
+
+            fetch(`${API_URL}/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    formType: 'book-chef',
+                    data: data
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Booking request submitted successfully! We will contact you soon.');
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to submit booking request. Please try again.');
+            });
+        });
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
