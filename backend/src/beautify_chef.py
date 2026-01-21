@@ -3,8 +3,15 @@ import boto3
 import os
 import hashlib
 from botocore.exceptions import ClientError
-import openai
 from decimal import Decimal
+
+# Optional OpenAI import - only used if API key is configured
+try:
+    import openai
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
+    print("Info: OpenAI module not available. Running in basic mode without AI features.")
 
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
@@ -84,16 +91,27 @@ def beautify_chef_data(event):
                 'body': json.dumps({'error': 'Missing chef data'})
             }
 
-        # Check if OpenAI API key is available
-        if not OPENAI_API_KEY:
+        # Check if OpenAI is available and configured
+        if not OPENAI_AVAILABLE or not OPENAI_API_KEY or not OPENAI_API_KEY.strip():
             return {
-                'statusCode': 500,
+                'statusCode': 200,
                 'headers': {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Headers': 'Content-Type',
                     'Access-Control-Allow-Methods': 'POST, OPTIONS'
                 },
-                'body': json.dumps({'error': 'AI beautification service not configured'})
+                'body': json.dumps({
+                    'message': 'Beautify service available',
+                    'aiFeatures': 'disabled',
+                    'reason': 'OpenAI not configured or not available',
+                    'suggestions': {
+                        'description': 'Add details about experience, passion, and unique qualities',
+                        'specialties': 'Be specific (e.g., "Authentic Northern Italian cuisine")',
+                        'pricing': 'Include what is included and any special conditions',
+                        'menuOptions': 'Make descriptions appetizing and detailed',
+                        'reviews': 'Ensure they sound authentic and enthusiastic'
+                    }
+                })
             }
 
         # Beautify each section using AI
