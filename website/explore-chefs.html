@@ -157,21 +157,71 @@
 
     <script src="js/script.js"></script>
     <script>
-        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
+        // Primary API URL with fallback options
+        const API_URLS = [
+            'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod',
+            'http://localhost:3001' // Fallback to local mock server
+        ];
 
-        // Function to fetch chefs from backend
-        async function fetchChefs() {
-            try {
-                const response = await fetch(`${API_URL}/chefs`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch chefs');
-                }
-                const chefs = await response.json();
-                return chefs;
-            } catch (error) {
-                console.error('Error fetching chefs:', error);
-                return [];
+        // Fallback static chef data (same as original static data)
+        const FALLBACK_CHEFS = [
+            {
+                chefId: 'static-1',
+                name: 'Rajesh Kumar',
+                location: 'California',
+                cuisine: 'Indian',
+                imageUrl: 'images/chef1.jpg',
+                description: 'Master of Indian cuisine with 15 years of experience',
+                specialties: ['Curry', 'Tandoori', 'Biryani'],
+                dietaryTags: ['Vegetarian', 'Vegan', 'Gluten-Free'],
+                rating: 4.8,
+                reviewCount: 45
+            },
+            {
+                chefId: 'static-2',
+                name: 'Maria Rodriguez',
+                location: 'California',
+                cuisine: 'Mexican',
+                imageUrl: 'images/chef2.jpg',
+                description: 'Authentic Mexican cuisine specialist',
+                specialties: ['Tacos', 'Enchiladas', 'Guacamole'],
+                dietaryTags: ['Vegetarian', 'Gluten-Free'],
+                rating: 4.7,
+                reviewCount: 38
+            },
+            {
+                chefId: 'static-3',
+                name: 'James Chen',
+                location: 'California',
+                cuisine: 'Asian',
+                imageUrl: 'images/chef3.jpg',
+                description: 'Fusion Asian cuisine expert',
+                specialties: ['Sushi', 'Stir Fry', 'Dim Sum'],
+                dietaryTags: ['Vegetarian', 'Vegan', 'Keto'],
+                rating: 4.6,
+                reviewCount: 27
             }
+        ];
+
+        // Function to fetch chefs from backend with fallback
+        async function fetchChefs() {
+            // Try each API URL in order
+            for (const url of API_URLS) {
+                try {
+                    const response = await fetch(`${url}/chefs`);
+                    if (response.ok) {
+                        const chefs = await response.json();
+                        console.log(`Successfully fetched ${chefs.length} chefs from ${url}`);
+                        return chefs;
+                    }
+                } catch (error) {
+                    console.log(`Failed to fetch from ${url}, trying next:`, error.message);
+                }
+            }
+
+            // If all API calls fail, return fallback data
+            console.warn('All API endpoints failed, using fallback data');
+            return FALLBACK_CHEFS;
         }
 
         // Function to create chef card HTML

@@ -67,7 +67,9 @@
     </div>
 
     <script>
-        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+        // Use mock API for testing, fallback to production
+        const API_URL = 'http://localhost:3001';
+        // const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
 
         document.getElementById('testFetchChefs').addEventListener('click', async function() {
             const resultsDiv = document.getElementById('fetchResults');
