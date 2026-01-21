@@ -45,6 +45,41 @@ Resources:
             ProjectionType: ALL
       BillingMode: PAY_PER_REQUEST
 
+  WeeklySubmissionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-weekly-submissions"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: formType
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: formType
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: formType-index
+          KeySchema:
+            - AttributeName: formType
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  ChefTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-chefs"
+      AttributeDefinitions:
+        - AttributeName: chefId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: chefId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
   # Lambda Functions 
   FormSubmissionFunction:
     Type: AWS::Serverless::Function
@@ -56,10 +91,13 @@ Resources:
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
+          WEEKLY_SUBMISSIONS_TABLE: !Ref WeeklySubmissionsTable
           ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref WeeklySubmissionsTable
         - DynamoDBReadPolicy:
             TableName: !Ref AdminCredentialsTable
         - AmazonSESFullAccess
@@ -81,10 +119,16 @@ Resources:
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
+          WEEKLY_SUBMISSIONS_TABLE: !Ref WeeklySubmissionsTable
+          CHEF_TABLE: !Ref ChefTable
           ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref WeeklySubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ChefTable
         - DynamoDBCrudPolicy:
             TableName: !Ref AdminCredentialsTable
       Events:
@@ -99,6 +143,24 @@ Resources:
           Properties:
             RestApiId: !Ref ApiGateway
             Path: /admin/data/{formType}
+            Method: get
+        AdminChefs:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/chefs
+            Method: get
+        AdminAddChef:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/chefs
+            Method: post
+        AdminWeeklyData:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/weekly-data
             Method: get
 
   # API Gateway

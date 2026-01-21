@@ -9,6 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 ses = boto3.client('ses')
 
 SUBMISSIONS_TABLE = os.environ['SUBMISSIONS_TABLE']
+WEEKLY_SUBMISSIONS_TABLE = os.environ['WEEKLY_SUBMISSIONS_TABLE']
 
 def handler(event, context):
     try:
@@ -28,8 +29,11 @@ def handler(event, context):
             'timestamp': datetime.utcnow().isoformat()
         }
 
-        # Store in DynamoDB
-        table = dynamodb.Table(SUBMISSIONS_TABLE)
+        # Store in appropriate DynamoDB table based on form type
+        if form_type == 'book-weekly':
+            table = dynamodb.Table(WEEKLY_SUBMISSIONS_TABLE)
+        else:
+            table = dynamodb.Table(SUBMISSIONS_TABLE)
         table.put_item(Item=item)
 
         # Send email
