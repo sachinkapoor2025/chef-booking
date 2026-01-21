@@ -77,20 +77,49 @@ cd backend
 sam deploy --stack-name chef-services-backend --capabilities CAPABILITY_IAM
 ```
 
-### Optional: Add OpenAI Integration Later
+### Deployment with OpenAI Integration
 
-If you want to enable AI-powered beautification later:
+If you want to enable AI-powered beautification:
 
 ```bash
-# 1. Create the OpenAI API key secret
-aws secretsmanager create-secret \
-    --name chef-services-backend-openai-key \
-    --secret-string '{"OPENAI_API_KEY": "your-openai-api-key-here"}'
+# 1. Install required packages
+cd backend/src
+pip install -r requirements.txt -t .
 
-# 2. Update the Lambda function environment variable
+# 2. Deploy the stack
+cd ..
+sam deploy --stack-name chef-services-backend --capabilities CAPABILITY_IAM
+
+# 3. Add OpenAI API key to Lambda environment variable
 aws lambda update-function-configuration \
     --function-name chef-services-backend-beautify-chef \
-    --environment "Variables={CHEF_TABLE=chef-services-backend-chefs,OPENAI_API_KEY=$(aws secretsmanager get-secret-value --secret-id chef-services-backend-openai-key --query SecretString --output text | jq -r '.OPENAI_API_KEY')}"
+    --environment "Variables={CHEF_TABLE=chef-services-backend-chefs,OPENAI_API_KEY='your-openai-api-key-here'}"
+```
+
+### Manual OpenAI Setup (If Already Deployed)
+
+If you've already deployed and want to add OpenAI later:
+
+```bash
+# 1. Install OpenAI package in Lambda
+# Create a deployment package with openai
+mkdir -p lambda_package
+cd lambda_package
+pip install openai==1.12.0 -t .
+cd ..
+
+# 2. Create a zip file with the package
+zip -r lambda_openai_package.zip openai/
+
+# 3. Update Lambda function with the package
+aws lambda update-function-code \
+    --function-name chef-services-backend-beautify-chef \
+    --zip-file fileb://lambda_openai_package.zip
+
+# 4. Add OpenAI API key to environment variables
+aws lambda update-function-configuration \
+    --function-name chef-services-backend-beautify-chef \
+    --environment "Variables={CHEF_TABLE=chef-services-backend-chefs,OPENAI_API_KEY='your-openai-api-key-here'}"
 ```
 
 ## 🎨 Beautify Functionality
