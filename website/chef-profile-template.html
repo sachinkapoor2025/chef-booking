@@ -285,46 +285,46 @@
         <section id="chef-profile" class="dynamic-chef-profile">
             <!-- Chef Header Section -->
             <div class="chef-header chef-header-dynamic">
-                <img src="{CHEF_IMAGE}" alt="{CHEF_NAME}" class="chef-main-photo chef-main-photo-dynamic">
+                <img src="images/chef1.jpg" alt="Chef" class="chef-main-photo chef-main-photo-dynamic" data-placeholder="CHEF_IMAGE">
                 <div class="chef-header-info chef-header-info-dynamic">
-                    <h1>{CHEF_NAME}</h1>
-                    <p class="chef-location chef-location-dynamic"><i class="fas fa-map-marker-alt"></i> {CHEF_LOCATION}</p>
+                    <h1 data-placeholder="CHEF_NAME">Chef Name</h1>
+                    <p class="chef-location chef-location-dynamic" data-placeholder="CHEF_LOCATION"><i class="fas fa-map-marker-alt"></i> Loading...</p>
                     <a href="book-a-chef.html" class="btn">Book This Chef</a>
                 </div>
             </div>
 
             <!-- Chef Details Section -->
             <div class="chef-details chef-details-dynamic">
-                <h2>About {CHEF_FIRST_NAME}</h2>
-                <p>{CHEF_DESCRIPTION}</p>
+                <h2 data-placeholder="CHEF_ABOUT_TITLE">About Chef</h2>
+                <p data-placeholder="CHEF_DESCRIPTION">Loading chef details...</p>
 
                 <h3>Cuisine Specialties</h3>
-                <ul>
-                    {CHEF_SPECIALTIES_ITEMS}
+                <ul id="chef-specialties">
+                    <li>Loading specialties...</li>
                 </ul>
             </div>
 
             <!-- Pricing & Rates -->
             <div class="pricing-section pricing-section-dynamic">
                 <h2>Pricing & Rates</h2>
-                <div class="pricing-cards pricing-cards-dynamic">
-                    {CHEF_PRICING_CARDS}
+                <div class="pricing-cards pricing-cards-dynamic" id="chef-pricing-cards">
+                    <p>Loading pricing...</p>
                 </div>
             </div>
 
             <!-- Menu Options -->
             <div class="menu-options menu-options-dynamic">
                 <h2>Menu Options</h2>
-                <div class="menu-categories menu-categories-dynamic">
-                    {CHEF_MENU_CATEGORIES}
+                <div class="menu-categories menu-categories-dynamic" id="chef-menu-categories">
+                    <p>Loading menu options...</p>
                 </div>
             </div>
 
             <!-- Dietary Tags -->
             <div class="dietary-tags dietary-tags-dynamic">
                 <h2>Dietary Specialties</h2>
-                <div class="tags tags-dynamic">
-                    {CHEF_DIETARY_TAGS}
+                <div class="tags tags-dynamic" id="chef-dietary-tags">
+                    <span class="tag tag-dynamic">Loading...</span>
                 </div>
             </div>
 
@@ -333,17 +333,17 @@
                 <h2>Customer Reviews & Ratings</h2>
                 <div class="rating-summary rating-summary-dynamic">
                     <div class="stars stars-dynamic">★★★★★</div>
-                    <p>{CHEF_RATING} out of 5 stars ({CHEF_REVIEW_COUNT} reviews)</p>
+                    <p data-placeholder="CHEF_RATING_TEXT">Loading ratings...</p>
                 </div>
-                <div class="reviews reviews-dynamic">
-                    {CHEF_REVIEWS}
+                <div class="reviews reviews-dynamic" id="chef-reviews">
+                    <p>Loading reviews...</p>
                 </div>
             </div>
 
             <!-- Booking CTA -->
             <div class="booking-cta booking-cta-dynamic">
-                <h2>Ready to Book {CHEF_FIRST_NAME}?</h2>
-                <p>Get your personalized {CHEF_CUISINE} cuisine experience today.</p>
+                <h2 data-placeholder="CHEF_BOOKING_TITLE">Ready to Book?</h2>
+                <p data-placeholder="CHEF_BOOKING_TEXT">Loading booking information...</p>
                 <a href="book-a-chef.html" class="btn btn-large btn-large-dynamic">Book Now</a>
             </div>
         </section>
@@ -447,6 +447,18 @@
                         break;
                     case 'CHEF_REVIEW_COUNT':
                         element.textContent = chef.reviewCount || 'New';
+                        break;
+                    case 'CHEF_ABOUT_TITLE':
+                        element.textContent = `About ${chef.name.split(' ')[0]}`;
+                        break;
+                    case 'CHEF_BOOKING_TITLE':
+                        element.textContent = `Ready to Book ${chef.name.split(' ')[0]}?`;
+                        break;
+                    case 'CHEF_BOOKING_TEXT':
+                        element.textContent = `Get your personalized ${chef.cuisine} cuisine experience today.`;
+                        break;
+                    case 'CHEF_RATING_TEXT':
+                        element.textContent = `${chef.rating || 4.5} out of 5 stars (${chef.reviewCount || 'New'} reviews)`;
                         break;
                 }
             });

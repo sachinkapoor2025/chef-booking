@@ -129,6 +129,7 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                         </div>
 
                         <div style="display: flex; gap: 15px; justify-content: flex-end;">
+                            <button type="button" id="beautify-content" class="btn" style="background-color: #28a745;">🪄 Beautify Content</button>
                             <button type="button" id="cancel-add-chef" class="btn" style="background-color: #ccc;">Cancel</button>
                             <button type="submit" class="btn">Add Chef</button>
                         </div>
@@ -205,6 +206,120 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                     document.getElementById('image-preview-container').style.display = 'block';
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+
+        // Beautify content button
+        document.getElementById('beautify-content').addEventListener('click', async function() {
+            // Collect current form data
+            const chefData = {
+                name: document.getElementById('chef-name').value,
+                location: document.getElementById('chef-location').value,
+                cuisine: document.getElementById('chef-cuisine').value,
+                description: document.getElementById('chef-description').value,
+                specialties: document.getElementById('chef-specialties').value.split(',').map(s => s.trim()),
+                dietaryTags: document.getElementById('chef-dietary-tags').value.split(',').map(s => s.trim()),
+                rating: parseFloat(document.getElementById('chef-rating').value) || 4.5,
+                reviewCount: parseInt(document.getElementById('chef-review-count').value) || 0,
+                pricing: document.getElementById('chef-pricing').value.split('\n')
+                    .filter(line => line.trim() !== '')
+                    .map(line => {
+                        const parts = line.split('|').map(p => p.trim());
+                        return {
+                            type: parts[0] || '',
+                            price: parts[1] || '',
+                            note: parts[2] || ''
+                        };
+                    }),
+                menuOptions: {}
+            };
+
+            // Parse menu options
+            const menuOptionsText = document.getElementById('chef-menu-options').value;
+            menuOptionsText.split('\n')
+                .filter(line => line.trim() !== '')
+                .forEach(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    const category = parts[0];
+                    const item = parts[1];
+                    if (!chefData.menuOptions[category]) {
+                        chefData.menuOptions[category] = [];
+                    }
+                    if (item) {
+                        chefData.menuOptions[category].push(item);
+                    }
+                });
+
+            // Parse reviews
+            chefData.reviews = document.getElementById('chef-reviews').value.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    return {
+                        reviewer: parts[0] || '',
+                        stars: parts[1] || '',
+                        text: parts[2] || ''
+                    };
+                });
+
+            try {
+                // Show loading state
+                const beautifyBtn = document.getElementById('beautify-content');
+                const originalText = beautifyBtn.textContent;
+                beautifyBtn.textContent = '🪄 Beautifying...';
+                beautifyBtn.disabled = true;
+
+                // Call beautification API
+                const response = await fetch(`${API_URL}/admin/beautify-chef`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({chefData: chefData})
+                });
+
+                const result = await response.json();
+
+                if (result.message === 'Chef data beautified successfully') {
+                    // Update form with beautified data
+                    document.getElementById('chef-description').value = result.beautifiedChefData.description;
+
+                    // Update specialties
+                    document.getElementById('chef-specialties').value = result.beautifiedChefData.specialties.join(', ');
+
+                    // Update pricing notes
+                    const pricingTextarea = document.getElementById('chef-pricing');
+                    pricingTextarea.value = result.beautifiedChefData.pricing.map(p =>
+                        `${p.type}|${p.price}|${p.note}`
+                    ).join('\n');
+
+                    // Update menu options
+                    const menuTextarea = document.getElementById('chef-menu-options');
+                    let menuText = '';
+                    for (const [category, items] of Object.entries(result.beautifiedChefData.menuOptions)) {
+                        items.forEach(item => {
+                            menuText += `${category}|${item}\n`;
+                        });
+                    }
+                    menuTextarea.value = menuText.trim();
+
+                    // Update reviews
+                    const reviewsTextarea = document.getElementById('chef-reviews');
+                    reviewsTextarea.value = result.beautifiedChefData.reviews.map(r =>
+                        `${r.reviewer}|${r.stars}|${r.text}`
+                    ).join('\n');
+
+                    alert('✨ Content beautified successfully! Review the enhanced descriptions before submitting.');
+                } else {
+                    alert('❌ Failed to beautify content: ' + (result.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Beautification error:', error);
+                alert('❌ Error beautifying content. Please check your input and try again.');
+            } finally {
+                // Restore button state
+                beautifyBtn.textContent = originalText;
+                beautifyBtn.disabled = false;
             }
         });
 

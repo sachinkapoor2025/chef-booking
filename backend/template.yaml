@@ -162,12 +162,42 @@ Resources:
             RestApiId: !Ref ApiGateway
             Path: /admin/weekly-data
             Method: get
+        AdminBeautifyChef:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/beautify-chef
+            Method: post
         PublicChefs:
           Type: Api
           Properties:
             RestApiId: !Ref ApiGateway
             Path: /chefs
             Method: get
+
+  BeautifyChefFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-beautify-chef"
+      CodeUri: src/
+      Handler: beautify_chef.handler
+      Runtime: python3.12
+      Environment:
+        Variables:
+          CHEF_TABLE: !Ref ChefTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:${AWS::StackName}-openai-key:SecretString:OPENAI_API_KEY}}"
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ChefTable
+        - SecretsManagerReadPolicy:
+            Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${AWS::StackName}-openai-key*"
+      Events:
+        BeautifyChef:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/beautify-chef
+            Method: post
 
   # API Gateway
   ApiGateway:
