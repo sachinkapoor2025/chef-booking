@@ -548,21 +548,93 @@ main {
 .chef-card {
     background-color: white;
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.chef-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border-color: #e0e0e0;
+}
+
+.chef-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.chef-card:hover::before {
+    transform: scaleX(1);
 }
 
 .chef-card img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     margin-bottom: 1rem;
     object-fit: cover;
+    border: 3px solid #f0f0f0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chef-card:hover img {
+    border-color: #007bff;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,123,255,0.2);
 }
 
 .chef-card h3 {
     margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.chef-location {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.chef-location i {
+    color: #007bff;
+    font-size: 0.9rem;
+}
+
+.chef-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    color: #ffc107;
+    font-size: 1.1rem;
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
 }
 
 .chef-card p {
@@ -572,6 +644,113 @@ main {
 
 .chef-card .btn {
     margin: 0.25rem;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+}
+
+.chef-card .btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.chef-card .btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+/* Enhanced chef card with specialty tags */
+.chef-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.specialty-tag {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+}
+
+/* Badge for new chefs */
+.new-chef-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    z-index: 10;
+}
+
+/* Premium chef badge */
+.premium-chef-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    color: #333;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+    z-index: 10;
+}
+
+/* Chef card overlay for additional info */
+.chef-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(255,255,255,0.95));
+    padding: 1.5rem 1rem 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.chef-card:hover .chef-card-info {
+    transform: translateY(0);
+}
+
+/* Responsive chef cards */
+@media (max-width: 768px) {
+    .chef-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .chef-card {
+        padding: 1.25rem;
+    }
+
+    .chef-card img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .chef-card h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .chef-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .chef-cards {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
 }
 
 /* FAQ */
