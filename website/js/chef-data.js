@@ -152,16 +152,25 @@ function createChefCard(chef) {
     ) : [];
     chefCard.setAttribute('data-diet', dietaryTags.join(','));
 
+    // Generate profile URL based on chef type
+    let profileUrl = chef.profileUrl || 'book-a-chef.html';
+    if (!chef.profileUrl && chef.chefId) {
+        // Dynamic chef - use template with chefId parameter
+        profileUrl = `chef-profile-template.html?chefId=${chef.chefId}`;
+        // Store chef data in localStorage for the template to use
+        localStorage.setItem(`chef_${chef.chefId}`, JSON.stringify(chef));
+    }
+
     // Create card HTML
     chefCard.innerHTML = `
         <img src="${chef.imageUrl || 'images/chef1.jpg'}" alt="${chef.name}">
         <h3>${chef.name}</h3>
-        <p class="chef-location">${chef.location}</p>
+        <p class="chef-location"><i class="fas fa-map-marker-alt"></i> ${chef.location}</p>
         <div class="chef-rating">
             <span class="stars">★★★★★</span>
             <span class="rating-text">${chef.rating || 4.5} (${chef.reviewCount || 'New'})</span>
         </div>
-        <a href="${chef.profileUrl || 'book-a-chef.html'}" class="btn">View Profile</a>
+        <a href="${profileUrl}" class="btn btn-primary">View Profile</a>
         <a href="book-a-chef.html" class="btn btn-secondary">Book Now</a>
     `;
 

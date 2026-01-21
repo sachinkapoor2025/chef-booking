@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{CHEF_NAME} - Chef Profile - Maharaja Chef Services</title>
+    <meta name="description" content="Meet Chef {CHEF_NAME}, expert {CHEF_CUISINE} cuisine chef. View profile, pricing, menus, and book for your next event.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Dynamic chef profile specific styles */
+        .dynamic-chef-profile {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chef-header-dynamic {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chef-main-photo-dynamic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007bff;
+        }
+
+        .chef-header-info-dynamic h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .chef-location-dynamic {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .chef-details-dynamic, .pricing-section-dynamic, .menu-options-dynamic, .dietary-tags-dynamic, .reviews-section-dynamic, .booking-cta-dynamic {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chef-details-dynamic h2, .pricing-section-dynamic h2, .menu-options-dynamic h2, .dietary-tags-dynamic h2, .reviews-section-dynamic h2 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .chef-details-dynamic ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .chef-details-dynamic li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chef-details-dynamic li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-cards-dynamic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .pricing-card-dynamic {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+
+        .pricing-card-dynamic h3 {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-dynamic {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-categories-dynamic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .menu-category-dynamic h3 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .menu-category-dynamic ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-category-dynamic li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu-category-dynamic li:last-child {
+            border-bottom: none;
+        }
+
+        .tags-dynamic {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag-dynamic {
+            background-color: #007bff;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .rating-summary-dynamic {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .stars-dynamic {
+            font-size: 2rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+
+        .reviews-dynamic {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .review-dynamic {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+
+        .review-header-dynamic {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-dynamic {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .review-stars-dynamic {
+            color: #ffc107;
+        }
+
+        .booking-cta-dynamic {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+        }
+
+        .booking-cta-dynamic h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .booking-cta-dynamic p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-large-dynamic {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* Responsive design for dynamic profiles */
+        @media (max-width: 768px) {
+            .chef-header-dynamic {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .chef-main-photo-dynamic {
+                width: 150px;
+                height: 150px;
+            }
+
+            .chef-header-info-dynamic h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-cards-dynamic,
+            .menu-categories-dynamic {
+                grid-template-columns: 1fr;
+            }
+
+            .tags-dynamic {
+                justify-content: center;
+            }
+
+            .review-header-dynamic {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="chef-services.html"> Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="chef-profile" class="dynamic-chef-profile">
+            <!-- Chef Header Section -->
+            <div class="chef-header chef-header-dynamic">
+                <img src="{CHEF_IMAGE}" alt="{CHEF_NAME}" class="chef-main-photo chef-main-photo-dynamic">
+                <div class="chef-header-info chef-header-info-dynamic">
+                    <h1>{CHEF_NAME}</h1>
+                    <p class="chef-location chef-location-dynamic"><i class="fas fa-map-marker-alt"></i> {CHEF_LOCATION}</p>
+                    <a href="book-a-chef.html" class="btn">Book This Chef</a>
+                </div>
+            </div>
+
+            <!-- Chef Details Section -->
+            <div class="chef-details chef-details-dynamic">
+                <h2>About {CHEF_FIRST_NAME}</h2>
+                <p>{CHEF_DESCRIPTION}</p>
+
+                <h3>Cuisine Specialties</h3>
+                <ul>
+                    {CHEF_SPECIALTIES_ITEMS}
+                </ul>
+            </div>
+
+            <!-- Pricing & Rates -->
+            <div class="pricing-section pricing-section-dynamic">
+                <h2>Pricing & Rates</h2>
+                <div class="pricing-cards pricing-cards-dynamic">
+                    {CHEF_PRICING_CARDS}
+                </div>
+            </div>
+
+            <!-- Menu Options -->
+            <div class="menu-options menu-options-dynamic">
+                <h2>Menu Options</h2>
+                <div class="menu-categories menu-categories-dynamic">
+                    {CHEF_MENU_CATEGORIES}
+                </div>
+            </div>
+
+            <!-- Dietary Tags -->
+            <div class="dietary-tags dietary-tags-dynamic">
+                <h2>Dietary Specialties</h2>
+                <div class="tags tags-dynamic">
+                    {CHEF_DIETARY_TAGS}
+                </div>
+            </div>
+
+            <!-- Customer Reviews & Ratings -->
+            <div class="reviews-section reviews-section-dynamic">
+                <h2>Customer Reviews & Ratings</h2>
+                <div class="rating-summary rating-summary-dynamic">
+                    <div class="stars stars-dynamic">★★★★★</div>
+                    <p>{CHEF_RATING} out of 5 stars ({CHEF_REVIEW_COUNT} reviews)</p>
+                </div>
+                <div class="reviews reviews-dynamic">
+                    {CHEF_REVIEWS}
+                </div>
+            </div>
+
+            <!-- Booking CTA -->
+            <div class="booking-cta booking-cta-dynamic">
+                <h2>Ready to Book {CHEF_FIRST_NAME}?</h2>
+                <p>Get your personalized {CHEF_CUISINE} cuisine experience today.</p>
+                <a href="book-a-chef.html" class="btn btn-large btn-large-dynamic">Book Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Dynamic chef profile generator
+        function generateChefProfile() {
+            // Get chef data from URL parameters or localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const chefId = urlParams.get('chefId');
+
+            if (chefId) {
+                // Fetch chef data from localStorage (set by explore-chefs.html)
+                const chefData = localStorage.getItem(`chef_${chefId}`);
+                if (chefData) {
+                    const chef = JSON.parse(chefData);
+                    populateChefProfile(chef);
+                } else {
+                    // Fallback: fetch from API
+                    fetchChefFromAPI(chefId);
+                }
+            } else {
+                // No chef ID provided, redirect to explore chefs
+                window.location.href = 'explore-chefs.html';
+            }
+        }
+
+        function populateChefProfile(chef) {
+            // Set page title
+            document.title = `${chef.name} - Chef Profile - Maharaja Chef Services`;
+
+            // Replace placeholders with actual data
+            document.querySelectorAll('[data-placeholder]').forEach(element => {
+                const placeholder = element.getAttribute('data-placeholder');
+                switch(placeholder) {
+                    case 'CHEF_NAME':
+                        element.textContent = chef.name;
+                        break;
+                    case 'CHEF_FIRST_NAME':
+                        element.textContent = chef.name.split(' ')[0];
+                        break;
+                    case 'CHEF_IMAGE':
+                        element.setAttribute('src', chef.imageUrl || 'images/chef1.jpg');
+                        element.setAttribute('alt', chef.name);
+                        break;
+                    case 'CHEF_LOCATION':
+                        element.textContent = chef.location;
+                        break;
+                    case 'CHEF_CUISINE':
+                        element.textContent = chef.cuisine;
+                        break;
+                    case 'CHEF_DESCRIPTION':
+                        element.textContent = chef.description || 'A talented chef with a passion for creating delicious cuisine.';
+                        break;
+                    case 'CHEF_RATING':
+                        element.textContent = chef.rating || 4.5;
+                        break;
+                    case 'CHEF_REVIEW_COUNT':
+                        element.textContent = chef.reviewCount || 'New';
+                        break;
+                }
+            });
+
+            // Populate specialties
+            const specialtiesContainer = document.getElementById('chef-specialties');
+            if (specialtiesContainer && chef.specialties) {
+                const specialtiesHTML = chef.specialties.map(specialty =>
+                    `<li>${specialty}</li>`
+                ).join('');
+                specialtiesContainer.innerHTML = specialtiesHTML;
+            }
+
+            // Populate pricing cards
+            const pricingContainer = document.getElementById('chef-pricing-cards');
+            if (pricingContainer && chef.pricing) {
+                const pricingHTML = chef.pricing.map(price =>
+                    `<div class="pricing-card pricing-card-dynamic">
+                        <h3>${price.type}</h3>
+                        <p class="price price-dynamic">${price.price}</p>
+                        <p>${price.note || ''}</p>
+                    </div>`
+                ).join('');
+                pricingContainer.innerHTML = pricingHTML;
+            }
+
+            // Populate menu categories
+            const menuContainer = document.getElementById('chef-menu-categories');
+            if (menuContainer && chef.menuOptions) {
+                const menuHTML = Object.entries(chef.menuOptions).map(([category, items]) =>
+                    `<div class="menu-category menu-category-dynamic">
+                        <h3>${category}</h3>
+                        <ul>
+                            ${items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>`
+                ).join('');
+                menuContainer.innerHTML = menuHTML;
+            }
+
+            // Populate dietary tags
+            const dietaryContainer = document.getElementById('chef-dietary-tags');
+            if (dietaryContainer && chef.dietaryTags) {
+                const dietaryHTML = chef.dietaryTags.map(tag =>
+                    `<span class="tag tag-dynamic">${tag}</span>`
+                ).join('');
+                dietaryContainer.innerHTML = dietaryHTML;
+            }
+
+            // Populate reviews
+            const reviewsContainer = document.getElementById('chef-reviews');
+            if (reviewsContainer && chef.reviews) {
+                const reviewsHTML = chef.reviews.map(review =>
+                    `<div class="review review-dynamic">
+                        <div class="review-header review-header-dynamic">
+                            <span class="reviewer reviewer-dynamic">${review.reviewer}</span>
+                            <div class="review-stars review-stars-dynamic">${review.stars}</div>
+                        </div>
+                        <p>"${review.text}"</p>
+                    </div>`
+                ).join('');
+                reviewsContainer.innerHTML = reviewsHTML;
+            }
+        }
+
+        function fetchChefFromAPI(chefId) {
+            // Fetch chef data from API
+            const API_URLS = [
+                'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod',
+                'http://localhost:3001'
+            ];
+
+            for (const url of API_URLS) {
+                fetch(`${url}/chefs`)
+                    .then(response => response.json())
+                    .then(chefs => {
+                        const chef = chefs.find(c => c.chefId === chefId);
+                        if (chef) {
+                            // Cache the data
+                            localStorage.setItem(`chef_${chefId}`, JSON.stringify(chef));
+                            populateChefProfile(chef);
+                        } else {
+                            // Chef not found, redirect
+                            window.location.href = 'explore-chefs.html';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching chef data:', error);
+                        // Fallback to explore page
+                        window.location.href = 'explore-chefs.html';
+                    });
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', generateChefProfile);
+    </script>
+</body>
+</html>
