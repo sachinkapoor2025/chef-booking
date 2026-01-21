@@ -11,13 +11,13 @@ dynamodb = boto3.resource('dynamodb')
 
 # Get environment variables
 CHEF_TABLE = os.environ['CHEF_TABLE']
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
 
-# Configure OpenAI
-if OPENAI_API_KEY:
+# Configure OpenAI only if API key is provided
+if OPENAI_API_KEY and OPENAI_API_KEY.strip():
     openai.api_key = OPENAI_API_KEY
 else:
-    print("Warning: OPENAI_API_KEY not found in environment variables")
+    print("Info: OPENAI_API_KEY not configured. Beautify function will run in basic mode without AI enhancements.")
 
 def handler(event, context):
     try:

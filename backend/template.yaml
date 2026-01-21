@@ -179,16 +179,10 @@ Resources:
       Environment:
         Variables:
           CHEF_TABLE: !Ref ChefTable
-          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:${AWS::StackName}-openai-key:SecretString:OPENAI_API_KEY::}}"
+          OPENAI_API_KEY: ""
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ChefTable
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - secretsmanager:GetSecretValue
-              Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${AWS::StackName}-openai-key*"
       Events:
         BeautifyChef:
           Type: Api
