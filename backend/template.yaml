@@ -162,12 +162,6 @@ Resources:
             RestApiId: !Ref ApiGateway
             Path: /admin/weekly-data
             Method: get
-        AdminBeautifyChef:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/beautify-chef
-            Method: post
         PublicChefs:
           Type: Api
           Properties:
@@ -189,8 +183,12 @@ Resources:
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ChefTable
-        - SecretsManagerReadPolicy:
-            Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${AWS::StackName}-openai-key*"
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${AWS::StackName}-openai-key*"
       Events:
         BeautifyChef:
           Type: Api
