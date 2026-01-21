@@ -3,6 +3,11 @@ import boto3
 import os
 import hashlib
 from botocore.exceptions import ClientError
+from decimal import Decimal
+from boto3.dynamodb.types import TypeDeserializer
+
+# Set up DynamoDB type deserializer to handle Decimal types
+type_deserializer = TypeDeserializer()
 
 dynamodb = boto3.resource('dynamodb')
 
@@ -152,6 +157,20 @@ def get_chefs():
         response = table.scan()
         items = response['Items']
 
+        # Convert Decimal objects to float for JSON serialization
+        def convert_decimals(obj):
+            if isinstance(obj, list):
+                return [convert_decimals(item) for item in obj]
+            elif isinstance(obj, dict):
+                return {key: convert_decimals(value) for key, value in obj.items()}
+            elif isinstance(obj, Decimal):
+                return float(obj)
+            else:
+                return obj
+
+        # Apply the conversion to all items
+        converted_items = [convert_decimals(item) for item in items]
+
         return {
             'statusCode': 200,
             'headers': {
@@ -159,7 +178,7 @@ def get_chefs():
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET, OPTIONS'
             },
-            'body': json.dumps(items)
+            'body': json.dumps(converted_items)
         }
     except ClientError as e:
         print(e)
