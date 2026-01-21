@@ -107,18 +107,25 @@
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <label for="chef-pricing">Pricing (JSON format):</label>
-                            <textarea id="chef-pricing" name="pricing" required style="width: 100%; padding: 8px; height: 80px; margin-bottom: 15px;" placeholder='[{"type": "Dinner Service", "price": "$75/hour", "note": "Minimum 2 hours"}, ...]'></textarea>
+                            <label for="chef-pricing">Pricing (one per line, format: Type|Price|Note):</label>
+                            <textarea id="chef-pricing" name="pricing" required style="width: 100%; padding: 8px; height: 80px; margin-bottom: 15px;" placeholder='Dinner Service|$75/hour|Minimum 2 hours
+Event Catering|$175/hour|For parties and gatherings
+Weekly Meal Prep|$60/hour|Plus ingredient costs'></textarea>
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <label for="chef-menu-options">Menu Options (JSON format):</label>
-                            <textarea id="chef-menu-options" name="menuOptions" required style="width: 100%; padding: 8px; height: 100px; margin-bottom: 15px;" placeholder='{"dinner": ["Butter Chicken with Naan", "Lamb Rogan Josh"], "events": ["Wedding Reception Package", "Birthday Party Buffet"]}'></textarea>
+                            <label for="chef-menu-options">Menu Options (one per line, format: Category|Item):</label>
+                            <textarea id="chef-menu-options" name="menuOptions" required style="width: 100%; padding: 8px; height: 100px; margin-bottom: 15px;" placeholder='Dinner|Butter Chicken with Naan
+Dinner|Lamb Rogan Josh
+Events|Wedding Reception Package
+Events|Birthday Party Buffet'></textarea>
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <label for="chef-reviews">Reviews (JSON format):</label>
-                            <textarea id="chef-reviews" name="reviews" required style="width: 100%; padding: 8px; height: 120px; margin-bottom: 15px;" placeholder='[{"reviewer": "Sarah M.", "stars": "★★★★★", "text": "Amazing chef!"}, ...]'></textarea>
+                            <label for="chef-reviews">Reviews (one per line, format: Reviewer|Stars|Text):</label>
+                            <textarea id="chef-reviews" name="reviews" required style="width: 100%; padding: 8px; height: 120px; margin-bottom: 15px;" placeholder='Sarah M.|★★★★★|Amazing chef!
+Mike R.|★★★★★|Perfect for our dinner party
+Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                         </div>
 
                         <div style="display: flex; gap: 15px; justify-content: flex-end;">
@@ -204,15 +211,50 @@
         document.getElementById('add-chef-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // Validate JSON fields
-            try {
-                JSON.parse(document.getElementById('chef-pricing').value);
-                JSON.parse(document.getElementById('chef-menu-options').value);
-                JSON.parse(document.getElementById('chef-reviews').value);
-            } catch (error) {
-                alert('Invalid JSON format in pricing, menu options, or reviews fields. Please check and try again.');
-                return;
-            }
+            // Convert plain text fields to JSON format
+            const pricingText = document.getElementById('chef-pricing').value;
+            const menuOptionsText = document.getElementById('chef-menu-options').value;
+            const reviewsText = document.getElementById('chef-reviews').value;
+
+            // Parse pricing (format: Type|Price|Note)
+            const pricing = pricingText.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    return {
+                        type: parts[0] || '',
+                        price: parts[1] || '',
+                        note: parts[2] || ''
+                    };
+                });
+
+            // Parse menu options (format: Category|Item)
+            const menuOptions = {};
+            menuOptionsText.split('\n')
+                .filter(line => line.trim() !== '')
+                .forEach(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    const category = parts[0];
+                    const item = parts[1];
+                    if (!menuOptions[category]) {
+                        menuOptions[category] = [];
+                    }
+                    if (item) {
+                        menuOptions[category].push(item);
+                    }
+                });
+
+            // Parse reviews (format: Reviewer|Stars|Text)
+            const reviews = reviewsText.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    return {
+                        reviewer: parts[0] || '',
+                        stars: parts[1] || '',
+                        text: parts[2] || ''
+                    };
+                });
 
             const fileInput = document.getElementById('chef-image-upload');
             if (!fileInput.files || fileInput.files.length === 0) {
@@ -241,9 +283,9 @@
                     dietaryTags: document.getElementById('chef-dietary-tags').value.split(',').map(s => s.trim()),
                     rating: parseFloat(document.getElementById('chef-rating').value),
                     reviewCount: parseInt(document.getElementById('chef-review-count').value),
-                    pricing: JSON.parse(document.getElementById('chef-pricing').value),
-                    menuOptions: JSON.parse(document.getElementById('chef-menu-options').value),
-                    reviews: JSON.parse(document.getElementById('chef-reviews').value)
+                    pricing: pricing,
+                    menuOptions: menuOptions,
+                    reviews: reviews
                 };
 
                 const response = await fetch(`${API_URL}/admin/chefs`, {
