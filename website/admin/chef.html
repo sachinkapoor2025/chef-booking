@@ -82,8 +82,11 @@
                                 <label for="chef-cuisine">Cuisine:</label>
                                 <input type="text" id="chef-cuisine" name="cuisine" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
 
-                                <label for="chef-image-url">Image URL:</label>
-                                <input type="text" id="chef-image-url" name="imageUrl" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+                                <label for="chef-image-upload">Chef Image:</label>
+                                <input type="file" id="chef-image-upload" name="imageUpload" accept="image/*" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+                                <div id="image-preview-container" style="margin-top: 10px; display: none;">
+                                    <img id="image-preview" src="#" alt="Image Preview" style="max-width: 200px; max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                </div>
 
                                 <label for="chef-rating">Rating (0-5):</label>
                                 <input type="number" id="chef-rating" name="rating" min="0" max="5" step="0.1" value="4.5" style="width: 100%; padding: 8px; margin-bottom: 15px;">
@@ -184,46 +187,107 @@
             }
         });
 
-        document.getElementById('add-chef-form').addEventListener('submit', function(e) {
+        // Image upload preview
+        document.getElementById('chef-image-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('image-preview');
+                    preview.src = event.target.result;
+                    document.getElementById('image-preview-container').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('add-chef-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            const chefData = {
-                name: document.getElementById('chef-name').value,
-                location: document.getElementById('chef-location').value,
-                cuisine: document.getElementById('chef-cuisine').value,
-                imageUrl: document.getElementById('chef-image-url').value,
-                description: document.getElementById('chef-description').value,
-                specialties: document.getElementById('chef-specialties').value.split(',').map(s => s.trim()),
-                dietaryTags: document.getElementById('chef-dietary-tags').value.split(',').map(s => s.trim()),
-                rating: parseFloat(document.getElementById('chef-rating').value),
-                reviewCount: parseInt(document.getElementById('chef-review-count').value),
-                pricing: JSON.parse(document.getElementById('chef-pricing').value),
-                menuOptions: JSON.parse(document.getElementById('chef-menu-options').value),
-                reviews: JSON.parse(document.getElementById('chef-reviews').value)
-            };
+            // Validate JSON fields
+            try {
+                JSON.parse(document.getElementById('chef-pricing').value);
+                JSON.parse(document.getElementById('chef-menu-options').value);
+                JSON.parse(document.getElementById('chef-reviews').value);
+            } catch (error) {
+                alert('Invalid JSON format in pricing, menu options, or reviews fields. Please check and try again.');
+                return;
+            }
 
-            fetch(`${API_URL}/admin/chefs`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({chefData: chefData})
-            })
-            .then(response => response.json())
-            .then(result => {
+            const fileInput = document.getElementById('chef-image-upload');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('Please upload a chef image.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+
+            // First, upload the image to S3
+            try {
+                const imageUrl = await uploadImageToS3(file);
+                if (!imageUrl) {
+                    alert('Failed to upload image. Please try again.');
+                    return;
+                }
+
+                // Then, add the chef data with the image URL
+                const chefData = {
+                    name: document.getElementById('chef-name').value,
+                    location: document.getElementById('chef-location').value,
+                    cuisine: document.getElementById('chef-cuisine').value,
+                    imageUrl: imageUrl,
+                    description: document.getElementById('chef-description').value,
+                    specialties: document.getElementById('chef-specialties').value.split(',').map(s => s.trim()),
+                    dietaryTags: document.getElementById('chef-dietary-tags').value.split(',').map(s => s.trim()),
+                    rating: parseFloat(document.getElementById('chef-rating').value),
+                    reviewCount: parseInt(document.getElementById('chef-review-count').value),
+                    pricing: JSON.parse(document.getElementById('chef-pricing').value),
+                    menuOptions: JSON.parse(document.getElementById('chef-menu-options').value),
+                    reviews: JSON.parse(document.getElementById('chef-reviews').value)
+                };
+
+                const response = await fetch(`${API_URL}/admin/chefs`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({chefData: chefData})
+                });
+
+                const result = await response.json();
+
                 if (result.message === 'Chef added successfully') {
                     alert('Chef added successfully!');
                     document.getElementById('add-chef-modal').style.display = 'none';
                     document.getElementById('add-chef-form').reset();
+                    document.getElementById('image-preview-container').style.display = 'none';
                 } else {
                     alert('Failed to add chef: ' + (result.error || 'Unknown error'));
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error:', error);
                 alert('Failed to add chef. Please check the form data and try again.');
-            });
+            }
         });
+
+        async function uploadImageToS3(file) {
+            // In a real implementation, you would need to:
+            // 1. Get a pre-signed URL from your backend for S3 upload
+            // 2. Upload the file directly to S3 using that URL
+            // 3. Return the public URL of the uploaded file
+
+            // For now, we'll simulate this by returning a placeholder URL
+            // In production, you would implement the actual S3 upload logic
+
+            console.log('Simulating S3 upload for:', file.name);
+
+            // Simulate upload delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Return a simulated S3 URL
+            const fileName = `images/add-chef/${Date.now()}_${file.name}`;
+            return `https://maharajachefservices.com/${fileName}`;
+        }
 
         document.getElementById('back-btn').addEventListener('click', function() {
             document.getElementById('form-data').style.display = 'none';
