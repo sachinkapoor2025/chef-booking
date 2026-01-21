@@ -156,5 +156,185 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
+
+        // Function to fetch chefs from backend
+        async function fetchChefs() {
+            try {
+                const response = await fetch(`${API_URL}/chefs`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch chefs');
+                }
+                const chefs = await response.json();
+                return chefs;
+            } catch (error) {
+                console.error('Error fetching chefs:', error);
+                return [];
+            }
+        }
+
+        // Function to create chef card HTML
+        function createChefCard(chef) {
+            const chefCard = document.createElement('div');
+            chefCard.className = 'chef-card';
+            chefCard.setAttribute('data-location', chef.location.toLowerCase());
+            chefCard.setAttribute('data-cuisine', chef.cuisine.toLowerCase());
+            chefCard.setAttribute('data-diet', chef.dietaryTags ? chef.dietaryTags.join(',').toLowerCase() : '');
+
+            chefCard.innerHTML = `
+                <img src="${chef.imageUrl || 'images/chef1.jpg'}" alt="${chef.name}">
+                <h3>${chef.name}</h3>
+                <a href="book-a-chef.html" class="btn">View Profile</a>
+                <a href="book-a-chef.html" class="btn btn-secondary">Book Now</a>
+            `;
+
+            return chefCard;
+        }
+
+        // Function to display chefs
+        function displayChefs(chefs) {
+            const chefCardsContainer = document.querySelector('.chef-cards');
+            const noResults = document.getElementById('no-results');
+
+            // Clear existing chef cards
+            chefCardsContainer.innerHTML = '';
+
+            if (chefs.length === 0) {
+                noResults.style.display = 'block';
+                chefCardsContainer.style.display = 'none';
+                return;
+            }
+
+            // Add each chef to the container
+            chefs.forEach(chef => {
+                const chefCard = createChefCard(chef);
+                chefCardsContainer.appendChild(chefCard);
+            });
+
+            noResults.style.display = 'none';
+            chefCardsContainer.style.display = 'grid';
+        }
+
+        // Function to load chefs on page load
+        async function loadChefs() {
+            const chefs = await fetchChefs();
+            displayChefs(chefs);
+
+            // Add event listener for search button
+            const searchChefsBtn = document.getElementById('search-chefs-btn');
+            if (searchChefsBtn) {
+                searchChefsBtn.addEventListener('click', function() {
+                    performChefSearch(chefs);
+                });
+            }
+
+            // Also trigger search on Enter key in input fields
+            const searchInputs = document.querySelectorAll('#location-search, #cuisine-search, #dietary-search');
+            searchInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performChefSearch(chefs);
+                    }
+                });
+            });
+        }
+
+        // Modified search function to work with dynamic data
+        function performChefSearch(allChefs) {
+            const location = document.getElementById('location-search').value.trim().toLowerCase();
+            const cuisine = document.getElementById('cuisine-search').value;
+            const dietary = document.getElementById('dietary-search').value;
+
+            const chefCardsContainer = document.querySelector('.chef-cards');
+            const noResults = document.getElementById('no-results');
+
+            // Filter chefs based on search criteria
+            const filteredChefs = allChefs.filter(chef => {
+                let matches = true;
+
+                // Location filter
+                if (location && location !== '') {
+                    const chefLocation = chef.location.toLowerCase();
+                    const validLocations = ['california', 'ca', 'san jose', 'san francisco', 'los angeles', 'la', 'sacramento', 'fresno', 'bakersfield'];
+                    if (!validLocations.some(loc => loc.includes(location) || location.includes(loc))) {
+                        matches = false;
+                    }
+                }
+
+                // Cuisine filter
+                if (cuisine && cuisine !== '') {
+                    if (chef.cuisine.toLowerCase() !== cuisine.toLowerCase()) {
+                        matches = false;
+                    }
+                }
+
+                // Dietary filter
+                if (dietary && dietary !== '') {
+                    const chefDiet = chef.dietaryTags ? chef.dietaryTags.join(',').toLowerCase() : '';
+                    if (!chefDiet.includes(dietary.toLowerCase())) {
+                        matches = false;
+                    }
+                }
+
+                return matches;
+            });
+
+            displayChefs(filteredChefs);
+
+            // Provide user feedback
+            const feedback = document.createElement('div');
+            feedback.id = 'search-feedback';
+            feedback.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 4px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                z-index: 1000;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: all 0.3s ease;
+            `;
+
+            // Remove existing feedback
+            const existingFeedback = document.getElementById('search-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+
+            feedback.textContent = `Found ${filteredChefs.length} chef${filteredChefs.length !== 1 ? 's' : ''} matching your criteria`;
+            document.body.appendChild(feedback);
+
+            // Animate feedback
+            setTimeout(() => {
+                feedback.style.opacity = '1';
+                feedback.style.transform = 'translateY(0)';
+            }, 100);
+
+            // Remove feedback after 3 seconds
+            setTimeout(() => {
+                feedback.style.opacity = '0';
+                feedback.style.transform = 'translateY(-20px)';
+                setTimeout(() => feedback.remove(), 300);
+            }, 3000);
+        }
+
+        // Function to reset search
+        function resetSearch() {
+            document.getElementById('location-search').value = '';
+            document.getElementById('cuisine-search').value = '';
+            document.getElementById('dietary-search').value = '';
+
+            // Reload chefs to show all
+            loadChefs();
+        }
+
+        // Load chefs when page is loaded
+        document.addEventListener('DOMContentLoaded', loadChefs);
+    </script>
 </body>
 </html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chef Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Chef Integration</h1>
+
+    <div class="test-section">
+        <h2>Test 1: Fetch Chefs from API</h2>
+        <button id="testFetchChefs">Test Fetch Chefs</button>
+        <div id="fetchResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Add Sample Chef</h2>
+        <button id="testAddChef">Test Add Sample Chef</button>
+        <div id="addResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Verify Chef Listing</h2>
+        <button id="testVerifyListing">Test Verify Chef Listing</button>
+        <div id="verifyResults"></div>
+    </div>
+
+    <script>
+        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+
+        document.getElementById('testFetchChefs').addEventListener('click', async function() {
+            const resultsDiv = document.getElementById('fetchResults');
+            resultsDiv.innerHTML = 'Testing...';
+
+            try {
+                const response = await fetch(`${API_URL}/chefs`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const chefs = await response.json();
+                resultsDiv.innerHTML = `<span class="success">✓ Successfully fetched ${chefs.length} chefs</span><pre>${JSON.stringify(chefs, null, 2)}</pre>`;
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">✗ Error fetching chefs: ${error.message}</span>`;
+            }
+        });
+
+        document.getElementById('testAddChef').addEventListener('click', async function() {
+            const resultsDiv = document.getElementById('addResults');
+            resultsDiv.innerHTML = 'Adding sample chef...';
+
+            try {
+                // Sample chef data
+                const chefData = {
+                    chefData: {
+                        name: "Test Chef",
+                        location: "California",
+                        cuisine: "Italian",
+                        imageUrl: "images/chef1.jpg",
+                        description: "A test chef for integration testing",
+                        specialties: ["Pasta", "Pizza", "Italian Cuisine"],
+                        dietaryTags: ["Vegetarian", "Gluten-Free"],
+                        rating: 4.5,
+                        reviewCount: 10,
+                        pricing: [
+                            {type: "Dinner Service", price: "$75/hour", note: "Minimum 2 hours"}
+                        ],
+                        menuOptions: {
+                            "Dinner": ["Spaghetti Carbonara", "Margherita Pizza"]
+                        },
+                        reviews: [
+                            {reviewer: "Test User", stars: "★★★★★", text: "Great food!"}
+                        ]
+                    }
+                };
+
+                const response = await fetch(`${API_URL}/admin/chefs`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(chefData)
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    resultsDiv.innerHTML = `<span class="success">✓ Successfully added test chef: ${result.message}</span>`;
+                } else {
+                    resultsDiv.innerHTML = `<span class="error">✗ Error adding chef: ${result.error || 'Unknown error'}</span>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">✗ Error adding chef: ${error.message}</span>`;
+            }
+        });
+
+        document.getElementById('testVerifyListing').addEventListener('click', async function() {
+            const resultsDiv = document.getElementById('verifyResults');
+            resultsDiv.innerHTML = 'Verifying chef listing...';
+
+            try {
+                // Test the chef card creation function
+                const sampleChef = {
+                    name: "Test Chef",
+                    location: "California",
+                    cuisine: "Italian",
+                    imageUrl: "images/chef1.jpg",
+                    dietaryTags: ["Vegetarian", "Gluten-Free"]
+                };
+
+                const chefCard = document.createElement('div');
+                chefCard.className = 'chef-card';
+                chefCard.setAttribute('data-location', sampleChef.location.toLowerCase());
+                chefCard.setAttribute('data-cuisine', sampleChef.cuisine.toLowerCase());
+                chefCard.setAttribute('data-diet', sampleChef.dietaryTags.join(',').toLowerCase());
+
+                chefCard.innerHTML = `
+                    <img src="${sampleChef.imageUrl}" alt="${sampleChef.name}">
+                    <h3>${sampleChef.name}</h3>
+                    <a href="book-a-chef.html" class="btn">View Profile</a>
+                    <a href="book-a-chef.html" class="btn btn-secondary">Book Now</a>
+                `;
+
+                resultsDiv.innerHTML = `<span class="success">✓ Chef card creation successful</span>`;
+                resultsDiv.appendChild(chefCard);
+
+                // Test filtering
+                const testLocation = "california";
+                const testCuisine = "italian";
+                const testDietary = "vegetarian";
+
+                const matchesLocation = sampleChef.location.toLowerCase().includes(testLocation);
+                const matchesCuisine = sampleChef.cuisine.toLowerCase() === testCuisine;
+                const matchesDietary = sampleChef.dietaryTags.join(',').toLowerCase().includes(testDietary);
+
+                resultsDiv.innerHTML += `<p>Filtering test: Location(${matchesLocation}) Cuisine(${matchesCuisine}) Dietary(${matchesDietary})</p>`;
+
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">✗ Error verifying listing: ${error.message}</span>`;
+            }
+        });
+    </script>
+</body>
+</html>

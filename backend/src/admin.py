@@ -24,6 +24,8 @@ def handler(event, context):
             return get_chefs()
         elif http_method == 'POST' and path == '/admin/chefs':
             return add_chef(event)
+        elif http_method == 'GET' and path == '/chefs':
+            return get_chefs()
         elif http_method == 'GET' and path == '/admin/weekly-data':
             return get_weekly_data()
         else:
