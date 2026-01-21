@@ -179,7 +179,7 @@ Resources:
       Environment:
         Variables:
           CHEF_TABLE: !Ref ChefTable
-          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:${AWS::StackName}-openai-key:SecretString:OPENAI_API_KEY}}"
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:${AWS::StackName}-openai-key:SecretString:OPENAI_API_KEY::}}"
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ChefTable

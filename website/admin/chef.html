@@ -310,6 +310,14 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                     ).join('\n');
 
                     alert('✨ Content beautified successfully! Review the enhanced descriptions before submitting.');
+                } else if (result.aiFeatures === 'disabled') {
+                    // AI features are not configured, provide basic beautification
+                    alert('ℹ️ AI beautification is not configured. Here are some tips to enhance your chef profile:\n\n' +
+                          '• Description: Add details about experience, passion, and unique qualities\n' +
+                          '• Specialties: Be specific (e.g., "Authentic Northern Italian cuisine" instead of "Italian")\n' +
+                          '• Pricing: Include what\'s included and any special conditions\n' +
+                          '• Menu items: Make descriptions appetizing and detailed\n' +
+                          '• Reviews: Ensure they sound authentic and enthusiastic');
                 } else {
                     alert('❌ Failed to beautify content: ' + (result.error || 'Unknown error'));
                 }

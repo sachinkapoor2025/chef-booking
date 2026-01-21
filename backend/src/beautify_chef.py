@@ -39,15 +39,33 @@ def handler(event, context):
 
     except Exception as e:
         print(f"Error: {str(e)}")
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Internal server error'})
-        }
+        # Check if this is a Secrets Manager error
+        if "SecretsManager" in str(e) and "ResourceNotFoundException" in str(e):
+            print("Secrets Manager secret not found - this is expected if OpenAI integration is not configured")
+            # Return a response that indicates the service is available but AI features are disabled
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+                },
+                'body': json.dumps({
+                    'message': 'Beautify service available',
+                    'aiFeatures': 'disabled',
+                    'reason': 'OpenAI API key not configured'
+                })
+            }
+        else:
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+                },
+                'body': json.dumps({'error': 'Internal server error'})
+            }
 
 def beautify_chef_data(event):
     """Beautify chef data using AI to enhance descriptions and details"""
