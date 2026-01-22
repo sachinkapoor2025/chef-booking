@@ -206,8 +206,12 @@ Resources:
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ChefTable
-        - SecretsManagerReadWrite:
-            SecretArn: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
       Events:
         BeautifyChef:
           Type: Api
@@ -232,8 +236,12 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ChatHistoryTable
-        - SecretsManagerReadWrite:
-            SecretArn: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
       Events:
         Chat:
           Type: Api
