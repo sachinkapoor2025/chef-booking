@@ -216,7 +216,10 @@ def beautify_chef_data(event):
 def beautify_text(original_text, prompt_context):
     """Use OpenAI to enhance and beautify text"""
     try:
-        response = openai.ChatCompletion.create(
+        from openai import OpenAI
+        client = OpenAI(api_key=OPENAI_API_KEY)
+
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
@@ -239,7 +242,7 @@ def beautify_text(original_text, prompt_context):
             presence_penalty=0.0
         )
 
-        return response.choices[0].message['content'].strip()
+        return response.choices[0].message.content.strip()
 
     except Exception as e:
         print(f"OpenAI API error: {str(e)}")
@@ -249,8 +252,11 @@ def beautify_text(original_text, prompt_context):
 def beautify_list(original_list, cuisine_type):
     """Enhance a list of items (like specialties) using AI"""
     try:
+        from openai import OpenAI
+        client = OpenAI(api_key=OPENAI_API_KEY)
+
         items_str = ", ".join(original_list)
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
@@ -274,7 +280,7 @@ def beautify_list(original_list, cuisine_type):
         )
 
         # Parse the response to extract the enhanced list
-        enhanced_text = response.choices[0].message['content'].strip()
+        enhanced_text = response.choices[0].message.content.strip()
 
         # Try to extract list items (simple parsing)
         if "," in enhanced_text:
