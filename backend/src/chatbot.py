@@ -5,262 +5,292 @@ import uuid
 import time
 from datetime import datetime
 from botocore.exceptions import ClientError
+from boto3.dynamodb.conditions import Key
+from openai import OpenAI
 
-# Initialize DynamoDB
-dynamodb = boto3.resource('dynamodb')
+# =========================================================
+# CONFIG
+# =========================================================
 
-# Get environment variables
-CHAT_HISTORY_TABLE = os.environ.get('CHAT_HISTORY_TABLE', 'chat-history')
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
+CHAT_HISTORY_TABLE = os.environ.get("CHAT_HISTORY_TABLE", "chat-history")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+SERVICE_NAME = "chat-lambda"
 
-# Supported languages (top 20 US languages)
+dynamodb = boto3.resource("dynamodb")
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+
+# =========================================================
+# LANGUAGE CONFIG
+# =========================================================
+
 SUPPORTED_LANGUAGES = {
-    'en': 'English',
-    'es': 'Spanish',
-    'zh': 'Chinese',
-    'tag': 'Tagalog',
-    'vi': 'Vietnamese',
-    'fr': 'French',
-    'ar': 'Arabic',
-    'ko': 'Korean',
-    'ru': 'Russian',
-    'de': 'German',
-    'hi': 'Hindi',
-    'pt': 'Portuguese',
-    'it': 'Italian',
-    'ja': 'Japanese',
-    'pl': 'Polish',
-    'uk': 'Ukrainian',
-    'ht': 'Haitian Creole',
-    'bn': 'Bengali',
-    'pa': 'Punjabi',
-    'tl': 'Filipino'
+    "en": "English",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "tag": "Tagalog",
+    "vi": "Vietnamese",
+    "fr": "French",
+    "ar": "Arabic",
+    "ko": "Korean",
+    "ru": "Russian",
+    "de": "German",
+    "hi": "Hindi",
+    "pt": "Portuguese",
+    "it": "Italian",
+    "ja": "Japanese",
+    "pl": "Polish",
+    "uk": "Ukrainian",
+    "ht": "Haitian Creole",
+    "bn": "Bengali",
+    "pa": "Punjabi",
+    "tl": "Filipino",
 }
 
-# Language to OpenAI model mapping
-LANGUAGE_MODELS = {
-    'en': 'gpt-3.5-turbo',
-    'es': 'gpt-3.5-turbo',
-    'zh': 'gpt-3.5-turbo',
-    'tag': 'gpt-3.5-turbo',
-    'vi': 'gpt-3.5-turbo',
-    'fr': 'gpt-3.5-turbo',
-    'ar': 'gpt-3.5-turbo',
-    'ko': 'gpt-3.5-turbo',
-    'ru': 'gpt-3.5-turbo',
-    'de': 'gpt-3.5-turbo',
-    'hi': 'gpt-3.5-turbo',
-    'pt': 'gpt-3.5-turbo',
-    'it': 'gpt-3.5-turbo',
-    'ja': 'gpt-3.5-turbo',
-    'pl': 'gpt-3.5-turbo',
-    'uk': 'gpt-3.5-turbo',
-    'ht': 'gpt-3.5-turbo',
-    'bn': 'gpt-3.5-turbo',
-    'pa': 'gpt-3.5-turbo',
-    'tl': 'gpt-3.5-turbo'
-}
+LANGUAGE_MODELS = {lang: "gpt-4o-mini" for lang in SUPPORTED_LANGUAGES}
+
+# =========================================================
+# LOGGING HELPERS
+# =========================================================
+
+def log(level, message, **data):
+    """Structured JSON logging for CloudWatch"""
+    print(json.dumps({
+        "timestamp": datetime.utcnow().isoformat(),
+        "level": level,
+        "service": SERVICE_NAME,
+        "message": message,
+        **data
+    }))
+
+
+# =========================================================
+# LAMBDA HANDLER
+# =========================================================
 
 def handler(event, context):
-    try:
-        http_method = event['httpMethod']
-        path = event['resource']
+    start_time = time.time()
+    request_id = context.aws_request_id
 
-        if http_method == 'POST' and path == '/chat':
-            return handle_chat_request(event)
-        elif http_method == 'GET' and path == '/chat/history':
-            return get_chat_history(event)
+    log(
+        "INFO",
+        "Lambda invocation started",
+        requestId=request_id,
+        httpMethod=event.get("httpMethod"),
+        resource=event.get("resource"),
+        sourceIp=event.get("requestContext", {}).get("identity", {}).get("sourceIp"),
+        userAgent=event.get("requestContext", {}).get("identity", {}).get("userAgent"),
+        rawEvent=event,
+    )
+
+    try:
+        method = event.get("httpMethod")
+        path = event.get("resource")
+
+        if method == "POST" and path == "/chat":
+            response = handle_chat_request(event, request_id)
+
+        elif method == "GET" and path == "/chat/history":
+            response = get_chat_history(event, request_id)
+
         else:
-            return {
-                'statusCode': 404,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Not found'})
-            }
+            response = api_response(404, {"error": "Not found"})
 
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Internal server error'})
-        }
-
-def handle_chat_request(event):
-    """Handle chat requests with language support"""
-    try:
-        # Parse request body
-        body = json.loads(event['body'])
-        message = body.get('message', '').strip()
-        language = body.get('language', 'en')
-        session_id = body.get('sessionId') or str(uuid.uuid4())
-
-        if not message:
-            return {
-                'statusCode': 400,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Message is required'})
-            }
-
-        if language not in SUPPORTED_LANGUAGES:
-            language = 'en'
-
-        # Save user message to history
-        save_chat_message(session_id, 'user', message, language)
-
-        # Generate AI response
-        if OPENAI_API_KEY:
-            try:
-                import openai
-                from openai import OpenAI
-
-                client = OpenAI(api_key=OPENAI_API_KEY)
-
-                # Get response from OpenAI using the new API format
-                response = client.chat.completions.create(
-                    model=LANGUAGE_MODELS[language],
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": f"You are a helpful assistant for Maharaja Chef Services. Respond in {SUPPORTED_LANGUAGES[language]} language. Keep responses concise and helpful."
-                        },
-                        {
-                            "role": "user",
-                            "content": message
-                        }
-                    ],
-                    temperature=0.7,
-                    max_tokens=500,
-                    top_p=1.0,
-                    frequency_penalty=0.0,
-                    presence_penalty=0.0
-                )
-
-                ai_response = response.choices[0].message.content.strip()
-
-            except Exception as e:
-                print(f"OpenAI API error: {str(e)}")
-                ai_response = f"Sorry, I encountered an error processing your request. Please try again. (Error: {str(e)})"
-        else:
-            ai_response = "AI service is not configured. Here's a helpful response: Thank you for your message! Our team will get back to you soon."
-
-        # Save AI response to history
-        save_chat_message(session_id, 'assistant', ai_response, language)
-
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({
-                'message': ai_response,
-                'sessionId': session_id,
-                'language': language,
-                'timestamp': datetime.utcnow().isoformat()
-            })
-        }
-
-    except Exception as e:
-        print(f"Error handling chat request: {str(e)}")
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Failed to process chat request'})
-        }
-
-def get_chat_history(event):
-    """Get chat history for a session"""
-    try:
-        session_id = event['queryStringParameters'].get('sessionId')
-        if not session_id:
-            return {
-                'statusCode': 400,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'GET, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Session ID is required'})
-            }
-
-        # Get chat history from DynamoDB
-        table = dynamodb.Table(CHAT_HISTORY_TABLE)
-        response = table.query(
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('sessionId').eq(session_id)
+        log(
+            "INFO",
+            "Lambda invocation completed",
+            requestId=request_id,
+            durationMs=int((time.time() - start_time) * 1000),
+            responseStatus=response["statusCode"],
         )
 
-        # Sort by timestamp
-        items = sorted(response['Items'], key=lambda x: x['timestamp'])
-
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps({
-                'history': items,
-                'sessionId': session_id
-            })
-        }
+        return response
 
     except Exception as e:
-        print(f"Error getting chat history: {str(e)}")
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Failed to get chat history'})
-        }
+        log(
+            "ERROR",
+            "Unhandled lambda exception",
+            requestId=request_id,
+            error=str(e),
+        )
+        return api_response(500, {"error": "Internal server error"})
+
+
+# =========================================================
+# CHAT HANDLER
+# =========================================================
+
+def handle_chat_request(event, request_id):
+    body = json.loads(event.get("body", "{}"))
+
+    message = body.get("message", "").strip()
+    language = body.get("language", "en")
+    session_id = body.get("sessionId") or str(uuid.uuid4())
+
+    log(
+        "INFO",
+        "Incoming chat request",
+        requestId=request_id,
+        sessionId=session_id,
+        language=language,
+        userMessage=message,
+    )
+
+    if not message:
+        return api_response(400, {"error": "Message is required"})
+
+    if language not in SUPPORTED_LANGUAGES:
+        language = "en"
+
+    save_chat_message(session_id, "user", message, language)
+
+    ai_response = generate_ai_response(message, language, request_id, session_id)
+
+    save_chat_message(session_id, "assistant", ai_response, language)
+
+    log(
+        "INFO",
+        "Chat response sent",
+        requestId=request_id,
+        sessionId=session_id,
+        aiResponse=ai_response,
+    )
+
+    return api_response(
+        200,
+        {
+            "message": ai_response,
+            "sessionId": session_id,
+            "language": language,
+            "timestamp": datetime.utcnow().isoformat(),
+        },
+    )
+
+
+# =========================================================
+# OPENAI
+# =========================================================
+
+def generate_ai_response(message, language, request_id, session_id):
+    if not OPENAI_API_KEY:
+        log("WARN", "OpenAI API key missing", requestId=request_id)
+        return "AI service is not configured."
+
+    try:
+        log(
+            "INFO",
+            "Calling OpenAI",
+            requestId=request_id,
+            sessionId=session_id,
+            model=LANGUAGE_MODELS[language],
+            promptPreview=message[:200],
+        )
+
+        completion = openai_client.chat.completions.create(
+            model=LANGUAGE_MODELS[language],
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a helpful assistant for Maharaja Chef Services. "
+                        f"Respond in {SUPPORTED_LANGUAGES[language]}. "
+                        "Keep responses concise and professional."
+                    ),
+                },
+                {"role": "user", "content": message},
+            ],
+            temperature=0.7,
+            max_tokens=500,
+        )
+
+        response_text = completion.choices[0].message.content.strip()
+
+        log(
+            "INFO",
+            "OpenAI response received",
+            requestId=request_id,
+            sessionId=session_id,
+            tokensUsed=completion.usage.total_tokens if completion.usage else None,
+        )
+
+        return response_text
+
+    except Exception as e:
+        log(
+            "ERROR",
+            "OpenAI call failed",
+            requestId=request_id,
+            sessionId=session_id,
+            error=str(e),
+        )
+        return "Sorry, I encountered an error. Please try again."
+
+
+# =========================================================
+# CHAT HISTORY
+# =========================================================
+
+def get_chat_history(event, request_id):
+    params = event.get("queryStringParameters") or {}
+    session_id = params.get("sessionId")
+
+    log(
+        "INFO",
+        "Fetching chat history",
+        requestId=request_id,
+        sessionId=session_id,
+    )
+
+    if not session_id:
+        return api_response(400, {"error": "Session ID is required"})
+
+    try:
+        table = dynamodb.Table(CHAT_HISTORY_TABLE)
+        result = table.query(KeyConditionExpression=Key("sessionId").eq(session_id))
+        items = sorted(result.get("Items", []), key=lambda x: x["timestamp"])
+
+        return api_response(200, {"sessionId": session_id, "history": items})
+
+    except Exception as e:
+        log(
+            "ERROR",
+            "Failed to fetch chat history",
+            requestId=request_id,
+            error=str(e),
+        )
+        return api_response(500, {"error": "Failed to get chat history"})
+
+
+# =========================================================
+# DYNAMODB
+# =========================================================
 
 def save_chat_message(session_id, role, content, language):
-    """Save a chat message to DynamoDB"""
     try:
         table = dynamodb.Table(CHAT_HISTORY_TABLE)
         table.put_item(
             Item={
-                'sessionId': session_id,
-                'timestamp': datetime.utcnow().isoformat(),
-                'role': role,
-                'content': content,
-                'language': language
+                "sessionId": session_id,
+                "timestamp": datetime.utcnow().isoformat(),
+                "role": role,
+                "content": content,
+                "language": language,
             }
         )
-    except Exception as e:
-        print(f"Error saving chat message: {str(e)}")
+    except ClientError as e:
+        log("ERROR", "DynamoDB write failed", error=e.response["Error"]["Message"])
 
-# Export for testing
-if __name__ == "__main__":
-    # Test data
-    test_event = {
-        'httpMethod': 'POST',
-        'resource': '/chat',
-        'body': json.dumps({
-            'message': 'Hello, what services do you offer?',
-            'language': 'en'
-        })
+
+# =========================================================
+# RESPONSE
+# =========================================================
+
+def api_response(status_code, body):
+    return {
+        "statusCode": status_code,
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        },
+        "body": json.dumps(body),
     }
-
-    result = handler(test_event, {})
-    print("Test result:", result)
