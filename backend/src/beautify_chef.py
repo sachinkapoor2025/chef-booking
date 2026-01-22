@@ -1,324 +1,210 @@
 import json
-import boto3
 import os
-import hashlib
-from botocore.exceptions import ClientError
-from decimal import Decimal
+import time
+from datetime import datetime
+from openai import OpenAI
 
-# Optional OpenAI import - only used if API key is configured
-try:
-    import openai
-    OPENAI_AVAILABLE = True
-except ImportError:
-    OPENAI_AVAILABLE = False
-    print("Info: OpenAI module not available. Running in basic mode without AI features.")
+# ==============================
+# CONFIG
+# ==============================
 
-# Initialize DynamoDB
-dynamodb = boto3.resource('dynamodb')
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+MODEL = "gpt-4o-mini"
+LOG_TRUNCATE_LIMIT = 2000  # prevent CloudWatch log explosion
 
-# Get environment variables
-CHEF_TABLE = os.environ['CHEF_TABLE']
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
+client = OpenAI(api_key=OPENAI_API_KEY)
 
-# Configure OpenAI only if API key is provided
-if OPENAI_API_KEY and OPENAI_API_KEY.strip():
-    openai.api_key = OPENAI_API_KEY
-else:
-    print("Info: OPENAI_API_KEY not configured. Beautify function will run in basic mode without AI enhancements.")
+
+# ==============================
+# LOGGING UTIL
+# ==============================
+
+def log(title, data=None):
+    print(f"\n===== {title} =====")
+    if data is not None:
+        try:
+            text = json.dumps(data, indent=2)
+        except Exception:
+            text = str(data)
+
+        if len(text) > LOG_TRUNCATE_LIMIT:
+            text = text[:LOG_TRUNCATE_LIMIT] + "... (truncated)"
+        print(text)
+    print("===== END =====\n")
+
+
+# ==============================
+# HANDLER
+# ==============================
 
 def handler(event, context):
+    start_time = time.time()
+    request_id = context.aws_request_id
+
+    log("REQUEST METADATA", {
+        "requestId": request_id,
+        "timestamp": datetime.utcnow().isoformat()
+    })
+
+    # 1️⃣ RAW API GATEWAY EVENT
+    log("RAW API GATEWAY EVENT", event)
+
     try:
-        http_method = event['httpMethod']
-        path = event['resource']
+        body = json.loads(event.get("body", "{}"))
+        log("PARSED REQUEST BODY", body)
 
-        if http_method == 'POST' and path == '/admin/beautify-chef':
-            return beautify_chef_data(event)
-        else:
-            return {
-                'statusCode': 404,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Not found'})
-            }
+        # 🔧 FIX #1 — READ NESTED chefData
+        chef = body.get("chefData", {})
 
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        # Check if this is a Secrets Manager error
-        if "SecretsManager" in str(e) and "ResourceNotFoundException" in str(e):
-            print("Secrets Manager secret not found - this is expected if OpenAI integration is not configured")
-            # Return a response that indicates the service is available but AI features are disabled
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({
-                    'message': 'Beautify service available',
-                    'aiFeatures': 'disabled',
-                    'reason': 'OpenAI API key not configured'
-                })
-            }
-        else:
-            return {
-                'statusCode': 500,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Internal server error'})
-            }
-
-def beautify_chef_data(event):
-    """Beautify chef data using AI to enhance descriptions and details"""
-    try:
-        body = json.loads(event['body'])
-        chef_data = body.get('chefData', {})
-
-        if not chef_data:
-            return {
-                'statusCode': 400,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Missing chef data'})
-            }
-
-        # Check if OpenAI is available and configured
-        if not OPENAI_AVAILABLE or not OPENAI_API_KEY or not OPENAI_API_KEY.strip():
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({
-                    'message': 'Beautify service available',
-                    'aiFeatures': 'disabled',
-                    'reason': 'OpenAI not configured or not available',
-                    'suggestions': {
-                        'description': 'Add details about experience, passion, and unique qualities',
-                        'specialties': 'Be specific (e.g., "Authentic Northern Italian cuisine")',
-                        'pricing': 'Include what is included and any special conditions',
-                        'menuOptions': 'Make descriptions appetizing and detailed',
-                        'reviews': 'Ensure they sound authentic and enthusiastic'
-                    }
-                })
-            }
-
-        # Beautify each section using AI
-        beautified_data = {}
-
-        # Beautify description
-        if 'description' in chef_data and chef_data['description']:
-            beautified_data['description'] = beautify_text(
-                chef_data['description'],
-                f"Enhance this chef description to be more detailed, professional, and engaging. "
-                f"Make it approximately 3-4 sentences long, highlighting the chef's expertise, "
-                f"passion, and unique qualities. Cuisine type: {chef_data.get('cuisine', 'gourmet')}"
-            )
-
-        # Beautify specialties
-        if 'specialties' in chef_data and chef_data['specialties']:
-            beautified_data['specialties'] = beautify_list(
-                chef_data['specialties'],
-                chef_data.get('cuisine', 'gourmet')
-            )
-
-        # Beautify pricing notes
-        if 'pricing' in chef_data and chef_data['pricing']:
-            beautified_data['pricing'] = []
-            for price in chef_data['pricing']:
-                if 'note' in price and price['note']:
-                    beautified_price = price.copy()
-                    beautified_price['note'] = beautify_text(
-                        price['note'],
-                        f"Enhance this pricing description to be more detailed and professional. "
-                        f"Make it clear what's included and any special conditions. "
-                        f"Service type: {price.get('type', 'Dinner Service')}"
-                    )
-                    beautified_data['pricing'].append(beautified_price)
-                else:
-                    beautified_data['pricing'].append(price)
-
-        # Beautify menu options
-        if 'menuOptions' in chef_data and chef_data['menuOptions']:
-            beautified_data['menuOptions'] = {}
-            for category, items in chef_data['menuOptions'].items():
-                if items and len(items) > 0:
-                    # Beautify menu item descriptions
-                    beautified_items = []
-                    for item in items:
-                        beautified_item = beautify_text(
-                            item,
-                            f"Enhance this menu item description to be more appetizing and detailed. "
-                            f"Make it sound delicious and professional. "
-                            f"Cuisine: {chef_data.get('cuisine', 'gourmet')}, Category: {category}"
-                        )
-                        beautified_items.append(beautified_item)
-                    beautified_data['menuOptions'][category] = beautified_items
-                else:
-                    beautified_data['menuOptions'][category] = items
-
-        # Beautify reviews if needed
-        if 'reviews' in chef_data and chef_data['reviews']:
-            beautified_data['reviews'] = []
-            for review in chef_data['reviews']:
-                if 'text' in review and review['text']:
-                    beautified_review = review.copy()
-                    beautified_review['text'] = beautify_text(
-                        review['text'],
-                        "Enhance this customer review to be more detailed and expressive while "
-                        "maintaining the original sentiment and meaning. Make it sound like "
-                        "an authentic, enthusiastic review."
-                    )
-                    beautified_data['reviews'].append(beautified_review)
-                else:
-                    beautified_data['reviews'].append(review)
-
-        # Merge beautified data with original
-        final_data = {**chef_data, **beautified_data}
-
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({
-                'message': 'Chef data beautified successfully',
-                'beautifiedChefData': final_data,
-                'originalChefData': chef_data
-            })
+        # Normalize input EXACTLY as frontend sends
+        original_data = {
+            "name": chef.get("name", ""),
+            "description": chef.get("description", ""),
+            "location": chef.get("location", ""),
+            "cuisine": chef.get("cuisine", ""),
+            "specialties": chef.get("specialties", []),
+            "dietary_tags": chef.get("dietaryTags", []),
+            "rating": chef.get("rating"),
+            "reviewCount": chef.get("reviewCount"),
+            "pricing": chef.get("pricing", []),
+            "menu_options": chef.get("menuOptions", {}),
+            "reviews": chef.get("reviews", [])
         }
 
+        log("NORMALIZED INPUT DATA", original_data)
+
+        # Skip OpenAI if key missing
+        if not OPENAI_API_KEY:
+            log("OPENAI SKIPPED", "OPENAI_API_KEY not configured")
+            return success_response(original_data, start_time)
+
+        # 2️⃣ SINGLE LLM CALL
+        beautified_data, raw_llm_output, prompt_sent = beautify_all_fields(original_data)
+
+        # 3️⃣ LOG LLM INTERACTION
+        log("LLM PROMPT SENT", prompt_sent)
+        log("RAW LLM RESPONSE", raw_llm_output)
+
+        # 4️⃣ MERGE WITH FALLBACK
+        final_data = merge_with_fallback(original_data, beautified_data)
+        log("FINAL RESPONSE DATA", final_data)
+
+        return success_response(final_data, start_time)
+
     except Exception as e:
-        print(f"Error beautifying chef data: {str(e)}")
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+        log("LAMBDA ERROR", str(e))
+        return error_response("Failed to beautify content", start_time)
+
+
+# ==============================
+# OPENAI LOGIC
+# ==============================
+
+def beautify_all_fields(data):
+    prompt_text = f"""
+You are a professional content editor for a premium personal chef marketplace website.
+
+RULES:
+- Improve grammar, clarity, and tone
+- Keep facts unchanged
+- Do NOT add fake experience or pricing
+- Return VALID JSON ONLY
+- Keep EXACT SAME keys and structure
+
+INPUT JSON:
+{json.dumps(data, indent=2)}
+"""
+
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {
+                "role": "system",
+                "content": "You beautify structured website content without changing meaning."
             },
-            'body': json.dumps({'error': 'Failed to beautify chef data'})
-        }
+            {
+                "role": "user",
+                "content": prompt_text
+            }
+        ],
+        temperature=0.4,
+        max_tokens=900
+    )
 
-def beautify_text(original_text, prompt_context):
-    """Use OpenAI to enhance and beautify text"""
+    raw_output = response.choices[0].message.content.strip()
+
+    # 🔧 FIX #2 — STRIP ```json MARKDOWN SAFELY
+    cleaned = raw_output
+    if cleaned.startswith("```"):
+        cleaned = cleaned.replace("```json", "").replace("```", "").strip()
+
     try:
-        from openai import OpenAI
-        client = OpenAI(api_key=OPENAI_API_KEY)
+        parsed = json.loads(cleaned)
+    except json.JSONDecodeError:
+        parsed = {}
 
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a professional content enhancer specializing in chef profiles and culinary descriptions. "
-                              "Your responses should be detailed, engaging, and maintain a professional tone suitable "
-                              "for a premium chef services website."
-                },
-                {
-                    "role": "user",
-                    "content": f"Original text: '{original_text}'\n\nContext: {prompt_context}\n\n"
-                              f"Please enhance this text following the instructions in the context. "
-                              f"Make it more detailed, professional, and engaging while preserving the original meaning."
-                }
-            ],
-            temperature=0.7,
-            max_tokens=150,
-            top_p=1.0,
-            frequency_penalty=0.0,
-            presence_penalty=0.0
-        )
+    return parsed, raw_output, prompt_text
 
-        return response.choices[0].message.content.strip()
 
-    except Exception as e:
-        print(f"OpenAI API error: {str(e)}")
-        # Fallback: return original text if AI fails
-        return original_text
+# ==============================
+# HELPERS
+# ==============================
 
-def beautify_list(original_list, cuisine_type):
-    """Enhance a list of items (like specialties) using AI"""
-    try:
-        from openai import OpenAI
-        client = OpenAI(api_key=OPENAI_API_KEY)
-
-        items_str = ", ".join(original_list)
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a culinary expert helping to enhance chef specialty lists. "
-                              "Make each item more specific, professional, and appetizing."
-                },
-                {
-                    "role": "user",
-                    "content": f"Original specialties: {items_str}\n\nCuisine type: {cuisine_type}\n\n"
-                              f"Please enhance each specialty to be more specific and professional. "
-                              f"For example, instead of 'Italian', you might suggest 'Authentic Northern Italian cuisine' "
-                              f"or 'Handmade pasta specialties'. Provide an enhanced list."
-                }
-            ],
-            temperature=0.7,
-            max_tokens=200,
-            top_p=1.0,
-            frequency_penalty=0.0,
-            presence_penalty=0.0
-        )
-
-        # Parse the response to extract the enhanced list
-        enhanced_text = response.choices[0].message.content.strip()
-
-        # Try to extract list items (simple parsing)
-        if "," in enhanced_text:
-            return [item.strip() for item in enhanced_text.split(",")]
-        elif "\n" in enhanced_text:
-            return [item.strip() for item in enhanced_text.split("\n") if item.strip()]
+def merge_with_fallback(original, beautified):
+    """
+    Never let OpenAI break the UI.
+    If a field is missing or empty, keep original.
+    """
+    result = {}
+    for key, value in original.items():
+        new_value = beautified.get(key)
+        if new_value is None or new_value == "":
+            result[key] = value
         else:
-            return [enhanced_text]
+            result[key] = new_value
+    return result
 
-    except Exception as e:
-        print(f"OpenAI API error for list beautification: {str(e)}")
-        # Fallback: return original list if AI fails
-        return original_list
 
-# Export for testing
-if __name__ == "__main__":
-    # Test data
-    test_chef = {
-        "name": "Test Chef",
-        "cuisine": "Italian",
-        "description": "Great chef",
-        "specialties": ["Pasta", "Pizza"],
-        "pricing": [{"type": "Dinner", "price": "$75", "note": "Min 2 hours"}],
-        "menuOptions": {"Dinner": ["Spaghetti", "Lasagna"]},
-        "reviews": [{"reviewer": "Test", "stars": "★★★★★", "text": "Good food"}]
+# ==============================
+# RESPONSES
+# ==============================
+
+def success_response(data, start_time):
+    duration_ms = int((time.time() - start_time) * 1000)
+    log("REQUEST COMPLETED", {
+        "status": "success",
+        "duration_ms": duration_ms
+    })
+
+    return {
+        "statusCode": 200,
+        "headers": cors_headers(),
+        "body": json.dumps({
+            "success": True,
+            "data": data
+        })
     }
 
-    # Mock OpenAI for testing
-    class MockResponse:
-        def __init__(self, content):
-            self.choices = [type('obj', (object,), {'message': {'content': content}})]
+def error_response(message, start_time):
+    duration_ms = int((time.time() - start_time) * 1000)
+    log("REQUEST FAILED", {
+        "status": "error",
+        "duration_ms": duration_ms,
+        "message": message
+    })
 
-    openai.ChatCompletion.create = lambda **kwargs: MockResponse("Enhanced description")
+    return {
+        "statusCode": 500,
+        "headers": cors_headers(),
+        "body": json.dumps({
+            "success": False,
+            "error": message
+        })
+    }
 
-    result = beautify_chef_data(type('obj', (object,), {
-        'httpMethod': 'POST',
-        'resource': '/admin/beautify-chef',
-        'body': json.dumps({'chefData': test_chef})
-    }))
-
-    print("Test result:", result)
+def cors_headers():
+    return {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS"
+    }

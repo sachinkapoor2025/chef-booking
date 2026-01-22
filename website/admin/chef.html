@@ -280,8 +280,45 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
 
                 const result = await response.json();
 
-                if (result.message === 'Chef data beautified successfully') {
+                // Check for new response format (success: true, data: {})
+                if (result.success === true && result.data) {
                     // Update form with beautified data
+                    document.getElementById('chef-description').value = result.data.description;
+
+                    // Update specialties
+                    document.getElementById('chef-specialties').value = result.data.specialties.join(', ');
+
+                    // Update pricing notes
+                    const pricingTextarea = document.getElementById('chef-pricing');
+                    pricingTextarea.value = result.data.pricing.map(p =>
+                        `${p.type}|${p.price}|${p.note}`
+                    ).join('\n');
+
+                    // Update menu options
+                    const menuTextarea = document.getElementById('chef-menu-options');
+                    let menuText = '';
+                    for (const [category, items] of Object.entries(result.data.menu_options)) {
+                        items.forEach(item => {
+                            menuText += `${category}|${item}\n`;
+                        });
+                    }
+                    menuTextarea.value = menuText.trim();
+
+                    // Update reviews
+                    const reviewsTextarea = document.getElementById('chef-reviews');
+                    reviewsTextarea.value = result.data.reviews.map(r =>
+                        `${r.reviewer}|${r.stars}|${r.text}`
+                    ).join('\n');
+
+                    // Change button text to indicate completion
+                    beautifyBtn.textContent = '✨ Beautified';
+                    setTimeout(() => {
+                        beautifyBtn.textContent = originalText;
+                    }, 2000);
+                }
+                // Check for old response format (message: 'Chef data beautified successfully')
+                else if (result.message === 'Chef data beautified successfully') {
+                    // Update form with beautified data (old format)
                     document.getElementById('chef-description').value = result.beautifiedChefData.description;
 
                     // Update specialties
@@ -309,8 +346,14 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                         `${r.reviewer}|${r.stars}|${r.text}`
                     ).join('\n');
 
-                    alert('✨ Content beautified successfully! Review the enhanced descriptions before submitting.');
-                } else if (result.aiFeatures === 'disabled') {
+                    // Change button text to indicate completion
+                    beautifyBtn.textContent = '✨ Beautified';
+                    setTimeout(() => {
+                        beautifyBtn.textContent = originalText;
+                    }, 2000);
+                }
+                // Check for AI disabled response
+                else if (result.aiFeatures === 'disabled') {
                     // AI features are not configured, provide basic beautification suggestions
                     let message = 'ℹ️ AI beautification provides helpful suggestions:\n\n';
 
@@ -329,15 +372,22 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                     }
 
                     alert(message);
-                } else {
+                }
+                // Check for error response
+                else if (result.success === false || result.error) {
                     alert('❌ Failed to beautify content: ' + (result.error || 'Unknown error'));
+                }
+                // Handle unexpected response format
+                else {
+                    console.error('Unexpected response format:', result);
+                    alert('❌ Failed to beautify content: Unexpected response format');
                 }
             } catch (error) {
                 console.error('Beautification error:', error);
                 alert('❌ Error beautifying content. Please check your input and try again.');
             } finally {
-                // Restore button state
-                beautifyBtn.textContent = originalText;
+                // Ensure button is always re-enabled, but don't restore text here
+                // since we handle it in the success cases above
                 beautifyBtn.disabled = false;
             }
         });
