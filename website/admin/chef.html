@@ -131,7 +131,7 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                         <div style="display: flex; gap: 15px; justify-content: flex-end;">
                             <button type="button" id="beautify-content" class="btn" style="background-color: #28a745;">🪄 Beautify Content</button>
                             <button type="button" id="cancel-add-chef" class="btn" style="background-color: #ccc;">Cancel</button>
-                            <button type="submit" class="btn">Add Chef</button>
+                            <button type="submit" class="btn" id="add-chef-submit-btn">Add Chef</button>
                         </div>
                     </form>
                 </div>
@@ -448,13 +448,24 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
 
             const file = fileInput.files[0];
 
-            // First, upload the image to S3
+            // Update button to show upload status
+            const submitBtn = document.getElementById('add-chef-submit-btn');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = '📤 Uploading image...';
+            submitBtn.disabled = true;
+
             try {
+                // First, upload the image to S3
                 const imageUrl = await uploadImageToS3(file);
                 if (!imageUrl) {
                     alert('Failed to upload image. Please try again.');
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
                     return;
                 }
+
+                // Update button to show chef addition status
+                submitBtn.textContent = '👨‍🍳 Adding chef...';
 
                 // Then, add the chef data with the image URL
                 const chefData = {
@@ -497,26 +508,42 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
             } catch (error) {
                 console.error('Error:', error);
                 alert('Failed to add chef. Please check the form data and try again.');
+            } finally {
+                // Always restore button state
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
             }
         });
 
         async function uploadImageToS3(file) {
-            // In a real implementation, you would need to:
-            // 1. Get a pre-signed URL from your backend for S3 upload
-            // 2. Upload the file directly to S3 using that URL
-            // 3. Return the public URL of the uploaded file
+            // Get pre-signed URL from backend
+            const fileName = file.name;
+            const presignedResponse = await fetch(`${API_URL}/admin/s3-presigned-url?filename=${encodeURIComponent(fileName)}`);
 
-            // For now, we'll simulate this by returning a placeholder URL
-            // In production, you would implement the actual S3 upload logic
+            if (!presignedResponse.ok) {
+                const errorResult = await presignedResponse.json();
+                console.error('Failed to get pre-signed URL:', errorResult);
+                throw new Error('Failed to get upload URL: ' + (errorResult.error || 'Unknown error'));
+            }
 
-            console.log('Simulating S3 upload for:', file.name);
+            const { presignedUrl, publicUrl } = await presignedResponse.json();
 
-            // Simulate upload delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // Upload file directly to S3 using the pre-signed URL
+            const uploadResponse = await fetch(presignedUrl, {
+                method: 'PUT',
+                body: file,
+                headers: {
+                    'Content-Type': file.type
+                }
+            });
 
-            // Return a simulated S3 URL
-            const fileName = `images/add-chef/${Date.now()}_${file.name}`;
-            return `https://maharajachefservices.com/${fileName}`;
+            if (!uploadResponse.ok) {
+                console.error('S3 upload failed:', uploadResponse.status, uploadResponse.statusText);
+                throw new Error('Image upload failed: ' + uploadResponse.statusText);
+            }
+
+            console.log('Image uploaded successfully:', publicUrl);
+            return publicUrl;
         }
 
         document.getElementById('back-btn').addEventListener('click', function() {

@@ -74,6 +74,9 @@ def handler(event, context):
         elif http_method == 'POST' and path == '/admin/chefs':
             return add_chef(event)
 
+        elif http_method == 'GET' and path == '/admin/s3-presigned-url':
+            return generate_presigned_url(event)
+
         elif http_method == 'GET' and path == '/admin/weekly-data':
             return get_weekly_data()
 
@@ -229,6 +232,58 @@ def add_chef(event):
             'body': json.dumps({'error': str(e)})
         }
 
+
+# =========================
+# S3 PRE-SIGNED URL GENERATOR
+# =========================
+
+def generate_presigned_url(event):
+    import boto3
+    import uuid
+    import os
+
+    # Extract filename from query parameters
+    filename = event.get('queryStringParameters', {}).get('filename', 'unknown-file')
+
+    # Generate unique filename to prevent collisions
+    unique_filename = f"images/add-chef/{uuid.uuid4()}_{filename}"
+
+    # Create S3 client
+    s3 = boto3.client('s3')
+    bucket_name = 'maharajachefservices.com'  # Replace with actual bucket name
+
+    try:
+        # Generate pre-signed URL for PUT operation
+        presigned_url = s3.generate_presigned_url(
+            'put_object',
+            Params={
+                'Bucket': bucket_name,
+                'Key': unique_filename,
+                'ContentType': 'image/*'
+            },
+            ExpiresIn=3600  # URL expires in 1 hour
+        )
+
+        # Return the pre-signed URL and the final public URL
+        public_url = f"https://{bucket_name}/{unique_filename}"
+
+        return {
+            'statusCode': 200,
+            'headers': cors_headers(),
+            'body': json.dumps({
+                'presignedUrl': presigned_url,
+                'publicUrl': public_url,
+                'filename': unique_filename
+            })
+        }
+
+    except Exception as e:
+        print("S3 PRE-SIGNED URL ERROR:", str(e))
+        return {
+            'statusCode': 500,
+            'headers': cors_headers(),
+            'body': json.dumps({'error': str(e)})
+        }
 
 # =========================
 # WEEKLY DATA
