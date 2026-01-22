@@ -18,7 +18,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             border: none;
             cursor: pointer;
@@ -29,10 +29,12 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-weight: bold;
+            font-size: 14px;
         }
 
         .chatbot-toggle:hover {
-            background-color: #218838;
+            background-color: #0069d9;
             transform: scale(1.05);
         }
 
@@ -40,6 +42,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
+            display: none;
         }
 
         .chatbot-popup {
@@ -266,7 +269,7 @@
     <!-- Chatbot Container -->
     <div class="chatbot-container">
         <button class="chatbot-toggle" id="chatbotToggle">
-            <img src="../images/logo.jpg" alt="Maharaja Chef Services">
+            Chat
         </button>
 
         <div class="chatbot-popup" id="chatbotPopup">
