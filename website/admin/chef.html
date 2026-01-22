@@ -412,7 +412,7 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                     };
                 });
 
-            // Parse menu options (format: Category|Item)
+                // Parse menu options (format: Category|Item)
             const menuOptions = {};
             menuOptionsText.split('\n')
                 .filter(line => line.trim() !== '')
@@ -472,6 +472,8 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                     reviews: reviews
                 };
 
+                console.log('Sending chef data:', JSON.stringify(chefData, null, 2));
+
                 const response = await fetch(`${API_URL}/admin/chefs`, {
                     method: 'POST',
                     headers: {
@@ -482,13 +484,15 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
 
                 const result = await response.json();
 
+                console.log('Add chef response:', response.status, result);
+
                 if (result.message === 'Chef added successfully') {
                     alert('Chef added successfully!');
                     document.getElementById('add-chef-modal').style.display = 'none';
                     document.getElementById('add-chef-form').reset();
                     document.getElementById('image-preview-container').style.display = 'none';
                 } else {
-                    alert('Failed to add chef: ' + (result.error || 'Unknown error'));
+                    alert('Failed to add chef: ' + (result.error || 'Unknown error') + '\n\nPlease check the browser console for more details.');
                 }
             } catch (error) {
                 console.error('Error:', error);

@@ -4,10 +4,7 @@ import os
 import hashlib
 from botocore.exceptions import ClientError
 from decimal import Decimal
-from boto3.dynamodb.types import TypeDeserializer
-
-# Set up DynamoDB type deserializer to handle Decimal types
-type_deserializer = TypeDeserializer()
+from boto3.dynamodb.conditions import Key
 
 dynamodb = boto3.resource('dynamodb')
 
@@ -16,267 +13,232 @@ ADMIN_CREDENTIALS_TABLE = os.environ['ADMIN_CREDENTIALS_TABLE']
 WEEKLY_SUBMISSIONS_TABLE = os.environ['WEEKLY_SUBMISSIONS_TABLE']
 CHEF_TABLE = os.environ['CHEF_TABLE']
 
+
+# =========================
+# COMMON HELPERS
+# =========================
+
+def cors_headers():
+    return {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
+    }
+
+
+def debug_log(title, data):
+    print(f"\n===== {title} =====")
+    try:
+        print(json.dumps(data, indent=2, default=str))
+    except Exception:
+        print(data)
+    print("===== END =====\n")
+
+
+def convert_numbers(obj):
+    """
+    Recursively convert int/float to Decimal for DynamoDB
+    """
+    if isinstance(obj, list):
+        return [convert_numbers(i) for i in obj]
+    elif isinstance(obj, dict):
+        return {k: convert_numbers(v) for k, v in obj.items()}
+    elif isinstance(obj, float):
+        return Decimal(str(obj))
+    elif isinstance(obj, int):
+        return Decimal(obj)
+    else:
+        return obj
+
+
+# =========================
+# MAIN HANDLER
+# =========================
+
 def handler(event, context):
     try:
-        http_method = event['httpMethod']
-        path = event['resource']
+        http_method = event.get('httpMethod')
+        path = event.get('resource')
+
+        debug_log("RAW API GATEWAY EVENT", event)
 
         if http_method == 'POST' and path == '/admin/login':
             return login(event)
+
         elif http_method == 'GET' and path.startswith('/admin/data/'):
             return get_data(event)
-        elif http_method == 'GET' and path == '/admin/chefs':
+
+        elif http_method == 'GET' and path in ['/admin/chefs', '/chefs']:
             return get_chefs()
+
         elif http_method == 'POST' and path == '/admin/chefs':
             return add_chef(event)
-        elif http_method == 'GET' and path == '/chefs':
-            return get_chefs()
+
         elif http_method == 'GET' and path == '/admin/weekly-data':
             return get_weekly_data()
-        else:
-            return {
-                'statusCode': 404,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Not found'})
-            }
+
+        return {
+            'statusCode': 404,
+            'headers': cors_headers(),
+            'body': json.dumps({'error': 'Not found'})
+        }
 
     except Exception as e:
-        print(f"Error: {str(e)}")
+        print("UNHANDLED ERROR:", str(e))
         return {
             'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-            },
+            'headers': cors_headers(),
             'body': json.dumps({'error': 'Internal server error'})
         }
+
+
+# =========================
+# LOGIN
+# =========================
 
 def login(event):
     body = json.loads(event['body'])
     username = body.get('username')
     password = body.get('password')
 
-    if not username or not password:
-        return {
-            'statusCode': 400,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Username and password required'})
-        }
-
     table = dynamodb.Table(ADMIN_CREDENTIALS_TABLE)
-    try:
-        response = table.get_item(Key={'username': username})
-        if 'Item' not in response:
-            return {
-                'statusCode': 401,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Invalid credentials'})
-            }
 
-        stored_hash = response['Item']['password_hash']
-        if hashlib.sha256(password.encode()).hexdigest() == stored_hash:
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'message': 'Login successful'})
-            }
-        else:
-            return {
-                'statusCode': 401,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
-                'body': json.dumps({'error': 'Invalid credentials'})
-            }
-    except ClientError as e:
-        print(e)
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Database error'})
-        }
+    response = table.get_item(Key={'username': username})
+    if 'Item' not in response:
+        return {'statusCode': 401, 'headers': cors_headers(), 'body': json.dumps({'error': 'Invalid credentials'})}
+
+    stored_hash = response['Item']['password_hash']
+    if hashlib.sha256(password.encode()).hexdigest() == stored_hash:
+        return {'statusCode': 200, 'headers': cors_headers(), 'body': json.dumps({'message': 'Login successful'})}
+
+    return {'statusCode': 401, 'headers': cors_headers(), 'body': json.dumps({'error': 'Invalid credentials'})}
+
+
+# =========================
+# GET DATA
+# =========================
 
 def get_data(event):
     form_type = event['pathParameters']['formType']
-
     table = dynamodb.Table(SUBMISSIONS_TABLE)
-    try:
-        response = table.query(
-            IndexName='formType-index',  # Assuming we add a GSI for formType
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('formType').eq(form_type)
-        )
-        items = response['Items']
 
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps(items)
-        }
-    except ClientError as e:
-        print(e)
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Database error'})
-        }
+    response = table.query(
+        IndexName='formType-index',
+        KeyConditionExpression=Key('formType').eq(form_type)
+    )
+
+    return {
+        'statusCode': 200,
+        'headers': cors_headers(),
+        'body': json.dumps(response['Items'], default=str)
+    }
+
+
+# =========================
+# GET CHEFS
+# =========================
 
 def get_chefs():
     table = dynamodb.Table(CHEF_TABLE)
-    try:
-        response = table.scan()
-        items = response['Items']
+    response = table.scan()
 
-        # Convert Decimal objects to float for JSON serialization
-        def convert_decimals(obj):
-            if isinstance(obj, list):
-                return [convert_decimals(item) for item in obj]
-            elif isinstance(obj, dict):
-                return {key: convert_decimals(value) for key, value in obj.items()}
-            elif isinstance(obj, Decimal):
-                return float(obj)
-            else:
-                return obj
+    def convert_decimals(obj):
+        if isinstance(obj, list):
+            return [convert_decimals(i) for i in obj]
+        elif isinstance(obj, dict):
+            return {k: convert_decimals(v) for k, v in obj.items()}
+        elif isinstance(obj, Decimal):
+            return float(obj)
+        return obj
 
-        # Apply the conversion to all items
-        converted_items = [convert_decimals(item) for item in items]
+    items = [convert_decimals(i) for i in response['Items']]
 
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps(converted_items)
-        }
-    except ClientError as e:
-        print(e)
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Database error'})
-        }
+    return {
+        'statusCode': 200,
+        'headers': cors_headers(),
+        'body': json.dumps(items)
+    }
+
+
+# =========================
+# ADD CHEF (FIXED + LOGGED)
+# =========================
 
 def add_chef(event):
     body = json.loads(event['body'])
     chef_data = body.get('chefData', {})
 
-    # Validate required fields
-    required_fields = ['name', 'location', 'cuisine', 'imageUrl', 'description', 'specialties', 'pricing', 'menuOptions', 'dietaryTags', 'reviews']
+    debug_log("RAW CHEF DATA FROM UI", chef_data)
+
+    required_fields = [
+        'name', 'location', 'cuisine', 'imageUrl',
+        'description', 'specialties', 'pricing',
+        'menuOptions', 'dietaryTags', 'reviews'
+    ]
+
     for field in required_fields:
         if field not in chef_data:
             return {
                 'statusCode': 400,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-                },
+                'headers': cors_headers(),
                 'body': json.dumps({'error': f'Missing required field: {field}'})
             }
 
+    debug_log("PRICING FIELD (RAW)", chef_data.get("pricing"))
+    debug_log("RATING FIELD", {
+        "value": chef_data.get("rating"),
+        "type": str(type(chef_data.get("rating")))
+    })
+
+    chef_id = hashlib.md5(chef_data['name'].encode()).hexdigest()
+
+    item = {
+        'chefId': chef_id,
+        'name': chef_data['name'],
+        'location': chef_data['location'],
+        'cuisine': chef_data['cuisine'],
+        'imageUrl': chef_data['imageUrl'],
+        'description': chef_data['description'],
+        'specialties': chef_data['specialties'],
+        'pricing': chef_data['pricing'],
+        'menuOptions': chef_data['menuOptions'],
+        'dietaryTags': chef_data['dietaryTags'],
+        'reviews': chef_data['reviews'],
+        'rating': chef_data.get('rating', 4.5),
+        'reviewCount': chef_data.get('reviewCount', 0)
+    }
+
+    # 🔥 CRITICAL FIX
+    item = convert_numbers(item)
+
+    debug_log("FINAL ITEM BEFORE DYNAMODB PUT", item)
+
     table = dynamodb.Table(CHEF_TABLE)
     try:
-        # Generate chef ID
-        chef_id = hashlib.md5(chef_data['name'].encode()).hexdigest()
-
-        item = {
-            'chefId': chef_id,
-            'name': chef_data['name'],
-            'location': chef_data['location'],
-            'cuisine': chef_data['cuisine'],
-            'imageUrl': chef_data['imageUrl'],
-            'description': chef_data['description'],
-            'specialties': chef_data['specialties'],
-            'pricing': chef_data['pricing'],
-            'menuOptions': chef_data['menuOptions'],
-            'dietaryTags': chef_data['dietaryTags'],
-            'reviews': chef_data['reviews'],
-            'rating': chef_data.get('rating', 4.5),
-            'reviewCount': chef_data.get('reviewCount', 0)
-        }
-
         table.put_item(Item=item)
-
         return {
             'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
+            'headers': cors_headers(),
             'body': json.dumps({'message': 'Chef added successfully'})
         }
-    except ClientError as e:
-        print(e)
+    except Exception as e:
+        print("DYNAMODB ERROR:", str(e))
         return {
             'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Database error'})
+            'headers': cors_headers(),
+            'body': json.dumps({'error': str(e)})
         }
+
+
+# =========================
+# WEEKLY DATA
+# =========================
 
 def get_weekly_data():
     table = dynamodb.Table(WEEKLY_SUBMISSIONS_TABLE)
-    try:
-        response = table.scan()
-        items = response['Items']
-
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps(items)
-        }
-    except ClientError as e:
-        print(e)
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS'
-            },
-            'body': json.dumps({'error': 'Database error'})
-        }
+    response = table.scan()
+    return {
+        'statusCode': 200,
+        'headers': cors_headers(),
+        'body': json.dumps(response['Items'], default=str)
+    }
