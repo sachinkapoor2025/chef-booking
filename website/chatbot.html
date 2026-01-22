@@ -18,14 +18,14 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background-color: #007bff;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -34,8 +34,9 @@
         }
 
         .chatbot-toggle:hover {
-            background-color: #0069d9;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
         .chatbot-toggle img {
@@ -61,7 +62,7 @@
         }
 
         .chatbot-header {
-            background-color: #28a745;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             padding: 15px;
             display: flex;
@@ -110,7 +111,7 @@
         }
 
         .chatbot-message.user {
-            background-color: #28a745;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             margin-left: auto;
             border-bottom-right-radius: 4px;
@@ -215,18 +216,20 @@
         }
 
         .chatbot-send {
-            background-color: #28a745;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             border-radius: 20px;
             padding: 10px 20px;
             cursor: pointer;
             font-size: 14px;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
         }
 
         .chatbot-send:hover {
-            background-color: #218838;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
         .chatbot-send:disabled {
@@ -276,7 +279,6 @@
         <div class="chatbot-popup" id="chatbotPopup">
             <div class="chatbot-header">
                 <div style="display: flex; align-items: center;">
-                    <img src="../images/logo.jpg" alt="Maharaja Chef Services">
                     <h3>Maharaja Chef Chat</h3>
                 </div>
                 <button class="chatbot-close" id="chatbotClose">&times;</button>

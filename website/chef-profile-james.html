@@ -219,5 +219,36 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
 </body>
 </html>
