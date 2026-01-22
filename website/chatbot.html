@@ -324,8 +324,9 @@
     </div>
 
     <script>
-        // Chatbot functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        // Chatbot functionality - Fixed for direct loading
+        (function() {
+            // Chatbot functionality - Fixed for direct loading
             const chatbotToggle = document.getElementById('chatbotToggle');
             const chatbotPopup = document.getElementById('chatbotPopup');
             const chatbotClose = document.getElementById('chatbotClose');
@@ -498,7 +499,7 @@
 
             // Initialize chatbot
             initChatbot();
-        });
+        })();
     </script>
 </body>
 </html>
