@@ -5,7 +5,7 @@ version = 0.1
 [default.deploy.parameters]
 stack_name = "chef-services-backend"
 s3_prefix = "chef-services-backend"
-region = "us-east-1"  # Replace with your AWS region
+region = "us-east-1"  # Replace with your AWS region 
 confirm_changeset = false
 fail_on_empty_changeset = false
 capabilities = "CAPABILITY_IAM"
