@@ -123,10 +123,12 @@ def handle_chat_request(event):
         if OPENAI_API_KEY:
             try:
                 import openai
-                openai.api_key = OPENAI_API_KEY
+                from openai import OpenAI
 
-                # Get response from OpenAI
-                response = openai.ChatCompletion.create(
+                client = OpenAI(api_key=OPENAI_API_KEY)
+
+                # Get response from OpenAI using the new API format
+                response = client.chat.completions.create(
                     model=LANGUAGE_MODELS[language],
                     messages=[
                         {
@@ -145,7 +147,7 @@ def handle_chat_request(event):
                     presence_penalty=0.0
                 )
 
-                ai_response = response.choices[0].message['content'].strip()
+                ai_response = response.choices[0].message.content.strip()
 
             except Exception as e:
                 print(f"OpenAI API error: {str(e)}")

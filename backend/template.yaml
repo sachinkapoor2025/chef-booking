@@ -108,6 +108,7 @@ Resources:
       CodeUri: src/
       Handler: form_submission.handler
       Runtime: python3.12
+      Timeout: 60
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
@@ -136,6 +137,7 @@ Resources:
       CodeUri: src/
       Handler: admin.handler
       Runtime: python3.12
+      Timeout: 60
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
@@ -196,6 +198,7 @@ Resources:
       CodeUri: src/
       Handler: beautify_chef.handler
       Runtime: python3.12
+      Timeout: 60
       Environment:
         Variables:
           CHEF_TABLE: !Ref ChefTable
@@ -219,6 +222,7 @@ Resources:
       CodeUri: src/
       Handler: chatbot.handler
       Runtime: python3.12
+      Timeout: 60
       Environment:
         Variables:
           CHAT_HISTORY_TABLE: !Ref ChatHistoryTable
