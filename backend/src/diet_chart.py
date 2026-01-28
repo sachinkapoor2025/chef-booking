@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from botocore.exceptions import ClientError
 import logging
+from openai import OpenAI
 
 # Configure logging
 logger = logging.getLogger()
@@ -13,12 +14,12 @@ logger.setLevel(logging.INFO)
 # Initialize AWS services
 dynamodb = boto3.resource('dynamodb')
 ses = boto3.client('ses')
-bedrock = boto3.client('bedrock-runtime')
+openai_client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY', ''))
 
 # Environment variables
 DIET_CHARTS_TABLE = os.environ.get('DIET_CHARTS_TABLE', 'DietCharts')
 FROM_EMAIL = os.environ.get('FROM_EMAIL', 'noreply@maharajachef.com')
-BEDROCK_MODEL_ID = os.environ.get('BEDROCK_MODEL_ID', 'anthropic.claude-3-sonnet-20240229-v1:0')
+OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
 
 def lambda_handler(event, context):
     """
@@ -221,37 +222,36 @@ IMPORTANT: Return ONLY the JSON object, no additional text, explanations, or for
 
 def call_llm_for_diet_chart(prompt):
     """
-    Make a single LLM call to generate the complete diet chart
+    Make a single LLM call to generate the complete diet chart using OpenAI
     """
     try:
-        # Prepare the request for Bedrock
-        body = {
-            "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": 4096,
-            "temperature": 0.7,
-            "top_p": 0.9,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        }
+        logger.info("Calling OpenAI API for diet chart generation")
         
-        # Make the API call
-        response = bedrock.invoke_model(
-            modelId=BEDROCK_MODEL_ID,
-            contentType="application/json",
-            accept="application/json",
-            body=json.dumps(body)
+        completion = openai_client.chat.completions.create(
+            model=OPENAI_MODEL,
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a professional nutritionist and dietitian. "
+                        "Create comprehensive, personalized diet charts with detailed meal plans, "
+                        "accurate nutrition information, and practical recipes. "
+                        "Ensure all dietary restrictions and health conditions are considered."
+                    ),
+                },
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.7,
+            max_tokens=4096,
         )
         
-        # Parse the response
-        response_body = json.loads(response['body'].read())
-        return response_body['content'][0]['text']
+        response_text = completion.choices[0].message.content.strip()
+        
+        logger.info(f"OpenAI response received, tokens used: {completion.usage.total_tokens if completion.usage else 'unknown'}")
+        return response_text
         
     except Exception as e:
-        logger.error(f"Error calling LLM: {str(e)}")
+        logger.error(f"Error calling OpenAI API: {str(e)}")
         raise
 
 def parse_llm_response(llm_response, user_data, base_calories):

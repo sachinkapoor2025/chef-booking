@@ -121,11 +121,6 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: "*"
-              - Effect: Allow
-                Action:
-                  - bedrock:InvokeModel
-                  - bedrock:InvokeModelWithResponseStream
-                Resource: "*"
 
   # Lambda Functions
   DietChartFunction:
@@ -133,7 +128,7 @@ Resources:
     Properties:
       FunctionName: diet-chart-generator
       Handler: diet_chart.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.12
       CodeUri: src/
       Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
@@ -153,7 +148,7 @@ Resources:
     Properties:
       FunctionName: pdf-generator
       Handler: pdf_generator.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.12
       CodeUri: src/
       Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
@@ -173,7 +168,7 @@ Resources:
     Properties:
       FunctionName: auth-handler
       Handler: auth.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.12
       CodeUri: src/
       Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
