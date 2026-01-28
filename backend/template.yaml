@@ -196,7 +196,7 @@ Resources:
       Auth:
         DefaultAuthorizer: None
         Authorizers:
-          - Name: DietChartAuthorizer
+          DietChartAuthorizer:
             Identity:
               Header: Authorization
             FunctionPayloadType: TOKEN
