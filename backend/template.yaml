@@ -1,275 +1,240 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Backend infrastructure for Chef Services website with API Gateway, Lambda, and DynamoDB
+
+Description: >
+  Maharaja Chef Services - Diet Chart API
+
+  SAM template for the diet chart functionality including:
+  - API Gateway with CORS enabled
+  - Lambda functions for diet chart generation, PDF generation, and authentication
+  - DynamoDB tables for storing user data and diet charts
+  - S3 bucket for PDF storage
+  - SES for email notifications
 
 Parameters:
-  StackName:
+  DietChartsTableName:
     Type: String
-    Default: chef-services-backend
-    Description: Name of the CloudFormation stack
+    Default: DietCharts
+    Description: Name of the DynamoDB table for diet charts
+  UsersTableName:
+    Type: String
+    Default: Users
+    Description: Name of the DynamoDB table for users
+  PDFBucketName:
+    Type: String
+    Default: maharaja-chef-diet-charts
+    Description: Name of the S3 bucket for PDF storage
+  FromEmail:
+    Type: String
+    Default: noreply@maharajachef.com
+    Description: Email address for sending notifications
 
 Resources:
+  # S3 Bucket for PDF Storage
+  DietChartsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${PDFBucketName}"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
   # DynamoDB Tables
-  AdminCredentialsTable:
+  DietChartsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Sub "${AWS::StackName}-admin-credentials"
+      TableName: !Ref DietChartsTableName
       AttributeDefinitions:
-        - AttributeName: username
+        - AttributeName: chart_id
           AttributeType: S
       KeySchema:
-        - AttributeName: username
+        - AttributeName: chart_id
           KeyType: HASH
-      BillingMode: PAY_PER_REQUEST
-
-  SubmissionsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub "${AWS::StackName}-submissions"
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-        - AttributeName: formType
-          AttributeType: S
-      KeySchema:
-        - AttributeName: id
-          KeyType: HASH
-        - AttributeName: formType
-          KeyType: RANGE
-      GlobalSecondaryIndexes:
-        - IndexName: formType-index
-          KeySchema:
-            - AttributeName: formType
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
-      BillingMode: PAY_PER_REQUEST
-
-  WeeklySubmissionsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub "${AWS::StackName}-weekly-submissions"
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-        - AttributeName: formType
-          AttributeType: S
-      KeySchema:
-        - AttributeName: id
-          KeyType: HASH
-        - AttributeName: formType
-          KeyType: RANGE
-      GlobalSecondaryIndexes:
-        - IndexName: formType-index
-          KeySchema:
-            - AttributeName: formType
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
-      BillingMode: PAY_PER_REQUEST
-
-  ChefTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub "${AWS::StackName}-chefs"
-      AttributeDefinitions:
-        - AttributeName: chefId
-          AttributeType: S
-      KeySchema:
-        - AttributeName: chefId
-          KeyType: HASH
-      BillingMode: PAY_PER_REQUEST
-
-  # Chat History Table for multi-language chatbot
-  ChatHistoryTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub "${AWS::StackName}-chat-history"
-      AttributeDefinitions:
-        - AttributeName: sessionId
-          AttributeType: S
-        - AttributeName: timestamp
-          AttributeType: S
-      KeySchema:
-        - AttributeName: sessionId
-          KeyType: HASH
-        - AttributeName: timestamp
-          KeyType: RANGE
       BillingMode: PAY_PER_REQUEST
       TimeToLiveSpecification:
-        AttributeName: expiresAt
+        AttributeName: expires_at
         Enabled: true
 
-  # Lambda Functions 
-  FormSubmissionFunction:
-    Type: AWS::Serverless::Function
+  UsersTable:
+    Type: AWS::DynamoDB::Table
     Properties:
-      FunctionName: !Sub "${AWS::StackName}-form-submission"
-      CodeUri: src/
-      Handler: form_submission.handler
-      Runtime: python3.12
-      Timeout: 60
-      Environment:
-        Variables:
-          SUBMISSIONS_TABLE: !Ref SubmissionsTable
-          WEEKLY_SUBMISSIONS_TABLE: !Ref WeeklySubmissionsTable
-          ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SubmissionsTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref WeeklySubmissionsTable
-        - DynamoDBReadPolicy:
-            TableName: !Ref AdminCredentialsTable
-        - AmazonSESFullAccess
-      Events:
-        SubmitForm:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /submit
-            Method: post
+      TableName: !Ref UsersTableName
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
 
-  AdminFunction:
-    Type: AWS::Serverless::Function
+  # Lambda Execution Role
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
     Properties:
-      FunctionName: !Sub "${AWS::StackName}-admin"
-      CodeUri: src/
-      Handler: admin.handler
-      Runtime: python3.12
-      Timeout: 60
-      Environment:
-        Variables:
-          SUBMISSIONS_TABLE: !Ref SubmissionsTable
-          WEEKLY_SUBMISSIONS_TABLE: !Ref WeeklySubmissionsTable
-          CHEF_TABLE: !Ref ChefTable
-          ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
       Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SubmissionsTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref WeeklySubmissionsTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ChefTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref AdminCredentialsTable
-      Events:
-        AdminLogin:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/login
-            Method: post
-        AdminData:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/data/{formType}
-            Method: get
-        AdminChefs:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/chefs
-            Method: get
-        AdminAddChef:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/chefs
-            Method: post
-        AdminWeeklyData:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/weekly-data
-            Method: get
-        PublicChefs:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /chefs
-            Method: get
+        - PolicyName: DietChartPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                Resource:
+                  - !GetAtt DietChartsTable.Arn
+                  - !GetAtt UsersTable.Arn
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:DeleteObject
+                  - s3:PutObjectAcl
+                Resource: !Sub "${DietChartsBucket.Arn}/*"
+              - Effect: Allow
+                Action:
+                  - ses:SendEmail
+                  - ses:SendRawEmail
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                Resource: "*"
 
-  BeautifyChefFunction:
+  # Lambda Functions
+  DietChartFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "${AWS::StackName}-beautify-chef"
+      FunctionName: diet-chart-generator
+      Handler: diet_chart.lambda_handler
+      Runtime: python3.9
       CodeUri: src/
-      Handler: beautify_chef.handler
-      Runtime: python3.12
-      Timeout: 60
+      Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
         Variables:
-          CHEF_TABLE: !Ref ChefTable
-          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
-      Policies:
-        - DynamoDBReadPolicy:
-            TableName: !Ref ChefTable
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - secretsmanager:GetSecretValue
-              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+          DIET_CHARTS_TABLE: !Ref DietChartsTableName
+          FROM_EMAIL: !Ref FromEmail
       Events:
-        BeautifyChef:
+        DietChartApi:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /admin/beautify-chef
+            Path: /api/diet-chart
             Method: post
+            RestApiId: !Ref DietChartApi
 
-  # Multi-language Chatbot Function
-  ChatbotFunction:
+  PDFGeneratorFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "${AWS::StackName}-chatbot"
+      FunctionName: pdf-generator
+      Handler: pdf_generator.lambda_handler
+      Runtime: python3.9
       CodeUri: src/
-      Handler: chatbot.handler
-      Runtime: python3.12
-      Timeout: 60
+      Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
         Variables:
-          CHAT_HISTORY_TABLE: !Ref ChatHistoryTable
-          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ChatHistoryTable
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - secretsmanager:GetSecretValue
-              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+          DIET_CHARTS_TABLE: !Ref DietChartsTableName
+          PDF_BUCKET: !Ref PDFBucketName
       Events:
-        Chat:
+        PDFGeneratorApi:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /chat
+            Path: /api/pdf-generator
             Method: post
-        ChatHistory:
+            RestApiId: !Ref DietChartApi
+
+  AuthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: auth-handler
+      Handler: auth.lambda_handler
+      Runtime: python3.9
+      CodeUri: src/
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref UsersTableName
+          DIET_CHARTS_TABLE: !Ref DietChartsTableName
+          FROM_EMAIL: !Ref FromEmail
+      Events:
+        AuthApi:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /chat/history
-            Method: get
+            Path: /api/auth
+            Method: post
+            RestApiId: !Ref DietChartApi
 
   # API Gateway
-  ApiGateway:
+  DietChartApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: !Sub "${AWS::StackName}-api"
       StageName: prod
       Cors:
-        AllowMethods: "'POST,GET,OPTIONS'"
+        AllowMethods: "'GET,POST,PUT,DELETE,OPTIONS'"
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
         AllowOrigin: "'*'"
+      Auth:
+        DefaultAuthorizer: None
+        Authorizers:
+          - Name: DietChartAuthorizer
+            Identity:
+              Header: Authorization
+            FunctionPayloadType: TOKEN
+            FunctionArn: !GetAtt AuthFunction.Arn
 
-Outputs:
-  ApiUrl:
-    Description: "API Gateway endpoint URL"
-    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod"
-    Export:
-      Name: !Sub "${AWS::StackName}-api-url"
+  # Outputs
+  Outputs:
+    ApiUrl:
+      Description: URL of the API Gateway endpoint
+      Value: !Sub "https://${DietChartApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+      Export:
+        Name: !Sub "${AWS::StackName}-ApiUrl"
+    
+    DietChartsTableName:
+      Description: Name of the DynamoDB table for diet charts
+      Value: !Ref DietChartsTableName
+      Export:
+        Name: !Sub "${AWS::StackName}-DietChartsTable"
+    
+    UsersTableName:
+      Description: Name of the DynamoDB table for users
+      Value: !Ref UsersTableName
+      Export:
+        Name: !Sub "${AWS::StackName}-UsersTable"
+    
+    PDFBucketName:
+      Description: Name of the S3 bucket for PDF storage
+      Value: !Ref PDFBucketName
+      Export:
+        Name: !Sub "${AWS::StackName}-PDFBucket"
+    
+    LambdaExecutionRoleArn:
+      Description: ARN of the Lambda execution role
+      Value: !GetAtt LambdaExecutionRole.Arn
+      Export:
+        Name: !Sub "${AWS::StackName}-LambdaRole"

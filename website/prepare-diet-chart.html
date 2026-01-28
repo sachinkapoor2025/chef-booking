@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare My Diet Chart - Maharaja Chef Services</title>
+    <meta name="description" content="Get a personalized 1-week diet chart created by our AI-powered nutrition system.">
+    <meta name="keywords" content="diet chart, meal plan, nutrition, personalized diet, healthy eating">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .diet-form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-section h3 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn-primary {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e40af;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e3a8a;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .error-message {
+            display: none;
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="diet-hero">
+            <div class="hero-content" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 60px 20px;">
+                <h1 style="color: #1e3a8a;">Personalized Diet Chart</h1>
+                <p style="color: #1e3a8a; font-size: 1.2rem; margin-bottom: 40px;">
+                    Get a FREE 1-week personalized diet chart created by our AI-powered nutrition system. 
+                    Based on your preferences, goals, and lifestyle, we'll create the perfect meal plan for you.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px; text-align: left;">
+                        <h3 style="margin-top: 0;">What You'll Get:</h3>
+                        <ul style="text-align: left;">
+                            <li>✅ 7-day personalized meal plan</li>
+                            <li>✅ Detailed nutrition information</li>
+                            <li>✅ Easy-to-follow recipes</li>
+                            <li>✅ Calorie and macro tracking</li>
+                            <li>✅ Professional PDF format</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px; text-align: left;">
+                        <h3 style="margin-top: 0;">Perfect For:</h3>
+                        <ul style="text-align: left;">
+                            <li>Weight management goals</li>
+                            <li>Health condition management</li>
+                            <li>Meal planning convenience</li>
+                            <li>Healthy lifestyle start</li>
+                            <li>Gym and fitness support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diet-form-section">
+            <div class="diet-form-container">
+                <form id="dietForm" action="#" method="POST">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+
+                    <!-- Dietary Preferences -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-utensils"></i> Dietary Preferences</h3>
+                        
+                        <div class="form-group">
+                            <label>Meal Preference *</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="radio" name="mealPreference" value="vegetarian" required> 
+                                    <span>Vegetarian</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="radio" name="mealPreference" value="non-vegetarian" required> 
+                                    <span>Non-Vegetarian</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="radio" name="mealPreference" value="eggetarian" required> 
+                                    <span>Eggetarian</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="radio" name="mealPreference" value="vegan" required> 
+                                    <span>Vegan</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="allergies">Food Allergies or Intolerances</label>
+                            <textarea id="allergies" name="allergies" placeholder="List any food allergies, intolerances, or foods you avoid"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Health Goals -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-heart"></i> Health Goals & Conditions</h3>
+                        
+                        <div class="form-group">
+                            <label>Short-term Goals (Check all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="goals" value="weight-loss"> 
+                                    <span>Weight Loss</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="goals" value="weight-gain"> 
+                                    <span>Weight Gain</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="goals" value="lower-blood-sugar"> 
+                                    <span>Lower Blood Sugar</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="goals" value="lower-blood-pressure"> 
+                                    <span>Lower Blood Pressure</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="goals" value="muscle-building"> 
+                                    <span>Muscle Building</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="goals" value="general-health"> 
+                                    <span>General Health</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="medicalConditions">Medical Conditions</label>
+                            <textarea id="medicalConditions" name="medicalConditions" placeholder="Any medical conditions that affect your diet (diabetes, hypertension, etc.)"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-dumbbell"></i> Lifestyle Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="gymFrequency">Gym/Fitness Routine</label>
+                            <select id="gymFrequency" name="gymFrequency">
+                                <option value="">Select your routine</option>
+                                <option value="no-gym">No gym routine</option>
+                                <option value="1-2-times">1-2 times per week</option>
+                                <option value="3-4-times">3-4 times per week</option>
+                                <option value="5-6-times">5-6 times per week</option>
+                                <option value="daily">Daily</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activityLevel">Daily Activity Level</label>
+                            <select id="activityLevel" name="activityLevel">
+                                <option value="">Select your activity level</option>
+                                <option value="sedentary">Sedentary (mostly sitting)</option>
+                                <option value="light">Lightly active (light exercise/sports 1-3 days/week)</option>
+                                <option value="moderate">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                                <option value="very-active">Very active (hard exercise/sports 6-7 days/week)</option>
+                                <option value="extra-active">Extra active (very hard exercise & physical job)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="workSchedule">Work Schedule</label>
+                            <select id="workSchedule" name="workSchedule">
+                                <option value="">Select your work schedule</option>
+                                <option value="9-5">9-5 office hours</option>
+                                <option value="shift-work">Shift work</option>
+                                <option value="remote">Remote work</option>
+                                <option value="flexible">Flexible hours</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Additional Preferences -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-star"></i> Additional Preferences</h3>
+                        
+                        <div class="form-group">
+                            <label for="favoriteCuisines">Favorite Cuisines</label>
+                            <input type="text" id="favoriteCuisines" name="favoriteCuisines" placeholder="Italian, Indian, Mexican, etc.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dislikedFoods">Foods You Dislike</label>
+                            <textarea id="dislikedFoods" name="dislikedFoods" placeholder="List foods you don't like or prefer to avoid"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookingTime">Available Cooking Time</label>
+                            <select id="cookingTime" name="cookingTime">
+                                <option value="">Select cooking time</option>
+                                <option value="15-minutes">15 minutes or less</option>
+                                <option value="30-minutes">30 minutes</option>
+                                <option value="45-minutes">45 minutes</option>
+                                <option value="1-hour">1 hour</option>
+                                <option value="1-plus-hours">More than 1 hour</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="submit-section">
+                        <button type="submit" class="btn-primary" id="submitBtn">
+                            <i class="fas fa-chart-line"></i> Generate My Free Diet Chart
+                        </button>
+                        <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                            Takes less than 2 minutes to generate your personalized plan
+                        </p>
+                    </div>
+
+                    <!-- Loading Spinner -->
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 15px; color: #1e3a8a;">Generating your personalized diet chart...</p>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage">
+                        <h3><i class="fas fa-check-circle"></i> Success!</h3>
+                        <p>Your personalized diet chart has been generated successfully!</p>
+                        <p style="margin-top: 15px;">
+                            <strong>Next Steps:</strong><br>
+                            1. You will receive an email with your diet chart<br>
+                            2. Or you can download it directly from your account<br>
+                            3. For extended plans (2+ weeks), premium service is available at $5.99/week
+                        </p>
+                        <div style="margin-top: 20px;">
+                            <a href="index.html" class="btn" style="background-color: #1e3a8a; color: white; text-decoration: none; padding: 10px 20px; border-radius: 6px;">Return to Home</a>
+                        </div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div class="error-message" id="errorMessage">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Error</h3>
+                        <p>There was an error generating your diet chart. Please try again or contact support.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('dietForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading spinner
+                loadingSpinner.style.display = 'block';
+                submitBtn.disabled = true;
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+
+                try {
+                    // Collect form data
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    
+                    // Handle multiple goals
+                    const goals = Array.from(form.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value);
+                    data.goals = goals;
+
+                    // Send to backend API
+                    const response = await fetch('/api/diet-chart', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        // Success
+                        loadingSpinner.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        form.reset();
+                    } else {
+                        throw new Error('API request failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    loadingSpinner.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                } finally {
+                    submitBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
