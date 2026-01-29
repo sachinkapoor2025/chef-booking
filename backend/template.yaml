@@ -256,7 +256,7 @@ Resources:
             Path: /chat/history
             Method: get
 
-  # API Gateway
+  # API Gateway 
   ApiGateway:
     Type: AWS::Serverless::Api
     Properties:
