@@ -415,8 +415,14 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="dislikedFoods">Foods You Dislike or Avoid</label>
-                        <textarea id="dislikedFoods" name="dislikedFoods" class="textarea-control" placeholder="List any foods you don't like or prefer to avoid..."></textarea>
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="genderError">Please select your gender</div>
                     </div>
                 </div>
 
@@ -739,7 +745,9 @@
                         }
                     } catch (error) {
                         console.error('Error:', error);
-                        alert('Sorry, there was an error generating your diet plan. Please try again.');
+                        // Show detailed error message to user
+                        const errorMessage = error.message || 'Sorry, there was an error generating your diet plan. Please try again.';
+                        alert(errorMessage);
                     } finally {
                         loadingOverlay.style.display = 'none';
                         submitBtn.disabled = false;
