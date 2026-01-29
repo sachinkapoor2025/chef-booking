@@ -1,104 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-999Q8EMQJM');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Maharaja Chef Services</title>
-    <meta name="description" content="Frequently asked questions about Maharaja Chef Services, booking, menus, and more.">
+    <meta name="description" content="Frequently asked questions about our chef services, booking process, pricing, and more. Find answers to all your questions.">
+    <meta name="keywords" content="chef services FAQ, booking questions, pricing information, chef service details">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="FAQ - Maharaja Chef Services">
+    <meta property="og:description" content="Frequently asked questions about our chef services, booking process, pricing, and more. Find answers to all your questions.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/faq.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FAQ - Maharaja Chef Services">
+    <meta name="twitter:description" content="Frequently asked questions about our chef services, booking process, pricing, and more. Find answers to all your questions.">
+    <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="chef-services.html"> Services <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="owner.html">Business Owner</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main>
-        <section id="faq">
-            <h1>Frequently Asked Questions</h1>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h3>How does booking work?</h3>
-                    <p>You can book a chef through our website by selecting a chef, choosing a date and time, and submitting your preferences. We'll confirm your booking via email.</p>
+        <section id="faq-content" style="padding: 6rem 2rem; background: #f8f9fa;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; text-align: center; margin-bottom: 1rem;">Find Your Answers</h2>
+                <p style="font-size: 1.2rem; color: #666; text-align: center; margin-bottom: 4rem;">Browse our comprehensive FAQ sections to find the information you need</p>
+
+                <div class="faq-accordion">
+                    <!-- Booking & Services -->
+                    <div class="faq-category">
+                        <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem; border-left: 4px solid #007bff; padding-left: 1rem;">Booking & Services</h3>
+                        
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">Do I need to do groceries?</span>
+                                <i class="fas fa-plus" style="color: #007bff;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">No, our chefs handle all grocery shopping. We'll provide a detailed ingredient list and cost breakdown. You can either have us shop for you (included in the service) or provide the ingredients yourself if preferred.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">What cuisines do your chefs cook?</span>
+                                <i class="fas fa-plus" style="color: #007bff;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Our chefs specialize in a wide variety of cuisines including Italian, Indian, Chinese, French, Mexican, Mediterranean, Thai, Japanese, and American. Each chef has their own specialty, so you can choose based on your preferences.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">Can menus be customized?</span>
+                                <i class="fas fa-plus" style="color: #007bff;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Absolutely! We specialize in custom menus tailored to your preferences, dietary restrictions, and occasion. Our chefs will work with you to create a personalized menu that meets your exact requirements.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">Do chefs clean up after cooking?</span>
+                                <i class="fas fa-plus" style="color: #007bff;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Yes, our chefs always clean up after cooking. This includes washing dishes, cleaning cooking surfaces, and leaving your kitchen as clean as they found it. Cleanup is included in all our services.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">How far in advance should I book?</span>
+                                <i class="fas fa-plus" style="color: #007bff;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We recommend booking 2-4 weeks in advance for the best availability, especially for weekends and holidays. However, we can often accommodate last-minute requests depending on chef availability.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Safety & Quality -->
+                    <div class="faq-category" style="margin-top: 4rem;">
+                        <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem; border-left: 4px solid #28a745; padding-left: 1rem;">Safety & Quality</h3>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;">
+                                <span style="font-weight: 600; color: #333;">Are chefs background checked?</span>
+                                <i class="fas fa-plus" style="color: #28a745;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Yes, all our chefs undergo comprehensive background checks including criminal history, professional references, and culinary certification verification. Your safety and security are our top priorities.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">How are food allergies handled?</span>
+                                <i class="fas fa-plus" style="color: #28a745;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We take food allergies extremely seriously. Our chefs follow strict cross-contamination protocols and can prepare meals in dedicated areas. Please inform us of any allergies when booking, and we'll ensure your safety is our top priority.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment & Policies -->
+                    <div class="faq-category" style="margin-top: 4rem;">
+                        <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem; border-left: 4px solid #ffc107; padding-left: 1rem;">Payment & Policies</h3>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;">
+                                <span style="font-weight: 600; color: #333;">What payment methods are accepted?</span>
+                                <i class="fas fa-plus" style="color: #ffc107;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We accept all major credit cards, PayPal, and bank transfers. Payment is typically required at the time of booking, with flexible payment plans available for larger events. For corporate clients, we can arrange invoice billing.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">Is tipping required or optional?</span>
+                                <i class="fas fa-plus" style="color: #ffc107;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Tipping is completely optional and based on your satisfaction with the service. If you're happy with your chef's performance, a tip of 15-20% is customary but never expected. The chef's service fee is included in your booking price.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
+                                <span style="font-weight: 600; color: #333;">What is the cancellation policy?</span>
+                                <i class="fas fa-plus" style="color: #ffc107;"></i>
+                            </button>
+                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We offer flexible cancellation: Full refund for cancellations 48+ hours before service, 50% refund for 24-48 hours, and no refund for cancellations within 24 hours. Rescheduling is subject to chef availability with no additional fees for changes made 48+ hours in advance.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h3>Do I need to do groceries?</h3>
-                    <p>Yes, you need to provide all ingredients and kitchen items. We provide the chef on a per-dish basis. After cooking, your kitchen will be returned in the same condition as it was handed over.”</p>
+            </div>
+        </section>
+
+        <section id="support-contact" style="padding: 6rem 2rem; background: white; text-align: center;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Still Have Questions?</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Our team is here to help you with any questions or concerns you may have.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;">📞</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Call Us</h3>
+                        <p style="color: #666; line-height: 1.6;">408-690-1610</p>
+                        <p style="color: #666; font-size: 0.9rem;"></p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;">📧</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Email Us</h3>
+                        <p style="color: #666; line-height: 1.6;">info@maharajachef.com</p>
+                        <p style="color: #666; font-size: 0.9rem;">Response within 24 hours</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h3>What cuisines do your chefs cook?</h3>
-                    <p>Our chefs specialize in a variety of cuisines including Indian, Italian, Mexican, Mediterranean, and more. We can accommodate most preferences.</p>
+
+                <div style="background: #f8f9fa; padding: 3rem; border-radius: 12px; border-left: 4px solid #007bff;">
+                    <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Quick Response Guarantee</h3>
+                    <p style="color: #666; margin-bottom: 2rem;">We guarantee a response to all inquiries within 24 hours during business days. For urgent matters, please call us directly.</p>
+                    <a href="contact-us.html" class="btn btn-large" style="background: #007bff; color: white; border: 2px solid #007bff; padding: 1.5rem 3rem; font-size: 1.2rem; font-weight: 600;">Contact Us Now</a>
                 </div>
-                <div class="faq-item">
-                    <h3>Can menus be customized?</h3>
-                    <p>Yes, menus are fully customizable based on your dietary needs, preferences, and any allergies. Discuss your requirements during booking.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Do chefs clean up after cooking?</h3>
-                    <p>Yes, our chefs clean the kitchen and leave it in the same condition as they found it, including washing dishes and disposing of waste.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What is the cancellation policy?</h3>
-                    <p>Cancellations must be made at least 24 hours in advance for a full refund. Late cancellations may incur a fee.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How far in advance should I book?</h3>
-                    <p>We recommend booking at least 1-2 weeks in advance, especially for special events or popular chefs.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Are chefs background checked?</h3>
-                    <p>Yes, all our chefs undergo thorough background checks and are trained in food safety and hygiene standards.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What payment methods are accepted?</h3>
-                    <p>We accept credit cards, debit cards, cash and online payments. Payment is collected after the service is completed.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Is tipping required or optional?</h3>
-                    <p>Tipping is optional but appreciated. We leave it to your discretion based on the service quality.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How are food allergies handled?</h3>
-                    <p>We take allergies seriously. Please inform us of any allergies during booking, and our chefs will ensure safe preparation.</p>
+            </div>
+        </section>
+
+        <section id="cta" style="padding: 6rem 2rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; text-align: center;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready to Experience Professional Cooking?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9);">Let our chefs create unforgettable culinary experiences for you and your loved ones.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">👨‍🍳 Find Your Chef</a>
+                    <a href="book-a-chef.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">📅 Book Now</a>
+                    <a href="weekly-meals.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">🍽️ Weekly Meals</a>
                 </div>
             </div>
         </section>
@@ -130,7 +217,7 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <div class="contact-info" style="color: #333;">
-                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
@@ -147,36 +234,31 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <!-- Chatbot Integration -->
+    <script src="js/global-header.js"></script>
     <script>
-        // Load chatbot
-        fetch('chatbot.html')
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const chatbotContainer = doc.querySelector('.chatbot-container');
-                const styleTags = doc.querySelectorAll('style');
+        // FAQ accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
 
-                // Add styles
-                styleTags.forEach(style => {
-                    document.head.appendChild(style.cloneNode(true));
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                        icon.style.color = getComputedStyle(this).getPropertyValue('--primary-color') || '#007bff';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                        icon.style.color = '#666';
+                    }
                 });
-
-                // Add chatbot container
-                document.body.appendChild(chatbotContainer.cloneNode(true));
-
-                // Initialize chatbot script
-                const scriptTags = doc.querySelectorAll('script');
-                scriptTags.forEach(script => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading chatbot:', error);
             });
+        });
     </script>
 </body>
 </html>

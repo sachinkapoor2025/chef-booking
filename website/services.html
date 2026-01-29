@@ -1,73 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-999Q8EMQJM');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Maharaja Chef Services</title>
-    <meta name="description" content="Explore our range of personal chef services including weekly meal preparation and special events catering.">
+    <title>Our Services - Maharaja Chef Services</title>
+    <meta name="description" content="Discover our premium personal chef services including weekly meal prep, special events, and private dining experiences.">
+    <meta name="keywords" content="chef services, personal chef, weekly meals, special events, private dining">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Our Services - Maharaja Chef Services">
+    <meta property="og:description" content="Discover our premium personal chef services including weekly meal prep, special events, and private dining experiences.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/services.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Services - Maharaja Chef Services">
+    <meta name="twitter:description" content="Discover our premium personal chef services including weekly meal prep, special events, and private dining experiences.">
+    <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="owner.html">Business Owner</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main>
-        <section id="services">
-            <h1>Our Services</h1>
-            <p>Discover the perfect chef service for your needs. From convenient weekly meals to unforgettable special events, we have you covered.</p>
-            <div class="services">
-                <div class="service">
-                    <img src="images/weekly-meal.jpg" alt="Weekly meal service">
-                    <h3>Weekly Meal Service</h3>
-                    <p>Enjoy fresh, healthy meals prepared weekly by our professional chefs. Perfect for busy families and individuals seeking nutritious, home-cooked food.</p>
-                    <a href="weekly-meals.html" class="btn">Learn More</a>
+        <section id="services-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6rem 2rem; text-align: center;">
+            <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
+                <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white;">Our Premium Services</h1>
+                <p style="font-size: 1.4rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Tailored Culinary Experiences for Every Occasion</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 500;">🍽️ Custom Menus</span>
+                    <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 500;">👨‍🍳 Professional Chefs</span>
+                    <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 500;">✨ All Occasions</span>
                 </div>
-                <div class="service">
-                    <img src="images/event1.jpg" alt="Special events">
-                    <h3>Special Events & Gatherings</h3>
-                    <p>Make your special occasions unforgettable with our expert chefs. From intimate dinners to large corporate events, we deliver exceptional service.</p>
-                    <a href="special-events.html" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <section id="service-categories" style="padding: 6rem 2rem; background: #f8f9fa; text-align: center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Choose Your Culinary Experience</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem;">We offer a wide range of services to suit your lifestyle and dining preferences</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem;">
+                    <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="width: 80px; height: 80px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🍽️</div>
+                            <div>
+                                <h3 style="font-size: 1.8rem; color: #333; margin: 0;">Weekly Meal Service</h3>
+                                <p style="color: #666; margin: 0.5rem 0 0; font-size: 0.9rem;">REGULAR SERVICE</p>
+                            </div>
+                        </div>
+                        <p style="color: #666; line-height: 1.6; margin-bottom: 2rem;">Perfect for busy families and professionals who want healthy, delicious meals without the hassle of cooking and cleanup.</p>
+                        <ul style="text-align: left; color: #666; line-height: 1.8; margin-bottom: 2rem;">
+                            <li>✅ Custom meal plans based on your preferences</li>
+                            <li>✅ Fresh, seasonal ingredients</li>
+                            <li>✅ Flexible scheduling options</li>
+                            <li>✅ Dietary restrictions accommodated</li>
+                            <li>✅ Complete kitchen cleanup included</li>
+                        </ul>
+                        <a href="weekly-meals.html" class="btn" style="background: #007bff; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More</a>
+                    </div>
+
+                    <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🎉</div>
+                            <div>
+                                <h3 style="font-size: 1.8rem; color: #333; margin: 0;">Special Events & Gatherings</h3>
+                                <p style="color: #666; margin: 0.5rem 0 0; font-size: 0.9rem;">OCCASIONAL SERVICE</p>
+                            </div>
+                        </div>
+                        <p style="color: #666; line-height: 1.6; margin-bottom: 2rem;">Make your special occasions unforgettable with professional chef services for parties, celebrations, and corporate events.</p>
+                        <ul style="text-align: left; color: #666; line-height: 1.8; margin-bottom: 2rem;">
+                            <li>✅ Birthday parties and anniversaries</li>
+                            <li>✅ Corporate events and meetings</li>
+                            <li>✅ Holiday dinners and celebrations</li>
+                            <li>✅ Intimate dinner parties</li>
+                            <li>✅ Wedding receptions and showers</li>
+                        </ul>
+                        <a href="special-events.html" class="btn" style="background: #28a745; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="service-features" style="padding: 6rem 2rem; background: white;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; text-align: center; margin-bottom: 1rem;">What Sets Us Apart</h2>
+                <p style="font-size: 1.2rem; color: #666; text-align: center; margin-bottom: 4rem;">Our commitment to excellence ensures every culinary experience exceeds your expectations</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 1.5rem;">👨‍🍳</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Expert Chefs</h3>
+                        <p style="color: #666; line-height: 1.6;">Our chefs are culinary school graduates with years of professional experience in top restaurants.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 1.5rem;">🛒</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Premium Ingredients</h3>
+                        <p style="color: #666; line-height: 1.6;">We source the freshest, highest-quality ingredients, including organic and locally-sourced options.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333; font-size: 2rem; margin: 0 auto 1.5rem;">✨</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Customization</h3>
+                        <p style="color: #666; line-height: 1.6;">Every menu is tailored to your tastes, dietary needs, and preferences.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #6f42c1; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 1.5rem;">🧹</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Complete Cleanup</h3>
+                        <p style="color: #666; line-height: 1.6;">We leave your kitchen spotless, so you can enjoy your meal without any cleanup hassle.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #dc3545; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 1.5rem;">🔒</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Safety First</h3>
+                        <p style="color: #666; line-height: 1.6;">All our chefs are background-checked, insured, and follow strict food safety protocols.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #17a2b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 1.5rem;">📱</div>
+                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Easy Booking</h3>
+                        <p style="color: #666; line-height: 1.6;">Book and manage your chef services online with our user-friendly platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cuisine-types" style="padding: 6rem 2rem; background: #f8f9fa;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; text-align: center; margin-bottom: 1rem;">Cuisine Specialties</h2>
+                <p style="font-size: 1.2rem; color: #666; text-align: center; margin-bottom: 4rem;">Our chefs are experts in a wide variety of international cuisines</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇮🇹</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">Italian</h3>
+                        <p style="color: #666; line-height: 1.6;">Authentic pasta, risotto, and traditional Italian dishes made with love.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇫🇷</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">French</h3>
+                        <p style="color: #666; line-height: 1.6;">Elegant French cuisine with classic techniques and refined flavors.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇯🇵</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">Japanese</h3>
+                        <p style="color: #666; line-height: 1.6;">Fresh sushi, sashimi, and traditional Japanese dishes with precision.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇮🇳</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">Indian</h3>
+                        <p style="color: #666; line-height: 1.6;">Rich curries, tandoori dishes, and authentic Indian flavors.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇲🇽</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">Mexican</h3>
+                        <p style="color: #666; line-height: 1.6;">Vibrant flavors, fresh ingredients, and traditional Mexican recipes.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇹🇭</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">Thai</h3>
+                        <p style="color: #666; line-height: 1.6;">Balanced flavors with aromatic herbs and authentic Thai techniques.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇺🇸</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">American</h3>
+                        <p style="color: #666; line-height: 1.6;">Classic comfort food with a modern twist and fresh ingredients.</p>
+                    </div>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🇲E</div>
+                        <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 1rem;">Mediterranean</h3>
+                        <p style="color: #666; line-height: 1.6;">Healthy, flavorful dishes inspired by the Mediterranean diet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dietary-options" style="padding: 6rem 2rem; background: white;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 2rem;">Dietary Accommodations</h2>
+                    <p style="font-size: 1.2rem; color: #666; line-height: 1.7; margin-bottom: 2rem;">
+                        We understand that dietary needs are personal and important. Our chefs are trained to accommodate 
+                        a wide range of dietary restrictions and preferences without compromising on flavor.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #007bff;">
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">🌱 Vegetarian & Vegan</h4>
+                            <p style="color: #666; font-size: 0.9rem;">Creative plant-based dishes that are both satisfying and delicious.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #28a745;">
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">🌾 Gluten-Free</h4>
+                            <p style="color: #666; font-size: 0.9rem;">Safe, flavorful gluten-free options for those with sensitivities.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">🥛 Dairy-Free</h4>
+                            <p style="color: #666; font-size: 0.9rem;">Rich, creamy dishes without dairy ingredients.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #6f42c1;">
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">🥜 Nut-Free</h4>
+                            <p style="color: #666; font-size: 0.9rem;">Safe options for those with nut allergies.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #dc3545;">
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">🥩 Low-Carb & Keto</h4>
+                            <p style="color: #666; font-size: 0.9rem;">Delicious low-carb options that fit your lifestyle.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #17a2b8;">
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">🐟 Pescatarian</h4>
+                            <p style="color: #666; font-size: 0.9rem;">Seafood-focused meals with plenty of variety.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <img src="images/food1.jpg" alt="Healthy meal options" style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" style="padding: 6rem 2rem; background: #f8f9fa; text-align: center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Simple, Transparent Pricing</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem;">No hidden fees, no surprises - just exceptional value for exceptional food</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem;">
+                    <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="width: 80px; height: 80px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🍽️</div>
+                            <div>
+                                <h3 style="font-size: 1.8rem; color: #333; margin: 0;">Weekly Meal Service</h3>
+                                <p style="color: #666; margin: 0.5rem 0 0; font-size: 0.9rem;">Starting at $150/week</p>
+                            </div>
+                        </div>
+                        <ul style="text-align: left; color: #666; line-height: 1.8; margin-bottom: 2rem;">
+                            <li>✅ 3-5 meals per week</li>
+                            <li>✅ Custom meal planning</li>
+                            <li>✅ Ingredient sourcing</li>
+                            <li>✅ Complete preparation</li>
+                            <li>✅ Kitchen cleanup</li>
+                        </ul>
+                        <div style="margin-bottom: 2rem;">
+                            <span style="background: #e3f2fd; color: #1976d2; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600;">Save 10% with monthly subscription</span>
+                        </div>
+                        <a href="weekly-meals.html" class="btn" style="background: #007bff; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Get Started</a>
+                    </div>
+
+                    <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🎉</div>
+                            <div>
+                                <h3 style="font-size: 1.8rem; color: #333; margin: 0;">Special Events</h3>
+                                <p style="color: #666; margin: 0.5rem 0 0; font-size: 0.9rem;">Starting at $500/event</p>
+                            </div>
+                        </div>
+                        <ul style="text-align: left; color: #666; line-height: 1.8; margin-bottom: 2rem;">
+                            <li>✅ Custom event menu</li>
+                            <li>✅ Professional service</li>
+                            <li>✅ All equipment provided</li>
+                            <li>✅ Setup and cleanup</li>
+                            <li>✅ Wine pairing available</li>
+                        </ul>
+                        <div style="margin-bottom: 2rem;">
+                            <span style="background: #e8f5e9; color: #2e7d32; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600;">Free consultation for events over 10 guests</span>
+                        </div>
+                        <a href="special-events.html" class="btn" style="background: #28a745; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Get Started</a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 12px; border-left: 4px solid #ffc107;">
+                    <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Questions About Pricing?</h3>
+                    <p style="color: #666; margin-bottom: 2rem;">Every event and meal plan is unique. Contact us for a personalized quote based on your specific needs and preferences.</p>
+                    <a href="contact-us.html" class="btn" style="background: #ffc107; color: #333; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" style="padding: 6rem 2rem; background: white; text-align: center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">What Our Clients Say</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem;">Hear from customers who have experienced our exceptional services</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <div style="background: #f8f9fa; padding: 2.5rem; border-radius: 12px; border-left: 4px solid #007bff; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">J</div>
+                            <div>
+                                <h4 style="margin: 0; color: #333;">Jennifer & Family</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Weekly Meal Service</p>
+                            </div>
+                        </div>
+                        <p style="color: #666; line-height: 1.6; font-style: italic;">"Our weekly meal service has been a lifesaver! The chef creates amazing meals that the whole family loves, and we actually eat healthier now. The convenience is unbeatable."</p>
+                        <div style="margin-top: 1rem;">
+                            <span style="color: #ffc107;">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 2.5rem; border-radius: 12px; border-left: 4px solid #28a745; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+                            <div>
+                                <h4 style="margin: 0; color: #333;">TechCorp Inc.</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Corporate Events</p>
+                            </div>
+                        </div>
+                        <p style="color: #666; line-height: 1.6; font-style: italic;">"Our company retreat was elevated to a whole new level with the chef service. The food was restaurant-quality, and the presentation was stunning. Our employees are still talking about it!"</p>
+                        <div style="margin-top: 1rem;">
+                            <span style="color: #ffc107;">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 2.5rem; border-radius: 12px; border-left: 4px solid #ffc107; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 50px; height: 50px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333; font-weight: bold;">S</div>
+                            <div>
+                                <h4 style="margin: 0; color: #333;">Sarah & Mark</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Anniversary Dinner</p>
+                            </div>
+                        </div>
+                        <p style="color: #666; line-height: 1.6; font-style: italic;">"Our 10th anniversary dinner was absolutely perfect. The chef created a custom menu that reflected our story, and the evening felt like a scene from a romantic movie."</p>
+                        <div style="margin-top: 1rem;">
+                            <span style="color: #ffc107;">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" style="padding: 6rem 2rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; text-align: center;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready to Elevate Your Dining Experience?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9);">Whether you need weekly meal prep or a special event, we're here to make your culinary dreams come true.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">👨‍🍳 Find Your Chef</a>
+                    <a href="book-a-chef.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">📅 Book Now</a>
                 </div>
             </div>
         </section>
@@ -83,7 +346,7 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
                     <li><a href="explore-chefs.html">Explore Chefs</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                 </ul>
@@ -99,13 +362,13 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <div class="contact-info" style="color: #333;">
-                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
         </div>
@@ -116,36 +379,6 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <!-- Chatbot Integration -->
-    <script>
-        // Load chatbot
-        fetch('chatbot.html')
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const chatbotContainer = doc.querySelector('.chatbot-container');
-                const styleTags = doc.querySelectorAll('style');
-
-                // Add styles
-                styleTags.forEach(style => {
-                    document.head.appendChild(style.cloneNode(true));
-                });
-
-                // Add chatbot container
-                document.body.appendChild(chatbotContainer.cloneNode(true));
-
-                // Initialize chatbot script
-                const scriptTags = doc.querySelectorAll('script');
-                scriptTags.forEach(script => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading chatbot:', error);
-            });
-    </script>
+    <script src="js/global-header.js"></script>
 </body>
 </html>
