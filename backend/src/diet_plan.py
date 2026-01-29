@@ -24,6 +24,12 @@ def handler(event, context):
         print(f"DEBUG: Event received: {json.dumps(event, indent=2)}")
         print(f"DEBUG: Context: {context}")
         
+        # Check environment variables
+        print(f"DEBUG: DIET_PLAN_USERS_TABLE: {os.environ.get('DIET_PLAN_USERS_TABLE', 'NOT_SET')}")
+        print(f"DEBUG: DIET_PLANS_TABLE: {os.environ.get('DIET_PLANS_TABLE', 'NOT_SET')}")
+        print(f"DEBUG: OPENAI_API_KEY: {'SET' if os.environ.get('OPENAI_API_KEY') else 'NOT_SET'}")
+        print(f"DEBUG: S3_BUCKET: {os.environ.get('S3_BUCKET', 'NOT_SET')}")
+        
         # Parse the API Gateway event
         http_method = event.get('httpMethod', '')
         path = event.get('path', '')
@@ -92,7 +98,7 @@ def handler(event, context):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'error': 'Internal server error'})
+            'body': json.dumps({'error': f'Internal server error: {str(e)}'})
         }
 
 def generate_diet_plan(form_data):
