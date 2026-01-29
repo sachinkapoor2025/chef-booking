@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Your Plan - Maharaja Chef Services</title>
+    <meta name="description" content="Upgrade to extended diet plans and premium nutrition services.">
+    <meta name="keywords" content="diet plan upgrade, premium nutrition, extended diet plans, health subscription">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        /* Payment Specific Styles */
+        .payment-hero {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .payment-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .payment-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border-color: #f59e0b;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #f59e0b;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-header {
+            margin-bottom: 2rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-period {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+        
+        .plan-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+        
+        .feature-text {
+            color: #374151;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            transform: translateY(-2px);
+        }
+        
+        .payment-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+        
+        .card-element {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .card-element:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+        
+        .payment-summary {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .success-message {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+            display: none;
+        }
+        
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .security-icon {
+            color: #10b981;
+            font-size: 1.5rem;
+        }
+        
+        .security-text {
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .payment-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .payment-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular::before {
+                font-size: 0.6rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Payment Hero Section -->
+        <section class="payment-hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-crown"></i> Upgrade Your Nutrition Journey</h1>
+                <p>Get extended diet plans and premium nutrition services to achieve your long-term health goals.</p>
+            </div>
+        </section>
+
+        <!-- Payment Container -->
+        <div class="payment-container">
+            <!-- Pricing Options -->
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic Plan</h3>
+                        <div class="price">$5.99</div>
+                        <div class="price-period">per week</div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Extended 4-week diet plan</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Weekly plan updates</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">PDF download access</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Basic recipe instructions</span>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" onclick="selectPlan('basic', 5.99)">
+                        <i class="fas fa-plus"></i> Select Basic Plan
+                    </button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="pricing-header">
+                        <h3>Premium Plan</h3>
+                        <div class="price">$9.99</div>
+                        <div class="price-period">per week</div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Extended 8-week diet plan</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Bi-weekly plan updates</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Priority PDF download</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Detailed recipe instructions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Nutritionist recommendations</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Progress tracking tools</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="selectPlan('premium', 9.99)">
+                        <i class="fas fa-crown"></i> Select Premium Plan
+                    </button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Ultimate Plan</h3>
+                        <div class="price">$14.99</div>
+                        <div class="price-period">per week</div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Extended 12-week diet plan</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Weekly personalized updates</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Priority customer support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Advanced recipe instructions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Personalized nutritionist advice</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Advanced progress tracking</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Monthly health consultations</span>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" onclick="selectPlan('ultimate', 14.99)">
+                        <i class="fas fa-star"></i> Select Ultimate Plan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Payment Form -->
+            <div class="payment-form" id="paymentForm">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #374151;">Complete Your Payment</h2>
+                
+                <form id="paymentFormElement">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="card-element">Card Information</label>
+                        <div id="card-element" class="card-element"></div>
+                        <div id="card-errors" role="alert" style="color: #ef4444; margin-top: 0.5rem;"></div>
+                    </div>
+                    
+                    <div class="payment-summary">
+                        <div class="summary-row">
+                            <span>Selected Plan</span>
+                            <span id="selectedPlanName">-</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Weekly Price</span>
+                            <span id="weeklyPrice">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Processing Fee</span>
+                            <span>$0.30</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Total (per week)</span>
+                            <span id="totalPrice">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" id="submitPayment" style="width: 100%;">
+                        <i class="fas fa-credit-card"></i> Complete Payment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"></i>
+                <h3>Payment Successful!</h3>
+                <p>Thank you for upgrading your plan. Your extended diet plan will be available in your profile shortly.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="user-profile.html" class="btn-primary" style="display: inline-block; margin-right: 1rem;">
+                        <i class="fas fa-user"></i> Go to Profile
+                    </a>
+                    <a href="index.html" class="btn-secondary" style="display: inline-block;">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+
+            <!-- Security Information -->
+            <div class="security-badge">
+                <i class="fas fa-shield-alt security-icon"></i>
+                <div class="security-text">
+                    Your payment information is securely processed through Stripe. We never store your card details.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Payment form functionality
+        let selectedPlan = null;
+        let selectedPrice = 0;
+        
+        function selectPlan(planName, price) {
+            selectedPlan = planName;
+            selectedPrice = price;
+            
+            // Update UI
+            document.getElementById('selectedPlanName').textContent = planName.charAt(0).toUpperCase() + planName.slice(1) + ' Plan';
+            document.getElementById('weeklyPrice').textContent = '$' + price.toFixed(2);
+            
+            // Calculate total with processing fee
+            const totalPrice = price + 0.30;
+            document.getElementById('totalPrice').textContent = '$' + totalPrice.toFixed(2);
+            
+            // Show payment form
+            document.getElementById('paymentForm').style.display = 'block';
+            
+            // Initialize Stripe (in production, you'd use your actual publishable key)
+            const stripe = Stripe('pk_test_your_stripe_publishable_key');
+            const elements = stripe.elements();
+            
+            // Create card element
+            const card = elements.create('card', {
+                style: {
+                    base: {
+                        color: '#32325d',
+                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                        fontSmoothing: 'antialiased',
+                        fontSize: '16px',
+                        '::placeholder': {
+                            color: '#a0aec0'
+                        }
+                    },
+                    invalid: {
+                        color: '#fa755a',
+                        iconColor: '#fa755a'
+                    }
+                }
+            });
+            
+            card.mount('#card-element');
+            
+            // Handle real-time validation errors
+            card.addEventListener('change', function(event) {
+                const displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+            
+            // Handle form submission
+            const form = document.getElementById('paymentFormElement');
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submitPayment');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
+                
+                try {
+                    // In a real implementation, you would:
+                    // 1. Create a payment intent on your backend
+                    // 2. Confirm the payment with Stripe
+                    // 3. Handle success/failure
+                    
+                    // For demo purposes, we'll simulate a successful payment
+                    await simulatePayment();
+                    
+                    // Show success message
+                    document.getElementById('paymentForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('Payment error:', error);
+                    alert('Payment failed. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-credit-card"></i> Complete Payment';
+                }
+            });
+        }
+        
+        async function simulatePayment() {
+            // Simulate API call delay
+            return new Promise(resolve => {
+                setTimeout(resolve, 2000);
+            });
+        }
+        
+        // Add some interactivity to pricing cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            
+            pricingCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('popular')) {
+                        this.style.transform = 'translateY(-10px) scale(1.02)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('popular')) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

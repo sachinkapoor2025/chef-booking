@@ -100,6 +100,54 @@ Resources:
         AttributeName: expiresAt
         Enabled: true
 
+  # User Table for diet plan feature
+  DietPlanUsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-diet-plan-users"
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: email-index
+          KeySchema:
+            - AttributeName: email
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  # Diet Plans Table for storing generated diet plans
+  DietPlansTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-diet-plans"
+      AttributeDefinitions:
+        - AttributeName: planId
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: N
+      KeySchema:
+        - AttributeName: planId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: user-plans-index
+          KeySchema:
+            - AttributeName: userId
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
   # Lambda Functions 
   FormSubmissionFunction:
     Type: AWS::Serverless::Function
@@ -254,6 +302,70 @@ Resources:
           Properties:
             RestApiId: !Ref ApiGateway
             Path: /chat/history
+            Method: get
+
+  # Diet Plan Function
+  DietPlanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-diet-plan"
+      CodeUri: src/
+      Handler: diet_plan.handler
+      Runtime: python3.12
+      Timeout: 30
+      Environment:
+        Variables:
+          DIET_PLAN_USERS_TABLE: !Ref DietPlanUsersTable
+          DIET_PLANS_TABLE: !Ref DietPlansTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlanUsersTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlansTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+        - AmazonS3FullAccess
+      Events:
+        GenerateDietPlan:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/generate
+            Method: post
+        UserSignup:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/signup
+            Method: post
+        UserLogin:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/login
+            Method: post
+        GetUserPlans:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/user/{userId}/plans
+            Method: get
+        GetDietPlan:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/{planId}
+            Method: get
+        DownloadDietPlan:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/{planId}/download
             Method: get
 
   # API Gateway

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile - Maharaja Chef Services</title>
+    <meta name="description" content="View and manage your personalized diet plans and nutrition journey.">
+    <meta name="keywords" content="diet plan profile, nutrition profile, personalized diet, health dashboard">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* User Profile Specific Styles */
+        .profile-hero {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .profile-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .profile-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+        
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+        }
+        
+        .profile-sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .user-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .user-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .user-email {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: #f3f4f6;
+            color: #8b5cf6;
+        }
+        
+        .sidebar-menu a.active {
+            background-color: #f3f4f6;
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+        
+        .profile-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 1rem;
+        }
+        
+        .content-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .plan-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
+        }
+        
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-date {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .plan-details {
+            margin-bottom: 2rem;
+        }
+        
+        .plan-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .plan-item:last-child {
+            border-bottom: none;
+        }
+        
+        .plan-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .plan-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .plan-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+        
+        .plan-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .badge-expired {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .badge-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        
+        .logout-btn {
+            background: none;
+            border: 1px solid #e5e7eb;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .logout-btn:hover {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-color: #fecaca;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-sidebar {
+                margin-bottom: 2rem;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Profile Hero Section -->
+        <section class="profile-hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-user-circle"></i> Your Nutrition Dashboard</h1>
+                <p>Manage your personalized diet plans and track your health journey with us.</p>
+            </div>
+        </section>
+
+        <!-- Profile Container -->
+        <div class="profile-container">
+            <div class="profile-grid">
+                <!-- Sidebar -->
+                <div class="profile-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div class="user-name" id="userName">Loading...</div>
+                        <div class="user-email" id="userEmail">-</div>
+                    </div>
+                    
+                    <ul class="sidebar-menu">
+                        <li><a href="user-profile.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#"><i class="fas fa-utensils"></i> My Diet Plans</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Progress</a></li>
+                        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
+                    
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </button>
+                </div>
+
+                <!-- Main Content -->
+                <div class="profile-content">
+                    <div class="content-header">
+                        <h2 class="content-title">My Diet Plans</h2>
+                        <div>
+                            <button class="btn-secondary" id="newPlanBtn">
+                                <i class="fas fa-plus"></i> New Plan
+                            </button>
+                            <button class="btn-primary" id="downloadAllBtn">
+                                <i class="fas fa-download"></i> Download All
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="plansContainer">
+                        <!-- Plans will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userSession = JSON.parse(localStorage.getItem('userSession'));
+            const plansContainer = document.getElementById('plansContainer');
+            
+            // Check if user is logged in
+            if (!userSession) {
+                window.location.href = 'user-login.html';
+                return;
+            }
+            
+            // Load user info
+            loadUserInfo(userSession);
+            
+            // Load user's diet plans
+            loadDietPlans(userSession.userId);
+            
+            // Event listeners
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+            document.getElementById('newPlanBtn').addEventListener('click', createNewPlan);
+            document.getElementById('downloadAllBtn').addEventListener('click', downloadAllPlans);
+        });
+        
+        function loadUserInfo(userSession) {
+            const userName = document.getElementById('userName');
+            const userEmail = document.getElementById('userEmail');
+            const userAvatar = document.getElementById('userAvatar');
+            
+            userName.textContent = userSession.fullName || 'User';
+            userEmail.textContent = userSession.email;
+            
+            // Generate avatar initials
+            const initials = userSession.fullName 
+                ? userSession.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
+                : userSession.email.split('@')[0].charAt(0).toUpperCase();
+            
+            userAvatar.textContent = initials;
+        }
+        
+        async function loadDietPlans(userId) {
+            try {
+                const response = await fetch(`/prod/diet-plan/user/${userId}/plans`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    displayPlans(result.plans);
+                } else {
+                    showMessage('Failed to load your diet plans', 'error');
+                    displayEmptyState();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                displayEmptyState();
+            }
+        }
+        
+        function displayPlans(plans) {
+            const container = document.getElementById('plansContainer');
+            
+            if (!plans || plans.length === 0) {
+                displayEmptyState();
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            plans.forEach(plan => {
+                const planCard = document.createElement('div');
+                planCard.className = 'plan-card';
+                
+                const statusBadge = getStatusBadge(plan.status);
+                const planDate = new Date(plan.createdAt).toLocaleDateString();
+                
+                planCard.innerHTML = `
+                    <div class="plan-header">
+                        <div>
+                            <div class="plan-title">${plan.title || 'Weekly Diet Plan'}</div>
+                            <div class="plan-date">Created: ${planDate}</div>
+                        </div>
+                        <span class="plan-badge ${statusBadge.class}">${statusBadge.text}</span>
+                    </div>
+                    
+                    <div class="plan-details">
+                        <div class="plan-item">
+                            <span class="plan-label">Meal Preference</span>
+                            <span class="plan-value">${plan.mealPreference || 'Not specified'}</span>
+                        </div>
+                        <div class="plan-item">
+                            <span class="plan-label">Primary Goal</span>
+                            <span class="plan-value">${plan.primaryGoal || 'Not specified'}</span>
+                        </div>
+                        <div class="plan-item">
+                            <span class="plan-label">Target Weight</span>
+                            <span class="plan-value">${plan.targetWeight || 'Not specified'} kg</span>
+                        </div>
+                        <div class="plan-item">
+                            <span class="plan-label">Duration</span>
+                            <span class="plan-value">1 Week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-actions">
+                        <button class="btn-success" onclick="viewPlan('${plan.planId}')">
+                            <i class="fas fa-eye"></i> View Plan
+                        </button>
+                        <button class="btn-primary" onclick="downloadPlan('${plan.planId}')">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(planCard);
+            });
+        }
+        
+        function displayEmptyState() {
+            const container = document.getElementById('plansContainer');
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-utensils"></i>
+                    <h3>No Diet Plans Yet</h3>
+                    <p>Start by creating your first personalized diet plan to begin your health journey.</p>
+                    <button class="btn-primary" style="margin-top: 2rem;" onclick="window.location.href='diet-plan.html'">
+                        <i class="fas fa-plus"></i> Create Your First Plan
+                    </button>
+                </div>
+            `;
+        }
+        
+        function getStatusBadge(status) {
+            switch (status) {
+                case 'active':
+                    return { text: 'Active', class: 'badge-active' };
+                case 'expired':
+                    return { text: 'Expired', class: 'badge-expired' };
+                case 'pending':
+                    return { text: 'Pending', class: 'badge-pending' };
+                default:
+                    return { text: 'Active', class: 'badge-active' };
+            }
+        }
+        
+        function showMessage(message, type) {
+            // Create a temporary message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type === 'error' ? 'error-message' : 'success-message';
+            messageDiv.style.display = 'block';
+            messageDiv.style.marginBottom = '1rem';
+            messageDiv.textContent = message;
+            
+            const container = document.querySelector('.profile-content');
+            container.insertBefore(messageDiv, container.firstChild);
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+        
+        function logout() {
+            localStorage.removeItem('userSession');
+            window.location.href = 'index.html';
+        }
+        
+        function createNewPlan() {
+            window.location.href = 'diet-plan.html';
+        }
+        
+        function downloadAllPlans() {
+            // Implementation for downloading all plans
+            alert('Downloading all plans...');
+        }
+        
+        async function viewPlan(planId) {
+            try {
+                const response = await fetch(`/prod/diet-plan/${planId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Store plan data and redirect to detailed view
+                    localStorage.setItem('currentPlan', JSON.stringify(result.plan));
+                    window.location.href = 'diet-plan-view.html';
+                } else {
+                    showMessage('Failed to load plan details', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error loading plan details', 'error');
+            }
+        }
+        
+        async function downloadPlan(planId) {
+            try {
+                const response = await fetch(`/prod/diet-plan/${planId}/download`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `diet-plan-${planId}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    showMessage('Failed to download plan', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error downloading plan', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
