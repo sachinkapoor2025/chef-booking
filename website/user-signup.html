@@ -436,8 +436,9 @@
                             planData: planData
                         };
                         
-                        // Send to backend
-                        const response = await fetch('/prod/diet-plan/signup', {
+                        // Send to backend using API Gateway URL
+                        const apiGatewayUrl = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+                        const response = await fetch(`${apiGatewayUrl}/diet-plan/signup`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
