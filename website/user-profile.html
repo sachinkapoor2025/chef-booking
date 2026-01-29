@@ -536,6 +536,10 @@
                 const result = await response.json();
                 
                 if (response.ok) {
+                    // Check for pending plans first
+                    await checkPendingPlans(userId);
+                    
+                    // Display existing plans
                     displayPlans(result.plans);
                 } else {
                     showMessage('Failed to load your diet plans', 'error');
@@ -544,6 +548,104 @@
             } catch (error) {
                 console.error('Error:', error);
                 displayEmptyState();
+            }
+        }
+        
+        // Check for pending plans and update status
+        async function checkPendingPlans(userId) {
+            const currentPlanId = localStorage.getItem('currentPlanId');
+            const pendingPlanData = localStorage.getItem('pendingPlanData');
+            
+            if (currentPlanId) {
+                try {
+                    const response = await fetch(`/prod/diet-plan/${currentPlanId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                        }
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        const plan = result.plan;
+                        
+                        // Check if plan is ready
+                        if (plan.status === 'ready') {
+                            // Plan is ready, update user ID and redirect
+                            await fetch(`/prod/diet-plan/user/${userId}/plans`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                                },
+                                body: JSON.stringify({
+                                    planId: currentPlanId,
+                                    userId: userId
+                                })
+                            });
+                            
+                            // Clear pending data
+                            localStorage.removeItem('currentPlanId');
+                            localStorage.removeItem('pendingPlanData');
+                            
+                            // Reload user data to show the new plan
+                            loadDietPlans(userId);
+                        } else if (plan.status === 'processing') {
+                            // Plan is still processing, show status
+                            showPlanStatus(currentPlanId, 'processing');
+                        } else if (plan.status === 'failed') {
+                            // Plan failed, show error
+                            showPlanStatus(currentPlanId, 'failed', plan.errorMessage);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error checking plan status:', error);
+                }
+            }
+        }
+        
+        // Show plan status to user
+        function showPlanStatus(planId, status, errorMessage = null) {
+            const plansContainer = document.getElementById('plansContainer');
+            
+            if (status === 'processing') {
+                plansContainer.innerHTML = `
+                    <div class="plan-card" style="border-color: #f59e0b; background: #fffbeb;">
+                        <div class="plan-header">
+                            <h3>Your Diet Plan is Being Generated</h3>
+                            <span class="plan-badge badge-pending">Processing</span>
+                        </div>
+                        <div class="plan-details">
+                            <div style="text-align: center; padding: 2rem;">
+                                <div style="width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top: 4px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                                <p>Your personalized diet plan is being created by our AI nutritionist. This may take a few minutes.</p>
+                                <p><strong>Plan ID:</strong> ${planId}</p>
+                                <button onclick="location.reload()" class="btn-primary" style="margin-top: 1rem;">
+                                    <i class="fas fa-sync"></i> Check Status
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (status === 'failed') {
+                plansContainer.innerHTML = `
+                    <div class="plan-card" style="border-color: #ef4444; background: #fef2f2;">
+                        <div class="plan-header">
+                            <h3>Diet Plan Generation Failed</h3>
+                            <span class="plan-badge" style="background-color: #fee2e2; color: #991b1b;">Failed</span>
+                        </div>
+                        <div class="plan-details">
+                            <div style="text-align: center; padding: 2rem;">
+                                <p>Sorry, there was an error generating your diet plan.</p>
+                                <p><strong>Error:</strong> ${errorMessage || 'Unknown error'}</p>
+                                <button onclick="location.reload()" class="btn-primary" style="margin-top: 1rem;">
+                                    <i class="fas fa-redo"></i> Try Again
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
         }
         

@@ -737,8 +737,14 @@
                         const result = await response.json();
                         
                         if (response.ok) {
-                            // Redirect to user signup/login page with plan ID
-                            localStorage.setItem('dietPlanData', JSON.stringify(result));
+                            // Show success message with processing info
+                            alert(result.message);
+                            
+                            // Store plan ID and form data for later use
+                            localStorage.setItem('currentPlanId', result.planId);
+                            localStorage.setItem('pendingPlanData', JSON.stringify(data));
+                            
+                            // Redirect to user signup/login page
                             window.location.href = 'user-signup.html';
                         } else {
                             throw new Error(result.error || 'Failed to generate diet plan');

@@ -370,6 +370,35 @@ Resources:
             Path: /diet-plan/{planId}/download
             Method: get
 
+  # Diet Plan Worker Function (Background Processing)
+  DietPlanWorkerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-diet-plan-worker"
+      CodeUri: src/
+      Handler: diet_plan_worker.handler
+      Runtime: python3.12
+      Timeout: 900          # 15 minutes for OpenAI processing
+      MemorySize: 1024     # 1 GB RAM
+      Environment:
+        Variables:
+          DIET_PLAN_USERS_TABLE: !Ref DietPlanUsersTable
+          DIET_PLANS_TABLE: !Ref DietPlansTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
+          S3_BUCKET: maharaja-chef-diet-plans
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlanUsersTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlansTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+        - AmazonS3FullAccess
+
   # API Gateway
   ApiGateway:
     Type: AWS::Serverless::Api

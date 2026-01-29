@@ -120,9 +120,9 @@ def convert_floats_to_decimal(obj):
         return obj
 
 def generate_diet_plan(form_data):
-    """Generate a personalized diet plan using OpenAI API"""
+    """Generate a personalized diet plan using OpenAI API (Async Flow)"""
 
-    # ✅ SAFETY CHECK (this fixes your crash)
+    # ✅ SAFETY CHECK
     if not form_data:
         return {
             'statusCode': 400,
@@ -135,7 +135,7 @@ def generate_diet_plan(form_data):
         }
 
     try:
-        print(f"DEBUG: Starting generate_diet_plan with form_data: {json.dumps(form_data, indent=2)}")
+        print(f"DEBUG: Starting async diet plan generation with form_data: {json.dumps(form_data, indent=2)}")
 
         required_fields = ['fullName','email','age','weight','height','mealPreference','exerciseFrequency','jobType','primaryGoal','targetWeight']
         for field in required_fields:
@@ -150,12 +150,19 @@ def generate_diet_plan(form_data):
                     'body': json.dumps({'error': f'Missing required field: {field}'})
                 }
 
+        # Calculate preliminary BMI and daily calorie needs for initial plan
         weight = float(form_data['weight'])
         height = float(form_data['height']) / 100
         age = int(form_data['age'])
+        gender = form_data.get('gender', 'male')  # Default to male if not specified
+        
+        # Calculate BMR using Mifflin-St Jeor Equation with gender
+        if gender.lower() == 'female':
+            bmr = 10 * weight + 6.25 * (height * 100) - 5 * age - 161
+        else:
+            bmr = 10 * weight + 6.25 * (height * 100) - 5 * age + 5
+        
         bmi = weight / (height ** 2)
-
-        bmr = 10 * weight + 6.25 * (height * 100) - 5 * age + 5
 
         activity_multipliers = {
             'sedentary': {'rarely': 1.2,'1-2-times-week': 1.375,'3-4-times-week': 1.45,'5-6-times-week': 1.55,'daily': 1.725},
@@ -173,55 +180,50 @@ def generate_diet_plan(form_data):
         elif form_data['primaryGoal'] == 'muscle-building':
             daily_calories += 300
 
-        prompt = create_diet_plan_prompt(form_data, daily_calories, bmi)
-        print("DEBUG: Calling OpenAI API now...")
-        plan_response = call_openai_api(prompt)
-        print("DEBUG: OpenAI API returned response")
-
-        if not plan_response:
-            print("❌ OpenAI returned empty response")
-            return {
-                'statusCode': 500,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                    'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-                },
-                'body': json.dumps({'error': 'Failed to generate diet plan from AI'})
-            }
-
-        print("DEBUG: First 2000 chars of AI response:\n", plan_response[:2000])
-
-        structured_plan = parse_openai_response(plan_response)
-        print("DEBUG: AI response parsed successfully")
-        structured_plan = convert_floats_to_decimal(structured_plan)
+        # Generate unique plan ID
         plan_id = str(uuid.uuid4())
 
         # ✅ FIXED createdAt (Number for DynamoDB GSI)
         now_ts = Decimal(str(int(datetime.utcnow().timestamp())))
 
-        dynamodb.Table(DIET_PLANS_TABLE).put_item(Item={
+        # Create initial plan record with status "processing"
+        plan_data = {
             'planId': plan_id,
             'userId': f"PENDING#{form_data['email']}",
             'email': form_data['email'],
             'title': f"Weekly Diet Plan for {form_data['fullName']}",
-
             'createdAt': now_ts,                             # ✅ Number (for index)
             'createdAtISO': datetime.utcnow().isoformat(),   # ✅ Human readable
-
-            'status': 'pending',
+            'status': 'processing',  # Set to processing initially
             'mealPreference': form_data['mealPreference'],
             'primaryGoal': form_data['primaryGoal'],
             'targetWeight': Decimal(str(form_data['targetWeight'])),
             'currentWeight': Decimal(str(weight)),
             'height': Decimal(str(height * 100)),
             'age': age,
+            'gender': gender,
             'bmi': Decimal(str(round(bmi, 2))),
             'dailyCalories': Decimal(str(round(daily_calories))),
-            'planDetails': structured_plan,
-            'form_data': form_data
-        })
+            'form_data': form_data  # Store original form data for worker
+        }
 
+        # Store in DynamoDB
+        dynamodb.Table(DIET_PLANS_TABLE).put_item(Item=plan_data)
+        
+        # Trigger background worker Lambda
+        lambda_client = boto3.client('lambda')
+        worker_payload = {
+            'planId': plan_id
+        }
+        
+        # Invoke worker asynchronously
+        lambda_client.invoke(
+            FunctionName='chef-services-backend-diet-plan-worker',
+            InvocationType='Event',  # Async invocation
+            Payload=json.dumps(worker_payload)
+        )
+        
+        print(f"DEBUG: Successfully created plan {plan_id} and triggered worker")
 
         return {
             'statusCode': 200,
@@ -230,11 +232,15 @@ def generate_diet_plan(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'message': 'Diet plan generated successfully', 'planId': plan_id})
+            'body': json.dumps({
+                'message': 'Your diet plan is being generated. Please check back in a few minutes.',
+                'planId': plan_id,
+                'status': 'processing'
+            })
         }
 
     except Exception as e:
-        print("Error generating diet plan:", str(e))
+        print("Error in async diet plan generation:", str(e))
         return {
             'statusCode': 500,
             'headers': {
@@ -242,7 +248,7 @@ def generate_diet_plan(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'error': 'Failed to generate diet plan'})
+            'body': json.dumps({'error': f'Failed to start diet plan generation: {str(e)}'})
         }
 
 def user_signup(form_data):
