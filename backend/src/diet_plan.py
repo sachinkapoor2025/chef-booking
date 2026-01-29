@@ -7,6 +7,7 @@ import base64
 from datetime import datetime, timedelta
 import requests
 from botocore.exceptions import ClientError
+from decimal import Decimal
 
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
@@ -108,17 +109,37 @@ def handler(event, context):
             },
             'body': json.dumps({'error': f'Internal server error: {str(e)}'})
         }
+def convert_floats_to_decimal(obj):
+    if isinstance(obj, list):
+        return [convert_floats_to_decimal(i) for i in obj]
+    elif isinstance(obj, dict):
+        return {k: convert_floats_to_decimal(v) for k, v in obj.items()}
+    elif isinstance(obj, float):
+        return Decimal(str(obj))
+    else:
+        return obj
 
 def generate_diet_plan(form_data):
     """Generate a personalized diet plan using OpenAI API"""
+
+    # ✅ SAFETY CHECK (this fixes your crash)
+    if not form_data:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+            },
+            'body': json.dumps({'error': 'Request body is missing'})
+        }
+
     try:
         print(f"DEBUG: Starting generate_diet_plan with form_data: {json.dumps(form_data, indent=2)}")
-        
-        # Validate required fields
-        required_fields = ['fullName', 'email', 'age', 'weight', 'height', 'mealPreference', 'exerciseFrequency', 'jobType', 'primaryGoal', 'targetWeight']
+
+        required_fields = ['fullName','email','age','weight','height','mealPreference','exerciseFrequency','jobType','primaryGoal','targetWeight']
         for field in required_fields:
             if not form_data.get(field):
-                print(f"DEBUG: Missing required field: {field}")
                 return {
                     'statusCode': 400,
                     'headers': {
@@ -128,50 +149,33 @@ def generate_diet_plan(form_data):
                     },
                     'body': json.dumps({'error': f'Missing required field: {field}'})
                 }
-        
-        print("DEBUG: All required fields validated successfully")
-        
-        # Calculate BMI and daily calorie needs
+
         weight = float(form_data['weight'])
-        height = float(form_data['height']) / 100  # Convert to meters
+        height = float(form_data['height']) / 100
         age = int(form_data['age'])
         bmi = weight / (height ** 2)
-        
-        # Calculate BMR (Basal Metabolic Rate) using Mifflin-St Jeor Equation
-        # Assuming male for simplicity, in production you'd want gender field
+
         bmr = 10 * weight + 6.25 * (height * 100) - 5 * age + 5
-        
-        # Activity multiplier based on job type and exercise frequency
+
         activity_multipliers = {
-            'sedentary': {'rarely': 1.2, '1-2-times-week': 1.375, '3-4-times-week': 1.45, '5-6-times-week': 1.55, 'daily': 1.725},
-            'light-activity': {'rarely': 1.375, '1-2-times-week': 1.45, '3-4-times-week': 1.55, '5-6-times-week': 1.65, 'daily': 1.825},
-            'moderate-activity': {'rarely': 1.45, '1-2-times-week': 1.55, '3-4-times-week': 1.65, '5-6-times-week': 1.75, 'daily': 1.925},
-            'heavy-activity': {'rarely': 1.55, '1-2-times-week': 1.65, '3-4-times-week': 1.75, '5-6-times-week': 1.85, 'daily': 2.025}
+            'sedentary': {'rarely': 1.2,'1-2-times-week': 1.375,'3-4-times-week': 1.45,'5-6-times-week': 1.55,'daily': 1.725},
+            'light-activity': {'rarely': 1.375,'1-2-times-week': 1.45,'3-4-times-week': 1.55,'5-6-times-week': 1.65,'daily': 1.825},
+            'moderate-activity': {'rarely': 1.45,'1-2-times-week': 1.55,'3-4-times-week': 1.65,'5-6-times-week': 1.75,'daily': 1.925},
+            'heavy-activity': {'rarely': 1.55,'1-2-times-week': 1.65,'3-4-times-week': 1.75,'5-6-times-week': 1.85,'daily': 2.025}
         }
-        
-        job_type = form_data['jobType']
-        exercise_freq = form_data['exerciseFrequency']
-        activity_multiplier = activity_multipliers.get(job_type, {}).get(exercise_freq, 1.4)
-        
-        daily_calories = bmr * activity_multiplier
-        
-        # Adjust calories based on goal
-        goal = form_data['primaryGoal']
-        target_weight = float(form_data['targetWeight'])
-        
-        if goal == 'weight-loss':
-            daily_calories -= 500  # 0.5kg weight loss per week
-        elif goal == 'weight-gain':
-            daily_calories += 500  # 0.5kg weight gain per week
-        elif goal == 'muscle-building':
-            daily_calories += 300  # Moderate surplus for muscle gain
-        
-        # Prepare prompt for OpenAI
+
+        daily_calories = bmr * activity_multipliers.get(form_data['jobType'], {}).get(form_data['exerciseFrequency'], 1.4)
+
+        if form_data['primaryGoal'] == 'weight-loss':
+            daily_calories -= 500
+        elif form_data['primaryGoal'] == 'weight-gain':
+            daily_calories += 500
+        elif form_data['primaryGoal'] == 'muscle-building':
+            daily_calories += 300
+
         prompt = create_diet_plan_prompt(form_data, daily_calories, bmi)
-        
-        # Call OpenAI API
         plan_response = call_openai_api(prompt)
-        
+
         if not plan_response:
             return {
                 'statusCode': 500,
@@ -182,38 +186,30 @@ def generate_diet_plan(form_data):
                 },
                 'body': json.dumps({'error': 'Failed to generate diet plan'})
             }
-        
-        # Parse and structure the response
+
         structured_plan = parse_openai_response(plan_response)
-        
-        # Generate unique plan ID
+        structured_plan = convert_floats_to_decimal(structured_plan)
         plan_id = str(uuid.uuid4())
-        created_at = datetime.utcnow().isoformat()
-        
-        # Create plan record
-        plan_data = {
+
+        dynamodb.Table(DIET_PLANS_TABLE).put_item(Item={
             'planId': plan_id,
-            'userId': None,  # Will be set when user signs up
+            'userId': None,
             'email': form_data['email'],
             'title': f"Weekly Diet Plan for {form_data['fullName']}",
-            'createdAt': created_at,
+            'createdAt': datetime.utcnow().isoformat(),
             'status': 'pending',
             'mealPreference': form_data['mealPreference'],
-            'primaryGoal': goal,
-            'targetWeight': target_weight,
-            'currentWeight': weight,
-            'height': height * 100,  # Store in cm
+            'primaryGoal': form_data['primaryGoal'],
+            'targetWeight': Decimal(str(form_data['targetWeight'])),
+            'currentWeight': Decimal(str(weight)),
+            'height': Decimal(str(height * 100)),
             'age': age,
-            'bmi': round(bmi, 2),
-            'dailyCalories': round(daily_calories),
+            'bmi': Decimal(str(round(bmi, 2))),
+            'dailyCalories': Decimal(str(round(daily_calories))),
             'planDetails': structured_plan,
             'form_data': form_data
-        }
-        
-        # Store in DynamoDB
-        plans_table = dynamodb.Table(DIET_PLANS_TABLE)
-        plans_table.put_item(Item=plan_data)
-        
+        })
+
         return {
             'statusCode': 200,
             'headers': {
@@ -221,15 +217,11 @@ def generate_diet_plan(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({
-                'message': 'Diet plan generated successfully',
-                'planId': plan_id,
-                'plan': plan_data
-            })
+            'body': json.dumps({'message': 'Diet plan generated successfully', 'planId': plan_id})
         }
-        
+
     except Exception as e:
-        print(f"Error generating diet plan: {str(e)}")
+        print("Error generating diet plan:", str(e))
         return {
             'statusCode': 500,
             'headers': {
@@ -242,23 +234,32 @@ def generate_diet_plan(form_data):
 
 def user_signup(form_data):
     """Create a new user account and associate with diet plan"""
+
+    # ✅ SAFETY CHECK
+    if not form_data:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+            },
+            'body': json.dumps({'error': 'Request body is missing'})
+        }
+
     try:
         email = form_data['email']
         password = form_data['password']
         full_name = form_data['fullName']
         plan_data = form_data.get('planData', {})
-        
-        # Hash password
+
         password_hash = hashlib.sha256(password.encode()).hexdigest()
-        
-        # Generate user ID
         user_id = str(uuid.uuid4())
         created_at = datetime.utcnow().isoformat()
-        
-        # Check if email already exists
+
         users_table = dynamodb.Table(DIET_PLAN_USERS_TABLE)
         response = users_table.get_item(Key={'email': email})
-        
+
         if 'Item' in response:
             return {
                 'statusCode': 400,
@@ -269,32 +270,24 @@ def user_signup(form_data):
                 },
                 'body': json.dumps({'error': 'Email already registered'})
             }
-        
-        # Create user record
-        user_data = {
+
+        users_table.put_item(Item={
             'userId': user_id,
             'email': email,
             'fullName': full_name,
             'passwordHash': password_hash,
             'createdAt': created_at,
             'lastLogin': created_at
-        }
-        
-        users_table.put_item(Item=user_data)
-        
-        # If there's a pending plan, associate it with the user
+        })
+
         if plan_data and plan_data.get('planId'):
-            plans_table = dynamodb.Table(DIET_PLANS_TABLE)
-            plans_table.update_item(
+            dynamodb.Table(DIET_PLANS_TABLE).update_item(
                 Key={'planId': plan_data['planId']},
                 UpdateExpression='SET userId = :uid, #status = :status',
                 ExpressionAttributeNames={'#status': 'status'},
-                ExpressionAttributeValues={
-                    ':uid': user_id,
-                    ':status': 'active'
-                }
+                ExpressionAttributeValues={':uid': user_id, ':status': 'active'}
             )
-        
+
         return {
             'statusCode': 200,
             'headers': {
@@ -302,16 +295,11 @@ def user_signup(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({
-                'message': 'User created successfully',
-                'userId': user_id,
-                'email': email,
-                'fullName': full_name
-            })
+            'body': json.dumps({'message': 'User created successfully', 'userId': user_id})
         }
-        
+
     except Exception as e:
-        print(f"Error creating user: {str(e)}")
+        print("Error creating user:", str(e))
         return {
             'statusCode': 500,
             'headers': {
@@ -322,20 +310,31 @@ def user_signup(form_data):
             'body': json.dumps({'error': 'Failed to create user'})
         }
 
+
 def user_login(form_data):
     """Authenticate user login"""
+
+    # ✅ SAFETY CHECK
+    if not form_data:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+            },
+            'body': json.dumps({'error': 'Request body is missing'})
+        }
+
     try:
         email = form_data['email']
         password = form_data['password']
-        
-        # Hash password
         password_hash = hashlib.sha256(password.encode()).hexdigest()
-        
-        # Check user credentials
+
         users_table = dynamodb.Table(DIET_PLAN_USERS_TABLE)
         response = users_table.get_item(Key={'email': email})
-        
-        if 'Item' not in response:
+
+        if 'Item' not in response or response['Item']['passwordHash'] != password_hash:
             return {
                 'statusCode': 401,
                 'headers': {
@@ -345,27 +344,15 @@ def user_login(form_data):
                 },
                 'body': json.dumps({'error': 'Invalid email or password'})
             }
-        
-        user = response['Item']
-        
-        if user['passwordHash'] != password_hash:
-            return {
-                'statusCode': 401,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                    'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-                },
-                'body': json.dumps({'error': 'Invalid email or password'})
-            }
-        
-        # Update last login
+
         users_table.update_item(
-            Key={'userId': user['userId']},
+            Key={'email': email},
             UpdateExpression='SET lastLogin = :time',
             ExpressionAttributeValues={':time': datetime.utcnow().isoformat()}
         )
-        
+
+        user = response['Item']
+
         return {
             'statusCode': 200,
             'headers': {
@@ -373,16 +360,11 @@ def user_login(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({
-                'message': 'Login successful',
-                'userId': user['userId'],
-                'email': user['email'],
-                'fullName': user['fullName']
-            })
+            'body': json.dumps({'message': 'Login successful', 'userId': user['userId'], 'email': user['email']})
         }
-        
+
     except Exception as e:
-        print(f"Error during login: {str(e)}")
+        print("Error during login:", str(e))
         return {
             'statusCode': 500,
             'headers': {
@@ -392,6 +374,7 @@ def user_login(form_data):
             },
             'body': json.dumps({'error': 'Login failed'})
         }
+
 
 def get_user_plans(user_id):
     """Get all diet plans for a user"""
@@ -643,7 +626,7 @@ def call_openai_api(prompt):
             'messages': [
                 {
                     'role': 'system',
-                    'content': 'You are a professional nutritionist and dietitian. Create detailed, personalized diet plans that are scientifically sound, practical, and tailored to individual needs.'
+                    'content': 'You are a professional nutritionist. You MUST return ONLY valid JSON. No explanation. No markdown. No extra text.'
                 },
                 {
                     'role': 'user',
@@ -651,7 +634,7 @@ def call_openai_api(prompt):
                 }
             ],
             'max_tokens': 4000,
-            'temperature': 0.7
+            'temperature': 0.4
         }
         
         response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
@@ -668,38 +651,22 @@ def call_openai_api(prompt):
         return None
 
 def parse_openai_response(response_text):
-    """Parse the OpenAI response and extract structured data"""
-    # This is a simplified parser - in production, you might want to use a more robust JSON parsing approach
-    # or ask OpenAI to return valid JSON directly
-    
     try:
-        # Try to extract JSON from the response
-        import re
-        json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
-        
-        if json_match:
-            json_str = json_match.group()
-            # Clean up the JSON string
-            json_str = json_str.replace('\n', '').replace('\t', '')
-            return json.loads(json_str)
-        else:
-            # If no JSON found, return a basic structure
-            return {
-                'weekOverview': {'dailyCalorieTarget': 0, 'mealDistribution': '', 'keyFocusAreas': []},
-                'dailyPlans': [],
-                'shoppingList': {'produce': [], 'proteins': [], 'pantry': []},
-                'prepTips': [],
-                'notes': response_text[:500]  # Truncate long text
-            }
-            
+        start = response_text.find('{')
+        end = response_text.rfind('}') + 1
+        json_str = response_text[start:end]
+        return json.loads(json_str)
+
     except Exception as e:
-        print(f"Error parsing OpenAI response: {str(e)}")
+        print("❌ RAW OPENAI RESPONSE (first 3000 chars):\n", response_text[:3000])
+        print("❌ JSON PARSE ERROR:", str(e))
+
         return {
-            'weekOverview': {'dailyCalorieTarget': 0, 'mealDistribution': '', 'keyFocusAreas': []},
-            'dailyPlans': [],
-            'shoppingList': {'produce': [], 'proteins': [], 'pantry': []},
-            'prepTips': [],
-            'notes': 'Error parsing response'
+            "weekOverview": {},
+            "dailyPlans": [],
+            "shoppingList": {},
+            "prepTips": [],
+            "notes": "AI response could not be parsed. Check CloudWatch logs."
         }
 
 def generate_pdf_content(plan):
