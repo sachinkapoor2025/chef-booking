@@ -332,6 +332,12 @@ Resources:
                 - secretsmanager:GetSecretValue
               Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
         - AmazonS3FullAccess
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !GetAtt DietPlanWorkerFunction.Arn
       Events:
         GenerateDietPlan:
           Type: Api
