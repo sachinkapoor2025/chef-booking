@@ -98,10 +98,13 @@ def handler(event, context):
 def generate_diet_plan(form_data):
     """Generate a personalized diet plan using OpenAI API"""
     try:
+        print(f"DEBUG: Starting generate_diet_plan with form_data: {json.dumps(form_data, indent=2)}")
+        
         # Validate required fields
         required_fields = ['fullName', 'email', 'age', 'weight', 'height', 'mealPreference', 'exerciseFrequency', 'jobType', 'primaryGoal', 'targetWeight']
         for field in required_fields:
             if not form_data.get(field):
+                print(f"DEBUG: Missing required field: {field}")
                 return {
                     'statusCode': 400,
                     'headers': {
@@ -111,6 +114,8 @@ def generate_diet_plan(form_data):
                     },
                     'body': json.dumps({'error': f'Missing required field: {field}'})
                 }
+        
+        print("DEBUG: All required fields validated successfully")
         
         # Calculate BMI and daily calorie needs
         weight = float(form_data['weight'])
