@@ -17,65 +17,213 @@
     <meta name="keywords" content="personal chef, chef services, home cooking, California, San Jose">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Maharaja Chef Services - Premium Personal Chefs">
+    <meta property="og:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Maharaja Chef Services">
+    <meta name="twitter:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
+    <meta name="twitter:image" content="images/logo.jpg">
 </head>
-<body>
-    <header>
-        <nav>
-           <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+    <body>
+    <header class="global-header">
+        <nav class="global-nav">
+            <div class="header-left">
+                <div class="logo">
+                    <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;"></a></h1>
+                </div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="owner.html">Business Owner</a></li>
-            </ul>
+            <div class="header-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                    <li class="dropdown">
+                        <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                            <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="become-a-chef.html">Become a Chef</a></li>
+                            <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                            <li><a href="chef-faq.html">Chef FAQ</a></li>
+                            <li><a href="success-stories.html">Success Stories</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <div class="action-buttons">
+                    <a href="owner.html" class="btn">Business Owner</a>
+                    <a href="login.html" class="btn">Log In</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section with Large Image -->
-        <section id="hero-large">
-            <div class="hero-content" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-                <div class="hero-text" style="flex: 1; padding-right: 40px; text-align: left;">
-                    <h1 style="color: #1e3a8a;">Find Your Perfect Personal Chef</h1>
-                    <p style="color: #1e3a8a;">Discover elite professional chefs in your area who deliver bespoke, fine-dining experiences directly to your home. Our platform connects you with hand-selected private chefs who craft personalized menus using premium ingredients, transforming everyday meals into unforgettable culinary moments. Whether you are hosting an intimate candlelight dinner, a luxury house party, a family celebration, or an exclusive private event, our chefs bring restaurant-quality cuisine, elegant presentation, and world-class service to your kitchen.</p>
+    <!-- Sticky CTA Bar for Mobile -->
+    <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+        <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
+        <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
+    </div>
 
-                    <p style="color: #1e3a8a;">From gourmet multi-course dinners and live chef experiences to customized weekly meal services and special-occasion catering, we make private dining effortless, refined, and memorable.</p>
-                    <div class="hero-cta-buttons" style="display: flex; gap: 1rem; margin-top: 2rem;">
-                        <a href="explore-chefs.html" class="btn btn-large" style="color: white; text-decoration: none;">Explore Chefs</a>
-                        <a href="book-a-chef.html" class="btn btn-large" style="color: white; text-decoration: none;">Book a Chef</a>
+    <main>
+        <!-- Hero Section with large image -->
+        <section id="hero-large" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); padding: 4rem 0;">
+            <div class="hero-content" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px; gap: 60px;">
+                <div class="hero-text" style="flex: 1; text-align: left; padding-right: 40px;">
+                    <h1 style="color: #1e3a8a; margin-top: 0; font-size: 3.5rem; font-weight: 700; line-height: 1.1; text-shadow: none; word-wrap: normal; hyphens: none;">Personal Chefs for Every Occasion</h1>
+                    <p style="color: #1e3a8a; font-size: 1.5rem; font-weight: 600; margin-top: 1rem; margin-bottom: 1rem; text-shadow: none;">Book a Chef in 3 Minutes!</p>
+                    <p style="color: #1e3a8a; font-size: 1.2rem; margin-bottom: 2rem; font-weight: 500; text-shadow: none;">Restaurant-quality dining at home</p>
+                    <ul style="color: #1e3a8a; font-size: 1.1rem; margin-bottom: 2rem; padding-left: 0; list-style: none;">
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
+                            Verified professional chefs
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
+                            Customized menus for every occasion
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
+                            Restaurant-quality dining at home
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
+                            Last-minute bookings available
+                        </li>
+                    </ul>
+                    <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a; margin-bottom: 0.5rem;">100+</div>
+                            <div style="font-size: 0.9rem; color: #1e3a8a; font-weight: 500;">Verified Chefs</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a; margin-bottom: 0.5rem;">✓</div>
+                            <div style="font-size: 0.9rem; color: #1e3a8a; font-weight: 500;">Customized Menus</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a; margin-bottom: 0.5rem;">📅</div>
+                            <div style="font-size: 0.9rem; color: #1e3a8a; font-weight: 500;">Last-Minute Bookings</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 3rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                        <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">👨‍🍳 Explore Chefs Now</a>
+                        <a href="book-a-chef.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">📅 Book Your Chef Today</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="images/chef-cooking-hero.jpg" alt="Chef cooking and plating food">
+                <div class="hero-image" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 400px; position: relative;">
+                    <div style="position: relative; width: 100%; max-width: 500px; height: auto;">
+                        <img src="https://via.placeholder.com/600x400/f8fafc/1e3a8a?text=Chef+Image+Coming+Soon" alt="Chef image placeholder" loading="lazy" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); object-fit: cover; object-position: center; display: block; max-height: 600px; transition: transform 0.3s ease; visibility: visible; opacity: 1;">
+                        <!-- Decorative overlay elements -->
+                        <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: linear-gradient(45deg, #3b82f6, #1d4ed8); border-radius: 50%; opacity: 0.1; filter: blur(10px);"></div>
+                        <div style="position: absolute; bottom: -20px; right: -20px; width: 120px; height: 120px; background: linear-gradient(45deg, #10b981, #059669); border-radius: 50%; opacity: 0.1; filter: blur(10px);"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Book a Chef CTA before Chef Creations -->
-        <section id="book-chef-before-creations" style="text-align:center; margin: 60px 0;">
-            <a href="book-a-chef.html" class="btn btn-large">Book a Chef</a>
+        <!-- Social Proof Section -->
+        <section id="social-proof" style="text-align:center; margin: 60px 0; padding: 4rem 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e3a8a;">Trusted by Thousands</h2>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Join our growing community of satisfied customers</p>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #28a745; margin-bottom: 0.5rem;">4.9/5</div>
+                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Average Rating</div>
+                    <div style="color: #ffc107;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #007bff; margin-bottom: 0.5rem;">5000+</div>
+                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Meals Served</div>
+                    <div style="color: #666;">
+                        <i class="fas fa-utensils"></i> <i class="fas fa-utensils"></i> <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #ffc107; margin-bottom: 0.5rem;">98%</div>
+                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Customer Satisfaction</div>
+                    <div style="color: #666;">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #28a745; margin-bottom: 0.5rem;">24/7</div>
+                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Support Available</div>
+                    <div style="color: #666;">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Gallery Carousel -->
+        <section id="featured-gallery" style="text-align:center; margin: 60px 0; padding: 2rem 0; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+            <h2 style="margin-bottom: 2rem; color: #1e3a8a;">Featured Chef Experiences</h2>
+            <div class="gallery-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; scroll-behavior: smooth;">
+                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="images/chef-work1.jpg" alt="Chef cooking" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
+                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Private Dining</h3>
+                    </div>
+                </div>
+                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="images/food1.jpg" alt="Plated dish" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
+                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Gourmet Cuisine</h3>
+                    </div>
+                </div>
+                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="images/event1.jpg" alt="Special event" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
+                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Special Events</h3>
+                    </div>
+                </div>
+                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="images/weekly-meal.jpg" alt="Weekly meals" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
+                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Weekly Meals</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced CTA Section -->
+        <section id="main-cta" style="text-align:center; margin: 60px 0; padding: 3rem 1rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border-radius: 12px; margin: 2rem auto; max-width: 1200px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready for an Amazing Culinary Experience?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Book your personal chef today and enjoy restaurant-quality meals in the comfort of your home.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">👨‍🍳 Explore Chefs Now</a>
+                <a href="book-a-chef.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6;">📅 Book Your Chef Today</a>
+            </div>
         </section>
 
         <!-- Chef Photos Gallery Section -->
@@ -236,26 +384,27 @@
         <section id="who-we-are">
             <div class="who-we-are-content">
                 <div class="who-we-are-image">
-                    <img src="images/chef-team.jpg" alt="Chef team and kitchen" style="height: 1350px; width: 500px;">
+                    <img src="images/chef-team.jpg" alt="Chef team and kitchen" style="height: 750px; width: 500px;">
                 </div>
                 <div class="who-we-are-text">
                     <h2>Who We Are</h2>
-                    <p>Maharaja Chef Services is a premium personal chef platform designed to bring restaurant-quality dining into the comfort of your home. We connect customers across the United States with experienced, professional chefs who are passionate about creating memorable culinary experiences tailored to individual tastes, lifestyles, and occasions.</p>
+                    <p><strong>Premium personal chef platform</strong> bringing restaurant-quality dining to your home across the USA.</p>
 
                     <h3>Our Mission</h3>
-                    <p>To provide exceptional, customized chef services that elevate everyday meals and special occasions, ensuring every client feels like royalty in their own home.</p>
+                    <p><strong>Elevate everyday meals</strong> and special occasions with exceptional, customized chef services.</p>
 
                     <h3>Trust & Reliability</h3>
-                    <p>Founded with the vision of combining convenience, quality, and authenticity, Maharaja Chef Services makes it easy to enjoy fresh, customized meals without the stress of cooking, planning, or cleanup. Whether you're looking for daily home-cooked meals, weekly meal preparation, intimate family dinners, or elegant private events, our chefs deliver exceptional service every time.</p>
+                    <p><strong>Background-checked chefs</strong> with professional experience in top restaurants and culinary schools.</p>
 
                     <h3>Quality & Expertise</h3>
-                    <p>Our network consists of highly skilled chefs specializing in a wide range of global cuisines, including American, Indian, Italian, Mediterranean, Asian, Vegan, Keto, and more. Each chef is carefully vetted, background-checked, and selected based on culinary expertise, professionalism, and commitment to excellence. We place strong emphasis on food safety, hygiene standards, and ingredient quality to ensure every meal is both delicious and trustworthy.</p>
+                    <p><strong>Global cuisine specialists</strong> including American, Indian, Italian, Mediterranean, Asian, Vegan, and Keto.</p>
 
                     <h3>Customer Focus</h3>
-                    <p>At Maharaja Chef Services, we believe great food should be personal. That's why our chefs work closely with clients to design menus based on dietary preferences, allergies, health goals, and cultural tastes. From plant-based meals to gluten-free, dairy-free, and low-carb options, we cater to diverse nutritional needs with precision and care.</p>
+                    <p><strong>Personalized menus</strong> tailored to your dietary preferences, allergies, and cultural tastes.</p>
 
-                    <p>More than just a chef booking service, we are a hospitality-driven platform built on trust, transparency, and customer satisfaction. Our mission is to elevate everyday dining while providing a seamless booking experience and dependable support. With Maharaja Chef Services, you don't just hire a chef—you gain a personalized culinary partner dedicated to making every meal special.</p>
-                    <a href="about-us.html" class="btn">Learn More About Us</a>
+                    <div style="margin-top: 2rem;">
+                        <a href="about-us.html" class="btn">Learn More About Us</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -284,6 +433,48 @@
                     <h3>Trusted US-Based Service</h3>
                     <p>We operate across the USA with local chefs who understand regional tastes.</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges Section -->
+        <section id="trust-badges" style="text-align:center; margin: 60px 0; padding: 2rem 0; background: #f8f9fa;">
+            <h2 style="margin-bottom: 2rem; color: #1e3a8a;">Trusted by Customers Nationwide</h2>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; align-items: center;">
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
+                    <div style="font-size: 2.5rem; color: #ffc107; margin-bottom: 0.5rem;">★ 4.9/5</div>
+                    <div style="font-weight: 600; color: #333;">Google Reviews</div>
+                    <div style="font-size: 0.9rem; color: #666;">Based on 150+ reviews</div>
+                </div>
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
+                    <div style="font-size: 2.5rem; color: #ffc107; margin-bottom: 0.5rem;">★ 4.8/5</div>
+                    <div style="font-weight: 600; color: #333;">Yelp Reviews</div>
+                    <div style="font-size: 0.9rem; color: #666;">Based on 200+ reviews</div>
+                </div>
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
+                    <div style="font-size: 2.5rem; color: #28a745; margin-bottom: 0.5rem;">✓</div>
+                    <div style="font-weight: 600; color: #333;">Verified Chefs</div>
+                    <div style="font-size: 0.9rem; color: #666;">Background checked & certified</div>
+                </div>
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
+                    <div style="font-size: 2.5rem; color: #007bff; margin-bottom: 0.5rem;">👨‍🍳</div>
+                    <div style="font-weight: 600; color: #333;">500+ Chefs</div>
+                    <div style="font-size: 0.9rem; color: #666;">Nationwide network</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Areas Section -->
+        <section id="service-areas" style="text-align:center; margin: 60px 0; padding: 2rem 0;">
+            <h2 style="margin-bottom: 2rem; color: #1e3a8a;">Serving Major Cities Across the USA</h2>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 San Jose, CA</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 San Francisco, CA</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Los Angeles, CA</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 New York, NY</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Chicago, IL</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Miami, FL</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Dallas, TX</span>
+                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Houston, TX</span>
             </div>
         </section>
 
@@ -389,7 +580,7 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <div class="contact-info" style="color: #333;">
-                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
@@ -421,6 +612,24 @@
     </div>
 
     <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    
+    <!-- Mobile Sticky CTA Script -->
+    <script>
+        // Show sticky CTA bar on mobile devices
+        function checkMobileStickyCTA() {
+            const stickyCTA = document.querySelector('.sticky-cta-bar');
+            if (window.innerWidth <= 768) {
+                stickyCTA.style.display = 'flex';
+            } else {
+                stickyCTA.style.display = 'none';
+            }
+        }
+        
+        // Check on load and resize
+        window.addEventListener('load', checkMobileStickyCTA);
+        window.addEventListener('resize', checkMobileStickyCTA);
+    </script>
     </body>
     <!-- Chatbot Integration -->
     <script>

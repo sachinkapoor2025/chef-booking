@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Maharaja Chef Services</title>
+    <meta name="description" content="Login to your Maharaja Chef Services account to book chefs or manage your chef profile.">
+    <meta name="keywords" content="login, chef services, personal chef, account access">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="global-header">
+        <nav class="global-nav">
+            <div class="header-left">
+                <div class="logo">
+                    <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;"></a></h1>
+                </div>
+            </div>
+            <div class="header-center">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                    <li class="dropdown">
+                        <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                            <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="become-a-chef.html">Become a Chef</a></li>
+                            <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                            <li><a href="chef-faq.html">Chef FAQ</a></li>
+                            <li><a href="success-stories.html">Success Stories</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <div class="action-buttons">
+                    <a href="owner.html" class="btn">Business Owner</a>
+                    <a href="login.html" class="btn">Log In</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Login Hero Section -->
+        <section id="login-hero" style="text-align: center; padding: 4rem 1rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e3a8a;">Welcome Back</h1>
+            <p style="font-size: 1.2rem; color: #475569; max-width: 600px; margin: 0 auto 2rem;">Access your Maharaja Chef Services account to book personal chefs or manage your chef profile.</p>
+
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem;">
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; flex: 1; max-width: 300px;">
+                    <i class="fas fa-user-tie" style="font-size: 2.5rem; color: #3b82f6; margin-bottom: 1rem;"></i>
+                    <h3 style="color: #1e293b; margin-bottom: 0.5rem;">Customer Login</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">Book personal chefs and manage your reservations</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; flex: 1; max-width: 300px;">
+                    <i class="fas fa-user-chef" style="font-size: 2.5rem; color: #10b981; margin-bottom: 1rem;"></i>
+                    <h3 style="color: #1e293b; margin-bottom: 0.5rem;">Chef Login</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">Manage your chef profile, bookings, and services</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Form Section -->
+        <section id="login-form" style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
+            <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+                <!-- Tab Navigation -->
+                <div style="display: flex; margin-bottom: 2rem; border-bottom: 1px solid #e5e7eb;">
+                    <button id="customer-tab" class="tab-button active" style="flex: 1; padding: 1rem; background: transparent; border: none; font-size: 1.1rem; font-weight: 600; color: #3b82f6; border-bottom: 3px solid #3b82f6; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fas fa-user-tie" style="margin-right: 0.5rem;"></i> Customer
+                    </button>
+                    <button id="chef-tab" class="tab-button" style="flex: 1; padding: 1rem; background: transparent; border: none; font-size: 1.1rem; font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fas fa-user-chef" style="margin-right: 0.5rem;"></i> Chef
+                    </button>
+                </div>
+
+                <!-- Customer Login Form (Default) -->
+                <form id="customer-login-form" class="login-form">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="customer-email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1e293b;">Email Address</label>
+                        <input type="email" id="customer-email" name="email" required
+                               style="width: 100%; padding: 0.875rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s;"
+                               placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="customer-password" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1e293b;">Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="customer-password" name="password" required
+                                   style="width: 100%; padding: 0.875rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s;"
+                                   placeholder="••••••••••••">
+                            <i class="fas fa-eye-slash" id="toggle-password" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6b7280;"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" id="remember-me" name="remember" style="width: 16px; height: 16px; margin-right: 0.5rem;">
+                            <label for="remember-me" style="font-size: 0.9rem; color: #4b5563;">Remember me</label>
+                        </div>
+                        <a href="forgot-password.html" style="font-size: 0.9rem; color: #3b82f6; text-decoration: none; font-weight: 500;">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600;">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i> Log In as Customer
+                    </button>
+
+                    <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                        <p style="color: #6b7280; margin-bottom: 1rem;">Don't have an account?</p>
+                        <a href="signup.html" class="btn-outline" style="padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600;">
+                            <i class="fas fa-user-plus" style="margin-right: 0.5rem;"></i> Sign Up Now
+                        </a>
+                    </div>
+                </form>
+
+                <!-- Chef Login Form (Hidden) -->
+                <form id="chef-login-form" class="login-form" style="display: none;">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="chef-email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1e293b;">Chef Email Address</label>
+                        <input type="email" id="chef-email" name="email" required
+                               style="width: 100%; padding: 0.875rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s;"
+                               placeholder="your@chefemail.com">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="chef-password" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1e293b;">Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="chef-password" name="password" required
+                                   style="width: 100%; padding: 0.875rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s;"
+                                   placeholder="••••••••••••">
+                            <i class="fas fa-eye-slash" id="toggle-chef-password" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6b7280;"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" id="chef-remember-me" name="remember" style="width: 16px; height: 16px; margin-right: 0.5rem;">
+                            <label for="chef-remember-me" style="font-size: 0.9rem; color: #4b5563;">Remember me</label>
+                        </div>
+                        <a href="chef-forgot-password.html" style="font-size: 0.9rem; color: #10b981; text-decoration: none; font-weight: 500;">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i> Log In as Chef
+                    </button>
+
+                    <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                        <p style="color: #6b7280; margin-bottom: 1rem;">Don't have a chef account?</p>
+                        <a href="chef-signup.html" class="btn-outline" style="padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; border-color: #10b981; color: #10b981;">
+                            <i class="fas fa-user-chef" style="margin-right: 0.5rem;"></i> Become a Chef
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="login-features" style="text-align: center; padding: 4rem 2rem; background-color: white; margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #1e293b;">Why Create an Account?</h2>
+            <p style="font-size: 1.1rem; color: #4b5563; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Discover the benefits of having a Maharaja Chef Services account</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 style="color: #1e293b; margin-bottom: 1rem;">Easy Bookings</h3>
+                    <p style="color: #4b5563; line-height: 1.6;">Save your preferences and book chefs with just a few clicks. Access your booking history and manage reservations easily.</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 style="color: #1e293b; margin-bottom: 1rem;">Favorite Chefs</h3>
+                    <p style="color: #4b5563; line-height: 1.6;">Save your favorite chefs to your profile for quick access. Get notifications when they have new availability or special offers.</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 style="color: #1e293b; margin-bottom: 1rem;">Exclusive Offers</h3>
+                    <p style="color: #4b5563; line-height: 1.6;">Get access to member-only discounts, special promotions, and early booking opportunities for popular chefs and events.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="login.html">Log In</a></li>
+                    <li><a href="forgot-password.html">Forgot Password</a></li>
+                    <li><a href="chef-login.html">Chef Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script>
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const customerTab = document.getElementById('customer-tab');
+            const chefTab = document.getElementById('chef-tab');
+            const customerForm = document.getElementById('customer-login-form');
+            const chefForm = document.getElementById('chef-login-form');
+
+            // Toggle password visibility
+            const togglePassword = document.getElementById('toggle-password');
+            const toggleChefPassword = document.getElementById('toggle-chef-password');
+            const customerPassword = document.getElementById('customer-password');
+            const chefPassword = document.getElementById('chef-password');
+
+            if (togglePassword && customerPassword) {
+                togglePassword.addEventListener('click', function() {
+                    const type = customerPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                    customerPassword.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            if (toggleChefPassword && chefPassword) {
+                toggleChefPassword.addEventListener('click', function() {
+                    const type = chefPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                    chefPassword.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            // Tab switching
+            customerTab.addEventListener('click', function(e) {
+                e.preventDefault();
+                customerTab.classList.add('active');
+                chefTab.classList.remove('active');
+                customerForm.style.display = 'block';
+                chefForm.style.display = 'none';
+                customerTab.style.borderBottom = '3px solid #3b82f6';
+                chefTab.style.borderBottom = 'none';
+            });
+
+            chefTab.addEventListener('click', function(e) {
+                e.preventDefault();
+                chefTab.classList.add('active');
+                customerTab.classList.remove('active');
+                chefForm.style.display = 'block';
+                customerForm.style.display = 'none';
+                chefTab.style.borderBottom = '3px solid #10b981';
+                customerTab.style.borderBottom = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
