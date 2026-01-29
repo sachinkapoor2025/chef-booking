@@ -17,7 +17,7 @@ DIET_PLANS_TABLE = os.environ['DIET_PLANS_TABLE']
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 
 # S3 configuration
-S3_BUCKET = 'maharaja-chef-diet-plans'  # You'll need to create this bucket
+S3_BUCKET = os.environ.get('S3_BUCKET', 'maharaja-chef-diet-plans')
 S3_REGION = 'us-east-1'
 
 def handler(event, context):
@@ -174,9 +174,12 @@ def generate_diet_plan(form_data):
             daily_calories += 300
 
         prompt = create_diet_plan_prompt(form_data, daily_calories, bmi)
+        print("DEBUG: Calling OpenAI API now...")
         plan_response = call_openai_api(prompt)
+        print("DEBUG: OpenAI API returned response")
 
         if not plan_response:
+            print("❌ OpenAI returned empty response")
             return {
                 'statusCode': 500,
                 'headers': {
@@ -184,10 +187,13 @@ def generate_diet_plan(form_data):
                     'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                     'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
                 },
-                'body': json.dumps({'error': 'Failed to generate diet plan'})
+                'body': json.dumps({'error': 'Failed to generate diet plan from AI'})
             }
 
+        print("DEBUG: First 2000 chars of AI response:\n", plan_response[:2000])
+
         structured_plan = parse_openai_response(plan_response)
+        print("DEBUG: AI response parsed successfully")
         structured_plan = convert_floats_to_decimal(structured_plan)
         plan_id = str(uuid.uuid4())
 
@@ -542,7 +548,7 @@ def create_diet_plan_prompt(form_data, daily_calories, bmi):
     cooking_time = form_data.get('cookingTime', '30-minutes')
     
     # Create detailed prompt
-    prompt = f"""Create a comprehensive 1-week personalized diet plan based on the following information:
+    prompt = f"""Create a comprehensive 3-days personalized diet plan based on the following information:
 
 PERSONAL DETAILS:
 - Meal Preference: {meal_preference}
@@ -563,7 +569,7 @@ HEALTH CONSIDERATIONS:
 - Medical Conditions: {medical_conditions if medical_conditions else 'None specified'}
 
 REQUIREMENTS:
-1. Create a 5-day meal plan (Day 1 through Day 5)
+1. Create a 3-day meal plan (Day 1 through Day 3)
 2. For each day, provide Breakfast, Lunch, and Dinner
 3. Each meal should include:
    - Meal name
@@ -640,11 +646,16 @@ def call_openai_api(prompt):
                     'content': prompt
                 }
             ],
-            'max_tokens': 8000,
+            'max_tokens': 4000,
             'temperature': 0.4
         }
         
-        response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
+        response = requests.post(
+            'https://api.openai.com/v1/chat/completions',
+            headers=headers,
+            json=data,
+            timeout=90
+        )
         
         if response.status_code == 200:
             result = response.json()
