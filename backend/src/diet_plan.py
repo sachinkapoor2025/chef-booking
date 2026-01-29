@@ -277,9 +277,15 @@ def user_signup(form_data):
         created_at = datetime.utcnow().isoformat()
 
         users_table = dynamodb.Table(DIET_PLAN_USERS_TABLE)
-        response = users_table.get_item(Key={'email': email})
+        
+        # Check if user already exists using email index
+        response = users_table.query(
+            IndexName='email-index',
+            KeyConditionExpression=boto3.dynamodb.conditions.Key('email').eq(email),
+            Limit=1
+        )
 
-        if 'Item' in response:
+        if response.get('Items'):
             return {
                 'statusCode': 400,
                 'headers': {
@@ -290,6 +296,7 @@ def user_signup(form_data):
                 'body': json.dumps({'error': 'Email already registered'})
             }
 
+        # Create new user
         users_table.put_item(Item={
             'userId': user_id,
             'email': email,
@@ -299,8 +306,10 @@ def user_signup(form_data):
             'lastLogin': created_at
         })
 
+        # Associate with pending plan if exists
         if plan_data and plan_data.get('planId'):
-            dynamodb.Table(DIET_PLANS_TABLE).update_item(
+            plans_table = dynamodb.Table(DIET_PLANS_TABLE)
+            plans_table.update_item(
                 Key={'planId': plan_data['planId']},
                 UpdateExpression='SET userId = :uid, #status = :status',
                 ExpressionAttributeNames={'#status': 'status'},
@@ -326,7 +335,7 @@ def user_signup(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'error': 'Failed to create user'})
+            'body': json.dumps({'error': f'Failed to create user: {str(e)}'})
         }
 
 
@@ -351,9 +360,15 @@ def user_login(form_data):
         password_hash = hashlib.sha256(password.encode()).hexdigest()
 
         users_table = dynamodb.Table(DIET_PLAN_USERS_TABLE)
-        response = users_table.get_item(Key={'email': email})
+        
+        # Query user using email index
+        response = users_table.query(
+            IndexName='email-index',
+            KeyConditionExpression=boto3.dynamodb.conditions.Key('email').eq(email),
+            Limit=1
+        )
 
-        if 'Item' not in response or response['Item']['passwordHash'] != password_hash:
+        if not response.get('Items'):
             return {
                 'statusCode': 401,
                 'headers': {
@@ -364,13 +379,25 @@ def user_login(form_data):
                 'body': json.dumps({'error': 'Invalid email or password'})
             }
 
+        user = response['Items'][0]
+        
+        if user['passwordHash'] != password_hash:
+            return {
+                'statusCode': 401,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+                },
+                'body': json.dumps({'error': 'Invalid email or password'})
+            }
+
+        # Update last login time
         users_table.update_item(
-            Key={'email': email},
+            Key={'userId': user['userId']},
             UpdateExpression='SET lastLogin = :time',
             ExpressionAttributeValues={':time': datetime.utcnow().isoformat()}
         )
-
-        user = response['Item']
 
         return {
             'statusCode': 200,
@@ -379,7 +406,7 @@ def user_login(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'message': 'Login successful', 'userId': user['userId'], 'email': user['email']})
+            'body': json.dumps({'message': 'Login successful', 'userId': user['userId'], 'email': user['email'], 'fullName': user['fullName']})
         }
 
     except Exception as e:
@@ -391,7 +418,7 @@ def user_login(form_data):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'error': 'Login failed'})
+            'body': json.dumps({'error': f'Login failed: {str(e)}'})
         }
 
 
