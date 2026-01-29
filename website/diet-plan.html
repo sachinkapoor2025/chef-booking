@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Diet Plan - Maharaja Chef Services</title>
+    <meta name="description" content="Get a personalized weekly diet plan tailored to your preferences, lifestyle, and health goals.">
+    <meta name="keywords" content="diet plan, personalized nutrition, meal planning, healthy eating, custom diet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Diet Plan Specific Styles */
+        .diet-plan-hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .diet-plan-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .diet-plan-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .form-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .form-section h3 {
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        
+        .radio-option:hover, .checkbox-option:hover {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        
+        .radio-option input, .checkbox-option input {
+            margin: 0;
+        }
+        
+        .textarea-control {
+            width: 100%;
+            min-height: 120px;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        
+        .textarea-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+        
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .required {
+            color: #ef4444;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .diet-plan-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .diet-plan-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1rem;
+                margin: 0 1rem 3rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Diet Plan Hero Section -->
+        <section class="diet-plan-hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-utensils"></i> Personalized Diet Plan</h1>
+                <p>Get a custom 1-week diet plan tailored to your preferences, lifestyle, and health goals. Our expert nutritionists will create the perfect meal plan just for you.</p>
+            </div>
+        </section>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <form id="dietPlanForm" novalidate>
+                <!-- Progress Bar -->
+                <div class="step-indicator">
+                    <span>Step 1</span>
+                    <span>Step 2</span>
+                    <span>Step 3</span>
+                    <span>Step 4</span>
+                    <span>Step 5</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <!-- Section 1: Personal Information -->
+                <div class="form-section" id="section1">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" required>
+                            <div class="error-message" id="fullNameError">Please enter your full name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                            <div class="error-message" id="emailError">Please enter a valid email address</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                            <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age">Age <span class="required">*</span></label>
+                            <input type="number" id="age" name="age" class="form-control" min="18" max="100" required>
+                            <div class="error-message" id="ageError">Please enter your age (18-100)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Dietary Preferences -->
+                <div class="form-section" id="section2">
+                    <h3><i class="fas fa-leaf"></i> Dietary Preferences</h3>
+                    
+                    <div class="form-group">
+                        <label>Meal Preference <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="mealPreference" value="vegetarian" required>
+                                <i class="fas fa-leaf"></i> Vegetarian
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="mealPreference" value="non-vegetarian" required>
+                                <i class="fas fa-drumstick-bite"></i> Non-Vegetarian
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="mealPreference" value="vegan" required>
+                                <i class="fas fa-seedling"></i> Vegan
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="mealPreference" value="flexitarian" required>
+                                <i class="fas fa-apple-alt"></i> Flexitarian
+                            </label>
+                        </div>
+                        <div class="error-message" id="mealPreferenceError">Please select your meal preference</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cuisinePreferences">Favorite Cuisines (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="cuisinePreferences" value="indian">
+                                <i class="fas fa-pepper-hot"></i> Indian
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="cuisinePreferences" value="italian">
+                                <i class="fas fa-pizza-slice"></i> Italian
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="cuisinePreferences" value="mexican">
+                                <i class="fas fa-pepper-hot"></i> Mexican
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="cuisinePreferences" value="chinese">
+                                <i class="fas fa-utensils"></i> Chinese
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="cuisinePreferences" value="mediterranean">
+                                <i class="fas fa-olive-branch"></i> Mediterranean
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="cuisinePreferences" value="american">
+                                <i class="fas fa-hamburger"></i> American
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="genderError">Please select your gender</div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Health & Lifestyle -->
+                <div class="form-section" id="section3">
+                    <h3><i class="fas fa-heart"></i> Health & Lifestyle</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight">Current Weight (kg) <span class="required">*</span></label>
+                            <input type="number" id="weight" name="weight" class="form-control" step="0.1" min="40" max="200" required>
+                            <div class="error-message" id="weightError">Please enter your weight (40-200 kg)</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="height">Height (cm) <span class="required">*</span></label>
+                            <input type="number" id="height" name="height" class="form-control" min="140" max="220" required>
+                            <div class="error-message" id="heightError">Please enter your height (140-220 cm)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Exercise Routine <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="exerciseFrequency" value="daily" required>
+                                <i class="fas fa-dumbbell"></i> Daily
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="exerciseFrequency" value="5-6-times-week" required>
+                                <i class="fas fa-running"></i> 5-6 times/week
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="exerciseFrequency" value="3-4-times-week" required>
+                                <i class="fas fa-walking"></i> 3-4 times/week
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="exerciseFrequency" value="1-2-times-week" required>
+                                <i class="fas fa-walking"></i> 1-2 times/week
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="exerciseFrequency" value="rarely" required>
+                                <i class="fas fa-couch"></i> Rarely
+                            </label>
+                        </div>
+                        <div class="error-message" id="exerciseFrequencyError">Please select your exercise frequency</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Occupation Type <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="jobType" value="sedentary" required>
+                                <i class="fas fa-chair"></i> Sedentary (Office work)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="jobType" value="light-activity" required>
+                                <i class="fas fa-walking"></i> Light Activity
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="jobType" value="moderate-activity" required>
+                                <i class="fas fa-running"></i> Moderate Activity
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="jobType" value="heavy-activity" required>
+                                <i class="fas fa-dumbbell"></i> Heavy Activity
+                            </label>
+                        </div>
+                        <div class="error-message" id="jobTypeError">Please select your occupation type</div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Health Conditions -->
+                <div class="form-section" id="section4">
+                    <h3><i class="fas fa-stethoscope"></i> Health Conditions</h3>
+                    
+                    <div class="form-group">
+                        <label for="allergies">Food Allergies or Intolerances</label>
+                        <textarea id="allergies" name="allergies" class="textarea-control" placeholder="List any food allergies or intolerances..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="medicalConditions">Medical Conditions</label>
+                        <textarea id="medicalConditions" name="medicalConditions" class="textarea-control" placeholder="List any medical conditions (diabetes, hypertension, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="medications">Current Medications</label>
+                        <textarea id="medications" name="medications" class="textarea-control" placeholder="List any current medications..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 5: Goals & Preferences -->
+                <div class="form-section" id="section5">
+                    <h3><i class="fas fa-bullseye"></i> Goals & Preferences</h3>
+                    
+                    <div class="form-group">
+                        <label>Primary Goal <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="primaryGoal" value="weight-loss" required>
+                                <i class="fas fa-weight-loss"></i> Weight Loss
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="primaryGoal" value="weight-gain" required>
+                                <i class="fas fa-weight"></i> Weight Gain
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="primaryGoal" value="muscle-building" required>
+                                <i class="fas fa-dumbbell"></i> Muscle Building
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="primaryGoal" value="maintenance" required>
+                                <i class="fas fa-balance-scale"></i> Weight Maintenance
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="primaryGoal" value="general-health" required>
+                                <i class="fas fa-heart"></i> General Health
+                            </label>
+                        </div>
+                        <div class="error-message" id="primaryGoalError">Please select your primary goal</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="targetWeight">Target Weight (kg) <span class="required">*</span></label>
+                        <input type="number" id="targetWeight" name="targetWeight" class="form-control" step="0.1" min="40" max="200" required>
+                        <div class="error-message" id="targetWeightError">Please enter your target weight</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeFrame">Time Frame for Goal Achievement</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="timeFrame" value="1-month">
+                                <i class="fas fa-calendar-alt"></i> 1 Month
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="timeFrame" value="3-months">
+                                <i class="fas fa-calendar-alt"></i> 3 Months
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="timeFrame" value="6-months">
+                                <i class="fas fa-calendar-alt"></i> 6 Months
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="timeFrame" value="1-year">
+                                <i class="fas fa-calendar-alt"></i> 1 Year
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="timeFrame" value="no-rush">
+                                <i class="fas fa-clock"></i> No Rush
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cookingTime">Available Cooking Time per Meal</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="cookingTime" value="15-minutes">
+                                <i class="fas fa-clock"></i> 15 minutes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="cookingTime" value="30-minutes">
+                                <i class="fas fa-clock"></i> 30 minutes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="cookingTime" value="45-minutes">
+                                <i class="fas fa-clock"></i> 45 minutes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="cookingTime" value="1-hour">
+                                <i class="fas fa-clock"></i> 1 hour
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="cookingTime" value="no-limit">
+                                <i class="fas fa-clock"></i> No Limit
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalNotes">Additional Notes or Preferences</label>
+                        <textarea id="additionalNotes" name="additionalNotes" class="textarea-control" placeholder="Any other information that might be helpful for creating your personalized diet plan..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-utensils"></i> Generate My Personalized Diet Plan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Creating Your Personalized Diet Plan</h3>
+            <p>This may take a moment while we analyze your preferences and generate your custom meal plan...</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation and progress tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('dietPlanForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const progressFill = document.getElementById('progressFill');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            
+            // Form sections for progress tracking
+            const sections = [
+                document.getElementById('section1'),
+                document.getElementById('section2'),
+                document.getElementById('section3'),
+                document.getElementById('section4'),
+                document.getElementById('section5')
+            ];
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', validateField);
+            });
+            
+            // Radio buttons validation
+            const radioGroups = ['mealPreference', 'exerciseFrequency', 'jobType', 'primaryGoal'];
+            radioGroups.forEach(groupName => {
+                const radios = form.querySelectorAll(`input[name="${groupName}"]`);
+                radios.forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        validateRadioGroup(groupName);
+                        updateProgress();
+                    });
+                });
+            });
+            
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    // Show loading overlay
+                    loadingOverlay.style.display = 'flex';
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Your Plan...';
+                    
+                    try {
+                        // Collect form data
+                        const formData = new FormData(form);
+                        const data = Object.fromEntries(formData.entries());
+                        
+                        // Convert checkbox values to arrays
+                        data.cuisinePreferences = Array.from(form.querySelectorAll('input[name="cuisinePreferences"]:checked')).map(cb => cb.value);
+                        
+                        // Send to backend
+                        const response = await fetch('https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/generate', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            // Show success message with processing info
+                            alert(result.message);
+                            
+                            // Store plan ID and form data for later use
+                            localStorage.setItem('currentPlanId', result.planId);
+                            localStorage.setItem('pendingPlanData', JSON.stringify(data));
+                            
+                            // Redirect to user signup/login page
+                            window.location.href = 'user-signup.html';
+                        } else {
+                            throw new Error(result.error || 'Failed to generate diet plan');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        // Show detailed error message to user
+                        const errorMessage = error.message || 'Sorry, there was an error generating your diet plan. Please try again.';
+                        alert(errorMessage);
+                    } finally {
+                        loadingOverlay.style.display = 'none';
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-utensils"></i> Generate My Personalized Diet Plan';
+                    }
+                }
+            });
+            
+            function validateField(e) {
+                const field = e.target;
+                const value = field.value.trim();
+                const errorElement = document.getElementById(field.id + 'Error');
+                
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+                
+                if (field.hasAttribute('required') && !value) {
+                    if (errorElement) {
+                        errorElement.style.display = 'block';
+                    }
+                    return false;
+                }
+                
+                if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    if (errorElement) {
+                        errorElement.style.display = 'block';
+                        errorElement.textContent = 'Please enter a valid email address';
+                    }
+                    return false;
+                }
+                
+                if (field.type === 'tel' && value && !/^\+?[\d\s\-\(\)]{10,}$/.test(value)) {
+                    if (errorElement) {
+                        errorElement.style.display = 'block';
+                        errorElement.textContent = 'Please enter a valid phone number';
+                    }
+                    return false;
+                }
+                
+                if ((field.type === 'number') && value && (parseFloat(value) < parseFloat(field.min) || parseFloat(value) > parseFloat(field.max))) {
+                    if (errorElement) {
+                        errorElement.style.display = 'block';
+                    }
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            function validateRadioGroup(groupName) {
+                const radios = form.querySelectorAll(`input[name="${groupName}"]`);
+                const checked = Array.from(radios).some(radio => radio.checked);
+                const errorElement = document.getElementById(groupName + 'Error');
+                
+                if (errorElement) {
+                    errorElement.style.display = checked ? 'none' : 'block';
+                }
+                
+                return checked;
+            }
+            
+            function validateForm() {
+                let isValid = true;
+                
+                // Validate all required fields
+                const requiredFields = form.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    if (!validateField({ target: field })) {
+                        isValid = false;
+                    }
+                });
+                
+                // Validate radio groups
+                radioGroups.forEach(groupName => {
+                    if (!validateRadioGroup(groupName)) {
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            function updateProgress() {
+                const totalFields = form.querySelectorAll('[required]').length;
+                const filledFields = Array.from(form.querySelectorAll('[required]')).filter(field => {
+                    if (field.type === 'radio') {
+                        return Array.from(form.querySelectorAll(`input[name="${field.name}"]`)).some(r => r.checked);
+                    }
+                    return field.value.trim() !== '';
+                }).length;
+                
+                const progress = Math.min((filledFields / totalFields) * 100, 100);
+                progressFill.style.width = progress + '%';
+            }
+            
+            // Initial progress update
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

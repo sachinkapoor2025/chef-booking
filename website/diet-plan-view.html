@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Diet Plan - Maharaja Chef Services</title>
+    <meta name="description" content="View your personalized weekly diet plan with detailed meal instructions and nutrition information.">
+    <meta name="keywords" content="diet plan view, personalized nutrition, meal plan details, weekly diet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Diet Plan View Specific Styles */
+        .plan-hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .plan-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .plan-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .plan-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+        
+        .plan-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .plan-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .plan-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .day-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .day-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .day-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .day-calories {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .meal-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .meal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #d1fae5;
+        }
+        
+        .meal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .meal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .meal-calories {
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.25rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .meal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .ingredients-section h4,
+        .instructions-section h4 {
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .ingredient-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .ingredient-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ingredient-quantity {
+            color: #6b7280;
+            font-size: 0.875rem;
+            min-width: 80px;
+        }
+        
+        .instruction-step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-number {
+            background: #10b981;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .macros-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .macro-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .macro-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .macro-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .shopping-list {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .shopping-list h3 {
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .category-section {
+            margin-bottom: 2rem;
+        }
+        
+        .category-section h4 {
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .shopping-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .shopping-item:last-child {
+            border-bottom: none;
+        }
+        
+        .prep-tips {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .prep-tips h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .tip-icon {
+            color: #f59e0b;
+            font-size: 1.2rem;
+            margin-top: 0.125rem;
+        }
+        
+        .plan-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e5e7eb;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            transform: translateY(-2px);
+        }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .plan-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .plan-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .meal-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Plan Hero Section -->
+        <section class="plan-hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-utensils"></i> Your Personalized Diet Plan</h1>
+                <p>A complete 1-week meal plan tailored specifically to your needs, preferences, and health goals.</p>
+            </div>
+        </section>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <h3>Loading Your Diet Plan</h3>
+                <p>Please wait while we retrieve your personalized meal plan...</p>
+            </div>
+        </div>
+
+        <!-- Plan Container -->
+        <div class="plan-container">
+            <!-- Plan Header -->
+            <div class="plan-header" id="planHeader" style="display: none;">
+                <div>
+                    <h2 id="planTitle">Weekly Diet Plan</h2>
+                    <p id="planSubtitle">Personalized for your health journey</p>
+                </div>
+                <div class="plan-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="dailyCalories">0</div>
+                        <div class="stat-label">Daily Calories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="mealPreference">-</div>
+                        <div class="stat-label">Meal Preference</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="primaryGoal">-</div>
+                        <div class="stat-label">Primary Goal</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="planDuration">1 Week</div>
+                        <div class="stat-label">Duration</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan Content -->
+            <div class="plan-content" id="planContent" style="display: none;">
+                <!-- Days will be loaded here -->
+            </div>
+
+            <!-- Shopping List -->
+            <div class="shopping-list" id="shoppingList" style="display: none;">
+                <h3><i class="fas fa-shopping-cart"></i> Weekly Shopping List</h3>
+                <div id="shoppingListContent">
+                    <!-- Shopping list items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Preparation Tips -->
+            <div class="prep-tips" id="prepTips" style="display: none;">
+                <h3><i class="fas fa-lightbulb"></i> Preparation Tips</h3>
+                <div id="prepTipsContent">
+                    <!-- Preparation tips will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Plan Actions -->
+            <div class="plan-actions" id="planActions" style="display: none;">
+                <button class="btn-primary" id="downloadPdfBtn">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+                <button class="btn-secondary" id="backToProfileBtn">
+                    <i class="fas fa-arrow-left"></i> Back to Profile
+                </button>
+                <button class="btn-secondary" id="newPlanBtn">
+                    <i class="fas fa-plus"></i> Create New Plan
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const planHeader = document.getElementById('planHeader');
+            const planContent = document.getElementById('planContent');
+            const shoppingList = document.getElementById('shoppingList');
+            const prepTips = document.getElementById('prepTips');
+            const planActions = document.getElementById('planActions');
+            
+            // Load plan data from localStorage
+            const planData = JSON.parse(localStorage.getItem('currentPlan') || '{}');
+            
+            if (!planData || !planData.planId) {
+                // If no plan data, redirect to profile
+                window.location.href = 'user-profile.html';
+                return;
+            }
+            
+            // Display the plan
+            displayPlan(planData);
+            
+            // Event listeners
+            document.getElementById('downloadPdfBtn').addEventListener('click', downloadPlan);
+            document.getElementById('backToProfileBtn').addEventListener('click', () => {
+                window.location.href = 'user-profile.html';
+            });
+            document.getElementById('newPlanBtn').addEventListener('click', () => {
+                window.location.href = 'diet-plan.html';
+            });
+        });
+        
+        function displayPlan(plan) {
+            // Show loading
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            // Populate header
+            document.getElementById('planTitle').textContent = plan.title || 'Weekly Diet Plan';
+            document.getElementById('dailyCalories').textContent = plan.dailyCalories || '0';
+            document.getElementById('mealPreference').textContent = plan.mealPreference || '-';
+            document.getElementById('primaryGoal').textContent = plan.primaryGoal || '-';
+            
+            // Show header
+            document.getElementById('planHeader').style.display = 'block';
+            
+            // Populate content
+            const planContent = document.getElementById('planContent');
+            const planDetails = plan.planDetails || {};
+            const dailyPlans = planDetails.dailyPlans || [];
+            
+            planContent.innerHTML = '';
+            
+            dailyPlans.forEach(day => {
+                const daySection = document.createElement('div');
+                daySection.className = 'day-section';
+                
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                
+                const dayTitle = document.createElement('h2');
+                dayTitle.className = 'day-title';
+                dayTitle.textContent = `Day ${day.day}`;
+                
+                const dayCalories = document.createElement('div');
+                dayCalories.className = 'day-calories';
+                dayCalories.textContent = `${day.totalCalories || '0'} Total Calories`;
+                
+                dayHeader.appendChild(dayTitle);
+                dayHeader.appendChild(dayCalories);
+                
+                const mealsContainer = document.createElement('div');
+                
+                day.meals.forEach(meal => {
+                    const mealCard = document.createElement('div');
+                    mealCard.className = 'meal-card';
+                    
+                    const mealHeader = document.createElement('div');
+                    mealHeader.className = 'meal-header';
+                    
+                    const mealTitle = document.createElement('h3');
+                    mealTitle.className = 'meal-title';
+                    mealTitle.textContent = `${meal.mealType}: ${meal.name}`;
+                    
+                    const mealCalories = document.createElement('div');
+                    mealCalories.className = 'meal-calories';
+                    mealCalories.textContent = `${meal.calories} kcal`;
+                    
+                    mealHeader.appendChild(mealTitle);
+                    mealHeader.appendChild(mealCalories);
+                    
+                    const mealContent = document.createElement('div');
+                    mealContent.className = 'meal-content';
+                    
+                    // Ingredients section
+                    const ingredientsSection = document.createElement('div');
+                    ingredientsSection.className = 'ingredients-section';
+                    
+                    const ingredientsTitle = document.createElement('h4');
+                    ingredientsTitle.textContent = 'Ingredients';
+                    
+                    const ingredientsList = document.createElement('div');
+                    meal.ingredients.forEach(ingredient => {
+                        const ingredientItem = document.createElement('div');
+                        ingredientItem.className = 'ingredient-item';
+                        
+                        const ingredientName = document.createElement('span');
+                        ingredientName.textContent = ingredient;
+                        
+                        ingredientItem.appendChild(ingredientName);
+                        ingredientsList.appendChild(ingredientItem);
+                    });
+                    
+                    ingredientsSection.appendChild(ingredientsTitle);
+                    ingredientsSection.appendChild(ingredientsList);
+                    
+                    // Instructions section
+                    const instructionsSection = document.createElement('div');
+                    instructionsSection.className = 'instructions-section';
+                    
+                    const instructionsTitle = document.createElement('h4');
+                    instructionsTitle.textContent = 'Instructions';
+                    
+                    const instructionsList = document.createElement('div');
+                    meal.instructions.forEach((instruction, index) => {
+                        const instructionStep = document.createElement('div');
+                        instructionStep.className = 'instruction-step';
+                        
+                        const stepNumber = document.createElement('div');
+                        stepNumber.className = 'step-number';
+                        stepNumber.textContent = index + 1;
+                        
+                        const stepText = document.createElement('div');
+                        stepText.textContent = instruction;
+                        
+                        instructionStep.appendChild(stepNumber);
+                        instructionStep.appendChild(stepText);
+                        instructionsList.appendChild(instructionStep);
+                    });
+                    
+                    instructionsSection.appendChild(instructionsTitle);
+                    instructionsSection.appendChild(instructionsList);
+                    
+                    mealContent.appendChild(ingredientsSection);
+                    mealContent.appendChild(instructionsSection);
+                    
+                    // Macros section
+                    const macrosSection = document.createElement('div');
+                    macrosSection.className = 'macros-section';
+                    
+                    const macros = meal.macros || {};
+                    Object.entries(macros).forEach(([macro, value]) => {
+                        const macroItem = document.createElement('div');
+                        macroItem.className = 'macro-item';
+                        
+                        const macroValue = document.createElement('div');
+                        macroValue.className = 'macro-value';
+                        macroValue.textContent = value;
+                        
+                        const macroLabel = document.createElement('div');
+                        macroLabel.className = 'macro-label';
+                        macroLabel.textContent = macro.toUpperCase();
+                        
+                        macroItem.appendChild(macroValue);
+                        macroItem.appendChild(macroLabel);
+                        macrosSection.appendChild(macroItem);
+                    });
+                    
+                    mealCard.appendChild(mealHeader);
+                    mealCard.appendChild(mealContent);
+                    mealCard.appendChild(macrosSection);
+                    
+                    mealsContainer.appendChild(mealCard);
+                });
+                
+                daySection.appendChild(dayHeader);
+                daySection.appendChild(mealsContainer);
+                planContent.appendChild(daySection);
+            });
+            
+            // Populate shopping list
+            const shoppingList = document.getElementById('shoppingList');
+            const shoppingListContent = document.getElementById('shoppingListContent');
+            const shoppingListData = planDetails.shoppingList || {};
+            
+            shoppingListContent.innerHTML = '';
+            
+            Object.entries(shoppingListData).forEach(([category, items]) => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                
+                const categoryTitle = document.createElement('h4');
+                categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                
+                const categoryList = document.createElement('div');
+                items.forEach(item => {
+                    const shoppingItem = document.createElement('div');
+                    shoppingItem.className = 'shopping-item';
+                    shoppingItem.textContent = item;
+                    categoryList.appendChild(shoppingItem);
+                });
+                
+                categorySection.appendChild(categoryTitle);
+                categorySection.appendChild(categoryList);
+                shoppingListContent.appendChild(categorySection);
+            });
+            
+            if (Object.keys(shoppingListData).length > 0) {
+                shoppingList.style.display = 'block';
+            }
+            
+            // Populate prep tips
+            const prepTips = document.getElementById('prepTips');
+            const prepTipsContent = document.getElementById('prepTipsContent');
+            const prepTipsData = planDetails.prepTips || [];
+            
+            prepTipsContent.innerHTML = '';
+            
+            prepTipsData.forEach((tip, index) => {
+                const tipItem = document.createElement('div');
+                tipItem.className = 'tip-item';
+                
+                const tipIcon = document.createElement('i');
+                tipIcon.className = 'fas fa-lightbulb tip-icon';
+                
+                const tipText = document.createElement('div');
+                tipText.textContent = tip;
+                
+                tipItem.appendChild(tipIcon);
+                tipItem.appendChild(tipText);
+                prepTipsContent.appendChild(tipItem);
+            });
+            
+            if (prepTipsData.length > 0) {
+                prepTips.style.display = 'block';
+            }
+            
+            // Show content and actions
+            planContent.style.display = 'block';
+            document.getElementById('planActions').style.display = 'flex';
+            
+            // Hide loading
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        async function downloadPlan() {
+            const planData = JSON.parse(localStorage.getItem('currentPlan') || '{}');
+            
+            if (!planData || !planData.planId) {
+                alert('Plan not found');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/prod/diet-plan/${planData.planId}/download`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Create a temporary link to download the file
+                    const link = document.createElement('a');
+                    link.href = result.downloadUrl;
+                    link.download = result.fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    throw new Error(result.error || 'Failed to download plan');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Sorry, there was an error downloading your plan. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
