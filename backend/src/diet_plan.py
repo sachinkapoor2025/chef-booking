@@ -32,8 +32,9 @@ def handler(event, context):
         
         # Parse the API Gateway event
         http_method = event.get('httpMethod', '')
-        path = event.get('path', '')
+        path = event.get("requestContext", {}).get("path", event.get("path", ""))
         print(f"DEBUG: HTTP Method: {http_method}, Path: {path}")
+        print("DEBUG: Final resolved path =", path)
         
         # Extract path parameters
         path_params = event.get('pathParameters', {}) or {}
@@ -66,19 +67,26 @@ def handler(event, context):
             print(f"DEBUG: No body or not POST request. Body: {event.get('body')}")
         
         # Route to appropriate function based on path and method
-        if path == '/prod/diet-plan/generate' and http_method == 'POST':
+        if path.endswith('/diet-plan/generate') and http_method == 'POST':
             return generate_diet_plan(body)
-        elif path == '/prod/diet-plan/signup' and http_method == 'POST':
+
+        elif path.endswith('/diet-plan/signup') and http_method == 'POST':
             return user_signup(body)
-        elif path == '/prod/diet-plan/login' and http_method == 'POST':
+
+        elif path.endswith('/diet-plan/login') and http_method == 'POST':
             return user_login(body)
-        elif path == f'/prod/diet-plan/user/{user_id}/plans' and http_method == 'GET':
+
+        elif path.endswith(f'/diet-plan/user/{user_id}/plans') and http_method == 'GET':
             return get_user_plans(user_id)
-        elif path == f'/prod/diet-plan/{plan_id}' and http_method == 'GET':
-            return get_diet_plan(plan_id)
-        elif path == f'/prod/diet-plan/{plan_id}/download' and http_method == 'GET':
+
+        elif path.endswith(f'/diet-plan/{plan_id}/download') and http_method == 'GET':
             return download_diet_plan(plan_id)
+
+        elif path.endswith(f'/diet-plan/{plan_id}') and http_method == 'GET':
+            return get_diet_plan(plan_id)
+
         else:
+            print("DEBUG: ❌ No route matched")
             return {
                 'statusCode': 404,
                 'headers': {
