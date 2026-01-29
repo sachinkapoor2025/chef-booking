@@ -22,11 +22,11 @@ S3_REGION = 'us-east-1'
 def handler(event, context):
     try:
         # Parse the API Gateway event
-        http_method = event['httpMethod']
-        path = event['path']
+        http_method = event.get('httpMethod', '')
+        path = event.get('path', '')
         
         # Extract path parameters
-        path_params = event.get('pathParameters', {})
+        path_params = event.get('pathParameters', {}) or {}
         user_id = path_params.get('userId')
         plan_id = path_params.get('planId')
         
@@ -36,7 +36,18 @@ def handler(event, context):
         # Extract body for POST requests
         body = None
         if http_method == 'POST' and event.get('body'):
-            body = json.loads(event['body'])
+            try:
+                body = json.loads(event['body'])
+            except json.JSONDecodeError:
+                return {
+                    'statusCode': 400,
+                    'headers': {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                        'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+                    },
+                    'body': json.dumps({'error': 'Invalid JSON in request body'})
+                }
         
         # Route to appropriate function based on path and method
         if path == '/prod/diet-plan/generate' and http_method == 'POST':
