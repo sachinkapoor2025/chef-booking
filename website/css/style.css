@@ -1715,10 +1715,12 @@ main {
 /* Large Hero Section */
 #hero-large {
     position: relative;
-    height: 70vh;
-    min-height: 500px;
-    overflow: hidden;
+    min-height: 70vh;
+    height: auto;
+    overflow: visible;
     margin-bottom: 4rem;
+    display: flex;
+    align-items: stretch;
 }
 
 .hero-overlay {
