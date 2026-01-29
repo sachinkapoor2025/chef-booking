@@ -3296,4 +3296,14 @@ footer hr {
         max-width: 100%;
         max-height: 100%;
     }
+    @media (max-width: 900px) {
+  #hero-large .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #hero-large .hero-text {
+    padding-right: 0 !important;
+  }
+}
 }
