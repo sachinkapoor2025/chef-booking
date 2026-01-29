@@ -556,7 +556,7 @@ HEALTH CONSIDERATIONS:
 - Medical Conditions: {medical_conditions if medical_conditions else 'None specified'}
 
 REQUIREMENTS:
-1. Create a 7-day meal plan (Day 1 through Day 7)
+1. Create a 5-day meal plan (Day 1 through Day 5)
 2. For each day, provide Breakfast, Lunch, and Dinner
 3. Each meal should include:
    - Meal name
@@ -622,7 +622,7 @@ def call_openai_api(prompt):
         }
         
         data = {
-            'model': 'gpt-3.5-turbo',
+            'model': 'gpt-4.1-mini',
             'messages': [
                 {
                     'role': 'system',
@@ -633,7 +633,7 @@ def call_openai_api(prompt):
                     'content': prompt
                 }
             ],
-            'max_tokens': 4000,
+            'max_tokens': 8000,
             'temperature': 0.4
         }
         
