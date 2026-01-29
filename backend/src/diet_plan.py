@@ -21,24 +21,32 @@ S3_REGION = 'us-east-1'
 
 def handler(event, context):
     try:
+        print(f"DEBUG: Event received: {json.dumps(event, indent=2)}")
+        print(f"DEBUG: Context: {context}")
+        
         # Parse the API Gateway event
         http_method = event.get('httpMethod', '')
         path = event.get('path', '')
+        print(f"DEBUG: HTTP Method: {http_method}, Path: {path}")
         
         # Extract path parameters
         path_params = event.get('pathParameters', {}) or {}
         user_id = path_params.get('userId')
         plan_id = path_params.get('planId')
+        print(f"DEBUG: Path params: {path_params}, User ID: {user_id}, Plan ID: {plan_id}")
         
         # Extract query parameters
         query_params = event.get('queryStringParameters', {}) or {}
+        print(f"DEBUG: Query params: {query_params}")
         
         # Extract body for POST requests
         body = None
         if http_method == 'POST' and event.get('body'):
             try:
                 body = json.loads(event['body'])
-            except json.JSONDecodeError:
+                print(f"DEBUG: Parsed body: {json.dumps(body, indent=2)}")
+            except json.JSONDecodeError as e:
+                print(f"DEBUG: JSON decode error: {e}")
                 return {
                     'statusCode': 400,
                     'headers': {
@@ -48,6 +56,8 @@ def handler(event, context):
                     },
                     'body': json.dumps({'error': 'Invalid JSON in request body'})
                 }
+        else:
+            print(f"DEBUG: No body or not POST request. Body: {event.get('body')}")
         
         # Route to appropriate function based on path and method
         if path == '/prod/diet-plan/generate' and http_method == 'POST':
