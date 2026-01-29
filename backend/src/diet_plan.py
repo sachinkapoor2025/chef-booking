@@ -191,12 +191,18 @@ def generate_diet_plan(form_data):
         structured_plan = convert_floats_to_decimal(structured_plan)
         plan_id = str(uuid.uuid4())
 
+        # ✅ FIXED createdAt (Number for DynamoDB GSI)
+        now_ts = Decimal(str(int(datetime.utcnow().timestamp())))
+
         dynamodb.Table(DIET_PLANS_TABLE).put_item(Item={
             'planId': plan_id,
             'userId': f"PENDING#{form_data['email']}",
             'email': form_data['email'],
             'title': f"Weekly Diet Plan for {form_data['fullName']}",
-            'createdAt': datetime.utcnow().isoformat(),
+
+            'createdAt': now_ts,                             # ✅ Number (for index)
+            'createdAtISO': datetime.utcnow().isoformat(),   # ✅ Human readable
+
             'status': 'pending',
             'mealPreference': form_data['mealPreference'],
             'primaryGoal': form_data['primaryGoal'],
@@ -209,6 +215,7 @@ def generate_diet_plan(form_data):
             'planDetails': structured_plan,
             'form_data': form_data
         })
+
 
         return {
             'statusCode': 200,
