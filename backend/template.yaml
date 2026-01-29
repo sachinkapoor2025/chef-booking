@@ -312,7 +312,8 @@ Resources:
       CodeUri: src/
       Handler: diet_plan.handler
       Runtime: python3.12
-      Timeout: 30
+      Timeout: 300          # ✅ 5 minutes
+      MemorySize: 1024     # ✅ 1 GB RAM (recommended for OpenAI + JSON + PDF)
       Environment:
         Variables:
           DIET_PLAN_USERS_TABLE: !Ref DietPlanUsersTable

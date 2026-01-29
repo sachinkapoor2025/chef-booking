@@ -193,7 +193,7 @@ def generate_diet_plan(form_data):
 
         dynamodb.Table(DIET_PLANS_TABLE).put_item(Item={
             'planId': plan_id,
-            'userId': None,
+            'userId': f"PENDING#{form_data['email']}",
             'email': form_data['email'],
             'title': f"Weekly Diet Plan for {form_data['fullName']}",
             'createdAt': datetime.utcnow().isoformat(),
