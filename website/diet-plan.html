@@ -267,6 +267,32 @@
 </head>
 <body>
     <header id="global-header"></header>
+    <script>
+        // Load global header
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('global-header').innerHTML = html;
+                
+                // Initialize dropdowns after header is loaded
+                const dropdowns = document.querySelectorAll('.dropdown');
+                dropdowns.forEach(dropdown => {
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    const link = dropdown.querySelector('a');
+                    
+                    dropdown.addEventListener('mouseenter', () => {
+                        menu.classList.add('show');
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', () => {
+                        menu.classList.remove('show');
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+    </script>
 
     <main>
         <!-- Diet Plan Hero Section -->

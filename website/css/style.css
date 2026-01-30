@@ -450,12 +450,71 @@ header {
 /* Specific hover styles for Business Owner and Log In buttons */
 .action-buttons .btn {
     color: white;
+    text-decoration: none;
 }
 
 .action-buttons .btn:hover {
     color: white;
     background: #1d4ed8;
     transform: translateY(-1px);
+    text-decoration: none;
+}
+
+/* Business Owner and Log In button specific styles */
+.btn-business-owner,
+.btn-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    min-width: 140px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-business-owner {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-business-owner:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.btn-business-owner i,
+.btn-login i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-business-owner:hover i,
+.btn-login:hover i {
+    transform: translateX(2px);
+}
+
+.btn-business-owner span,
+.btn-login span {
+    font-weight: 600;
+    letter-spacing: 0.025em;
 }
 
 .btn-outline {
