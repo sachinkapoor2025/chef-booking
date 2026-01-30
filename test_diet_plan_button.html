@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test My Diet Plan Button</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .test-section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .result { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Test My Diet Plan Button Functionality</h1>
+    
+    <div class="test-section">
+        <h3>Test 1: Create Test User Session</h3>
+        <p>Creating a test user session to simulate logged-in user:</p>
+        <button onclick="createTestSession()">Create Test Session</button>
+        <div id="sessionResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 2: Test API Connectivity</h3>
+        <p>Testing the API endpoint that the "My Diet Plan" button would call:</p>
+        <button onclick="testApiCall()">Test API Call</button>
+        <div id="apiResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 3: Simulate My Diet Plan Button Click</h3>
+        <p>Simulating the exact function that the "My Diet Plan" button calls:</p>
+        <button onclick="simulateDietPlanButton()">Simulate Button Click</button>
+        <div id="buttonResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 4: View Current User Session</h3>
+        <p>Checking what user session data is currently stored:</p>
+        <button onclick="viewSession()">View Session</button>
+        <div id="viewResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 5: Test User Profile Page</h3>
+        <p>Opening the actual user profile page to test the button:</p>
+        <button onclick="openUserProfile()">Open User Profile</button>
+        <div id="profileResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+        
+        function showResult(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `result ${type}`;
+        }
+
+        function createTestSession() {
+            try {
+                const testSession = {
+                    userId: 'test-user-123',
+                    email: 'test@example.com',
+                    fullName: 'Test User'
+                };
+                
+                localStorage.setItem('userSession', JSON.stringify(testSession));
+                showResult('sessionResult', 
+                    `✅ Test session created successfully!<br>
+                    <div class="code">User ID: ${testSession.userId}<br>Email: ${testSession.email}<br>Full Name: ${testSession.fullName}</div>`, 'success');
+            } catch (error) {
+                showResult('sessionResult', `❌ Error creating test session: ${error.message}`, 'error');
+            }
+        }
+
+        async function testApiCall() {
+            try {
+                showResult('apiResult', 'Testing API call to diet plan endpoint...', 'info');
+                
+                const userSession = localStorage.getItem('userSession');
+                if (!userSession) {
+                    showResult('apiResult', '❌ No user session found. Please create a test session first.', 'error');
+                    return;
+                }
+
+                const session = JSON.parse(userSession);
+                
+                // Test the exact API call that viewMyDietPlan function makes
+                const response = await fetch(`${API_BASE_URL}/diet-plan/user/${session.userId}/plans`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('apiResult', 
+                        `✅ API call successful!<br>
+                        <div class="code">Status: ${response.status}<br>Plans found: ${result.plans ? result.plans.length : 0}<br>Response: ${JSON.stringify(result, null, 2)}</div>`, 'success');
+                } else {
+                    showResult('apiResult', 
+                        `❌ API call failed:<br>
+                        <div class="code">Status: ${response.status}<br>Error: ${result.message || 'Unknown error'}<br>Response: ${JSON.stringify(result, null, 2)}</div>`, 'error');
+                }
+            } catch (error) {
+                showResult('apiResult', `❌ Error testing API call: ${error.message}`, 'error');
+            }
+        }
+
+        async function simulateDietPlanButton() {
+            try {
+                showResult('buttonResult', 'Simulating viewMyDietPlan function...', 'info');
+                
+                const userSession = localStorage.getItem('userSession');
+                if (!userSession) {
+                    showResult('buttonResult', '❌ No user session found. Please create a test session first.', 'error');
+                    return;
+                }
+
+                const session = JSON.parse(userSession);
+                
+                // Simulate the exact viewMyDietPlan function from user-profile.html
+                const response = await fetch(`${API_BASE_URL}/diet-plan/user/${session.userId}/plans`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const plans = result.plans;
+                    
+                    if (!plans || plans.length === 0) {
+                        showResult('buttonResult', '❌ No diet plans found. User should be redirected to create first plan.', 'error');
+                    } else {
+                        const latestPlan = plans[0];
+                        
+                        if (latestPlan.status === 'ready') {
+                            showResult('buttonResult', 
+                                `✅ Function would work correctly!<br>
+                                <div class="code">Latest plan status: ${latestPlan.status}<br>Plan ID: ${latestPlan.planId}<br>User would be redirected to diet-plan-view.html</div>`, 'success');
+                        } else if (latestPlan.status === 'processing') {
+                            showResult('buttonResult', 
+                                `⚠️ Plan is still processing<br>
+                                <div class="code">Latest plan status: ${latestPlan.status}<br>User would see processing message</div>`, 'info');
+                        } else if (latestPlan.status === 'failed') {
+                            showResult('buttonResult', 
+                                `❌ Plan generation failed<br>
+                                <div class="code">Latest plan status: ${latestPlan.status}<br>User would see error message</div>`, 'error');
+                        } else {
+                            showResult('buttonResult', 
+                                `✅ Function would work correctly!<br>
+                                <div class="code">Latest plan status: ${latestPlan.status}<br>User would be redirected to diet-plan-view.html</div>`, 'success');
+                        }
+                    }
+                } else {
+                    showResult('buttonResult', 
+                        `❌ API call failed:<br>
+                        <div class="code">Status: ${response.status}<br>Error: ${result.message || 'Unknown error'}</div>`, 'error');
+                }
+            } catch (error) {
+                showResult('buttonResult', `❌ Error simulating button function: ${error.message}`, 'error');
+            }
+        }
+
+        function viewSession() {
+            try {
+                const userSession = localStorage.getItem('userSession');
+                if (userSession) {
+                    const session = JSON.parse(userSession);
+                    showResult('viewResult', 
+                        `✅ Current user session:<br>
+                        <div class="code">User ID: ${session.userId}<br>Email: ${session.email}<br>Full Name: ${session.fullName}</div>`, 'success');
+                } else {
+                    showResult('viewResult', '❌ No user session found in localStorage', 'error');
+                }
+            } catch (error) {
+                showResult('viewResult', `❌ Error reading user session: ${error.message}`, 'error');
+            }
+        }
+
+        function openUserProfile() {
+            window.open('http://localhost:8000/user-profile.html', '_blank');
+            showResult('profileResult', '✅ User profile page opened in new tab. Test the "My Diet Plan" button there!', 'success');
+        }
+    </script>
+</body>
+</html>

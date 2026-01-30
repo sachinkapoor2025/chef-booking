@@ -411,7 +411,7 @@
                     
                     <ul class="sidebar-menu">
                         <li><a href="user-profile.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li><a href="#" id="myDietPlanBtn"><i class="fas fa-utensils"></i> My Diet Plan</a></li>
+                        <li><a href="#" id="sidebarDietPlanBtn"><i class="fas fa-utensils"></i> My Diet Plan</a></li>
                         <li><a href="#"><i class="fas fa-chart-line"></i> Progress</a></li>
                         <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                     </ul>
@@ -594,6 +594,7 @@
             document.getElementById('logoutBtn').addEventListener('click', logout);
             document.getElementById('newPlanBtn').addEventListener('click', createNewPlan);
             document.getElementById('myDietPlanBtn').addEventListener('click', viewMyDietPlan);
+            document.getElementById('sidebarDietPlanBtn').addEventListener('click', viewMyDietPlan);
         });
         
         function loadUserInfo(userSession) {
@@ -946,6 +947,38 @@
                 showMessage('Error downloading plan', 'error');
             }
         }
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
     </script>
 </body>
 </html>

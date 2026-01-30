@@ -120,7 +120,7 @@
         }
         
         .btn-secondary {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             padding: 0.75rem 2rem;
@@ -135,8 +135,49 @@
         }
         
         .btn-secondary:hover {
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
             transform: translateY(-1px);
+        }
+        
+        .signin-cta {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .signin-cta h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+        }
+        
+        .signin-cta p {
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .signin-btn {
+            background: white;
+            color: #1d4ed8;
+            border: 2px solid #1d4ed8;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .signin-btn:hover {
+            background: #1d4ed8;
+            color: white;
+            transform: translateY(-2px);
         }
         
         .login-link {
@@ -288,6 +329,15 @@
                     <span>Target Weight:</span>
                     <span class="plan-value" id="previewTargetWeight">-</span>
                 </div>
+            </div>
+
+            <!-- Already a user CTA -->
+            <div class="signin-cta">
+                <h3><i class="fas fa-sign-in-alt"></i> Already a User?</h3>
+                <p>Sign in to access your personalized diet plan and continue your health journey.</p>
+                <a href="user-login.html" class="signin-btn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In Now
+                </a>
             </div>
 
             <form id="signupForm" novalidate>
