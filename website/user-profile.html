@@ -485,6 +485,94 @@
         </div>
     </footer>
 
+    <!-- Chat Widget -->
+    <div id="chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <div id="chat-button" style="width: 60px; height: 60px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); transition: all 0.3s ease;">
+            <i class="fas fa-comments" style="color: white; font-size: 24px;"></i>
+        </div>
+        <div id="chat-container" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-height: 400px;">
+            <div style="padding: 1rem; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="margin: 0; color: #374151;">Chat with Us</h4>
+                <button id="close-chat" style="background: none; border: none; cursor: pointer; color: #6b7280;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="chat-messages" style="padding: 1rem; height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;">
+                <div style="background: #f3f4f6; padding: 0.75rem; border-radius: 8px; align-self: flex-start;">
+                    <p style="margin: 0; font-size: 0.9rem;">Hello! How can I help you today?</p>
+                </div>
+            </div>
+            <div style="padding: 1rem; border-top: 1px solid #e5e7eb;">
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="chat-input" placeholder="Type your message..." style="flex-grow: 1; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 6px; outline: none;">
+                    <button id="send-message" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chat widget functionality
+        const chatButton = document.getElementById('chat-button');
+        const chatContainer = document.getElementById('chat-container');
+        const closeChat = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chat-input');
+        const sendMessage = document.getElementById('send-message');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatButton.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+            if (chatContainer.style.display === 'block') {
+                chatInput.focus();
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+        });
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.padding = '0.75rem';
+            messageDiv.style.borderRadius = '8px';
+            messageDiv.style.alignSelf = isUser ? 'flex-end' : 'flex-start';
+            messageDiv.style.background = isUser ? '#8b5cf6' : '#f3f4f6';
+            messageDiv.style.color = isUser ? 'white' : '#374151';
+            messageDiv.style.maxWidth = '80%';
+            
+            const p = document.createElement('p');
+            p.style.margin = '0';
+            p.style.fontSize = '0.9rem';
+            p.textContent = message;
+            
+            messageDiv.appendChild(p);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessageHandler() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate response
+                setTimeout(() => {
+                    addMessage("Thank you for your message! A representative will get back to you shortly.");
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', sendMessageHandler);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessageHandler();
+            }
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const userSession = JSON.parse(localStorage.getItem('userSession'));
