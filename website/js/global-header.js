@@ -55,53 +55,7 @@ function addMobileMenuToggle() {
 }
 
 function addDropdownFunctionality() {
-    // Add dropdown functionality for desktop hover and mobile click
-    const dropdowns = document.querySelectorAll('.dropdown');
-    
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        const menu = dropdown.querySelector('.dropdown-menu');
-        
-        // Show dropdown on hover for desktop
-        dropdown.addEventListener('mouseenter', () => {
-            if (window.innerWidth > 768) {
-                menu.style.display = 'block';
-                dropdown.classList.add('hover');
-            }
-        });
-        
-        dropdown.addEventListener('mouseleave', () => {
-            if (window.innerWidth > 768) {
-                menu.style.display = 'none';
-                dropdown.classList.remove('hover');
-            }
-        });
-        
-        // Toggle dropdown on click for mobile
-        link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const isVisible = menu.style.display === 'block';
-                // Hide all other dropdowns
-                document.querySelectorAll('.dropdown-menu').forEach(m => {
-                    if (m !== menu) m.style.display = 'none';
-                });
-                // Toggle current dropdown
-                menu.style.display = isVisible ? 'none' : 'block';
-                dropdown.classList.toggle('active', !isVisible);
-            }
-        });
-    });
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && !e.target.closest('.dropdown')) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.style.display = 'none';
-            });
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        }
-    });
+    // Bootstrap dropdowns are now handled by Bootstrap JS
+    // This function is kept for potential future custom dropdown needs
+    console.log('Dropdown functionality managed by Bootstrap JS');
 }

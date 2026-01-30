@@ -24,7 +24,7 @@ const STATIC_CHEFS = [
         ],
         menuOptions: {
             'Dinner': ['Butter Chicken with Naan', 'Lamb Rogan Josh', 'Paneer Tikka Masala', 'Biryani Feast'],
-            'Events': ['Wedding Reception Package', 'Birthday Party Buffet', 'Holiday Dinner Special', 'Corporate Lunch']
+            'Events': ['Wedding Reception Package', 'Birthday Party Buffet', 'Holiday Dinner Special', 'cattering Lunch']
         },
         reviews: [
             {reviewer: 'Sarah M.', stars: '★★★★★', text: 'Rajesh made our Diwali dinner unforgettable! The flavors were authentic and the presentation was beautiful.'},
@@ -51,7 +51,7 @@ const STATIC_CHEFS = [
         ],
         menuOptions: {
             'Dinner': ['Osso Buco alla Milanese', 'Grilled Branzino with Herbs', 'Homemade Pasta Carbonara', 'Lamb Tagine'],
-            'Events': ['Italian Wedding Feast', 'Mediterranean Buffet', 'Holiday Antipasto Spread', 'Corporate Italian Lunch']
+            'Events': ['Italian Wedding Feast', 'Mediterranean Buffet', 'Holiday Antipasto Spread', 'cattering Italian Lunch']
         },
         reviews: [
             {reviewer: 'David K.', stars: '★★★★★', text: 'Marias Italian cooking is absolutely authentic! Felt like I was back in Tuscany. Incredible flavors!'},

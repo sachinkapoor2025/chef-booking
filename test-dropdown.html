@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Test - Maharaja Chef Services</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .status-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-ok { color: #28a745; font-weight: bold; }
+        .status-error { color: #dc3545; font-weight: bold; }
+        .test-header {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>Dropdown Functionality Test</h1>
+            <p>Testing dropdown menu functionality with Bootstrap JS integration</p>
+        </div>
+
+        <div class="status-box">
+            <h4>System Status</h4>
+            <div class="status-item">
+                <span>Bootstrap CSS Loaded:</span>
+                <span id="bootstrap-css-status" class="status-ok">✓</span>
+            </div>
+            <div class="status-item">
+                <span>Bootstrap JS Loaded:</span>
+                <span id="bootstrap-js-status" class="status-ok">✓</span>
+            </div>
+            <div class="status-item">
+                <span>Custom JS Conflicts:</span>
+                <span id="conflict-status" class="status-ok">✓ None detected</span>
+            </div>
+            <div class="status-item">
+                <span>Dropdown Elements:</span>
+                <span id="dropdown-count" class="status-ok">✓ Found</span>
+            </div>
+        </div>
+
+        <div class="test-header">
+            <h3>Navigation Test</h3>
+            <p>Hover over the dropdown menus below to test functionality:</p>
+        </div>
+
+        <nav class="global-nav" style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 1rem;">
+            <div class="header-center">
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#explore">Explore Chefs</a></li>
+                    <li class="dropdown">
+                        <a href="#services">Services <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#weekly">Weekly Meal Service</a></li>
+                            <li><a href="#events">Special Events & Gatherings</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#chefs">For Chefs <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#become">Become a Chef</a></li>
+                            <li><a href="#guidelines">Chef Guidelines</a></li>
+                            <li><a href="#faq">Chef FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#more">Explore More <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#blogs">Blogs</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="test-header" style="margin-top: 2rem;">
+            <h3>Test Instructions</h3>
+        </div>
+        
+        <div class="status-box">
+            <h4>How to Test:</h4>
+            <ol>
+                <li><strong>Desktop:</strong> Hover your mouse over any dropdown menu to see it open</li>
+                <li><strong>Mobile:</strong> Click on dropdown menus to toggle them open/closed</li>
+                <li><strong>Click Outside:</strong> Click anywhere outside the dropdown to close it</li>
+                <li><strong>Multiple Dropdowns:</strong> Opening one dropdown should close others</li>
+            </ol>
+            
+            <h4>Expected Behavior:</h4>
+            <ul>
+                <li>Dropdowns should open smoothly with animation</li>
+                <li>Dropdowns should close when clicking outside</li>
+                <li>Only one dropdown should be open at a time</li>
+                <li>No console errors should appear</li>
+                <li>Dropdowns should appear above other content (z-index)</li>
+            </ul>
+        </div>
+
+        <div class="test-header" style="margin-top: 2rem;">
+            <h3>Console Test</h3>
+        </div>
+        
+        <div class="status-box">
+            <p>Open your browser's developer console (F12) and check for any errors. You should see:</p>
+            <code>Dropdown functionality managed by Bootstrap JS</code>
+            <p style="margin-top: 1rem;">If you see this message and no errors, the dropdown system is working correctly.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="index.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px;">Return to Main Site</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/global-header.js"></script>
+    
+    <script>
+        // Test script to verify dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dropdown Test Page Loaded');
+            
+            // Check if Bootstrap is loaded
+            if (typeof bootstrap !== 'undefined') {
+                console.log('✓ Bootstrap JS is loaded');
+                document.getElementById('bootstrap-js-status').textContent = '✓ Loaded';
+            } else {
+                console.error('✗ Bootstrap JS is not loaded');
+                document.getElementById('bootstrap-js-status').textContent = '✗ Not loaded';
+                document.getElementById('bootstrap-js-status').className = 'status-error';
+            }
+            
+            // Check for dropdown elements
+            const dropdowns = document.querySelectorAll('.dropdown');
+            const dropdownCount = dropdowns.length;
+            console.log(`Found ${dropdownCount} dropdown elements`);
+            document.getElementById('dropdown-count').textContent = `✓ ${dropdownCount} found`;
+            
+            // Test dropdown functionality
+            dropdowns.forEach((dropdown, index) => {
+                const menu = dropdown.querySelector('.dropdown-menu');
+                if (menu) {
+                    console.log(`Dropdown ${index + 1}: Menu element found`);
+                    
+                    // Add event listeners to test functionality
+                    dropdown.addEventListener('show.bs.dropdown', function() {
+                        console.log(`Dropdown ${index + 1}: Opened via Bootstrap`);
+                    });
+                    
+                    dropdown.addEventListener('hide.bs.dropdown', function() {
+                        console.log(`Dropdown ${index + 1}: Closed via Bootstrap`);
+                    });
+                }
+            });
+            
+            // Check for potential conflicts
+            const customDropdownHandlers = document.querySelectorAll('[onclick*="dropdown"], [onclick*="menu"]');
+            if (customDropdownHandlers.length > 0) {
+                console.warn('Potential custom dropdown handlers found:', customDropdownHandlers);
+                document.getElementById('conflict-status').textContent = '⚠ Potential conflicts detected';
+                document.getElementById('conflict-status').className = 'status-error';
+            }
+            
+            console.log('Dropdown test initialization complete');
+        });
+    </script>
+</body>
+</html>

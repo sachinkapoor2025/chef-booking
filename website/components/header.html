@@ -55,42 +55,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('a');
-        const menu = dropdown.querySelector('.dropdown-menu');
-
-        trigger.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Close other dropdowns
-            dropdowns.forEach(d => {
-                if (d !== dropdown) {
-                    d.classList.remove('active');
-                    const m = d.querySelector('.dropdown-menu');
-                    if (m) m.classList.remove('open');
-                }
-            });
-
-            // Toggle current
-            dropdown.classList.toggle('active');
-            if (menu) menu.classList.toggle('open');
-        });
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', function (e) {
-        dropdowns.forEach(dropdown => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-                const menu = dropdown.querySelector('.dropdown-menu');
-                if (menu) menu.classList.remove('open');
-            }
-        });
-    });
-
     // Mobile menu toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
