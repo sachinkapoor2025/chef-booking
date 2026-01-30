@@ -738,7 +738,7 @@
                         
                         if (response.ok) {
                             // Show success message with email login instruction
-                            alert(`Your diet plan is being generated. Please check back in a few minutes.\n\nTo view your plan, please login using your email: ${data.email}`);
+                            alert(`Your diet plan is being generated.\n\nTo view your plan, please login using your email: ${data.email}`);
                             
                             // Store plan ID and form data for later use
                             localStorage.setItem('currentPlanId', result.planId);

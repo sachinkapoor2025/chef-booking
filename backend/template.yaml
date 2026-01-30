@@ -363,6 +363,12 @@ Resources:
             RestApiId: !Ref ApiGateway
             Path: /diet-plan/user/{userId}/plans
             Method: get
+        AssociatePlanWithUser:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/user/{userId}/plans
+            Method: put
         GetDietPlan:
           Type: Api
           Properties:
