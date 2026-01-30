@@ -55,7 +55,35 @@ function addMobileMenuToggle() {
 }
 
 function addDropdownFunctionality() {
-    // Bootstrap dropdowns are now handled by Bootstrap JS
-    // This function is kept for potential future custom dropdown needs
-    console.log('Dropdown functionality managed by Bootstrap JS');
+    // Add click event listeners to dropdown triggers
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('a');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (trigger && menu) {
+            // Prevent default link behavior for dropdown triggers
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Toggle dropdown visibility
+                dropdown.classList.toggle('active');
+                
+                // Close other dropdowns
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+    });
 }
