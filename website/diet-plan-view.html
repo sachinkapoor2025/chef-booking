@@ -824,18 +824,19 @@
                     }
                 });
                 
-                const result = await response.json();
-                
                 if (response.ok) {
-                    // Create a temporary link to download the file
-                    const link = document.createElement('a');
-                    link.href = result.downloadUrl;
-                    link.download = result.fileName;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `diet-plan-${planData.planId}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
                 } else {
-                    throw new Error(result.error || 'Failed to download plan');
+                    const errorResult = await response.json();
+                    throw new Error(errorResult.error || 'Failed to download plan');
                 }
             } catch (error) {
                 console.error('Error:', error);

@@ -411,7 +411,7 @@
                     
                     <ul class="sidebar-menu">
                         <li><a href="user-profile.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li><a href="#"><i class="fas fa-utensils"></i> My Diet Plans</a></li>
+                        <li><a href="#" id="myDietPlanBtn"><i class="fas fa-utensils"></i> My Diet Plan</a></li>
                         <li><a href="#"><i class="fas fa-chart-line"></i> Progress</a></li>
                         <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                     </ul>
@@ -429,8 +429,8 @@
                             <button class="btn-secondary" id="newPlanBtn">
                                 <i class="fas fa-plus"></i> New Plan
                             </button>
-                            <button class="btn-primary" id="downloadAllBtn">
-                                <i class="fas fa-download"></i> Download All
+                            <button class="btn-primary" id="myDietPlanBtn">
+                                <i class="fas fa-utensils"></i> My Diet Plan
                             </button>
                         </div>
                     </div>
@@ -505,7 +505,7 @@
             // Event listeners
             document.getElementById('logoutBtn').addEventListener('click', logout);
             document.getElementById('newPlanBtn').addEventListener('click', createNewPlan);
-            document.getElementById('downloadAllBtn').addEventListener('click', downloadAllPlans);
+            document.getElementById('myDietPlanBtn').addEventListener('click', viewMyDietPlan);
         });
         
         function loadUserInfo(userSession) {
@@ -761,9 +761,50 @@
             window.location.href = 'diet-plan.html';
         }
         
-        function downloadAllPlans() {
-            // Implementation for downloading all plans
-            alert('Downloading all plans...');
+        async function viewMyDietPlan() {
+            try {
+                const userSession = JSON.parse(localStorage.getItem('userSession'));
+                const response = await fetch(`/prod/diet-plan/user/${userSession.userId}/plans`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const plans = result.plans;
+                    
+                    if (!plans || plans.length === 0) {
+                        showMessage('No diet plans found. Please create your first plan.', 'error');
+                        return;
+                    }
+                    
+                    // Get the most recent plan
+                    const latestPlan = plans[0];
+                    
+                    // Check if plan is ready
+                    if (latestPlan.status === 'ready') {
+                        // View the plan
+                        localStorage.setItem('currentPlan', JSON.stringify(latestPlan));
+                        window.location.href = 'diet-plan-view.html';
+                    } else if (latestPlan.status === 'processing') {
+                        showMessage('Your diet plan is still being generated. Please check back in a few minutes.', 'error');
+                    } else if (latestPlan.status === 'failed') {
+                        showMessage('Sorry, there was an error generating your diet plan. Please try again.', 'error');
+                    } else {
+                        // View the plan details
+                        localStorage.setItem('currentPlan', JSON.stringify(latestPlan));
+                        window.location.href = 'diet-plan-view.html';
+                    }
+                } else {
+                    showMessage('Failed to load your diet plans', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error loading your diet plan', 'error');
+            }
         }
         
         async function viewPlan(planId) {

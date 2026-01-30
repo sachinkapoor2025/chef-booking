@@ -79,6 +79,9 @@ def handler(event, context):
 
         elif path.endswith(f'/diet-plan/user/{user_id}/plans') and http_method == 'GET':
             return get_user_plans(user_id)
+        
+        elif path.endswith(f'/diet-plan/user/{user_id}/plans') and http_method == 'PUT':
+            return associate_plan_with_user(user_id, body)
 
         elif path.endswith(f'/diet-plan/{plan_id}/download') and http_method == 'GET':
             return download_diet_plan(plan_id)
@@ -563,6 +566,53 @@ def download_diet_plan(plan_id):
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
             'body': json.dumps({'error': 'Failed to download diet plan'})
+        }
+
+def associate_plan_with_user(user_id, body):
+    """Associate a pending plan with a user"""
+    try:
+        if not body or not body.get('planId'):
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+                },
+                'body': json.dumps({'error': 'Plan ID is required'})
+            }
+        
+        plan_id = body['planId']
+        plans_table = dynamodb.Table(DIET_PLANS_TABLE)
+        
+        # Update plan to associate with user and set status to active
+        plans_table.update_item(
+            Key={'planId': plan_id},
+            UpdateExpression='SET userId = :uid, #status = :status',
+            ExpressionAttributeNames={'#status': 'status'},
+            ExpressionAttributeValues={':uid': user_id, ':status': 'active'}
+        )
+        
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+            },
+            'body': json.dumps({'message': 'Plan successfully associated with user'})
+        }
+        
+    except Exception as e:
+        print(f"Error associating plan with user: {str(e)}")
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+            },
+            'body': json.dumps({'error': 'Failed to associate plan with user'})
         }
 
 def create_diet_plan_prompt(form_data, daily_calories, bmi):
