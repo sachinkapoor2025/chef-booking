@@ -465,7 +465,8 @@ header {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    height: 38px;
+    padding: 0 16px;
     min-width: 90px;
     text-decoration: none;
     font-weight: 600;
@@ -473,7 +474,7 @@ header {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .btn-business-owner {
