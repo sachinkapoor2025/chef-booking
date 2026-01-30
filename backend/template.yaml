@@ -124,29 +124,45 @@ Resources:
 
   # Diet Plans Table for storing generated diet plans
   DietPlansTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub "${AWS::StackName}-diet-plans"
-      AttributeDefinitions:
-        - AttributeName: planId
-          AttributeType: S
-        - AttributeName: userId
-          AttributeType: S
-        - AttributeName: createdAt
-          AttributeType: N
-      KeySchema:
-        - AttributeName: planId
-          KeyType: HASH
-      GlobalSecondaryIndexes:
-        - IndexName: user-plans-index
-          KeySchema:
-            - AttributeName: userId
-              KeyType: HASH
-            - AttributeName: createdAt
-              KeyType: RANGE
-          Projection:
-            ProjectionType: ALL
-      BillingMode: PAY_PER_REQUEST
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: !Sub "${AWS::StackName}-diet-plans"
+        AttributeDefinitions:
+          - AttributeName: planId
+            AttributeType: S
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: N
+          - AttributeName: email
+            AttributeType: S   # ✅ NEW
+
+        KeySchema:
+          - AttributeName: planId
+            KeyType: HASH
+
+        GlobalSecondaryIndexes:
+          # Existing index (keep this)
+          - IndexName: user-plans-index
+            KeySchema:
+              - AttributeName: userId
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+          # ✅ NEW INDEX (critical)
+          - IndexName: email-index
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+        BillingMode: PAY_PER_REQUEST
 
   # Lambda Functions 
   FormSubmissionFunction:
@@ -418,7 +434,7 @@ Resources:
       Name: !Sub "${AWS::StackName}-api"
       StageName: prod
       Cors:
-        AllowMethods: "'POST,GET,OPTIONS'"
+        AllowMethods: "'POST,GET,OPTIONS,PUT'"
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
         AllowOrigin: "'*'"
 

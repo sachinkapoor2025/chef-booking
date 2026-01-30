@@ -7,6 +7,7 @@ import base64
 from datetime import datetime, timedelta
 import requests
 from botocore.exceptions import ClientError
+from boto3.dynamodb.conditions import Key
 from decimal import Decimal
 
 dynamodb = boto3.resource('dynamodb')
@@ -77,8 +78,8 @@ def handler(event, context):
         elif path.endswith('/diet-plan/login') and http_method == 'POST':
             return user_login(body)
 
-        elif path.endswith(f'/diet-plan/user/{user_id}/plans') and http_method == 'GET':
-            return get_user_plans(user_id)
+        elif path.endswith('/plans') and http_method == 'GET':
+            return get_user_plans(event)
         
         elif path.endswith(f'/diet-plan/user/{user_id}/plans') and http_method == 'PUT':
             return associate_plan_with_user(user_id, body)
@@ -425,42 +426,68 @@ def user_login(form_data):
         }
 
 
-def get_user_plans(user_id):
-    """Get all diet plans for a user"""
+def get_user_plans(event):
+    """Get all diet plans for a user (email-based lookup)"""
     try:
         plans_table = dynamodb.Table(DIET_PLANS_TABLE)
-        
-        # Query user's plans
+
+        # Extract Authorization header
+        auth_header = event.get("headers", {}).get("Authorization")
+
+        if not auth_header or not auth_header.startswith("Bearer "):
+            return {
+                'statusCode': 401,
+                'headers': cors_headers(),
+                'body': json.dumps({'error': 'Unauthorized'})
+            }
+
+        # Parse email from Bearer JSON
+        try:
+            user_data = json.loads(auth_header.replace("Bearer ", ""))
+            email = user_data.get("email")
+        except Exception:
+            return {
+                'statusCode': 401,
+                'headers': cors_headers(),
+                'body': json.dumps({'error': 'Invalid token format'})
+            }
+
+        if not email:
+            return {
+                'statusCode': 401,
+                'headers': cors_headers(),
+                'body': json.dumps({'error': 'Email missing in token'})
+            }
+
+        # Query plans using email GSI
         response = plans_table.query(
-            IndexName='user-plans-index',
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id),
-            ScanIndexForward=False  # Most recent first
+            IndexName='email-index',
+            KeyConditionExpression=Key('email').eq(email),
+            ScanIndexForward=False
         )
-        
+
         plans = response.get('Items', [])
-        
+
         return {
             'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-            },
-            'body': json.dumps({'plans': plans})
+            'headers': cors_headers(),
+            'body': json.dumps({'plans': plans}, default=str)
         }
-        
+
     except Exception as e:
         print(f"Error getting user plans: {str(e)}")
         return {
             'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-            },
+            'headers': cors_headers(),
             'body': json.dumps({'error': 'Failed to get user plans'})
         }
 
+def cors_headers():
+    return {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+        'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT'
+    }
 def get_diet_plan(plan_id):
     """Get a specific diet plan"""
     try:
