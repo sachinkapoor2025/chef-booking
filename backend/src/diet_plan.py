@@ -497,11 +497,7 @@ def get_diet_plan(plan_id):
         if 'Item' not in response:
             return {
                 'statusCode': 404,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                    'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-                },
+                'headers': cors_headers(),
                 'body': json.dumps({'error': 'Plan not found'})
             }
         
@@ -509,25 +505,18 @@ def get_diet_plan(plan_id):
         
         return {
             'statusCode': 200,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-            },
-            'body': json.dumps({'plan': plan})
+            'headers': cors_headers(),
+            'body': json.dumps({'plan': plan}, default=str)   # ✅ FIX HERE
         }
         
     except Exception as e:
         print(f"Error getting diet plan: {str(e)}")
         return {
             'statusCode': 500,
-            'headers': {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-            },
+            'headers': cors_headers(),
             'body': json.dumps({'error': 'Failed to get diet plan'})
         }
+
 
 def download_diet_plan(plan_id):
     """Generate and return PDF download URL for diet plan"""
