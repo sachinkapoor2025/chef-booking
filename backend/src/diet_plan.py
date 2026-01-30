@@ -13,6 +13,24 @@ from decimal import Decimal
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
 
+def decimal_to_python(obj):
+    """
+    Recursively convert Decimal objects to int/float for JSON serialization.
+    Production-safe solution for DynamoDB Decimal types.
+    """
+    if isinstance(obj, Decimal):
+        # Convert to int if it's a whole number, otherwise float
+        if obj % 1 == 0:
+            return int(obj)
+        else:
+            return float(obj)
+    elif isinstance(obj, list):
+        return [decimal_to_python(item) for item in obj]
+    elif isinstance(obj, dict):
+        return {key: decimal_to_python(value) for key, value in obj.items()}
+    else:
+        return obj
+
 DIET_PLAN_USERS_TABLE = os.environ['DIET_PLAN_USERS_TABLE']
 DIET_PLANS_TABLE = os.environ['DIET_PLANS_TABLE']
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
@@ -489,7 +507,7 @@ def cors_headers():
         'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT'
     }
 def get_diet_plan(plan_id):
-    """Get a specific diet plan"""
+    """Get a specific diet plan with full structured data"""
     try:
         plans_table = dynamodb.Table(DIET_PLANS_TABLE)
         response = plans_table.get_item(Key={'planId': plan_id})
@@ -503,10 +521,33 @@ def get_diet_plan(plan_id):
         
         plan = response['Item']
         
+        # Convert Decimal types to int/float for JSON serialization
+        plan_serializable = decimal_to_python(plan)
+        
+        # Ensure we return the full structured plan
+        full_plan = {
+            'planId': plan_serializable.get('planId'),
+            'title': plan_serializable.get('title'),
+            'dailyCalories': plan_serializable.get('dailyCalories'),
+            'mealPreference': plan_serializable.get('mealPreference'),
+            'primaryGoal': plan_serializable.get('primaryGoal'),
+            'targetWeight': plan_serializable.get('targetWeight'),
+            'bmi': plan_serializable.get('bmi'),
+            'currentWeight': plan_serializable.get('currentWeight'),
+            'height': plan_serializable.get('height'),
+            'age': plan_serializable.get('age'),
+            'gender': plan_serializable.get('gender'),
+            'createdAt': plan_serializable.get('createdAt'),
+            'createdAtISO': plan_serializable.get('createdAtISO'),
+            'status': plan_serializable.get('status'),
+            'planDetails': plan_serializable.get('planDetails', {}),
+            'email': plan_serializable.get('email')
+        }
+        
         return {
             'statusCode': 200,
             'headers': cors_headers(),
-            'body': json.dumps({'plan': plan}, default=str)   # ✅ FIX HERE
+            'body': json.dumps({'plan': full_plan})
         }
         
     except Exception as e:
@@ -521,7 +562,7 @@ def get_diet_plan(plan_id):
 def download_diet_plan(plan_id):
     """Generate and return PDF download URL for diet plan"""
     try:
-        # Get the plan
+        # Get the plan with full data
         plans_table = dynamodb.Table(DIET_PLANS_TABLE)
         response = plans_table.get_item(Key={'planId': plan_id})
         
@@ -538,10 +579,13 @@ def download_diet_plan(plan_id):
         
         plan = response['Item']
         
-        # Generate PDF content
-        pdf_content = generate_pdf_content(plan)
+        # Convert Decimal types to int/float for PDF generation
+        plan_serializable = decimal_to_python(plan)
         
-        # Upload to S3
+        # Generate PDF content with full plan data
+        pdf_content = generate_pdf_content(plan_serializable)
+        
+        # Upload to S3 with private ACL
         pdf_key = f"diet-plans/{plan_id}/diet-plan-{plan_id}.pdf"
         
         s3.put_object(
@@ -552,10 +596,14 @@ def download_diet_plan(plan_id):
             ACL='private'
         )
         
-        # Generate presigned URL
+        # Generate presigned URL (direct access to S3 object)
         presigned_url = s3.generate_presigned_url(
             'get_object',
-            Params={'Bucket': S3_BUCKET, 'Key': pdf_key},
+            Params={
+                'Bucket': S3_BUCKET, 
+                'Key': pdf_key,
+                'ResponseContentDisposition': 'attachment'
+            },
             ExpiresIn=3600  # 1 hour
         )
         
@@ -568,7 +616,8 @@ def download_diet_plan(plan_id):
             },
             'body': json.dumps({
                 'downloadUrl': presigned_url,
-                'fileName': f"diet-plan-{plan_id}.pdf"
+                'fileName': f"diet-plan-{plan_id}.pdf",
+                'message': 'Download will start automatically'
             })
         }
         
@@ -581,7 +630,7 @@ def download_diet_plan(plan_id):
                 'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
             },
-            'body': json.dumps({'error': 'Failed to download diet plan'})
+            'body': json.dumps({'error': f'Failed to download diet plan: {str(e)}'})
         }
 
 def associate_plan_with_user(user_id, body):
