@@ -3376,3 +3376,11 @@ footer hr {
   }
 }
 }
+/* Desktop hover dropdown */
+@media (min-width: 769px) {
+  .nav-menu li.dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
