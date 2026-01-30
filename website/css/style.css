@@ -418,8 +418,7 @@ header {
 }
 
 .btn {
-    height: 38px;
-    padding: 0 16px;
+    padding: 0.75rem 1.5rem;
     min-width: 90px;
 
     display: inline-flex;
@@ -428,7 +427,7 @@ header {
     text-align: center;
 
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 0.025em;
     white-space: nowrap;
 
@@ -1779,7 +1778,7 @@ main {
 .btn-large {
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    font-weight: bold;
+    height: auto;
 }
 
 /* Large Hero Section */
