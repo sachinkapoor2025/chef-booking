@@ -21,7 +21,7 @@ chef services new/
 ├── PHPMailer/
 │   ├── src/
 │   │   ├── Exception.php
-│   │   ├── PHPMailer.php
+│   │   ├── PHPMailer.php. 
 │   │   └── SMTP.php
 │   └── ...
 ├── send_email.php
