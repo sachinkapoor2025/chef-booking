@@ -1,113 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-999Q8EMQJM');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Chefs - Maharaja Chef Services</title>
-    <meta name="description" content="Find and book personal chefs in California. Search by city, cuisine, and dietary preferences.">
+    <meta name="description" content="Browse our network of professional chefs across the USA. Find the perfect chef for your culinary needs.">
+    <meta name="keywords" content="find chef, professional chefs, personal chef, chef directory, culinary services">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Explore Chefs - Maharaja Chef Services">
+    <meta property="og:description" content="Browse our network of professional chefs across the USA. Find the perfect chef for your culinary needs.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/explore-chefs.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Explore Chefs - Maharaja Chef Services">
+    <meta name="twitter:description" content="Browse our network of professional chefs across the USA. Find the perfect chef for your culinary needs.">
+    <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="chef-services.html"> Services <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="owner.html">Business Owner</a></li>
-            </ul>
-        </nav>
-    </header>
 
     <main>
-        <section id="explore-chefs">
-            <h1>Explore Chefs</h1>
-            <div class="search-filters">
-                <div class="filter-group">
-                    <label for="location-search">Location</label>
-                    <input type="text" id="location-search" placeholder="Enter City or ZIP Code" class="filter-input">
-                </div>
-                <div class="filter-group">
-                    <label for="cuisine-search">Cuisine</label>
-                    <select id="cuisine-search" class="filter-select">
-                        <option value="">Select Cuisine</option>
-                        <option value="american">American</option>
-                        <option value="indian">Indian</option>
-                        <option value="italian">Italian</option>
-                        <option value="mexican">Mexican</option>
-                        <option value="asian">Asian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="fusion">Fusion</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="dietary-search">Dietary Needs</label>
-                    <select id="dietary-search" class="filter-select">
-                        <option value="">Select Dietary Needs</option>
-                        <option value="vegetarian">Vegetarian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="keto">Keto</option>
-                        <option value="gluten-free">Gluten-Free</option>
-                        <option value="dairy-free">Dairy-Free</option>
-                        <option value="low-carb">Low-Carb</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <button type="button" id="search-chefs-btn" class="btn search-btn">Search Chefs</button>
+        <section id="search-filters" style="padding: 4rem 2rem; background: #f8f9fa;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; text-align: center; margin-bottom: 2rem;">Find Chefs in Your Area</h2>
+                <div class="search-filters" style="background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 2rem;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                        <div class="filter-group">
+                            <label for="location-filter">Location</label>
+                            <select id="location-filter" class="filter-select">
+                                <option value="">All Locations</option>
+                                <option value="san-jose">San Jose, CA</option>
+                                <option value="san-francisco">San Francisco, CA</option>
+                                <option value="los-angeles">Los Angeles, CA</option>
+                                <option value="new-york">New York, NY</option>
+                                <option value="chicago">Chicago, IL</option>
+                                <option value="miami">Miami, FL</option>
+                                <option value="dallas">Dallas, TX</option>
+                                <option value="houston">Houston, TX</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="cuisine-filter">Cuisine Type</label>
+                            <select id="cuisine-filter" class="filter-select">
+                                <option value="">All Cuisines</option>
+                                <option value="italian">Italian</option>
+                                <option value="french">French</option>
+                                <option value="japanese">Japanese</option>
+                                <option value="indian">Indian</option>
+                                <option value="mexican">Mexican</option>
+                                <option value="thai">Thai</option>
+                                <option value="american">American</option>
+                                <option value="mediterranean">Mediterranean</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="service-filter">Service Type</label>
+                            <select id="service-filter" class="filter-select">
+                                <option value="">All Services</option>
+                                <option value="weekly-meals">Weekly Meals</option>
+                                <option value="special-events">Special Events</option>
+                                <option value="private-dining">Private Dining</option>
+                                <option value="cooking-classes">Cooking Classes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <button id="search-btn" class="btn" style="background: #007bff; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer;">🔍 Search Chefs</button>
+                    </div>
                 </div>
             </div>
-            <div id="no-results" style="display: none; text-align: center; padding: 40px; font-size: 1.2rem; color: #666;">No chefs found matching your criteria.</div>
-            <div class="chef-cards">
-                <div class="chef-card" data-location="california" data-cuisine="indian" data-diet="vegetarian,vegan,gluten-free">
-                    <img src="images/chef1.jpg" alt="Chef Rajesh Kumar">
-                    <h3>Rajesh Kumar</h3>
-                    <a href="chef-profile-rajesh.html" class="btn">View Profile</a>
-                    <a href="book-a-chef.html" class="btn btn-secondary">Book Now</a>
+        </section>
+
+        <section id="featured-chefs" style="padding: 6rem 2rem; background: white; text-align: center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Featured Chefs</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem;">Our most popular and highly-rated culinary professionals</p>
+                
+                <div class="chef-cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <div class="new-chef-badge">PREMIUM</div>
+                        <img src="images/chef1.jpg" alt="Chef James Wilson" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">James Wilson</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> San Jose, CA
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (124 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Italian, French, Mediterranean</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Italian</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">French</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Mediterranean</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-james.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <div class="new-chef-badge">NEW</div>
+                        <img src="images/chef2.jpg" alt="Chef Maria Rodriguez" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Maria Rodriguez</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Los Angeles, CA
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.8/5 (89 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Mexican, Thai, Vegetarian</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Mexican</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Thai</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Vegetarian</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-maria.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef3.jpg" alt="Chef Rajesh Patel" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Rajesh Patel</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> New York, NY
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (156 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Indian, Vegan, Gluten-Free</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Indian</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Vegan</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Gluten-Free</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-rajesh.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="chef-card" data-location="california" data-cuisine="mexican" data-diet="vegetarian,gluten-free">
-                    <img src="images/chef2.jpg" alt="Chef Maria Rodriguez">
-                    <h3>Maria Rodriguez</h3>
-                    <a href="chef-profile-maria.html" class="btn">View Profile</a>
-                    <a href="book-a-chef.html" class="btn btn-secondary">Book Now</a>
+            </div>
+        </section>
+
+        <section id="all-chefs" style="padding: 4rem 2rem; background: #f8f9fa; text-align: center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">All Available Chefs</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Browse our complete network of professional chefs</p>
+                
+                <div class="chef-cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <!-- Chef 4 -->
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef-work1.jpg" alt="Chef Sarah Johnson" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Sarah Johnson</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Chicago, IL
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.7/5 (98 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: American, French, Gluten-Free</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">American</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">French</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Gluten-Free</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-template.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Chef 5 -->
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef-work2.jpg" alt="Chef Carlos Mendez" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Carlos Mendez</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Miami, FL
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.8/5 (76 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Latin, Seafood, Healthy</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Latin</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Seafood</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Healthy</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-template.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Chef 6 -->
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef-work3.jpg" alt="Chef Emily Chen" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Emily Chen</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Dallas, TX
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (142 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Asian Fusion, Sushi, Vegetarian</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Asian Fusion</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Sushi</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Vegetarian</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-template.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Chef 7 -->
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef-work4.jpg" alt="Chef Michael Brown" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Michael Brown</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Houston, TX
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.6/5 (83 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: BBQ, Southern, Comfort Food</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">BBQ</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Southern</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Comfort Food</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-template.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Chef 8 -->
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef-work5.jpg" alt="Chef Anna Smith" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">Anna Smith</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> San Francisco, CA
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.8/5 (112 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Californian, Farm-to-Table, Organic</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Californian</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Farm-to-Table</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Organic</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-template.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Chef 9 -->
+                    <div class="chef-card" style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                        <img src="images/chef-work6.jpg" alt="Chef David Kim" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid #f0f0f0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem; color: #333; font-weight: 600;">David Kim</h3>
+                        <div class="chef-location" style="font-size: 0.95rem; color: #666; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Boston, MA
+                        </div>
+                        <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (95 reviews)</span>
+                        </div>
+                        <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Korean, Japanese, Fusion</p>
+                        <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Korean</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Japanese</span>
+                            <span class="specialty-tag" style="background-color: #e9ecef; color: #495057; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #dee2e6;">Fusion</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="chef-profile-template.html" class="btn btn-primary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">View Profile</a>
+                            <a href="book-a-chef.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0.25rem;">Book Now</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="chef-card" data-location="california" data-cuisine="asian" data-diet="vegetarian,vegan,keto">
-                    <img src="images/chef3.jpg" alt="Chef James Chen">
-                    <h3>James Chen</h3>
-                    <a href="chef-profile-james.html" class="btn">View Profile</a>
-                    <a href="book-a-chef.html" class="btn btn-secondary">Book Now</a>
+
+                <div style="margin-top: 4rem; text-align: center;">
+                    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">More chefs available in your area. <strong>50+ chefs</strong> nationwide!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="chef-stats" style="padding: 6rem 2rem; background: white; text-align: center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Chef Network Statistics</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 4rem;">Trusted by thousands of customers across the United States</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+                    <div style="background: #f8f9fa; padding: 3rem; border-radius: 12px; border-left: 4px solid #007bff;">
+                        <div style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;">👨‍🍳</div>
+                        <h3 style="font-size: 2rem; color: #333; margin-bottom: 0.5rem;">50+</h3>
+                        <p style="color: #666; font-size: 1.1rem;">Professional Chefs</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 3rem; border-radius: 12px; border-left: 4px solid #28a745;">
+                        <div style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;">🇺🇸</div>
+                        <h3 style="font-size: 2rem; color: #333; margin-bottom: 0.5rem;">50</h3>
+                        <p style="color: #666; font-size: 1.1rem;">States Covered</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 3rem; border-radius: 12px; border-left: 4px solid #ffc107;">
+                        <div style="font-size: 3rem; color: #ffc107; margin-bottom: 1rem;">⭐</div>
+                        <h3 style="font-size: 2rem; color: #333; margin-bottom: 0.5rem;">4.9/5</h3>
+                        <p style="color: #666; font-size: 1.1rem;">Average Rating</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 3rem; border-radius: 12px; border-left: 4px solid #6f42c1;">
+                        <div style="font-size: 3rem; color: #6f42c1; margin-bottom: 1rem;">🍽️</div>
+                        <h3 style="font-size: 2rem; color: #333; margin-bottom: 0.5rem;">10,000+</h3>
+                        <p style="color: #666; font-size: 1.1rem;">Meals Served</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" style="padding: 6rem 2rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; text-align: center;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready to Experience Professional Cooking?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9);">Find the perfect chef for your next meal or event. Browse profiles, read reviews, and book with confidence.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="book-a-chef.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">📅 Book a Chef</a>
+                    <a href="weekly-meals.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">🍽️ Weekly Meals</a>
+                    <a href="special-events.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">🎉 Special Events</a>
                 </div>
             </div>
         </section>
@@ -139,13 +374,13 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <div class="contact-info" style="color: #333;">
-                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
         </div>
@@ -156,5 +391,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
 </body>
 </html>

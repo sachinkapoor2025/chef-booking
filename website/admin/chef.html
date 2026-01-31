@@ -8,14 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1><a href="../index.html" style="text-decoration: none; color: inherit;"><img src="../images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
-            </div>
-        </nav>
-    </header>
-
     <main>
         <section id="admin-login" style="display: block;">
             <h1>Admin Login</h1>
@@ -35,6 +27,8 @@
             <div class="form-buttons" style="display: flex; gap: 15px; justify-content: center; margin: 30px 0;">
                 <button class="btn" data-form="book-chef" style="padding: 12px 24px; font-size: 1rem;">Enquiry</button>
                 <button class="btn" data-form="contact" style="padding: 12px 24px; font-size: 1rem;">Contact Us</button>
+                <button class="btn" data-form="weekly" style="padding: 12px 24px; font-size: 1rem;">Weekly Service</button>
+                <button class="btn" id="add-chef-btn" style="padding: 12px 24px; font-size: 1rem;">Add Chef</button>
             </div>
             <div id="form-data" style="display: none;">
                 <h2 id="form-title"></h2>
@@ -61,6 +55,77 @@
                     <h3 id="modal-title" style="margin-top: 0;"></h3>
                     <div id="modal-content"></div>
                     <button id="close-modal" class="btn" style="margin-top: 20px;">Close</button>
+                </div>
+            </div>
+
+            <!-- Add Chef Modal -->
+            <div id="add-chef-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 2000;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 800px; width: 90%; max-height: 90%; overflow-y: auto;">
+                    <h3 style="margin-top: 0;">Add New Chef</h3>
+                    <form id="add-chef-form">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div>
+                                <label for="chef-name">Chef Name:</label>
+                                <input type="text" id="chef-name" name="name" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+
+                                <label for="chef-location">Location:</label>
+                                <input type="text" id="chef-location" name="location" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+
+                                <label for="chef-cuisine">Cuisine:</label>
+                                <input type="text" id="chef-cuisine" name="cuisine" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+
+                                <label for="chef-image-upload">Chef Image:</label>
+                                <input type="file" id="chef-image-upload" name="imageUpload" accept="image/*" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+                                <div id="image-preview-container" style="margin-top: 10px; display: none;">
+                                    <img id="image-preview" src="#" alt="Image Preview" style="max-width: 200px; max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                </div>
+
+                                <label for="chef-rating">Rating (0-5):</label>
+                                <input type="number" id="chef-rating" name="rating" min="0" max="5" step="0.1" value="4.5" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+                            </div>
+                            <div>
+                                <label for="chef-description">Description:</label>
+                                <textarea id="chef-description" name="description" required style="width: 100%; padding: 8px; height: 100px; margin-bottom: 15px;"></textarea>
+
+                                <label for="chef-specialties">Specialties (comma separated):</label>
+                                <input type="text" id="chef-specialties" name="specialties" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+
+                                <label for="chef-dietary-tags">Dietary Tags (comma separated):</label>
+                                <input type="text" id="chef-dietary-tags" name="dietaryTags" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+
+                                <label for="chef-review-count">Review Count:</label>
+                                <input type="number" id="chef-review-count" name="reviewCount" min="0" value="0" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label for="chef-pricing">Pricing (one per line, format: Type|Price|Note):</label>
+                            <textarea id="chef-pricing" name="pricing" required style="width: 100%; padding: 8px; height: 80px; margin-bottom: 15px;" placeholder='Dinner Service|$75/hour|Minimum 2 hours
+Event Catering|$175/hour|For parties and gatherings
+Weekly Meal Prep|$60/hour|Plus ingredient costs'></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label for="chef-menu-options">Menu Options (one per line, format: Category|Item):</label>
+                            <textarea id="chef-menu-options" name="menuOptions" required style="width: 100%; padding: 8px; height: 100px; margin-bottom: 15px;" placeholder='Dinner|Butter Chicken with Naan
+Dinner|Lamb Rogan Josh
+Events|Wedding Reception Package
+Events|Birthday Party Buffet'></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label for="chef-reviews">Reviews (one per line, format: Reviewer|Stars|Text):</label>
+                            <textarea id="chef-reviews" name="reviews" required style="width: 100%; padding: 8px; height: 120px; margin-bottom: 15px;" placeholder='Sarah M.|★★★★★|Amazing chef!
+Mike R.|★★★★★|Perfect for our dinner party
+Anna S.|★★★★☆|Innovative and delicious!'></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; justify-content: flex-end;">
+                            <button type="button" id="beautify-content" class="btn" style="background-color: #28a745;">🪄 Beautify Content</button>
+                            <button type="button" id="cancel-add-chef" class="btn" style="background-color: #ccc;">Cancel</button>
+                            <button type="submit" class="btn">Add Chef</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -99,9 +164,352 @@
         document.querySelectorAll('button[data-form]').forEach(btn => {
             btn.addEventListener('click', function() {
                 const formType = this.getAttribute('data-form');
-                fetchFormData(formType);
+                if (formType === 'weekly') {
+                    fetchWeeklyData();
+                } else {
+                    fetchFormData(formType);
+                }
             });
         });
+
+        document.getElementById('add-chef-btn').addEventListener('click', function() {
+            document.getElementById('add-chef-modal').style.display = 'block';
+        });
+
+        document.getElementById('cancel-add-chef').addEventListener('click', function() {
+            document.getElementById('add-chef-modal').style.display = 'none';
+        });
+
+        // Close add chef modal when clicking outside
+        document.getElementById('add-chef-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        // Image upload preview
+        document.getElementById('chef-image-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('image-preview');
+                    preview.src = event.target.result;
+                    document.getElementById('image-preview-container').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Beautify content button
+        document.getElementById('beautify-content').addEventListener('click', async function() {
+            // Collect current form data
+            const chefData = {
+                name: document.getElementById('chef-name').value,
+                location: document.getElementById('chef-location').value,
+                cuisine: document.getElementById('chef-cuisine').value,
+                description: document.getElementById('chef-description').value,
+                specialties: document.getElementById('chef-specialties').value.split(',').map(s => s.trim()),
+                dietaryTags: document.getElementById('chef-dietary-tags').value.split(',').map(s => s.trim()),
+                rating: parseFloat(document.getElementById('chef-rating').value) || 4.5,
+                reviewCount: parseInt(document.getElementById('chef-review-count').value) || 0,
+                pricing: document.getElementById('chef-pricing').value.split('\n')
+                    .filter(line => line.trim() !== '')
+                    .map(line => {
+                        const parts = line.split('|').map(p => p.trim());
+                        return {
+                            type: parts[0] || '',
+                            price: parts[1] || '',
+                            note: parts[2] || ''
+                        };
+                    }),
+                menuOptions: {}
+            };
+
+            // Parse menu options
+            const menuOptionsText = document.getElementById('chef-menu-options').value;
+            menuOptionsText.split('\n')
+                .filter(line => line.trim() !== '')
+                .forEach(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    const category = parts[0];
+                    const item = parts[1];
+                    if (!chefData.menuOptions[category]) {
+                        chefData.menuOptions[category] = [];
+                    }
+                    if (item) {
+                        chefData.menuOptions[category].push(item);
+                    }
+                });
+
+            // Parse reviews
+            chefData.reviews = document.getElementById('chef-reviews').value.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    return {
+                        reviewer: parts[0] || '',
+                        stars: parts[1] || '',
+                        text: parts[2] || ''
+                    };
+                });
+
+            try {
+                // Show loading state
+                const beautifyBtn = document.getElementById('beautify-content');
+                const originalText = beautifyBtn.textContent;
+                beautifyBtn.textContent = '🪄 Beautifying...';
+                beautifyBtn.disabled = true;
+
+                // Call beautification API
+                const response = await fetch(`${API_URL}/admin/beautify-chef`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({chefData: chefData})
+                });
+
+                const result = await response.json();
+
+                // Check for new response format (success: true, data: {})
+                if (result.success === true && result.data) {
+                    // Update form with beautified data
+                    document.getElementById('chef-description').value = result.data.description;
+
+                    // Update specialties
+                    document.getElementById('chef-specialties').value = result.data.specialties.join(', ');
+
+                    // Update pricing notes
+                    const pricingTextarea = document.getElementById('chef-pricing');
+                    pricingTextarea.value = result.data.pricing.map(p =>
+                        `${p.type}|${p.price}|${p.note}`
+                    ).join('\n');
+
+                    // Update menu options
+                    const menuTextarea = document.getElementById('chef-menu-options');
+                    let menuText = '';
+                    for (const [category, items] of Object.entries(result.data.menu_options)) {
+                        items.forEach(item => {
+                            menuText += `${category}|${item}\n`;
+                        });
+                    }
+                    menuTextarea.value = menuText.trim();
+
+                    // Update reviews
+                    const reviewsTextarea = document.getElementById('chef-reviews');
+                    reviewsTextarea.value = result.data.reviews.map(r =>
+                        `${r.reviewer}|${r.stars}|${r.text}`
+                    ).join('\n');
+
+                    // Change button text to indicate completion
+                    beautifyBtn.textContent = '✨ Beautified';
+                    setTimeout(() => {
+                        beautifyBtn.textContent = originalText;
+                    }, 2000);
+                }
+                // Check for old response format (message: 'Chef data beautified successfully')
+                else if (result.message === 'Chef data beautified successfully') {
+                    // Update form with beautified data (old format)
+                    document.getElementById('chef-description').value = result.beautifiedChefData.description;
+
+                    // Update specialties
+                    document.getElementById('chef-specialties').value = result.beautifiedChefData.specialties.join(', ');
+
+                    // Update pricing notes
+                    const pricingTextarea = document.getElementById('chef-pricing');
+                    pricingTextarea.value = result.beautifiedChefData.pricing.map(p =>
+                        `${p.type}|${p.price}|${p.note}`
+                    ).join('\n');
+
+                    // Update menu options
+                    const menuTextarea = document.getElementById('chef-menu-options');
+                    let menuText = '';
+                    for (const [category, items] of Object.entries(result.beautifiedChefData.menuOptions)) {
+                        items.forEach(item => {
+                            menuText += `${category}|${item}\n`;
+                        });
+                    }
+                    menuTextarea.value = menuText.trim();
+
+                    // Update reviews
+                    const reviewsTextarea = document.getElementById('chef-reviews');
+                    reviewsTextarea.value = result.beautifiedChefData.reviews.map(r =>
+                        `${r.reviewer}|${r.stars}|${r.text}`
+                    ).join('\n');
+
+                    // Change button text to indicate completion
+                    beautifyBtn.textContent = '✨ Beautified';
+                    setTimeout(() => {
+                        beautifyBtn.textContent = originalText;
+                    }, 2000);
+                }
+                // Check for AI disabled response
+                else if (result.aiFeatures === 'disabled') {
+                    // AI features are not configured, provide basic beautification suggestions
+                    let message = 'ℹ️ AI beautification provides helpful suggestions:\n\n';
+
+                    if (result.suggestions) {
+                        message += `• Description: ${result.suggestions.description}\n`;
+                        message += `• Specialties: ${result.suggestions.specialties}\n`;
+                        message += `• Pricing: ${result.suggestions.pricing}\n`;
+                        message += `• Menu Options: ${result.suggestions.menuOptions}\n`;
+                        message += `• Reviews: ${result.suggestions.reviews}`;
+                    } else {
+                        message += '• Description: Add details about experience, passion, and unique qualities\n' +
+                                  '• Specialties: Be specific (e.g., "Authentic Northern Italian cuisine")\n' +
+                                  '• Pricing: Include what\'s included and any special conditions\n' +
+                                  '• Menu items: Make descriptions appetizing and detailed\n' +
+                                  '• Reviews: Ensure they sound authentic and enthusiastic';
+                    }
+
+                    alert(message);
+                }
+                // Check for error response
+                else if (result.success === false || result.error) {
+                    alert('❌ Failed to beautify content: ' + (result.error || 'Unknown error'));
+                }
+                // Handle unexpected response format
+                else {
+                    console.error('Unexpected response format:', result);
+                    alert('❌ Failed to beautify content: Unexpected response format');
+                }
+            } catch (error) {
+                console.error('Beautification error:', error);
+                alert('❌ Error beautifying content. Please check your input and try again.');
+            } finally {
+                // Ensure button is always re-enabled, but don't restore text here
+                // since we handle it in the success cases above
+                beautifyBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('add-chef-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Convert plain text fields to JSON format
+            const pricingText = document.getElementById('chef-pricing').value;
+            const menuOptionsText = document.getElementById('chef-menu-options').value;
+            const reviewsText = document.getElementById('chef-reviews').value;
+
+            // Parse pricing (format: Type|Price|Note)
+            const pricing = pricingText.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    return {
+                        type: parts[0] || '',
+                        price: parts[1] || '',
+                        note: parts[2] || ''
+                    };
+                });
+
+                // Parse menu options (format: Category|Item)
+            const menuOptions = {};
+            menuOptionsText.split('\n')
+                .filter(line => line.trim() !== '')
+                .forEach(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    const category = parts[0];
+                    const item = parts[1];
+                    if (!menuOptions[category]) {
+                        menuOptions[category] = [];
+                    }
+                    if (item) {
+                        menuOptions[category].push(item);
+                    }
+                });
+
+            // Parse reviews (format: Reviewer|Stars|Text)
+            const reviews = reviewsText.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim());
+                    return {
+                        reviewer: parts[0] || '',
+                        stars: parts[1] || '',
+                        text: parts[2] || ''
+                    };
+                });
+
+            const fileInput = document.getElementById('chef-image-upload');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('Please upload a chef image.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+
+            // First, upload the image to S3
+            try {
+                const imageUrl = await uploadImageToS3(file);
+                if (!imageUrl) {
+                    alert('Failed to upload image. Please try again.');
+                    return;
+                }
+
+                // Then, add the chef data with the image URL
+                const chefData = {
+                    name: document.getElementById('chef-name').value,
+                    location: document.getElementById('chef-location').value,
+                    cuisine: document.getElementById('chef-cuisine').value,
+                    imageUrl: imageUrl,
+                    description: document.getElementById('chef-description').value,
+                    specialties: document.getElementById('chef-specialties').value.split(',').map(s => s.trim()),
+                    dietaryTags: document.getElementById('chef-dietary-tags').value.split(',').map(s => s.trim()),
+                    rating: parseFloat(document.getElementById('chef-rating').value),
+                    reviewCount: parseInt(document.getElementById('chef-review-count').value),
+                    pricing: pricing,
+                    menuOptions: menuOptions,
+                    reviews: reviews
+                };
+
+                console.log('Sending chef data:', JSON.stringify(chefData, null, 2));
+
+                const response = await fetch(`${API_URL}/admin/chefs`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({chefData: chefData})
+                });
+
+                const result = await response.json();
+
+                console.log('Add chef response:', response.status, result);
+
+                if (result.message === 'Chef added successfully') {
+                    alert('Chef added successfully!');
+                    document.getElementById('add-chef-modal').style.display = 'none';
+                    document.getElementById('add-chef-form').reset();
+                    document.getElementById('image-preview-container').style.display = 'none';
+                } else {
+                    alert('Failed to add chef: ' + (result.error || 'Unknown error') + '\n\nPlease check the browser console for more details.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to add chef. Please check the form data and try again.');
+            }
+        });
+
+        async function uploadImageToS3(file) {
+            // In a real implementation, you would need to:
+            // 1. Get a pre-signed URL from your backend for S3 upload
+            // 2. Upload the file directly to S3 using that URL
+            // 3. Return the public URL of the uploaded file
+
+            // For now, we'll simulate this by returning a placeholder URL
+            // In production, you would implement the actual S3 upload logic
+
+            console.log('Simulating S3 upload for:', file.name);
+
+            // Simulate upload delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Return a simulated S3 URL
+            const fileName = `images/add-chef/${Date.now()}_${file.name}`;
+            return `https://maharajachefservices.com/${fileName}`;
+        }
 
         document.getElementById('back-btn').addEventListener('click', function() {
             document.getElementById('form-data').style.display = 'none';
@@ -243,6 +651,80 @@
 
             content.appendChild(detailsDiv);
             document.getElementById('enquiry-modal').style.display = 'block';
+        }
+
+        function fetchWeeklyData() {
+            fetch(`${API_URL}/admin/weekly-data`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('form-title').textContent = 'Weekly Service Submissions';
+
+                // Sort data by timestamp (most recent first)
+                data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No weekly service submissions found.';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+
+                    // Name cell
+                    const nameCell = row.insertCell(0);
+                    nameCell.style.border = '1px solid #ddd';
+                    nameCell.style.padding = '12px';
+                    nameCell.textContent = item.data.name || 'N/A';
+
+                    // Phone cell
+                    const phoneCell = row.insertCell(1);
+                    phoneCell.style.border = '1px solid #ddd';
+                    phoneCell.style.padding = '12px';
+                    phoneCell.textContent = item.data.phone || 'N/A';
+
+                    // Guests cell
+                    const guestsCell = row.insertCell(2);
+                    guestsCell.style.border = '1px solid #ddd';
+                    guestsCell.style.padding = '12px';
+                    guestsCell.textContent = item.data.guests || 'N/A';
+
+                    // Date cell
+                    const dateCell = row.insertCell(3);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.timestamp);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Details';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showEnquiryDetails(item, 'Weekly Service'));
+                    actionsCell.appendChild(viewBtn);
+                });
+
+                document.querySelector('.form-buttons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch weekly service data.');
+            });
         }
 
         function formatFieldName(key) {

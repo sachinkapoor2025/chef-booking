@@ -91,31 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Dropdown click handlers for both desktop and mobile
-    const dropdowns = document.querySelectorAll('.dropdown');
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        const menu = dropdown.querySelector('.dropdown-menu');
-
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            // Close all other submenus (accordion behavior)
-            dropdowns.forEach(otherDropdown => {
-                if (otherDropdown !== dropdown) {
-                    const otherMenu = otherDropdown.querySelector('.dropdown-menu');
-                    if (otherMenu) {
-                        otherMenu.classList.remove('open');
-                    }
-                }
-            });
-
-            // Toggle current submenu
-            if (menu) {
-                menu.classList.toggle('open');
-            }
-        });
-    });
+    // Dropdown functionality is now handled by Bootstrap JS
+    // This section removed to prevent conflicts with Bootstrap dropdowns
     
 
     

@@ -45,6 +45,125 @@ Resources:
             ProjectionType: ALL
       BillingMode: PAY_PER_REQUEST
 
+  WeeklySubmissionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-weekly-submissions"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: formType
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: formType
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: formType-index
+          KeySchema:
+            - AttributeName: formType
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  ChefTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-chefs"
+      AttributeDefinitions:
+        - AttributeName: chefId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: chefId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  # Chat History Table for multi-language chatbot
+  ChatHistoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-chat-history"
+      AttributeDefinitions:
+        - AttributeName: sessionId
+          AttributeType: S
+        - AttributeName: timestamp
+          AttributeType: S
+      KeySchema:
+        - AttributeName: sessionId
+          KeyType: HASH
+        - AttributeName: timestamp
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+
+  # User Table for diet plan feature
+  DietPlanUsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-diet-plan-users"
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: email-index
+          KeySchema:
+            - AttributeName: email
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  # Diet Plans Table for storing generated diet plans
+  DietPlansTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: !Sub "${AWS::StackName}-diet-plans"
+        AttributeDefinitions:
+          - AttributeName: planId
+            AttributeType: S
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: N
+          - AttributeName: email
+            AttributeType: S   # ✅ NEW
+
+        KeySchema:
+          - AttributeName: planId
+            KeyType: HASH
+
+        GlobalSecondaryIndexes:
+          # Existing index (keep this)
+          - IndexName: user-plans-index
+            KeySchema:
+              - AttributeName: userId
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+          # ✅ NEW INDEX (critical)
+          - IndexName: email-index
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+        BillingMode: PAY_PER_REQUEST
+
   # Lambda Functions 
   FormSubmissionFunction:
     Type: AWS::Serverless::Function
@@ -53,13 +172,17 @@ Resources:
       CodeUri: src/
       Handler: form_submission.handler
       Runtime: python3.12
+      Timeout: 60
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
+          WEEKLY_SUBMISSIONS_TABLE: !Ref WeeklySubmissionsTable
           ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref WeeklySubmissionsTable
         - DynamoDBReadPolicy:
             TableName: !Ref AdminCredentialsTable
         - AmazonSESFullAccess
@@ -78,13 +201,20 @@ Resources:
       CodeUri: src/
       Handler: admin.handler
       Runtime: python3.12
+      Timeout: 60
       Environment:
         Variables:
           SUBMISSIONS_TABLE: !Ref SubmissionsTable
+          WEEKLY_SUBMISSIONS_TABLE: !Ref WeeklySubmissionsTable
+          CHEF_TABLE: !Ref ChefTable
           ADMIN_CREDENTIALS_TABLE: !Ref AdminCredentialsTable
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref WeeklySubmissionsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ChefTable
         - DynamoDBCrudPolicy:
             TableName: !Ref AdminCredentialsTable
       Events:
@@ -100,6 +230,202 @@ Resources:
             RestApiId: !Ref ApiGateway
             Path: /admin/data/{formType}
             Method: get
+        AdminChefs:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/chefs
+            Method: get
+        AdminAddChef:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/chefs
+            Method: post
+        AdminWeeklyData:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/weekly-data
+            Method: get
+        PublicChefs:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /chefs
+            Method: get
+
+  BeautifyChefFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-beautify-chef"
+      CodeUri: src/
+      Handler: beautify_chef.handler
+      Runtime: python3.12
+      Timeout: 60
+      Environment:
+        Variables:
+          CHEF_TABLE: !Ref ChefTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ChefTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+      Events:
+        BeautifyChef:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /admin/beautify-chef
+            Method: post
+
+  # Multi-language Chatbot Function
+  ChatbotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-chatbot"
+      CodeUri: src/
+      Handler: chatbot.handler
+      Runtime: python3.12
+      Timeout: 60
+      Environment:
+        Variables:
+          CHAT_HISTORY_TABLE: !Ref ChatHistoryTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ChatHistoryTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+      Events:
+        Chat:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /chat
+            Method: post
+        ChatHistory:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /chat/history
+            Method: get
+
+  # Diet Plan Function
+  DietPlanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-diet-plan"
+      CodeUri: src/
+      Handler: diet_plan.handler
+      Runtime: python3.12
+      Timeout: 300          # ✅ 5 minutes
+      MemorySize: 1024     # ✅ 1 GB RAM (recommended for OpenAI + JSON + PDF)
+      Environment:
+        Variables:
+          DIET_PLAN_USERS_TABLE: !Ref DietPlanUsersTable
+          DIET_PLANS_TABLE: !Ref DietPlansTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
+          S3_BUCKET: maharaja-chef-diet-plans
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlanUsersTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlansTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+        - AmazonS3FullAccess
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !GetAtt DietPlanWorkerFunction.Arn
+      Events:
+        GenerateDietPlan:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/generate
+            Method: post
+        UserSignup:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/signup
+            Method: post
+        UserLogin:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/login
+            Method: post
+        GetUserPlans:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/user/{userId}/plans
+            Method: get
+        AssociatePlanWithUser:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/user/{userId}/plans
+            Method: put
+        GetDietPlan:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/{planId}
+            Method: get
+        DownloadDietPlan:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /diet-plan/{planId}/download
+            Method: get
+
+  # Diet Plan Worker Function (Background Processing)
+  DietPlanWorkerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-diet-plan-worker"
+      CodeUri: src/
+      Handler: diet_plan_worker.handler
+      Runtime: python3.12
+      Timeout: 900          # 15 minutes for OpenAI processing
+      MemorySize: 1024     # 1 GB RAM
+      Environment:
+        Variables:
+          DIET_PLAN_USERS_TABLE: !Ref DietPlanUsersTable
+          DIET_PLANS_TABLE: !Ref DietPlansTable
+          OPENAI_API_KEY: !Sub "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm:SecretString:openai_api_key}}"
+          S3_BUCKET: maharaja-chef-diet-plans
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlanUsersTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DietPlansTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource: "arn:aws:secretsmanager:us-east-1:985539754737:secret:maharajachef-6whRGm"
+        - AmazonS3FullAccess
 
   # API Gateway
   ApiGateway:
@@ -108,7 +434,7 @@ Resources:
       Name: !Sub "${AWS::StackName}-api"
       StageName: prod
       Cors:
-        AllowMethods: "'POST,GET,OPTIONS'"
+        AllowMethods: "'POST,GET,OPTIONS,PUT'"
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
         AllowOrigin: "'*'"
 

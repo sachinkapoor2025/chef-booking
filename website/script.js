@@ -58,17 +58,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Dropdown hover for desktop
+    // ✅ Desktop dropdown (works with your CSS)
     const dropdowns = document.querySelectorAll('.dropdown');
+
     dropdowns.forEach(dropdown => {
-        if (window.innerWidth > 768) {
-            dropdown.addEventListener('mouseenter', function() {
-                this.querySelector('.dropdown-menu').style.display = 'block';
-            });
-            dropdown.addEventListener('mouseleave', function() {
-                this.querySelector('.dropdown-menu').style.display = 'none';
-            });
-        }
+        const menu = dropdown.querySelector('.dropdown-menu');
+
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) {
+                menu.classList.add('open');
+            }
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) {
+                menu.classList.remove('open');
+            }
+        });
     });
     
     // Form validation

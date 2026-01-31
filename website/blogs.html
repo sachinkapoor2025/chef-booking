@@ -14,44 +14,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs - Maharaja Chef Services</title>
     <meta name="description" content="Read our latest blogs on chef tips, healthy eating, meal prep, and US food trends.">
+    <meta name="keywords" content="chef blogs, cooking tips, healthy eating, meal prep, food trends">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blogs - Maharaja Chef Services">
+    <meta property="og:description" content="Read our latest blogs on chef tips, healthy eating, meal prep, and US food trends.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/blogs.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blogs - Maharaja Chef Services">
+    <meta name="twitter:description" content="Read our latest blogs on chef tips, healthy eating, meal prep, and US food trends.">
+    <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="chef-services.html"> Services <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="owner.html">Business Owner</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main>
         <section id="blogs">
             <h1>Our Blogs</h1>
@@ -111,13 +92,13 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <div class="contact-info" style="color: #333;">
-                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
         </div>
@@ -128,5 +109,37 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
 </body>
 </html>

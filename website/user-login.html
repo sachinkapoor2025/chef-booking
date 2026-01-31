@@ -1,0 +1,428 @@
+e an button on clickable and attkable and attached to api gateway <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Maharaja Chef Services</title>
+    <meta name="description" content="Sign in to access your personalized diet plan and manage your nutrition journey.">
+    <meta name="keywords" content="diet plan login, nutrition login, personalized diet, health account">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* User Login Specific Styles */
+        .login-hero {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .login-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .login-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .login-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: translateY(-1px);
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .signup-link p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .signup-link a {
+            color: #8b5cf6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+            color: #7c3aed;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 0.75rem;
+        }
+        
+        .success-message {
+            color: #10b981;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 6px;
+            padding: 0.75rem;
+        }
+        
+        .required {
+            color: #ef4444;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        
+        .forgot-password a {
+            color: #6b7280;
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+        
+        .forgot-password a:hover {
+            color: #8b5cf6;
+            text-decoration: underline;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .login-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .login-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .login-container {
+                padding: 2rem 1rem;
+                margin: 0 1rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <div class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="special-events.html">Special Events & Gatherings</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Login Hero Section -->
+        <section class="login-hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-sign-in-alt"></i> Welcome Back</h1>
+                <p>Sign in to access your personalized diet plan and continue your health journey with us.</p>
+            </div>
+        </section>
+
+        <!-- Login Container -->
+        <div class="login-container">
+            <form id="loginForm" novalidate>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #374151;">Sign In</h2>
+                
+                <div id="messageArea"></div>
+                
+                <div class="form-group">
+                    <label for="loginEmail">Email Address <span class="required">*</span></label>
+                    <input type="email" id="loginEmail" name="email" class="form-control" required>
+                    <div class="error-message" id="loginEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password <span class="required">*</span></label>
+                    <input type="password" id="loginPassword" name="password" class="form-control" required>
+                    <div class="error-message" id="loginPasswordError">Please enter your password</div>
+                    <div class="forgot-password">
+                        <a href="#" id="forgotPasswordLink">Forgot your password?</a>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="user-signup.html">Sign Up</a></p>
+                    <a href="index.html" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const messageArea = document.getElementById('messageArea');
+            
+            // Form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    loginBtn.disabled = true;
+                    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+                    
+                    try {
+                        const formData = new FormData(loginForm);
+                        const userData = {
+                            email: formData.get('email'),
+                            password: formData.get('password')
+                        };
+                        
+                        // Send to backend using API Gateway URL
+                        const apiGatewayUrl = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+                        const response = await fetch(`${apiGatewayUrl}/diet-plan/login`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(userData)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            // Store user session
+                            localStorage.setItem('userSession', JSON.stringify({
+                                userId: result.userId,
+                                email: userData.email,
+                                fullName: result.fullName
+                            }));
+                            
+                            // Redirect to profile page
+                            window.location.href = 'user-profile.html';
+                        } else {
+                            showMessage(result.error || 'Invalid email or password', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        showMessage('Sorry, there was an error signing in. Please try again.', 'error');
+                    } finally {
+                        loginBtn.disabled = false;
+                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                    }
+                }
+            });
+            
+            // Forgot password handler
+            document.getElementById('forgotPasswordLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                showMessage('Password reset functionality is coming soon. Please contact support for assistance.', 'info');
+            });
+            
+            function validateForm() {
+                let isValid = true;
+                
+                // Validate email
+                const email = document.getElementById('loginEmail').value.trim();
+                const emailError = document.getElementById('loginEmailError');
+                
+                if (!email) {
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    emailError.style.display = 'block';
+                    emailError.textContent = 'Please enter a valid email address';
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                }
+                
+                // Validate password
+                const password = document.getElementById('loginPassword').value.trim();
+                const passwordError = document.getElementById('loginPasswordError');
+                
+                if (!password) {
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    passwordError.style.display = 'none';
+                }
+                
+                return isValid;
+            }
+            
+            function showMessage(message, type) {
+                messageArea.innerHTML = `
+                    <div class="${type === 'error' ? 'error-message' : 'success-message'}" style="display: block;">
+                        ${message}
+                    </div>
+                `;
+                
+                // Auto-hide message after 5 seconds
+                setTimeout(() => {
+                    messageArea.innerHTML = '';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

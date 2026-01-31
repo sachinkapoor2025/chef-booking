@@ -59,3 +59,16 @@ To test locally, you need a PHP server. Options:
 
 ## Security Note:
 The password is stored in plain text in the PHP file. For production, consider using environment variables or a secure configuration file outside the web root.
+
+## Global Header Integration
+This website now includes a global header with Sign Up and Log In functionality. The global header is implemented using:
+- `components/header.html` - Contains the header HTML structure
+- `js/global-header.js` - JavaScript to load and inject the header into all pages
+- Updated CSS styles in `style.css` for the global header components
+
+All HTML pages have been updated to include the global header by:
+1. Replacing their existing header sections with a comment: `<!-- Global Header will be loaded here -->`
+2. Adding the global header script: `<script src="js/global-header.js"></script>`
+3. Adding global header CSS styles to the main stylesheet
+
+The global header provides consistent navigation and authentication options across all pages of the website.

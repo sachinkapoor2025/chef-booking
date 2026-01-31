@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test User Profile API</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .test-section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .result { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Test User Profile API Functionality</h1>
+    
+    <div class="test-section">
+        <h3>Test 1: Check API Endpoint Connectivity</h3>
+        <p>Testing if the API endpoint is reachable:</p>
+        <button onclick="testApiConnectivity()">Test API Connectivity</button>
+        <div id="apiTestResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 2: Test User Session</h3>
+        <p>Testing if user session is properly stored:</p>
+        <button onclick="testUserSession()">Test User Session</button>
+        <div id="sessionTestResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 3: Test My Diet Plan Function</h3>
+        <p>Testing the viewMyDietPlan function:</p>
+        <button onclick="testDietPlanFunction()">Test Diet Plan Function</button>
+        <div id="dietPlanTestResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 4: Simulate User Login</h3>
+        <p>Creating a test user session:</p>
+        <button onclick="createTestSession()">Create Test Session</button>
+        <div id="loginTestResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+        
+        function showResult(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `result ${type}`;
+        }
+
+        async function testApiConnectivity() {
+            try {
+                showResult('apiTestResult', 'Testing API connectivity...', 'info');
+                
+                // Test with a simple OPTIONS request to check CORS
+                const response = await fetch(`${API_BASE_URL}/diet-plan/user/test/plans`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showResult('apiTestResult', '✅ API endpoint is reachable and CORS is configured correctly', 'success');
+                } else {
+                    showResult('apiTestResult', `❌ API endpoint returned status: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                showResult('apiTestResult', `❌ API connectivity test failed: ${error.message}`, 'error');
+            }
+        }
+
+        function testUserSession() {
+            try {
+                const userSession = localStorage.getItem('userSession');
+                if (userSession) {
+                    const session = JSON.parse(userSession);
+                    showResult('sessionTestResult', 
+                        `✅ User session found:<br>
+                        User ID: ${session.userId}<br>
+                        Email: ${session.email}<br>
+                        Full Name: ${session.fullName}`, 'success');
+                } else {
+                    showResult('sessionTestResult', '❌ No user session found in localStorage', 'error');
+                }
+            } catch (error) {
+                showResult('sessionTestResult', `❌ Error reading user session: ${error.message}`, 'error');
+            }
+        }
+
+        async function testDietPlanFunction() {
+            try {
+                showResult('dietPlanTestResult', 'Testing viewMyDietPlan function...', 'info');
+                
+                const userSession = localStorage.getItem('userSession');
+                if (!userSession) {
+                    showResult('dietPlanTestResult', '❌ No user session found. Please create a test session first.', 'error');
+                    return;
+                }
+
+                const session = JSON.parse(userSession);
+                
+                // Test the API call that viewMyDietPlan would make
+                const response = await fetch(`${API_BASE_URL}/diet-plan/user/${session.userId}/plans`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('userSession')}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('dietPlanTestResult', 
+                        `✅ API call successful!<br>
+                        Status: ${response.status}<br>
+                        Plans found: ${result.plans ? result.plans.length : 0}`, 'success');
+                } else {
+                    showResult('dietPlanTestResult', 
+                        `❌ API call failed:<br>
+                        Status: ${response.status}<br>
+                        Error: ${result.message || 'Unknown error'}`, 'error');
+                }
+            } catch (error) {
+                showResult('dietPlanTestResult', `❌ Error testing diet plan function: ${error.message}`, 'error');
+            }
+        }
+
+        function createTestSession() {
+            try {
+                const testSession = {
+                    userId: 'test-user-123',
+                    email: 'test@example.com',
+                    fullName: 'Test User'
+                };
+                
+                localStorage.setItem('userSession', JSON.stringify(testSession));
+                showResult('loginTestResult', 
+                    `✅ Test session created:<br>
+                    User ID: ${testSession.userId}<br>
+                    Email: ${testSession.email}<br>
+                    Full Name: ${testSession.fullName}`, 'success');
+            } catch (error) {
+                showResult('loginTestResult', `❌ Error creating test session: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

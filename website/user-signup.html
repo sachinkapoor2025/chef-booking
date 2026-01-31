@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Maharaja Chef Services</title>
+    <meta name="description" content="Create your account to access your personalized diet plan and manage your nutrition journey.">
+    <meta name="keywords" content="diet plan account, nutrition account, personalized diet, health account">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* User Signup Specific Styles */
+        .signup-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .signup-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .signup-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .signup-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .password-strength {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .strength-bar {
+            flex-grow: 1;
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .strength-text {
+            min-width: 80px;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: translateY(-1px);
+        }
+        
+        .signin-cta {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .signin-cta h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+        }
+        
+        .signin-cta p {
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .signin-btn {
+            background: white;
+            color: #1d4ed8;
+            border: 2px solid #1d4ed8;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .signin-btn:hover {
+            background: #1d4ed8;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .login-link p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .login-link a {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .success-message {
+            color: #10b981;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .required {
+            color: #ef4444;
+        }
+        
+        .plan-preview {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-preview h3 {
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .plan-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .plan-item:last-child {
+            border-bottom: none;
+        }
+        
+        .plan-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .signup-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .signup-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .signup-container {
+                padding: 2rem 1rem;
+                margin: 0 1rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="global-header"></header>
+    <script>
+        // Load global header
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('global-header').innerHTML = html;
+                
+                // Initialize dropdowns after header is loaded
+                const dropdowns = document.querySelectorAll('.dropdown');
+                dropdowns.forEach(dropdown => {
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    const link = dropdown.querySelector('a');
+                    
+                    dropdown.addEventListener('mouseenter', () => {
+                        menu.classList.add('show');
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', () => {
+                        menu.classList.remove('show');
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+    </script>
+
+    <main>
+        <!-- Signup Hero Section -->
+        <section class="signup-hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-user-plus"></i> Create Your Account</h1>
+                <p>Complete your registration to access your personalized diet plan and start your health journey with us.</p>
+            </div>
+        </section>
+
+        <!-- Signup Container -->
+        <div class="signup-container">
+            <!-- Plan Preview -->
+            <div class="plan-preview" id="planPreview" style="display: none;">
+                <h3><i class="fas fa-eye"></i> Your Diet Plan Preview</h3>
+                <div class="plan-item">
+                    <span>Meal Preference:</span>
+                    <span class="plan-value" id="previewMealPreference">-</span>
+                </div>
+                <div class="plan-item">
+                    <span>Primary Goal:</span>
+                    <span class="plan-value" id="previewPrimaryGoal">-</span>
+                </div>
+                <div class="plan-item">
+                    <span>Target Weight:</span>
+                    <span class="plan-value" id="previewTargetWeight">-</span>
+                </div>
+            </div>
+
+            <!-- Already a user CTA -->
+            <div class="signin-cta">
+                <h3><i class="fas fa-sign-in-alt"></i> Already a User?</h3>
+                <p>Sign in to access your personalized diet plan and continue your health journey.</p>
+                <a href="user-login.html" class="signin-btn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In Now
+                </a>
+            </div>
+
+            <form id="signupForm" novalidate>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #374151;">Create Account</h2>
+                
+                <div class="form-group">
+                    <label for="signupFullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="signupFullName" name="fullName" class="form-control" required>
+                    <div class="error-message" id="signupFullNameError">Please enter your full name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">Email Address <span class="required">*</span></label>
+                    <input type="email" id="signupEmail" name="email" class="form-control" required>
+                    <div class="error-message" id="signupEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">Password <span class="required">*</span></label>
+                    <input type="password" id="signupPassword" name="password" class="form-control" required>
+                    <div class="password-strength">
+                        <span class="strength-text" id="strengthText">Weak</span>
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                    </div>
+                    <div class="error-message" id="signupPasswordError">Password must be at least 8 characters long</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+                    <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="termsCheckbox" required>
+                        I agree to the <a href="terms-conditions.html" target="_blank">Terms & Conditions</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a> <span class="required">*</span>
+                    </label>
+                    <div class="error-message" id="termsError">You must agree to the terms and conditions</div>
+                </div>
+                
+                <button type="submit" class="btn-primary" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Create Account & Access Diet Plan
+                </button>
+                
+                <div class="login-link">
+                    <p>Already have an account? <a href="user-login.html">Sign In</a></p>
+                    <a href="index.html" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Password strength checker
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('signupPassword');
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const signupForm = document.getElementById('signupForm');
+            const signupBtn = document.getElementById('signupBtn');
+            
+            // Load plan data from localStorage if available
+            const planData = JSON.parse(localStorage.getItem('dietPlanData') || '{}');
+            if (planData && planData.planId) {
+                showPlanPreview(planData);
+            }
+            
+            // Password strength checking
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strength = calculatePasswordStrength(password);
+                
+                strengthFill.style.width = strength.percent + '%';
+                strengthFill.style.backgroundColor = strength.color;
+                strengthText.textContent = strength.text;
+                strengthText.style.color = strength.color;
+                
+                validatePassword();
+            });
+            
+            // Confirm password checking
+            confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+            
+            // Form submission
+            signupForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    signupBtn.disabled = true;
+                    signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+                    
+                    try {
+                        const formData = new FormData(signupForm);
+                        const userData = {
+                            fullName: formData.get('fullName'),
+                            email: formData.get('email'),
+                            password: formData.get('password'),
+                            planData: planData
+                        };
+                        
+                        // Send to backend using API Gateway URL
+                        const apiGatewayUrl = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod';
+                        const response = await fetch(`${apiGatewayUrl}/diet-plan/signup`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(userData)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            // Store user session
+                            localStorage.setItem('userSession', JSON.stringify({
+                                userId: result.userId,
+                                email: userData.email,
+                                fullName: userData.fullName
+                            }));
+                            
+                            // Redirect to profile page
+                            window.location.href = 'user-profile.html';
+                        } else {
+                            throw new Error(result.error || 'Failed to create account');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Sorry, there was an error creating your account. Please try again.');
+                    } finally {
+                        signupBtn.disabled = false;
+                        signupBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account & Access Diet Plan';
+                    }
+                }
+            });
+            
+            function calculatePasswordStrength(password) {
+                let score = 0;
+                let feedback = [];
+                
+                if (password.length >= 8) score++;
+                else feedback.push('At least 8 characters');
+                
+                if (/[a-z]/.test(password)) score++;
+                else feedback.push('Lowercase letter');
+                
+                if (/[A-Z]/.test(password)) score++;
+                else feedback.push('Uppercase letter');
+                
+                if (/[0-9]/.test(password)) score++;
+                else feedback.push('Number');
+                
+                if (/[^A-Za-z0-9]/.test(password)) score++;
+                else feedback.push('Special character');
+                
+                const strengths = [
+                    { text: 'Very Weak', color: '#ef4444', percent: 20 },
+                    { text: 'Weak', color: '#f59e0b', percent: 40 },
+                    { text: 'Fair', color: '#eab308', percent: 60 },
+                    { text: 'Good', color: '#22c55e', percent: 80 },
+                    { text: 'Strong', color: '#16a34a', percent: 100 }
+                ];
+                
+                return strengths[Math.min(score, 4)];
+            }
+            
+            function validatePassword() {
+                const password = passwordInput.value;
+                const errorElement = document.getElementById('signupPasswordError');
+                
+                if (password.length < 8) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateConfirmPassword() {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                const errorElement = document.getElementById('confirmPasswordError');
+                
+                if (confirmPassword && password !== confirmPassword) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateForm() {
+                let isValid = true;
+                
+                // Validate required fields
+                const requiredFields = signupForm.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    const errorElement = document.getElementById(field.id + 'Error');
+                    
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                    }
+                    
+                    if (!field.value.trim()) {
+                        if (errorElement) {
+                            errorElement.style.display = 'block';
+                        }
+                        isValid = false;
+                    }
+                });
+                
+                // Validate password
+                if (!validatePassword()) {
+                    isValid = false;
+                }
+                
+                // Validate confirm password
+                if (!validateConfirmPassword()) {
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            function showPlanPreview(planData) {
+                const preview = document.getElementById('planPreview');
+                const mealPreference = document.getElementById('previewMealPreference');
+                const primaryGoal = document.getElementById('previewPrimaryGoal');
+                const targetWeight = document.getElementById('previewTargetWeight');
+                
+                preview.style.display = 'block';
+                
+                if (planData.mealPreference) {
+                    mealPreference.textContent = planData.mealPreference.charAt(0).toUpperCase() + planData.mealPreference.slice(1);
+                }
+                
+                if (planData.primaryGoal) {
+                    primaryGoal.textContent = planData.primaryGoal.charAt(0).toUpperCase() + planData.primaryGoal.slice(1);
+                }
+                
+                if (planData.targetWeight) {
+                    targetWeight.textContent = planData.targetWeight + ' kg';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

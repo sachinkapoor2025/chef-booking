@@ -9,6 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 ses = boto3.client('ses')
 
 SUBMISSIONS_TABLE = os.environ['SUBMISSIONS_TABLE']
+WEEKLY_SUBMISSIONS_TABLE = os.environ['WEEKLY_SUBMISSIONS_TABLE']
 
 def handler(event, context):
     try:
@@ -28,8 +29,11 @@ def handler(event, context):
             'timestamp': datetime.utcnow().isoformat()
         }
 
-        # Store in DynamoDB
-        table = dynamodb.Table(SUBMISSIONS_TABLE)
+        # Store in appropriate DynamoDB table based on form type
+        if form_type == 'book-weekly':
+            table = dynamodb.Table(WEEKLY_SUBMISSIONS_TABLE)
+        else:
+            table = dynamodb.Table(SUBMISSIONS_TABLE)
         table.put_item(Item=item)
 
         # Send email
@@ -67,6 +71,8 @@ def send_email(form_type, data):
         # Set subject based on form type
         if form_type == 'book-chef':
             subject = 'Chef Requirement - Chef Services'
+        elif form_type == 'book-weekly':
+            subject = 'Weekly Service Requirement - Chef Services'
         elif form_type == 'contact':
             subject = 'Contact Requirement - Chef Services'
         else:
@@ -76,7 +82,7 @@ def send_email(form_type, data):
         response = ses.send_email(
             Source='chef@mydgv.com',  # Replace with your verified SES email
             Destination={
-                'ToAddresses': ['dgv@mydgv.com']  # Replace with your admin email
+                'ToAddresses': ['dgv@mydgv.com', 'amanmanrai1@gmail.com']  # Replace with your admin emails
             },
             Message={
                 'Subject': {

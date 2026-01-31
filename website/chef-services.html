@@ -26,7 +26,7 @@
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="balanced-diet.html">Balanced Diet</a></li>
                 <li class="dropdown">
                     <a href="#">Services <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
@@ -34,20 +34,31 @@
                         <li><a href="special-events.html">Special Events & Gatherings</a></li>
                     </ul>
                 </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="become-a-chef.html">Become a Chef</a></li>
+                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                        <li><a href="chef-faq.html">Chef FAQ</a></li>
+                        <li><a href="success-stories.html">Success Stories</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="blogs.html">Blogs</a></li>
                         <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms-conditions.html">Terms & Conditions</a></li>
                         <li><a href="refund-policy.html">Refund Policy</a></li>
                     </ul>
                 </li>
+                <li><a href="contact-us.html">Contact Us</a></li>
                 <li><a href="owner.html">Business Owner</a></li>
+                <li><a href="login.html">Log In</a></li>
             </ul>
         </nav>
     </header>
@@ -66,7 +77,7 @@
                 <div class="service">
                     <img src="images/event1.jpg" alt="Special events">
                     <h3>Special Events & Gatherings</h3>
-                    <p>Make your special occasions unforgettable with our expert chefs. From intimate dinners to large corporate events, we deliver exceptional service.</p>
+                    <p>Make your special occasions unforgettable with our expert chefs. From intimate dinners to large cattering events, we deliver exceptional service.</p>
                     <a href="special-events.html" class="btn">Learn More</a>
                 </div>
             </div>
@@ -99,7 +110,7 @@
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <div class="contact-info" style="color: #333;">
-                    <p><i class="fas fa-phone"></i> +1 (669) 260-3819</p>
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
@@ -116,5 +127,37 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
 </body>
 </html>
