@@ -622,24 +622,31 @@ header {
 
 .dropdown-menu a {
     padding: 0.75rem 1.5rem;
-    display: inline-block;
-    color: #1e293b;
-    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
     font-size: 0.9rem;
-    background: white;
-    color: #3b82f6;
-    border: 1px solid #3b82f6;
+
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white !important;
+
+    border: none;
     border-radius: 10px;
+
     cursor: pointer;
     text-decoration: none;
-    margin: 0.25rem 0.5rem;
+
+    margin: 0.4rem 0.5rem;
     width: calc(100% - 1rem);
-    text-align: center;
+
+    transition: all 0.2s ease;
 }
 
 .dropdown-menu a:hover {
-    background: #f8fafc;
-    color: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white !important;
     transform: translateY(-1px);
 }
 
