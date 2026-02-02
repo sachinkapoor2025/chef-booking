@@ -98,6 +98,63 @@
             min-width: 20px;
         }
         
+        /* Feature Items for Hero Section */
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .feature-item i {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            min-width: 24px;
+            text-align: center;
+        }
+        
+        .feature-item span {
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        /* Hero Benefits List */
+        .hero-benefits {
+            color: #1e3a8a;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            padding-left: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        
+        .hero-benefits li {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-benefits .feature-icon {
+            color: #28a745;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+        
         .hero-stats {
             display: flex;
             gap: 2rem;
@@ -634,11 +691,25 @@
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Book a Personal Chef for Home Dining</h1>
-                    <div class="hero-subtitle">Fast & Easy - Restaurant Quality at Home</div>
-                    <div class="hero-description">Professional chefs, customized menus, unforgettable dining experiences</div>
+                    <h1>PRIVATE PERSONAL CHEF SERVICES</h1>
+                    <div class="hero-subtitle">Authentic Indian Home-Style Meals — Cooked in Your Kitchen</div>
                     
-                    <ul class="hero-features">
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Freshly cooked meals in your home</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>Customized menus (dietary needs supported)</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-broom"></i>
+                            <span>No shopping. No cooking. No cleaning.</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="hero-benefits">
                         <li><span class="feature-icon">✓</span> Verified Professional Chefs</li>
                         <li><span class="feature-icon">✓</span> Customized Menus for Every Occasion</li>
                         <li><span class="feature-icon">✓</span> Restaurant-Quality Dining at Home</li>
