@@ -12,29 +12,615 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maharaja Chef Services - Home</title>
+    <title>Maharaja Chef Services - Book a Personal Chef Today</title>
     <meta name="description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
     <meta name="keywords" content="personal chef, chef services, home cooking, California, San Jose">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Bootstrap CSS -->
-    <!-- Speed Optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="js/script.js" as="script">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Maharaja Chef Services - Premium Personal Chefs">
-    <meta property="og:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
-    <meta property="og:image" content="images/logo.jpg">
-    <meta property="og:url" content="https://maharajachef.com">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Maharaja Chef Services">
-    <meta name="twitter:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
-    <meta name="twitter:image" content="images/logo.jpg">
+    <style>
+        /* Homepage-specific styles */
+        .hero-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            min-width: 400px;
+        }
+        
+        .hero-text h1 {
+            color: #1e3a8a;
+            margin-top: 0;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: none;
+            word-wrap: normal;
+            hyphens: none;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: none;
+        }
+        
+        .hero-description {
+            color: #1e3a8a;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            text-shadow: none;
+        }
+        
+        .hero-features {
+            color: #1e3a8a;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            padding-left: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        
+        .hero-features li {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-features .feature-icon {
+            color: #28a745;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            justify-content: flex-start;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.8);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .hero-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: 2px solid #3b82f6;
+            padding: 1.25rem 2.5rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1d4ed8;
+            border: 2px solid #1d4ed8;
+            padding: 1.25rem 2.5rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: #1d4ed8;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 420px;
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Service Cards */
+        .services-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+            font-weight: 800;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #e9ecef;
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .service-description {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .service-features {
+            text-align: left;
+            color: #666;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .service-features li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .service-features .feature-bullet {
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .service-card .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: 2px solid #3b82f6;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .service-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* How It Works */
+        .how-it-works-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .step-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: left;
+            border-left: 4px solid #3b82f6;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #666;
+        }
+        
+        .testimonial-info h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .testimonial-location {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .stars {
+            color: #ffc107;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-text {
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .service-tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 16px;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 800;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta-primary {
+            background: white;
+            color: #1d4ed8;
+            border: 2px solid white;
+            padding: 1.25rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+        }
+        
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255,255,255,0.3);
+            background: #f8fafc;
+        }
+        
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1.25rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-cta-secondary:hover {
+            background: white;
+            color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: row;
+                gap: 40px;
+            }
+            .hero-text {
+                min-width: 350px;
+            }
+            .hero-image {
+                min-width: 350px;
+            }
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-text {
+                min-width: auto;
+                order: 2;
+            }
+            .hero-image {
+                min-width: auto;
+                order: 1;
+                max-width: 100%;
+            }
+            .hero-image img {
+                max-width: 100%;
+                height: auto;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .hero-description {
+                font-size: 1.1rem;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content {
+                padding: 0 15px;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+            }
+            .btn {
+                font-size: 1.1rem;
+                padding: 1rem 2rem;
+            }
+        }
+    </style>
 </head>
-    <body>
+<body>
     <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
         <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
@@ -43,462 +629,144 @@
     </div>
 
     <main>
-        <!-- Hero Section with large image -->
-        <section id="hero-large" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); padding: 4rem 0;">
-            <div class="hero-content" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px; gap: 60px;">
-                <div class="hero-text" style="flex: 1; text-align: left; min-width: 400px;">
-                    <h1 style="color: #1e3a8a; margin-top: 0; font-size: 3.5rem; font-weight: 700; line-height: 1.1; text-shadow: none; word-wrap: normal; hyphens: none;">Personal Chefs for Every Occasion</h1>
-                    <p style="color: #1e3a8a; font-size: 1.5rem; font-weight: 600; margin-top: 1rem; margin-bottom: 1rem; text-shadow: none;">Book a Chef in 3 Minutes!</p>
-                    <p style="color: #1e3a8a; font-size: 1.2rem; margin-bottom: 2rem; font-weight: 500; text-shadow: none;">Restaurant-quality dining at home</p>
-                    <ul style="color: #1e3a8a; font-size: 1.1rem; margin-bottom: 2rem; padding-left: 0; list-style: none;">
-                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
-                            Verified professional chefs
-                        </li>
-                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
-                            Customized menus for every occasion
-                        </li>
-                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
-                            Restaurant-quality dining at home
-                        </li>
-                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                            <i class="fas fa-check-circle" style="color: #28a745; position: absolute; left: 0; top: 0.1rem;"></i>
-                            Last-minute bookings available
-                        </li>
+        <!-- Hero Section - Conversion Focused -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Book a Personal Chef for Home Dining</h1>
+                    <div class="hero-subtitle">Fast & Easy - Restaurant Quality at Home</div>
+                    <div class="hero-description">Professional chefs, customized menus, unforgettable dining experiences</div>
+                    
+                    <ul class="hero-features">
+                        <li><span class="feature-icon">✓</span> Verified Professional Chefs</li>
+                        <li><span class="feature-icon">✓</span> Customized Menus for Every Occasion</li>
+                        <li><span class="feature-icon">✓</span> Restaurant-Quality Dining at Home</li>
+                        <li><span class="feature-icon">✓</span> Last-Minute Bookings Available</li>
                     </ul>
-                    <div style="display: flex; gap: 2rem; margin-top: 1rem;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a; margin-bottom: 0.5rem;">✓</div>
-                            <div style="font-size: 0.9rem; color: #1e3a8a; font-weight: 500;">Verified Chefs</div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">4.6/5</div>
+                            <div class="stat-label">Customer Rating</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a; margin-bottom: 0.5rem;">✓</div>
-                            <div style="font-size: 0.9rem; color: #1e3a8a; font-weight: 500;">Customized Menus</div>
+                        <div class="stat-item">
+                            <div class="stat-number">2000+</div>
+                            <div class="stat-label">Meals Served</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a; margin-bottom: 0.5rem;">📅</div>
-                            <div style="font-size: 0.9rem; color: #1e3a8a; font-weight: 500;">Last-Minute Bookings</div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
                         </div>
                     </div>
-                    <div style="margin-top: 3rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                        <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">👨‍🍳 Explore Chefs Now</a>
-                        <a href="book-a-chef.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">📅 Book Your Chef Today</a>
+                    
+                    <div class="hero-actions">
+                        <a href="explore-chefs.html" class="btn-primary">
+                            <i class="fas fa-search" style="margin-right: 10px;"></i>
+                            Find Your Chef Now
+                        </a>
+                        <a href="book-a-chef.html" class="btn-secondary">
+                            <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                            Book Chef Today
+                        </a>
                     </div>
                 </div>
-                <div class="hero-image" style="flex: 1; display: flex; justify-content: center; align-items: center; min-width: 420px;">
-                    <div style="position: relative; width: 100%; max-width: 500px; height: auto;">
-                        <img src="images/chef-work1.jpg" alt="Chef cooking" 
-                            style="width: 100%; max-width: 520px; height: auto; object-fit: cover; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
-                        <!-- Decorative overlay elements -->
-                        <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: linear-gradient(45deg, #3b82f6, #1d4ed8); border-radius: 50%; opacity: 0.1; filter: blur(10px);"></div>
-                        <div style="position: absolute; bottom: -20px; right: -20px; width: 120px; height: 120px; background: linear-gradient(45deg, #10b981, #059669); border-radius: 50%; opacity: 0.1; filter: blur(10px);"></div>
-                    </div>
+                <div class="hero-image">
+                    <img src="images/chef-work1.jpg" alt="Chef cooking gourmet meal" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- Responsive styles for hero section -->
-        <style>
-            @media (max-width: 992px) {
-                .hero-content {
-                    flex-direction: row;
-                    gap: 40px;
-                }
-                .hero-text {
-                    min-width: 350px;
-                }
-                .hero-image {
-                    min-width: 350px;
-                }
-            }
+        <!-- Services Section - Clear Value Propositions -->
+        <section class="services-section">
+            <h2 class="section-title">Our Chef Services</h2>
+            <p class="section-subtitle">Choose the perfect service for your dining needs</p>
             
-            @media (max-width: 768px) {
-                .hero-content {
-                    flex-direction: column;
-                    text-align: center;
-                    gap: 2rem;
-                }
-                .hero-text {
-                    min-width: auto;
-                    order: 2;
-                }
-                .hero-image {
-                    min-width: auto;
-                    order: 1;
-                    max-width: 100%;
-                }
-                .hero-image img {
-                    max-width: 100%;
-                    height: auto;
-                }
-                .hero-text h1 {
-                    font-size: 2.5rem;
-                }
-                .hero-text p {
-                    font-size: 1.2rem;
-                }
-                .btn {
-                    width: 100%;
-                    max-width: 300px;
-                }
-            }
-            
-            @media (max-width: 576px) {
-                .hero-content {
-                    padding: 0 15px;
-                }
-                .hero-text h1 {
-                    font-size: 2rem;
-                }
-                .hero-text p {
-                    font-size: 1.1rem;
-                }
-                .btn {
-                    font-size: 1rem;
-                    padding: 0.75rem 1.5rem;
-                }
-            }
-        </style>
-
-        <!-- Social Proof Section -->
-        <section id="social-proof" style="text-align:center; margin: 60px 0; padding: 4rem 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e3a8a;">Trusted by Thousands</h2>
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Join our growing community of satisfied customers</p>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto;">
-                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; font-weight: bold; color: #28a745; margin-bottom: 0.5rem;">4.6/5</div>
-                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Average Rating</div>
-                    <div style="color: #ffc107;">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-utensils service-icon" style="color: #28a745;"></i>
+                    <h3 class="service-title">Weekly Meal Prep</h3>
+                    <p class="service-description">Fresh, healthy meals prepared weekly in your kitchen</p>
+                    
+                    <ul class="service-features">
+                        <li><span class="feature-bullet">•</span> Customized to your dietary needs</li>
+                        <li><span class="feature-bullet">•</span> Shop, cook, and clean included</li>
+                        <li><span class="feature-bullet">•</span> Save time on meal planning</li>
+                        <li><span class="feature-bullet">•</span> Perfect for busy families</li>
+                    </ul>
+                    
+                    <a href="weekly-meals.html" class="btn">Learn More</a>
                 </div>
-                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; font-weight: bold; color: #007bff; margin-bottom: 0.5rem;">2000+</div>
-                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Meals Served</div>
-                    <div style="color: #666;">
-                        <i class="fas fa-utensils"></i> <i class="fas fa-utensils"></i> <i class="fas fa-utensils"></i>
-                    </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-glass-cheers service-icon" style="color: #007bff;"></i>
+                    <h3 class="service-title">Private Events</h3>
+                    <p class="service-description">Elevate your special occasions with professional catering</p>
+                    
+                    <ul class="service-features">
+                        <li><span class="feature-bullet">•</span> Weddings, birthdays, anniversaries</li>
+                        <li><span class="feature-bullet">•</span> Custom menus for your guests</li>
+                        <li><span class="feature-bullet">•</span> Full service from setup to cleanup</li>
+                        <li><span class="feature-bullet">•</span> Impress your guests</li>
+                    </ul>
+                    
+                    <a href="catering-services.html" class="btn">Get Quote</a>
                 </div>
-                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; font-weight: bold; color: #ffc107; margin-bottom: 0.5rem;">98%</div>
-                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Customer Satisfaction</div>
-                    <div style="color: #666;">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                </div>
-                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; font-weight: bold; color: #28a745; margin-bottom: 0.5rem;">24/7</div>
-                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">Support Available</div>
-                    <div style="color: #666;">
-                        <i class="fas fa-headset"></i>
-                    </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-concierge-bell service-icon" style="color: #ffc107;"></i>
+                    <h3 class="service-title">One-Time Dining</h3>
+                    <p class="service-description">Restaurant-quality dinner without leaving home</p>
+                    
+                    <ul class="service-features">
+                        <li><span class="feature-bullet">•</span> Date nights, family dinners</li>
+                        <li><span class="feature-bullet">•</span> Any cuisine you desire</li>
+                        <li><span class="feature-bullet">•</span> Professional presentation</li>
+                        <li><span class="feature-bullet">•</span> Complete cleanup included</li>
+                    </ul>
+                    
+                    <a href="book-a-chef.html" class="btn">Book Now</a>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Gallery Carousel -->
-        <section id="featured-gallery" style="text-align:center; margin: 60px 0; padding: 2rem 0; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
-            <h2 style="margin-bottom: 2rem; color: #1e3a8a;">Featured Chef Experiences</h2>
-            <div class="gallery-carousel" style="display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; scroll-behavior: smooth;">
-                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <img src="images/chef-work1.jpg" alt="Chef cooking" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
-                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Private Dining</h3>
-                    </div>
-                </div>
-                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <img src="images/food1.jpg" alt="Plated dish" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
-                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Gourmet Cuisine</h3>
-                    </div>
-                </div>
-                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <img src="images/event1.jpg" alt="Special event" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
-                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Special Events</h3>
-                    </div>
-                </div>
-                <div class="carousel-item" style="flex: 0 0 300px; height: 200px; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <img src="images/weekly-meal.jpg" alt="Weekly meals" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1rem; text-align: center;">
-                        <h3 style="margin: 0; font-size: 1.2rem; color: white;">Weekly Meals</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Enhanced CTA Section -->
-        <section id="main-cta" style="text-align:center; margin: 60px 0; padding: 3rem 1rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border-radius: 12px; margin: 2rem auto; max-width: 1200px;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready for an Amazing Culinary Experience?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: white;">Book your personal chef today and enjoy restaurant-quality meals in the comfort of your home.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">👨‍🍳 Explore Chefs Now</a>
-                <a href="book-a-chef.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6;">📅 Book Your Chef Today</a>
-            </div>
-        </section>
-
-        <!-- Chef Photos Gallery Section -->
-        <section id="chef-photos">
-            <h2>Chef Creations</h2>
-            <p>Explore beautiful moments captured from our chefs' culinary artistry</p>
-            <div class="photos-gallery">
-                <div class="photo-item">
-                    <img src="images/chef-work1.jpg" alt="Chef cooking">
-                    <div class="photo-overlay">
-                        <span>Professional Cooking</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work2.jpg" alt="Kitchen preparation">
-                    <div class="photo-overlay">
-                        <span>Fresh Ingredients</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work3.jpg" alt="Event cooking">
-                    <div class="photo-overlay">
-                        <span>Special Events</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work4.jpg" alt="Chef plating">
-                    <div class="photo-overlay">
-                        <span>Perfect Presentation</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work5.jpg" alt="Chef with team">
-                    <div class="photo-overlay">
-                        <span>Team Excellence</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work6.jpg" alt="Chef in action">
-                    <div class="photo-overlay">
-                        <span>Master Chefs</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work7.jpg" alt="Chef workspace">
-                    <div class="photo-overlay">
-                        <span>Clean & Professional</span>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <img src="images/chef-work8.jpg" alt="Chef finishing dish">
-                    <div class="photo-overlay">
-                        <span>Quality Assurance</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Chef Videos Section -->
-        <section id="chef-videos">
-            <h2>Watch Our Chefs in Action</h2>
-            <p>Experience the artistry and precision of professional cooking</p>
-            <div class="videos-gallery">
-                <div class="video-item">
-                    <video muted loop>
-                        <source src="images/chef-video1.mp4" type="video/mp4">
-                        <!-- Fallback image for browsers that don't support video -->
-                    </video muted loop>
-                    <div class="play-overlay">
-                        <div class="play-button">▶</div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <video muted loop>
-                        <source src="images/chef-video2.mp4" type="video/mp4">
-                    </video muted loop>
-                    <div class="play-overlay">
-                        <div class="play-button">▶</div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <video muted loop>
-                        <source src="images/chef-video3.mp4" type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-button">▶</div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <video muted loop>
-                        <source src="images/chef-video4.mp4" type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-button">▶</div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <video muted loop>
-                        <source src="images/chef-video5.mp4" type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-button">▶</div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <video muted loop>
-                        <source src="images/chef-video6.mp4" type="video/mp4">
-
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-button">▶</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works Section -->
-        <section id="how-it-works-home">
-            <h2>How It Works</h2>
+        <!-- How It Works - Simple 4 Steps -->
+        <section class="how-it-works-section">
+            <h2 class="section-title">How It Works</h2>
             <p class="section-subtitle">Four simple steps to your perfect dining experience</p>
-            <div class="how-it-works-steps">
+            
+            <div class="steps-grid">
                 <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
                     <div class="step-number">1</div>
-                    <h3>Explore Chefs Near You</h3>
-                    <p>Browse professional chefs based on location, cuisine, and dietary needs.</p>
+                    <h3 class="step-title">Explore Chefs</h3>
+                    <p class="step-description">Browse professional chefs based on location, cuisine, and dietary needs</p>
                 </div>
+                
                 <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
                     <div class="step-number">2</div>
-                    <h3>Choose Menu & Preferences</h3>
-                    <p>Select your preferred meals, cuisine type, and dietary requirements.</p>
+                    <h3 class="step-title">Choose Menu</h3>
+                    <p class="step-description">Select your preferred meals, cuisine type, and dietary requirements</p>
                 </div>
+                
                 <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
                     <div class="step-number">3</div>
-                    <h3>Book Date & Time</h3>
-                    <p>Schedule your chef for a specific date, time, and event.</p>
+                    <h3 class="step-title">Book Date</h3>
+                    <p class="step-description">Schedule your chef for a specific date, time, and event</p>
                 </div>
+                
                 <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-concierge-bell"></i>
-                    </div>
                     <div class="step-number">4</div>
-                    <h3>Enjoy Chef-Crafted Meals</h3>
-                    <p>Relax while your chef prepares fresh, restaurant-quality food in your kitchen.</p>
+                    <h3 class="step-title">Enjoy Dining</h3>
+                    <p class="step-description">Relax while your chef prepares fresh, restaurant-quality food</p>
                 </div>
             </div>
         </section>
 
-         <!-- Who We Are Section -->
-        <section id="who-we-are">
-            <div class="who-we-are-content">
-                <div class="who-we-are-image">
-                    <img src="images/chef-team.jpg" alt="Chef team and kitchen" style="height: 750px; width: 500px;">
-                </div>
-                <div class="who-we-are-text">
-                    <h2>Who We Are</h2>
-                    <p><strong>Premium personal chef platform</strong> bringing restaurant-quality dining to your home across the USA.</p>
-
-                    <h3>Our Mission</h3>
-                    <p><strong>Elevate everyday meals</strong> and special occasions with exceptional, customized chef services.</p>
-
-                    <h3>Trust & Reliability</h3>
-                    <p><strong>Background-checked chefs</strong> with professional experience in top restaurants and culinary schools.</p>
-
-                    <h3>Quality & Expertise</h3>
-                    <p><strong>Global cuisine specialists</strong> including American, Indian, Italian, Mediterranean, Asian, Vegan, and Keto.</p>
-
-                    <h3>Customer Focus</h3>
-                    <p><strong>Personalized menus</strong> tailored to your dietary preferences, allergies, and cultural tastes.</p>
-
-                    <div style="margin-top: 2rem;">
-                        <a href="about-us.html" class="btn">Learn More About Us</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Maharaja Chef Services Section -->
-        <section id="why-choose-us">
-            <h2>Why Choose Maharaja Chef Services</h2>
-            <div class="why-choose-grid">
-                <div class="why-choose-item">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Experienced Chefs</h3>
-                    <p>Our chefs have years of professional experience in top restaurants and culinary schools.</p>
-                </div>
-                <div class="why-choose-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Food Safety & Hygiene</h3>
-                    <p>We maintain the highest standards of food safety and kitchen hygiene.</p>
-                </div>
-                <div class="why-choose-item">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Customized Menus</h3>
-                    <p>Every menu is tailored to your preferences, dietary restrictions, and special requests.</p>
-                </div>
-                <div class="why-choose-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Trusted US-Based Service</h3>
-                    <p>We operate across the USA with local chefs who understand regional tastes.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trust Badges Section -->
-        <section id="trust-badges" style="text-align:center; margin: 60px 0; padding: 2rem 0; background: #f8f9fa;">
-            <h2 style="margin-bottom: 2rem; color: #1e3a8a;">Trusted by Customers Nationwide</h2>
-            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; align-items: center;">
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
-                    <div style="font-size: 2.5rem; color: #ffc107; margin-bottom: 0.5rem;">★ 4.6/5</div>
-                    <div style="font-weight: 600; color: #333;">Google Reviews</div>
-                    <div style="font-size: 0.9rem; color: #666;">Based on 150+ reviews</div>
-                </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
-                    <div style="font-size: 2.5rem; color: #ffc107; margin-bottom: 0.5rem;">★ 4.8/5</div>
-                    <div style="font-weight: 600; color: #333;">Yelp Reviews</div>
-                    <div style="font-size: 0.9rem; color: #666;">Based on 200+ reviews</div>
-                </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
-                    <div style="font-size: 2.5rem; color: #28a745; margin-bottom: 0.5rem;">✓</div>
-                    <div style="font-weight: 600; color: #333;">Verified Chefs</div>
-                    <div style="font-size: 0.9rem; color: #666;">Background checked & certified</div>
-                </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px;">
-                    <div style="font-size: 2.5rem; color: #007bff; margin-bottom: 0.5rem;">👨‍🍳</div>
-                    <div style="font-weight: 600; color: #333;"></div>
-                    <div style="font-size: 0.9rem; color: #666;">Nationwide network</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Service Areas Section -->
-        <section id="service-areas" style="text-align:center; margin: 60px 0; padding: 2rem 0;">
-            <h2 style="margin-bottom: 2rem; color: #1e3a8a;">Serving Major areas accross the california</h2>
-            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Los Angeles</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 San Diego</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 San Francisco</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍San Jose</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Sacramento</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Fresno</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Oakland</span>
-                <span style="background: #f1f5f9; padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; color: #333;">📍 Irvine</span>
-            </div>
-        </section>
-
-        <!-- Customer Testimonials Section -->
-        <section id="testimonials">
-            <h2>What Our Customers Say</h2>
+        <!-- Testimonials - Social Proof -->
+        <section class="testimonials-section">
+            <h2 class="section-title">What Our Customers Say</h2>
             <p class="section-subtitle">Real experiences from satisfied clients across the USA</p>
+            
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -517,11 +785,10 @@
                             </div>
                         </div>
                     </div>
-                    <blockquote>"The chef prepared an amazing 5-course meal for our anniversary. It was better than any restaurant we've been to! The presentation was stunning and every bite was perfection."</blockquote>
-                    <div class="testimonial-service">
-                        <span class="service-tag">Special Event</span>
-                    </div>
+                    <p class="testimonial-text">"The chef prepared an amazing 5-course meal for our anniversary. It was better than any restaurant we've been to! The presentation was stunning and every bite was perfection."</p>
+                    <span class="service-tag">Special Event</span>
                 </div>
+                
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">
@@ -539,11 +806,10 @@
                             </div>
                         </div>
                     </div>
-                    <blockquote>"Weekly meal prep has changed our lives. Healthy, delicious meals ready every day without the hassle. Our chef understands our dietary needs perfectly."</blockquote>
-                    <div class="testimonial-service">
-                        <span class="service-tag">Weekly Service</span>
-                    </div>
+                    <p class="testimonial-text">"Weekly meal prep has changed our lives. Healthy, delicious meals ready every day without the hassle. Our chef understands our dietary needs perfectly."</p>
+                    <span class="service-tag">Weekly Service</span>
                 </div>
+                
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">
@@ -561,17 +827,32 @@
                             </div>
                         </div>
                     </div>
-                    <blockquote>"Our cattering event was a huge success thanks to the professional chef service. The team was punctual, professional, and the food received rave reviews from all attendees."</blockquote>
-                    <div class="testimonial-service">
-                        <span class="service-tag">cattering Event</span>
-                    </div>
+                    <p class="testimonial-text">"Our catering event was a huge success thanks to the professional chef service. The team was punctual, professional, and the food received rave reviews from all attendees."</p>
+                    <span class="service-tag">Catering Event</span>
                 </div>
+            </div>
+        </section>
+
+        <!-- Final CTA - Strong Conversion Focus -->
+        <section class="cta-section">
+            <h2 class="cta-title">Ready for an Amazing Culinary Experience?</h2>
+            <p class="cta-subtitle">Book your personal chef today and enjoy restaurant-quality meals in the comfort of your home</p>
+            
+            <div class="cta-actions">
+                <a href="explore-chefs.html" class="btn-cta-primary">
+                    <i class="fas fa-search" style="margin-right: 10px;"></i>
+                    Find Your Chef Now
+                </a>
+                <a href="book-a-chef.html" class="btn-cta-secondary">
+                    <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                    Book Chef Today
+                </a>
             </div>
         </section>
 
     </main>
 
-      <footer>
+    <footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Maharaja Chef Services</h3>
@@ -612,21 +893,6 @@
             <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
         </div>
     </footer>
-        
-    <!-- Video Modal -->
-    <div id="video-modal" class="video-modal">
-        <div class="video-modal-backdrop" id="video-modal-backdrop"></div>
-        <div class="video-modal-content">
-            <div class="video-modal-header">
-                <button class="video-modal-close" id="video-modal-close">&times;</button>
-            </div>
-            <div class="video-modal-body">
-                <video id="modal-video" controls preload="metadata">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -649,7 +915,7 @@
         window.addEventListener('load', checkMobileStickyCTA);
         window.addEventListener('resize', checkMobileStickyCTA);
     </script>
-    </body>
+    
     <!-- Chatbot Integration -->
     <script>
         // Load chatbot
@@ -681,5 +947,5 @@
                 console.error('Error loading chatbot:', error);
             });
     </script>
-
+</body>
 </html>

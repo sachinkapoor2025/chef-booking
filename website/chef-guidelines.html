@@ -8,6 +8,231 @@
     <meta name="keywords" content="chef guidelines, professional standards, culinary requirements, chef expectations">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Chef Guidelines Specific Styles */
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .standard-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .standard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .standard-card:hover .card-icon {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .card-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .standard-card h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .card-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .card-description strong {
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+        
+        /* Service Requirements Grid */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .requirement-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .requirement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+        
+        .requirement-card i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .requirement-card h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .requirement-card ul {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        
+        .requirement-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 0.5rem;
+        }
+        
+        .requirement-card .bullet {
+            position: absolute;
+            left: -1.5rem;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        /* Code of Conduct Grid */
+        .conduct-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .conduct-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .conduct-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+        
+        .conduct-item i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .conduct-item h3 {
+            color: #1e3a8a;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .conduct-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .standards-grid {
+                grid-template-columns: 1fr;
+            }
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            .conduct-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .conduct-grid {
+                grid-template-columns: 1fr;
+            }
+            .standard-card {
+                padding: 1.5rem;
+            }
+            .card-icon {
+                width: 70px;
+                height: 70px;
+            }
+            .card-icon i {
+                font-size: 1.75rem;
+            }
+            .standard-card h3 {
+                font-size: 1.3rem;
+            }
+            .card-description {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .standard-card {
+                padding: 1.25rem;
+            }
+            .card-icon {
+                width: 60px;
+                height: 60px;
+            }
+            .card-icon i {
+                font-size: 1.5rem;
+            }
+            .standard-card h3 {
+                font-size: 1.2rem;
+            }
+            .card-description {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -30,26 +255,34 @@
         <!-- Professional Standards -->
         <section id="professional-standards">
             <h2>Professional Standards</h2>
-            <div class="standards-content">
-                <div class="standard-item">
-                    <i class="fas fa-clock"></i>
+            <div class="standards-grid">
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
                     <h3>Punctuality</h3>
-                    <p>Arrive at least 30 minutes before the scheduled service time to set up and prepare. Notify clients immediately if any delays are expected.</p>
+                    <p class="card-description">Arrive at least <strong>30 minutes early</strong> before the scheduled service time to set up and prepare. Notify clients immediately if any delays are expected.</p>
                 </div>
-                <div class="standard-item">
-                    <i class="fas fa-tshirt"></i>
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
                     <h3>Professional Appearance</h3>
-                    <p>Wear clean, professional chef attire including chef coat, apron, and appropriate head covering. Maintain excellent personal hygiene.</p>
+                    <p class="card-description">Wear clean, professional chef attire including chef coat, apron, and appropriate head covering. Maintain <strong>excellent personal hygiene</strong>.</p>
                 </div>
-                <div class="standard-item">
-                    <i class="fas fa-handshake"></i>
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
                     <h3>Client Interaction</h3>
-                    <p>Maintain professional, courteous communication with clients. Be responsive to messages and requests throughout the service.</p>
+                    <p class="card-description">Maintain professional, courteous communication with clients. Be <strong>responsive to messages</strong> and requests throughout the service.</p>
                 </div>
-                <div class="standard-item">
-                    <i class="fas fa-soap"></i>
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-soap"></i>
+                    </div>
                     <h3>Hygiene & Cleanliness</h3>
-                    <p>Follow strict food safety protocols. Keep work areas clean and organized. Properly sanitize all surfaces and equipment.</p>
+                    <p class="card-description">Follow strict food safety protocols. Keep work areas clean and organized. <strong>Properly sanitize</strong> all surfaces and equipment.</p>
                 </div>
             </div>
         </section>

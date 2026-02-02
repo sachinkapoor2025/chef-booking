@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Chef - Maharaja Chef Services</title>
+    <meta name="description" content="Book a personal chef for your home dining needs. Quick and easy booking process.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Booking Widget Styles */
+        .booking-widget {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        .widget-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .widget-header h2 {
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+        
+        .widget-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .booking-steps::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 33.33%;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #e9ecef;
+            color: #666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: #3b82f6;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step.completed .step-number {
+            background: #28a745;
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .step.active .step-label {
+            color: #3b82f6;
+        }
+        
+        .step.completed .step-label {
+            color: #28a745;
+        }
+        
+        .form-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .service-option {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .service-option:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        
+        .service-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+        
+        .service-option .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .service-option h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+        
+        .service-option .service-price {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .guest-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .guest-option {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .guest-option:hover {
+            border-color: #3b82f6;
+        }
+        
+        .guest-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .cuisine-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cuisine-option {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .cuisine-option:hover {
+            border-color: #3b82f6;
+        }
+        
+        .cuisine-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .dietary-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .dietary-option {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .dietary-option:hover {
+            border-color: #3b82f6;
+        }
+        
+        .dietary-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn-step {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+        
+        .btn-next {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-color: #3b82f6;
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-prev {
+            background: white;
+            color: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+        
+        .btn-prev:hover {
+            background: #1d4ed8;
+            color: white;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            color: white;
+            border-color: #28a745;
+            padding: 1.25rem 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+        }
+        
+        .summary-card {
+            background: #f8fafc;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            text-align: right;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .success-message {
+            background: #d1fae5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        
+        .error-message {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+            .guest-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cuisine-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dietary-options {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .form-actions {
+                flex-direction: column;
+            }
+            .btn-step {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="booking-widget">
+            <div class="widget-header">
+                <h2><i class="fas fa-calendar-check" style="margin-right: 15px; color: #3b82f6;"></i>Book Your Chef</h2>
+                <p>Quick and easy booking process - takes less than 3 minutes</p>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="step active" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Service Details</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Preferences</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Contact Info</div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="error-message"></div>
+
+            <!-- Step 1: Service Details -->
+            <div class="form-section active" id="section1">
+                <h3 style="color: #1e3a8a; margin-bottom: 1.5rem;">Choose Your Service</h3>
+                
+                <div class="service-options">
+                    <div class="service-option" data-service="weekly" data-price="150">
+                        <i class="fas fa-calendar-week service-icon" style="color: #28a745;"></i>
+                        <h4>Weekly Meal Prep</h4>
+                        <div class="service-price">$150/week</div>
+                    </div>
+                    <div class="service-option" data-service="event" data-price="250">
+                        <i class="fas fa-glass-cheers service-icon" style="color: #007bff;"></i>
+                        <h4>Private Event</h4>
+                        <div class="service-price">$250/event</div>
+                    </div>
+                    <div class="service-option" data-service="dining" data-price="120">
+                        <i class="fas fa-concierge-bell service-icon" style="color: #ffc107;"></i>
+                        <h4>One-Time Dining</h4>
+                        <div class="service-price">$120/dinner</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-date">Event Date</label>
+                        <input type="date" id="event-date" name="event-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-time">Event Time</label>
+                        <div style="display: flex; gap: 10px;">
+                            <select id="event-hour" name="event-hour" required>
+                                <option value="">Hour</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select id="event-minute" name="event-minute" required>
+                                <option value="">Minute</option>
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <select id="event-ampm" name="event-ampm" required>
+                                <option value="">AM/PM</option>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <div class="guest-options">
+                        <div class="guest-option" data-guests="2-4">2-4</div>
+                        <div class="guest-option" data-guests="5-8">5-8</div>
+                        <div class="guest-option" data-guests="9-12">9-12</div>
+                        <div class="guest-option" data-guests="13+">13+</div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div></div> <!-- Empty div for spacing -->
+                    <button class="btn-step btn-next" id="next1">Next: Preferences <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 2: Preferences -->
+            <div class="form-section" id="section2">
+                <h3 style="color: #1e3a8a; margin-bottom: 1.5rem;">Your Preferences</h3>
+                
+                <div class="form-group">
+                    <label>Cuisine Preferences</label>
+                    <div class="cuisine-options">
+                        <div class="cuisine-option" data-cuisine="indian">Indian</div>
+                        <div class="cuisine-option" data-cuisine="continental">Continental</div>
+                        <div class="cuisine-option" data-cuisine="italian">Italian</div>
+                        <div class="cuisine-option" data-cuisine="mexican">Mexican</div>
+                        <div class="cuisine-option" data-cuisine="chinese">Chinese</div>
+                        <div class="cuisine-option" data-cuisine="mediterranean">Mediterranean</div>
+                        <div class="cuisine-option" data-cuisine="american">American</div>
+                        <div class="cuisine-option" data-cuisine="fusion">Fusion</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Dietary Requirements</label>
+                    <div class="dietary-options">
+                        <div class="dietary-option" data-dietary="vegetarian">Vegetarian</div>
+                        <div class="dietary-option" data-dietary="vegan">Vegan</div>
+                        <div class="dietary-option" data-dietary="gluten-free">Gluten-Free</div>
+                        <div class="dietary-option" data-dietary="dairy-free">Dairy-Free</div>
+                        <div class="dietary-option" data-dietary="nut-free">Nut-Free</div>
+                        <div class="dietary-option" data-dietary="halal">Halal</div>
+                        <div class="dietary-option" data-dietary="kosher">Kosher</div>
+                        <div class="dietary-option" data-dietary="none">No Restrictions</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="special-requests">Special Requests or Notes</label>
+                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="Any special dietary needs, cultural requirements, or additional information..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn-step btn-prev" id="prev2"><i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back</button>
+                    <button class="btn-step btn-next" id="next2">Next: Contact Info <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Contact Info -->
+            <div class="form-section" id="section3">
+                <h3 style="color: #1e3a8a; margin-bottom: 1.5rem;">Contact Information</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Event Location</label>
+                        <input type="text" id="location" name="location" placeholder="City, State (e.g., San Jose, CA)" required>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <h4 style="margin-top: 0; margin-bottom: 1rem; color: #1e3a8a;">Booking Summary</h4>
+                    <div class="summary-item">
+                        <span>Service Type:</span>
+                        <span id="summary-service">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Event Date:</span>
+                        <span id="summary-date">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Number of Guests:</span>
+                        <span id="summary-guests">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Estimated Price:</span>
+                        <span id="summary-price">$0</span>
+                    </div>
+                    <div class="summary-total">
+                        Total: <span id="total-price">$0</span>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn-step btn-prev" id="prev3"><i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back</button>
+                    <button class="btn-step btn-submit" id="submit-booking">
+                        <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                        Book My Chef
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div id="success-message" class="success-message">
+                <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                <strong>Booking Confirmed!</strong> Thank you for choosing Maharaja Chef Services. We'll contact you within 24 hours to confirm your booking details.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Booking Widget JavaScript
+        let currentStep = 1;
+        let bookingData = {
+            service: '',
+            price: 0,
+            guests: '',
+            cuisine: [],
+            dietary: [],
+            date: '',
+            time: '',
+            name: '',
+            email: '',
+            phone: '',
+            location: '',
+            specialRequests: ''
+        };
+
+        // DOM Elements
+        const steps = document.querySelectorAll('.step');
+        const sections = document.querySelectorAll('.form-section');
+        const serviceOptions = document.querySelectorAll('.service-option');
+        const guestOptions = document.querySelectorAll('.guest-option');
+        const cuisineOptions = document.querySelectorAll('.cuisine-option');
+        const dietaryOptions = document.querySelectorAll('.dietary-option');
+        const next1Btn = document.getElementById('next1');
+        const next2Btn = document.getElementById('next2');
+        const prev2Btn = document.getElementById('prev2');
+        const prev3Btn = document.getElementById('prev3');
+        const submitBtn = document.getElementById('submit-booking');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+
+        // Event Listeners
+        serviceOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                serviceOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                bookingData.service = option.dataset.service;
+                bookingData.price = parseInt(option.dataset.price);
+                updateSummary();
+            });
+        });
+
+        guestOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                guestOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                bookingData.guests = option.dataset.guests;
+            });
+        });
+
+        cuisineOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('selected');
+                const cuisine = option.dataset.cuisine;
+                if (option.classList.contains('selected')) {
+                    if (!bookingData.cuisine.includes(cuisine)) {
+                        bookingData.cuisine.push(cuisine);
+                    }
+                } else {
+                    bookingData.cuisine = bookingData.cuisine.filter(c => c !== cuisine);
+                }
+            });
+        });
+
+        dietaryOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('selected');
+                const dietary = option.dataset.dietary;
+                if (option.classList.contains('selected')) {
+                    if (!bookingData.dietary.includes(dietary)) {
+                        bookingData.dietary.push(dietary);
+                    }
+                } else {
+                    bookingData.dietary = bookingData.dietary.filter(d => d !== dietary);
+                }
+            });
+        });
+
+        next1Btn.addEventListener('click', () => {
+            if (!bookingData.service) {
+                showError('Please select a service type');
+                return;
+            }
+            if (!document.getElementById('event-date').value) {
+                showError('Please select an event date');
+                return;
+            }
+            if (!document.getElementById('event-hour').value || !document.getElementById('event-minute').value || !document.getElementById('event-ampm').value) {
+                showError('Please select an event time');
+                return;
+            }
+            if (!bookingData.guests) {
+                showError('Please select the number of guests');
+                return;
+            }
+            nextStep();
+        });
+
+        next2Btn.addEventListener('click', () => {
+            if (bookingData.cuisine.length === 0) {
+                showError('Please select at least one cuisine preference');
+                return;
+            }
+            if (bookingData.dietary.length === 0) {
+                showError('Please select at least one dietary requirement');
+                return;
+            }
+            nextStep();
+        });
+
+        prev2Btn.addEventListener('click', () => prevStep());
+        prev3Btn.addEventListener('click', () => prevStep());
+
+        submitBtn.addEventListener('click', submitBooking);
+
+        // Functions
+        function nextStep() {
+            if (currentStep < 3) {
+                sections[currentStep - 1].classList.remove('active');
+                sections[currentStep].classList.add('active');
+                steps[currentStep - 1].classList.remove('active');
+                steps[currentStep - 1].classList.add('completed');
+                steps[currentStep].classList.add('active');
+                currentStep++;
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                sections[currentStep].classList.remove('active');
+                sections[currentStep - 1].classList.add('active');
+                steps[currentStep].classList.remove('active');
+                steps[currentStep].classList.remove('completed');
+                steps[currentStep - 1].classList.add('active');
+            }
+        }
+
+        function updateSummary() {
+            document.getElementById('summary-service').textContent = bookingData.service || '-';
+            document.getElementById('summary-price').textContent = `$${bookingData.price}`;
+            document.getElementById('total-price').textContent = `$${bookingData.price}`;
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function submitBooking() {
+            // Collect form data
+            bookingData.name = document.getElementById('name').value;
+            bookingData.email = document.getElementById('email').value;
+            bookingData.phone = document.getElementById('phone').value;
+            bookingData.location = document.getElementById('location').value;
+            bookingData.specialRequests = document.getElementById('special-requests').value;
+            bookingData.date = document.getElementById('event-date').value;
+            bookingData.time = `${document.getElementById('event-hour').value}:${document.getElementById('event-minute').value} ${document.getElementById('event-ampm').value}`;
+
+            // Validate required fields
+            if (!bookingData.name || !bookingData.email || !bookingData.phone || !bookingData.location) {
+                showError('Please fill in all required contact information');
+                return;
+            }
+
+            // Here you would typically send the data to your backend
+            console.log('Booking Data:', bookingData);
+            
+            // Show success message
+            successMessage.style.display = 'block';
+            document.querySelector('.booking-widget').scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Reset form after 5 seconds
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+        }
+
+        // Initialize summary
+        updateSummary();
+    </script>
+</body>
+</html>
