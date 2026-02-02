@@ -10,7 +10,7 @@ import time
 import uuid
 
 # Configuration
-API_BASE_URL = "https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod"
+API_BASE_URL = "https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod"
 TEST_EMAIL = f"test+{uuid.uuid4().hex[:8]}@example.com"
 
 def test_async_diet_plan_flow():
