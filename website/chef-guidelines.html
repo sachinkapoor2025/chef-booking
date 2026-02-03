@@ -437,14 +437,32 @@
         #food-safety {
             padding: 4rem 2rem;
             background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #food-safety::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
         
         #food-safety h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #1e3a8a;
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
+            z-index: 1;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         #food-safety h2:after {
@@ -453,10 +471,11 @@
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 160px;
+            width: 200px;
             height: 4px;
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .safety-content {
@@ -466,27 +485,57 @@
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .safety-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .safety-image:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
         }
         
         .safety-image img {
             width: 100%;
             height: auto;
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-radius: 20px;
             transition: transform 0.3s ease;
+            display: block;
+        }
+        
+        .safety-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(29, 78, 216, 0.05) 100%);
+            border-radius: 20px;
+            pointer-events: none;
         }
         
         .safety-image:hover img {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
         
         .safety-guidelines {
             background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 3.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
             border: 2px solid transparent;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
         
         .safety-guidelines::before {
@@ -495,15 +544,16 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 6px;
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             transform: scaleX(0);
-            transition: transform 0.4s ease;
+            transition: transform 0.6s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
         
         .safety-guidelines:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25);
             border-color: #3b82f6;
         }
         
@@ -513,11 +563,12 @@
         
         .safety-guidelines h3 {
             color: #1e3a8a;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
             font-weight: 800;
             position: relative;
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
+            letter-spacing: -0.01em;
         }
         
         .safety-guidelines h3:after {
@@ -525,29 +576,72 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .safety-guidelines .guideline-category {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e3f2fd;
+            transition: all 0.3s ease;
+        }
+        
+        .safety-guidelines .guideline-category:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .safety-guidelines .guideline-category:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+        
+        .safety-guidelines .guideline-category h4 {
+            color: #1e3a8a;
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .safety-guidelines .guideline-category h4::before {
+            content: '';
+            width: 40px;
             height: 3px;
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             border-radius: 2px;
+            flex-shrink: 0;
         }
         
         .safety-guidelines ul {
             color: #64748b;
             line-height: 1.8;
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         .safety-guidelines li {
             margin-bottom: 0.75rem;
             position: relative;
-            padding-left: 1rem;
+            padding-left: 1.5rem;
             transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 2rem;
         }
         
         .safety-guidelines li:hover {
             color: #1e3a8a;
-            transform: translateX(5px);
+            transform: translateX(8px);
+            border-left-color: #3b82f6;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding-left: 2.5rem;
         }
         
         .safety-guidelines .bullet {
@@ -555,7 +649,31 @@
             left: 0;
             color: #3b82f6;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .safety-guidelines li:hover .bullet {
+            transform: translateX(-3px) scale(1.2);
+            color: #1d4ed8;
+        }
+        
+        /* Floating safety icons for visual enhancement */
+        .safety-icon {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .safety-icon:nth-child(1) { top: 10%; right: 10%; animation-delay: 0s; color: #3b82f6; }
+        .safety-icon:nth-child(2) { bottom: 20%; left: 10%; animation-delay: 3s; color: #1d4ed8; transform: rotate(180deg); }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
         }
         
         /* Client Communication Section */
@@ -1092,12 +1210,9 @@
                 <h1>Professional Chef Guidelines</h1>
                 <p>Welcome to Maharaja Chef Services! These comprehensive guidelines ensure consistent quality, professionalism, and exceptional service across our platform. Please review these standards carefully.</p>
                 <div class="cta-buttons">
-                    <a href="become-a-chef.html" class="btn">Apply to Join</a>
+                    <a href="chef-application.html" class="btn">Apply to Join</a>
                     <a href="chef-faq.html" class="btn btn-outline">Chef FAQ</a>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/chef-work2.jpg" alt="Professional chef following guidelines">
             </div>
         </section>
 
