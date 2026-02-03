@@ -449,19 +449,6 @@ header {
     transform: translateY(-1px);
 }
 
-/* Specific hover styles for Business Owner and Log In buttons */
-.action-buttons .btn {
-    color: white;
-    text-decoration: none;
-}
-
-.action-buttons .btn:hover {
-    color: white;
-    background: #1d4ed8;
-    transform: translateY(-1px);
-    text-decoration: none;
-}
-
 /* Business Owner and Log In button specific styles */
 .btn-business-owner,
 .btn-login {
@@ -487,7 +474,9 @@ header {
 }
 
 .btn-business-owner:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: white;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
@@ -499,7 +488,9 @@ header {
 }
 
 .btn-login:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: white;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
