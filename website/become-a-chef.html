@@ -329,124 +329,58 @@
             </div>
         </section>
 
-        <!-- Application Form -->
-        <section id="application">
+        <!-- Application Call to Action -->
+        <section id="application-cta">
             <div class="form-container">
                 <div class="form-header">
-                    <h2>Chef Application Form</h2>
-                    <p>Join our elite team of professional chefs and showcase your culinary expertise</p>
+                    <h2>Ready to Join Our Team?</h2>
+                    <p>Take the first step towards an exciting culinary career with Maharaja Chef Services</p>
                 </div>
                 
-                <form class="application-form" action="#" method="POST" enctype="multipart/form-data">
-                    <!-- Personal Information Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-user"></i> Personal Information</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="full-name">Full Name</label>
-                                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                <div class="cta-content">
+                    <div class="cta-text">
+                        <h3>Why Apply Today?</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Access to premium clients who value quality</li>
+                            <li><i class="fas fa-check-circle"></i> Flexible scheduling that works with your lifestyle</li>
+                            <li><i class="fas fa-check-circle"></i> Competitive compensation and growth opportunities</li>
+                            <li><i class="fas fa-check-circle"></i> Professional support and resources</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cta-actions">
+                        <a href="chef-application.html" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Your Application
+                        </a>
+                        <a href="chef-guidelines.html" class="btn btn-outline">
+                            <i class="fas fa-book"></i> Review Guidelines
+                        </a>
+                    </div>
+                    
+                    <div class="cta-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Quick Process</strong>
+                                <p>Complete application in 10 minutes</p>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Fast Response</strong>
+                                <p>We review applications within 48 hours</p>
                             </div>
-                            <div class="form-group">
-                                <label for="location">Location (City, State)</label>
-                                <input type="text" id="location" name="location" placeholder="e.g., San Francisco, CA" required>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Secure</strong>
+                                <p>Your information is protected and confidential</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Professional Information Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="experience">Years of Professional Experience</label>
-                                <select id="experience" name="experience" required>
-                                    <option value="">Select years of experience</option>
-                                    <option value="3-5">3-5 years</option>
-                                    <option value="5-10">5-10 years</option>
-                                    <option value="10+">10+ years</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="specialty">Culinary Specialty</label>
-                                <select id="specialty" name="specialty" required>
-                                    <option value="">Select your specialty</option>
-                                    <option value="French">French Cuisine</option>
-                                    <option value="Italian">Italian Cuisine</option>
-                                    <option value="Asian">Asian Cuisine</option>
-                                    <option value="Indian">Indian Cuisine</option>
-                                    <option value="Mediterranean">Mediterranean Cuisine</option>
-                                    <option value="Vegan">Vegan/Vegetarian</option>
-                                    <option value="BBQ">BBQ & Grilling</option>
-                                    <option value="Baking">Baking & Pastry</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="certifications">Certifications</label>
-                                <input type="text" id="certifications" name="certifications" placeholder="e.g., Food Handler, ServSafe, Culinary Degree">
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Professional Website/Portfolio</label>
-                                <input type="url" id="website" name="website" placeholder="https://yourwebsite.com (optional)">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional Details Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-edit"></i> Additional Details</h3>
-                        <div class="form-group full-width">
-                            <label for="message">Culinary Philosophy & Experience</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your culinary philosophy, experience, and what makes you unique as a chef..." rows="6" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Resume Upload Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-file-upload"></i> Resume Upload</h3>
-                        <div class="form-group full-width">
-                            <label for="resume">Upload Your Resume</label>
-                            <div class="file-upload-container">
-                                <div class="file-upload-wrapper">
-                                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="file-input">
-                                    <div class="file-upload-display">
-                                        <div class="file-upload-icon">
-                                            <i class="fas fa-cloud-upload-alt"></i>
-                                        </div>
-                                        <div class="file-upload-text">
-                                            <span class="file-upload-title">Choose Resume File</span>
-                                            <span class="file-upload-subtitle">PDF, DOC, or DOCX (Max 5MB)</span>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="file-upload-btn">Browse Files</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Submit Section -->
-                    <div class="form-section submit-section">
-                        <div class="form-group full-width">
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                Submit Application
-                            </button>
-                            <p class="form-note">By submitting, you agree to our terms and that we may contact you about your application.</p>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </section>
 
@@ -596,104 +530,5 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
-    <!-- Chef Application Form Script -->
-    <script>
-        // File upload functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('resume');
-            const fileUploadWrapper = document.querySelector('.file-upload-wrapper');
-            const fileUploadDisplay = document.querySelector('.file-upload-display');
-            const fileUploadTitle = document.querySelector('.file-upload-title');
-            const fileUploadSubtitle = document.querySelector('.file-upload-subtitle');
-            const fileUploadBtn = document.querySelector('.file-upload-btn');
-
-            // Handle file selection
-            fileUploadWrapper.addEventListener('click', function() {
-                fileInput.click();
-            });
-
-            fileUploadBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                fileInput.click();
-            });
-
-            fileInput.addEventListener('change', function() {
-                const file = this.files[0];
-                if (file) {
-                    fileUploadTitle.textContent = file.name;
-                    fileUploadSubtitle.textContent = 'File selected - Ready to upload';
-                    fileUploadWrapper.style.borderColor = '#007bff';
-                    fileUploadWrapper.style.backgroundColor = '#f0f7ff';
-                }
-            });
-
-            // Drag and drop functionality
-            fileUploadWrapper.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                fileUploadWrapper.style.borderColor = '#007bff';
-                fileUploadWrapper.style.backgroundColor = '#f0f7ff';
-            });
-
-            fileUploadWrapper.addEventListener('dragleave', function() {
-                fileUploadWrapper.style.borderColor = '#dee2e6';
-                fileUploadWrapper.style.backgroundColor = '#f8f9fa';
-            });
-
-            fileUploadWrapper.addEventListener('drop', function(e) {
-                e.preventDefault();
-                const file = e.dataTransfer.files[0];
-                if (file) {
-                    fileInput.files = e.dataTransfer.files;
-                    fileUploadTitle.textContent = file.name;
-                    fileUploadSubtitle.textContent = 'File selected - Ready to upload';
-                    fileUploadWrapper.style.borderColor = '#007bff';
-                    fileUploadWrapper.style.backgroundColor = '#f0f7ff';
-                }
-            });
-
-            // Form submission handling
-            const form = document.querySelector('.application-form');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation
-                const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
-                let isValid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.style.borderColor = '#dc3545';
-                        isValid = false;
-                    } else {
-                        field.style.borderColor = '#e9ecef';
-                    }
-                });
-
-                if (isValid) {
-                    // Simulate form submission
-                    const submitBtn = form.querySelector('.submit-btn');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-                    submitBtn.disabled = true;
-                    
-                    setTimeout(() => {
-                        alert('Application submitted successfully! We will review your application and contact you soon.');
-                        form.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        
-                        // Reset file upload display
-                        fileUploadTitle.textContent = 'Choose Resume File';
-                        fileUploadSubtitle.textContent = 'PDF, DOC, or DOCX (Max 5MB)';
-                        fileUploadWrapper.style.borderColor = '#dee2e6';
-                        fileUploadWrapper.style.backgroundColor = '#f8f9fa';
-                    }, 2000);
-                } else {
-                    alert('Please fill in all required fields.');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
