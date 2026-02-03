@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Blog - Maharaja Chef Services</title>
+    <meta name="description" content="Share your culinary knowledge and experiences with our community. Submit your blog post for review and publication on Maharaja Chef Services.">
+    <meta name="keywords" content="submit blog, write for us, culinary blog, food writing, chef blog, cooking blog">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Submit Your Blog - Maharaja Chef Services">
+    <meta property="og:description" content="Share your culinary knowledge and experiences with our community. Submit your blog post for review and publication.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/submit-blog.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Submit Your Blog - Maharaja Chef Services">
+    <meta name="twitter:description" content="Share your culinary knowledge and experiences with our community. Submit your blog post for review and publication.">
+    <meta name="twitter:image" content="images/logo.jpg">
+    <style>
+        /* Submit Blog Styles */
+        #hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="60" r="1.2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn.btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn.btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        /* Form Section */
+        #submit-form {
+            padding: 4rem 2rem;
+            background: #f8fafc;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .form-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 1.1rem;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .word-count {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+
+        .guidelines {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .guidelines h3 {
+            color: #1e3a8a;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .guidelines ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .guidelines li {
+            margin-bottom: 0.5rem;
+            color: #64748b;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .file-upload {
+            border: 2px dashed #e5e7eb;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .file-upload.dragover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .file-upload i {
+            font-size: 3rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .file-name {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Share Your Culinary Voice</h1>
+                <p>Have a passion for food, cooking, or healthy living? We'd love to feature your expertise on our blog. Join our community of culinary professionals and food enthusiasts.</p>
+                <div class="cta-buttons">
+                    <a href="blogs.html" class="btn">Read Our Blogs</a>
+                    <a href="#submit-form" class="btn btn-outline">Submit Your Blog</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/chef-work8.jpg" alt="Chef writing blog">
+            </div>
+        </section>
+
+        <!-- Submit Form Section -->
+        <section id="submit-form">
+            <div class="form-container">
+                <h2 class="form-title">Submit Your Blog Post</h2>
+                
+                <div id="success-message" class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Thank you for your submission!</strong> We've received your blog post and will review it within 3-5 business days. You'll receive an email notification regarding our decision.
+                </div>
+
+                <div id="error-message" class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Oops!</strong> There was an error submitting your form. Please check all required fields and try again.
+                </div>
+
+                <form id="blog-submission-form" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="full-name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="full-name" name="fullName" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="profession">Profession <span class="required">*</span></label>
+                            <select id="profession" name="profession" required>
+                                <option value="">Select your profession</option>
+                                <option value="Professional Chef">Professional Chef</option>
+                                <option value="Home Cook">Home Cook</option>
+                                <option value="Nutritionist">Nutritionist</option>
+                                <option value="Dietitian">Dietitian</option>
+                                <option value="Food Blogger">Food Blogger</option>
+                                <option value="Culinary Student">Culinary Student</option>
+                                <option value="Food Enthusiast">Food Enthusiast</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog-title">Blog Title <span class="required">*</span></label>
+                        <input type="text" id="blog-title" name="blogTitle" required placeholder="Enter an engaging title for your blog post">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog-category">Blog Category <span class="required">*</span></label>
+                        <select id="blog-category" name="blogCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="Cooking Techniques">Cooking Techniques</option>
+                            <option value="Healthy Living">Healthy Living</option>
+                            <option value="Meal Preparation">Meal Preparation</option>
+                            <option value="Event Planning">Event Planning</option>
+                            <option value="Food Trends">Food Trends</option>
+                            <option value="Recipe Sharing">Recipe Sharing</option>
+                            <option value="Nutrition Tips">Nutrition Tips</option>
+                            <option value="Kitchen Hacks">Kitchen Hacks</option>
+                            <option value="Cultural Cuisine">Cultural Cuisine</option>
+                            <option value="Seasonal Cooking">Seasonal Cooking</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog-content">Blog Content <span class="required">*</span></label>
+                        <textarea id="blog-content" name="blogContent" required placeholder="Write your blog post here..."></textarea>
+                        <div class="word-count">0 / 2000 words</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog-summary">Blog Summary <span class="required">*</span></label>
+                        <textarea id="blog-summary" name="blogSummary" required placeholder="Provide a 2-3 sentence summary of your blog post"></textarea>
+                        <div class="word-count">0 / 500 characters</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog-image">Featured Image (Optional)</label>
+                        <div id="file-upload" class="file-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Drag & Drop Your Image Here</h3>
+                            <p>or click to browse files</p>
+                            <input type="file" id="blog-image" name="blogImage" accept="image/*" style="display: none;">
+                            <div id="file-name" class="file-name"></div>
+                        </div>
+                    </div>
+
+                    <div class="guidelines">
+                        <h3><i class="fas fa-lightbulb"></i> Blog Guidelines</h3>
+                        <ul>
+                            <li><strong>Original Content:</strong> Your submission must be original and not published elsewhere</li>
+                            <li><strong>Word Count:</strong> Aim for 800-2000 words for optimal engagement</li>
+                            <li><strong>Quality:</strong> Ensure proper grammar, spelling, and formatting</li>
+                            <li><strong>Relevance:</strong> Content should be relevant to cooking, food, or healthy living</li>
+                            <li><strong>Images:</strong> High-quality images (1200x800px minimum) are encouraged</li>
+                            <li><strong>Links:</strong> Include relevant links to reputable sources when appropriate</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms-agreement" name="termsAgreement" required>
+                            I agree to the <a href="terms-conditions.html" target="_blank">terms and conditions</a> and understand that my submission may be edited for publication
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="newsletter-signup" name="newsletterSignup">
+                            I'd like to receive updates about Maharaja Chef Services and blog publication status
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Blog Post
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Blog Tips Section -->
+        <section id="blog-tips" style="padding: 4rem 2rem; background: white;">
+            <div class="form-container">
+                <h2 class="form-title">Tips for Writing Great Blog Posts</h2>
+                
+                <div class="guidelines" style="margin: 0;">
+                    <h3><i class="fas fa-pen-fancy"></i> Writing Tips</h3>
+                    <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <h4>Structure Your Content</h4>
+                            <ul>
+                                <li>Start with a compelling introduction</li>
+                                <li>Use clear headings and subheadings</li>
+                                <li>Break up text with bullet points and lists</li>
+                                <li>End with a strong conclusion</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Engage Your Readers</h4>
+                            <ul>
+                                <li>Write in a conversational tone</li>
+                                <li>Share personal experiences and stories</li>
+                                <li>Include practical tips and actionable advice</li>
+                                <li>Ask questions to encourage interaction</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guidelines" style="margin: 2rem 0;">
+                    <h3><i class="fas fa-camera"></i> Visual Content</h3>
+                    <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <h4>Image Guidelines</h4>
+                            <ul>
+                                <li>Use high-resolution images (minimum 1200x800px)</li>
+                                <li>Ensure images are relevant to your content</li>
+                                <li>Use natural lighting for food photography</li>
+                                <li>Consider the rule of thirds for composition</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Content Ideas</h4>
+                            <ul>
+                                <li>Step-by-step recipe tutorials</li>
+                                <li>Before and after transformations</li>
+                                <li>Ingredient spotlights</li>
+                                <li>Kitchen tool recommendations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#submit-form" class="btn" style="background: #3b82f6; color: white; border: none;">
+                        <i class="fas fa-edit"></i> Ready to Submit? Start Here
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Blog</h3>
+                <ul>
+                    <li><a href="blogs.html">Our Blogs</a></li>
+                    <li><a href="submit-blog.html">Submit Blog</a></li>
+                    <li><a href="success-stories.html">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script>
+        // Blog Submission Form Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('blog-submission-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const fileUpload = document.getElementById('file-upload');
+            const blogImage = document.getElementById('blog-image');
+            const fileName = document.getElementById('file-name');
+            const contentTextarea = document.getElementById('blog-content');
+            const summaryTextarea = document.getElementById('blog-summary');
+            const contentWordCount = contentTextarea.nextElementSibling;
+            const summaryWordCount = summaryTextarea.nextElementSibling;
+
+            // Word Count Functionality
+            function updateWordCount(textarea, counter) {
+                const text = textarea.value;
+                const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+                const charCount = text.length;
+                
+                if (textarea === contentTextarea) {
+                    counter.textContent = `${wordCount} / 2000 words`;
+                    if (wordCount > 2000) {
+                        counter.style.color = '#ef4444';
+                    } else {
+                        counter.style.color = '#64748b';
+                    }
+                } else {
+                    counter.textContent = `${charCount} / 500 characters`;
+                    if (charCount > 500) {
+                        counter.style.color = '#ef4444';
+                    } else {
+                        counter.style.color = '#64748b';
+                    }
+                }
+            }
+
+            contentTextarea.addEventListener('input', () => updateWordCount(contentTextarea, contentWordCount));
+            summaryTextarea.addEventListener('input', () => updateWordCount(summaryTextarea, summaryWordCount));
+
+            // File Upload Functionality
+            fileUpload.addEventListener('click', () => blogImage.click());
+
+            fileUpload.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUpload.classList.add('dragover');
+            });
+
+            fileUpload.addEventListener('dragleave', () => {
+                fileUpload.classList.remove('dragover');
+            });
+
+            fileUpload.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUpload.classList.remove('dragover');
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    handleFileSelect(file);
+                }
+            });
+
+            blogImage.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    handleFileSelect(file);
+                }
+            });
+
+            function handleFileSelect(file) {
+                fileName.textContent = `Selected: ${file.name}`;
+                fileName.style.display = 'block';
+            }
+
+            // Form Submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Reset messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Validate form
+                const formData = new FormData(form);
+                let isValid = true;
+                const requiredFields = ['fullName', 'email', 'profession', 'blogTitle', 'blogCategory', 'blogContent', 'blogSummary'];
+
+                requiredFields.forEach(field => {
+                    if (!formData.get(field)) {
+                        isValid = false;
+                    }
+                });
+
+                if (!document.getElementById('terms-agreement').checked) {
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+
+                // Simulate form submission
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+                try {
+                    // In a real application, you would send this to your server
+                    // For now, we'll simulate a successful submission
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    form.reset();
+                    fileName.style.display = 'none';
+                    
+                    // Reset word counts
+                    contentWordCount.textContent = '0 / 2000 words';
+                    summaryWordCount.textContent = '0 / 500 characters';
+                    
+                } catch (error) {
+                    errorMessage.style.display = 'block';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Blog Post';
+                }
+            });
+        });
+    </script>
+
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+</body>
+</html>

@@ -8,6 +8,157 @@
     <meta name="keywords" content="become a chef, chef jobs, personal chef, culinary career">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Chef Requirements Section Styles */
+        #requirements {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            text-align: center;
+        }
+
+        #requirements h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .requirement-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .requirement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(30, 58, 138, 0.25);
+            border-color: #3b82f6;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .requirement-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .card-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .requirement-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .requirement-card p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(29, 78, 216, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .requirement-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(5px);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .requirement-card:hover .overlay-content {
+            transform: translateY(0);
+        }
+
+        .overlay-content i {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .overlay-content span {
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #requirements {
+                padding: 2rem 1rem;
+            }
+            
+            #requirements h2 {
+                font-size: 2rem;
+            }
+            
+            .requirement-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .card-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .card-icon i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -59,41 +210,84 @@
         <!-- Requirements Section -->
         <section id="requirements">
             <h2>Chef Requirements</h2>
-            <div class="requirements-content">
-                <div class="requirements-list">
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Professional Experience</h3>
-                        <p>Minimum 3 years of professional cooking experience in restaurants, hotels, or catering.</p>
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chef-hat"></i>
                     </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Culinary Education</h3>
-                        <p>Formal culinary training or equivalent professional experience.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Food Safety Certification</h3>
-                        <p>Current food handler's certificate or equivalent food safety certification.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Professional Equipment</h3>
-                        <p>Access to professional-grade cooking equipment and tools.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Reliable Transportation</h3>
-                        <p>Ability to travel to client locations with your equipment.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Background Check</h3>
-                        <p>Willingness to undergo background verification for client safety.</p>
+                    <h3>Professional Experience</h3>
+                    <p>Minimum 3 years of professional cooking experience in restaurants, hotels, or catering.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-award"></i>
+                            <span>Industry Proven</span>
+                        </div>
                     </div>
                 </div>
-                <div class="requirements-image">
-                    <img src="images/chef-work1.jpg" alt="Professional chef at work">
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Culinary Education</h3>
+                    <p>Formal culinary training or equivalent professional experience.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-book"></i>
+                            <span>Expert Knowledge</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Food Safety Certification</h3>
+                    <p>Current food handler's certificate or equivalent food safety certification.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-check"></i>
+                            <span>Safety First</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Professional Equipment</h3>
+                    <p>Access to professional-grade cooking equipment and tools.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-tools"></i>
+                            <span>Quality Tools</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Reliable Transportation</h3>
+                    <p>Ability to travel to client locations with your equipment.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-route"></i>
+                            <span>Mobile Ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Background Check</h3>
+                    <p>Willingness to undergo background verification for client safety.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-lock"></i>
+                            <span>Trusted Professional</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -8,6 +8,290 @@
     <meta name="keywords" content="chef faq, chef questions, culinary career questions, personal chef faq">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Chef FAQ Styles */
+        #hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn.btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn.btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        /* FAQ Sections */
+        section[id*="faq"] {
+            padding: 4rem 2rem;
+            background: #f8fafc;
+        }
+
+        section[id*="faq"] h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        section[id*="faq"] h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item:hover {
+            background: #f8fafc;
+        }
+
+        .faq-item h3 {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            margin: 0;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .faq-item h3:before {
+            content: '❓';
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .faq-item h3:after {
+            content: '▼';
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+            color: #3b82f6;
+        }
+
+        .faq-item.active h3:after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-item p {
+            padding: 0 2rem 1.5rem 2rem;
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Resources Section */
+        #additional-resources {
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            padding: 4rem 2rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .resource-card i {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .resource-card p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+        }
+
+        .resource-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Contact CTA */
+        #contact-cta {
+            background: #1e3a8a;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        #contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        #contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        #contact-cta .btn {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            margin: 0 1rem;
+            display: inline-block;
+        }
+
+        #contact-cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
+
+        #contact-cta .btn.btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        #contact-cta .btn.btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2rem;
+            }
+            
+            section[id*="faq"] h2 {
+                font-size: 2rem;
+            }
+            
+            .faq-item h3 {
+                font-size: 1.1rem;
+                padding: 1.2rem 1.5rem;
+            }
+            
+            .faq-item p {
+                padding: 0 1.5rem 1.2rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -275,5 +559,33 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script>
+        // FAQ Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item h3');
+            
+            faqItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all items
+                    document.querySelectorAll('.faq-item').forEach(faq => {
+                        faq.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+            
+            // Open first FAQ by default
+            if (faqItems.length > 0) {
+                faqItems[0].parentElement.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>
