@@ -419,7 +419,8 @@ header {
 
 .btn {
     padding: 0.75rem 1.5rem;
-    min-width: 90px;
+    min-width: 120px;
+    height: 42px;
 
     display: inline-flex;
     align-items: center;
@@ -442,7 +443,9 @@ header {
 }
 
 .btn:hover {
-    background: #2563eb;
+    background: white;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
     transform: translateY(-1px);
 }
 

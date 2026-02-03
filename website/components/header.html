@@ -1,4 +1,4 @@
-<header class="global-header">
+<header class="global-header" id="global-header">
     <nav class="global-nav">
         <div class="header-left">
             <div class="logo">
@@ -53,23 +53,95 @@
 </header>
 
 <!-- Sticky CTA Bar for Mobile -->
-<div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+<div class="sticky-cta-bar" id="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
     <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
     <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+// Inline header functionality for immediate execution
+(function() {
+    'use strict';
+    
     // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    function initMobileMenu() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
 
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', function () {
-            navMenu.classList.toggle('mobile-active');
-            mobileMenuToggle.classList.toggle('active');
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                navMenu.classList.toggle('mobile-active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
+    }
+
+    // Dropdown functionality
+    function initDropdowns() {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            const trigger = dropdown.querySelector('a');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            if (trigger && menu) {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Toggle dropdown visibility
+                    dropdown.classList.toggle('active');
+                    
+                    // Close other dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            }
         });
     }
-});
+
+    // Mobile detection and CTA bar
+    function initMobileCTA() {
+        const stickyBar = document.getElementById('sticky-cta-bar');
+        if (stickyBar) {
+            // Show CTA bar on mobile devices
+            if (window.innerWidth <= 768) {
+                stickyBar.style.display = 'flex';
+            }
+            
+            // Handle resize events
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    stickyBar.style.display = 'flex';
+                } else {
+                    stickyBar.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    // Initialize all functionality
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            initMobileMenu();
+            initDropdowns();
+            initMobileCTA();
+        });
+    } else {
+        initMobileMenu();
+        initDropdowns();
+        initMobileCTA();
+    }
+})();
 </script>
 
