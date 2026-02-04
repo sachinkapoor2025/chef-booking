@@ -2488,9 +2488,9 @@ footer hr {
         max-height: 100%;
     }
     /* Hamburger Button */
-.hamburger {
-    display: none;   /* Hide on desktop */
-    font-size: 28px;
-    cursor: pointer;
-}
+    .hamburger {
+        display: none;   /* Hide on desktop */
+        font-size: 28px;
+        cursor: pointer;
+    }
 }
