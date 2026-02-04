@@ -1843,19 +1843,7 @@ footer hr {
     }
 
     /* Mobile navigation improvements */
-    .mobile-menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: #333;
-        cursor: pointer;
-        padding: 0.75rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        min-height: 48px;
-        min-width: 48px;
-    }
+
 
     .mobile-menu-toggle:hover {
         background-color: #f0f0f0;
