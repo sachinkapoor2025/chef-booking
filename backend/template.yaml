@@ -428,6 +428,105 @@ Resources:
             ProjectionType: ALL
       BillingMode: PAY_PER_REQUEST
 
+  # Blog Submissions Table
+  BlogSubmissionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-blog-submissions"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: formType
+          AttributeType: S
+        - AttributeName: status
+          AttributeType: S
+        - AttributeName: submittedAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: formType
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: status-index
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+            - AttributeName: submittedAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: formType-index
+          KeySchema:
+            - AttributeName: formType
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  # Blog Submissions S3 Bucket
+  BlogSubmissionsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-blog-submissions"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
+  # Blog Submission Function
+  BlogSubmissionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-blog-submission"
+      CodeUri: src/
+      Handler: blog_submission.lambda_handler
+      Runtime: python3.12
+      Timeout: 60
+      Environment:
+        Variables:
+          SUBMISSIONS_TABLE: !Ref BlogSubmissionsTable
+          BLOGS_BUCKET: !Ref BlogSubmissionsBucket
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref BlogSubmissionsTable
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+                - s3:GetObject
+                - s3:DeleteObject
+              Resource: !Sub "arn:aws:s3:::${BlogSubmissionsBucket}/*"
+      Events:
+        SubmitBlog:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /blog-submission
+            Method: post
+        GetPendingBlogs:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /blog-submission/pending
+            Method: get
+        ApproveBlog:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /blog-submission/{submissionId}/approve
+            Method: put
+        RejectBlog:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /blog-submission/{submissionId}/reject
+            Method: put
+
   # Chef Application Function
   ChefApplicationFunction:
     Type: AWS::Serverless::Function
@@ -473,6 +572,29 @@ Resources:
             RestApiId: !Ref ApiGateway
             Path: /chef-application/health
             Method: get
+
+  # Catering Submission Function
+  CateringSubmissionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-catering-submission"
+      CodeUri: src/
+      Handler: catering_submission.lambda_handler
+      Runtime: python3.12
+      Timeout: 60
+      Environment:
+        Variables:
+          SUBMISSIONS_TABLE: !Ref SubmissionsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SubmissionsTable
+      Events:
+        SubmitCatering:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /catering-submission
+            Method: post
 
   # Diet Plan Worker Function (Background Processing)
   DietPlanWorkerFunction:

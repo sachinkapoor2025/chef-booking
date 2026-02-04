@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Maharaja Chef">
     <title>Explore Chefs - Maharaja Chef Services</title>
     <meta name="description" content="Browse our network of professional chefs across the USA. Find the perfect chef for your culinary needs.">
-    <meta name="keywords" content="find chef, professional chefs, personal chef, chef directory, culinary services">
+    <meta name="keywords" content="find chef, professional chefs, personal chef, chef directory, culinary services, mobile-friendly">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,6 +82,54 @@
             </div>
         </section>
 
+        <script>
+            // Add search functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchBtn = document.getElementById('search-btn');
+                const locationFilter = document.getElementById('location-filter');
+                const cuisineFilter = document.getElementById('cuisine-filter');
+                const serviceFilter = document.getElementById('service-filter');
+
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', function() {
+                        const location = locationFilter.value;
+                        const cuisine = cuisineFilter.value;
+                        const service = serviceFilter.value;
+                        
+                        // Simple filtering logic - in a real app this would be server-side
+                        const chefCards = document.querySelectorAll('.chef-card');
+                        
+                        chefCards.forEach(card => {
+                            const cardLocation = card.querySelector('.chef-location').textContent.toLowerCase();
+                            const cardSpecialties = card.querySelectorAll('.specialty-tag');
+                            const specialties = Array.from(cardSpecialties).map(tag => tag.textContent.toLowerCase());
+                            
+                            let showCard = true;
+                            
+                            if (location && !cardLocation.includes(location.toLowerCase())) {
+                                showCard = false;
+                            }
+                            
+                            if (cuisine && !specialties.some(specialty => specialty.includes(cuisine.toLowerCase()))) {
+                                showCard = false;
+                            }
+                            
+                            if (service && !specialties.some(specialty => specialty.includes(service.toLowerCase()))) {
+                                showCard = false;
+                            }
+                            
+                            if (showCard) {
+                                card.style.display = 'block';
+                                card.style.animation = 'fadeIn 0.3s ease-in';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    });
+                }
+            });
+        </script>
+
         <section id="featured-chefs" style="padding: 6rem 2rem; background: white; text-align: center;">
             <div class="container" style="max-width: 1200px; margin: 0 auto;">
                 <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Featured Chefs</h2>
@@ -92,7 +145,7 @@
                         </div>
                         <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
                             <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
-                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (124 reviews)</span>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.6/5 (124 reviews)</span>
                         </div>
                         <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Italian, French, Mediterranean</p>
                         <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
@@ -137,7 +190,7 @@
                         </div>
                         <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
                             <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
-                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (156 reviews)</span>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.6/5 (156 reviews)</span>
                         </div>
                         <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Indian, Vegan, Gluten-Free</p>
                         <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
@@ -215,7 +268,7 @@
                         </div>
                         <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
                             <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
-                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (142 reviews)</span>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.6/5 (142 reviews)</span>
                         </div>
                         <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Asian Fusion, Sushi, Vegetarian</p>
                         <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
@@ -284,7 +337,7 @@
                         </div>
                         <div class="chef-rating" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
                             <div class="stars" style="color: #ffc107; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
-                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.9/5 (95 reviews)</span>
+                            <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 500;">4.6/5 (95 reviews)</span>
                         </div>
                         <p style="margin-bottom: 0.5rem; color: #666;">Specialties: Korean, Japanese, Fusion</p>
                         <div class="chef-specialties" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">

@@ -42,7 +42,7 @@ const STATIC_CHEFS = [
         description: 'Maria brings 15 years of culinary expertise from top restaurants in California and Italy. Her passion for fresh, seasonal ingredients and traditional cooking techniques creates unforgettable Mediterranean and Italian dining experiences.',
         specialties: ['Authentic Italian Cuisine', 'Mediterranean Fusion', 'California Coastal Cuisine', 'Wood-fired specialties'],
         dietaryTags: ['Gluten-Free', 'Keto', 'Dairy-Free', 'Low-Carb'],
-        rating: 4.9,
+        rating: 4.6,
         reviewCount: 89,
         pricing: [
             {type: 'Dinner Service', price: '$85/hour', note: 'Minimum 2 hours'},
