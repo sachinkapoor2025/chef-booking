@@ -3403,3 +3403,21 @@ footer hr {
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
     color: white !important;
 }
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+}

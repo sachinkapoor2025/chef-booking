@@ -417,7 +417,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event-time">Event Time <span class="required">*</span></label>
-                                <input type="time" id="event-time" name="eventTime" required>
+                                <input type="time" step="900" id="event-time" name="eventTime" required>
                             </div>
                             <div class="form-group">
                                 <label for="guest-count">Estimated Guest Count <span class="required">*</span></label>
@@ -541,7 +541,10 @@
                                     <input type="checkbox" name="dietaryRestrictions" value="kosher"> Kosher
                                 </label>
                                 <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="none"> No Restrictions
+                                    <input type="checkbox" name="dietaryRestrictions" value="none"> Non Non-Vegetarian
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="dietaryRestrictions" value="gluten-free"> No Restrictions
                                 </label>
                             </div>
                         </div>

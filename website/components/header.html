@@ -75,6 +75,13 @@
                 e.preventDefault();
                 navMenu.classList.toggle('mobile-active');
                 mobileMenuToggle.classList.toggle('active');
+                
+                // Add animation for smooth transition
+                if (navMenu.classList.contains('mobile-active')) {
+                    navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
+                } else {
+                    navMenu.style.maxHeight = '0';
+                }
             });
         }
     }
