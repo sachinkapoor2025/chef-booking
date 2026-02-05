@@ -407,27 +407,55 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event-name">Event Name <span class="required">*</span></label>
-                                <input type="text" id="event-name" name="eventName" required placeholder="e.g., Sarah & John Wedding">
+                                <input type="text" id="event-name" name="name" required placeholder="e.g., Sarah & John Wedding">
                             </div>
                             <div class="form-group">
                                 <label for="event-date">Event Date <span class="required">*</span></label>
-                                <input type="date" id="event-date" name="eventDate" required>
+                                <input type="date" id="event-date" name="event-date" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="event-time">Event Time <span class="required">*</span></label>
-                                <input type="time" id="event-time" name="eventTime" step="900" required>
+                                <label for="event-hour">Event Time <span class="required">*</span></label>
+                                <div style="display: flex; gap: 10px;">
+                                    <select id="event-hour" name="event-hour" required style="flex: 1;">
+                                        <option value="">Hour</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                    <select id="event-minute" name="event-minute" required style="flex: 1;">
+                                        <option value="">Minute</option>
+                                        <option value="00">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                    <select id="event-ampm" name="event-ampm" required style="flex: 1;">
+                                        <option value="">AM/PM</option>
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="guest-count">Estimated Guest Count <span class="required">*</span></label>
-                                <input type="number" id="guest-count" name="guestCount" required min="1" placeholder="e.g., 50">
+                                <input type="number" id="guest-count" name="guests" required min="1" placeholder="e.g., 50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event-type">Event Type <span class="required">*</span></label>
-                                <select id="event-type" name="eventType" required>
+                                <select id="event-type" name="event-type" required>
                                     <option value="">Select event type</option>
                                     <option value="wedding">Wedding</option>
                                     <option value="corporate">Corporate Event</option>
@@ -442,7 +470,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="event-location">Event Location <span class="required">*</span></label>
-                                <input type="text" id="event-location" name="eventLocation" required placeholder="e.g., 123 Main St, San Francisco, CA">
+                                <input type="text" id="event-location" name="location" required placeholder="e.g., 123 Main St, San Francisco, CA">
                             </div>
                         </div>
                     </div>
@@ -500,6 +528,21 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="meal-type">Meal Type <span class="required">*</span></label>
+                                <select id="meal-type" name="meal-type" required>
+                                    <option value="">Select meal type</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                    <option value="brunch">Brunch</option>
+                                    <option value="cocktail">Cocktail/Passed Hors d'oeuvres</option>
+                                    <option value="dessert">Dessert</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
                                 <label for="service-type">Service Style <span class="required">*</span></label>
                                 <select id="service-type" name="serviceType" required>
                                     <option value="">Select service style</option>
@@ -511,42 +554,23 @@
                                     <option value="brunch">Brunch/Luncheon</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="dietary-requirements">Dietary Requirements</label>
+                                <select id="dietary-requirements" name="dietary" multiple>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="vegan">Vegan</option>
+                                    <option value="gluten-free">Gluten-Free</option>
+                                    <option value="dairy-free">Dairy-Free</option>
+                                    <option value="nut-free">Nut-Free</option>
+                                    <option value="halal">Halal</option>
+                                    <option value="kosher">Kosher</option>
+                                    <option value="none">No Restrictions</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="menu-ideas">Menu Ideas or Requirements</label>
                             <textarea id="menu-ideas" name="menuIdeas" placeholder="Describe any specific dishes, themes, or menu ideas you have in mind..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Dietary Restrictions <span class="required">*</span></label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="vegetarian"> Vegetarian
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="vegan"> Vegan
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="gluten-free"> Gluten-Free
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="dairy-free"> Dairy-Free
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="nut-free"> Nut-Free
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="halal"> Halal
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="kosher"> Kosher
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="none">  Non-Vegetarian
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="dietaryRestrictions" value="gluten-free"> No Restrictions
-                                </label>
-                            </div>
                         </div>
                     </div>
 
@@ -639,19 +663,13 @@
                 // Validate form
                 const formData = new FormData(form);
                 let isValid = true;
-                const requiredFields = ['eventName', 'eventDate', 'eventTime', 'guestCount', 'eventType', 'eventLocation', 'fullName', 'email', 'phone', 'cuisineType', 'serviceType'];
+                const requiredFields = ['name', 'event-date', 'event-hour', 'event-minute', 'event-ampm', 'guests', 'event-type', 'location', 'email', 'phone', 'cuisineType', 'meal-type', 'serviceType'];
                 
                 requiredFields.forEach(field => {
                     if (!formData.get(field)) {
                         isValid = false;
                     }
                 });
-                
-                // Check if at least one dietary restriction is selected
-                const dietaryRestrictions = formData.getAll('dietaryRestrictions');
-                if (dietaryRestrictions.length === 0) {
-                    isValid = false;
-                }
                 
                 if (!isValid) {
                     errorMessage.style.display = 'block';
