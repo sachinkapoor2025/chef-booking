@@ -8,6 +8,7 @@
     <meta name="keywords" content="catering form, catering quote, event catering, catering services">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         /* Catering Form Styles */
         #hero {
@@ -257,34 +258,6 @@
             resize: vertical;
         }
 
-        .form-group .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #f8fafc;
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-
-        .checkbox-item:hover {
-            background: #e3f2fd;
-            border-color: #3b82f6;
-        }
-
-        .checkbox-item input {
-            width: auto;
-            margin: 0;
-        }
-
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
@@ -358,31 +331,15 @@
             margin-right: 0.5rem;
             font-size: 1.2rem;
         }
-
-        /* Floating elements for visual interest */
-        .floating-element {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; width: 30px; height: 30px; }
-        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; width: 15px; height: 15px; }
-        .floating-element:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; width: 25px; height: 25px; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
     </style>
 </head>
+
 <body>
+
+    <!-- ✅ GLOBAL HEADER -->
+    <header id="global-header"></header>
+
     <main>
-        <!-- Catering Form Section -->
         <section id="catering-form-section">
             <div class="form-container">
                 <div class="form-header">
@@ -392,7 +349,7 @@
 
                 <div id="success-message" class="message-container success-message">
                     <i class="fas fa-check-circle"></i>
-                    <strong>Thank you!</strong> Your catering inquiry has been submitted successfully. We'll contact you within 24 hours with your personalized quote.
+                    <strong>Thank you!</strong> Your catering inquiry has been submitted successfully. We'll contact you within 24 hours.
                 </div>
 
                 <div id="error-message" class="message-container error-message">
@@ -400,23 +357,26 @@
                     <strong>Oops!</strong> There was an error submitting your form. Please check all required fields and try again.
                 </div>
 
-                <form id="catering-form" enctype="multipart/form-data">
-                    <!-- Event Information Section -->
+                <form id="catering-form">
+                    <!-- Event Information -->
                     <div class="form-section">
                         <h3><i class="fas fa-calendar-alt"></i> Event Information</h3>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event-name">Event Name <span class="required">*</span></label>
-                                <input type="text" id="event-name" name="name" required placeholder="e.g., Sarah & John Wedding">
+                                <input type="text" id="event-name" name="name" required placeholder="e.g., Wedding Event">
                             </div>
+
                             <div class="form-group">
                                 <label for="event-date">Event Date <span class="required">*</span></label>
                                 <input type="date" id="event-date" name="event-date" required>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="event-hour">Event Time <span class="required">*</span></label>
+                                <label>Event Time <span class="required">*</span></label>
                                 <div style="display: flex; gap: 10px;">
                                     <select id="event-hour" name="event-hour" required style="flex: 1;">
                                         <option value="">Hour</option>
@@ -433,6 +393,7 @@
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>
+
                                     <select id="event-minute" name="event-minute" required style="flex: 1;">
                                         <option value="">Minute</option>
                                         <option value="00">00</option>
@@ -440,6 +401,7 @@
                                         <option value="30">30</option>
                                         <option value="45">45</option>
                                     </select>
+
                                     <select id="event-ampm" name="event-ampm" required style="flex: 1;">
                                         <option value="">AM/PM</option>
                                         <option value="AM">AM</option>
@@ -447,11 +409,13 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="guest-count">Estimated Guest Count <span class="required">*</span></label>
                                 <input type="number" id="guest-count" name="guests" required min="1" placeholder="e.g., 50">
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event-type">Event Type <span class="required">*</span></label>
@@ -468,31 +432,36 @@
                                     <option value="other">Other</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="event-location">Event Location <span class="required">*</span></label>
-                                <input type="text" id="event-location" name="location" required placeholder="e.g., 123 Main St, San Francisco, CA">
+                                <input type="text" id="event-location" name="location" required placeholder="Enter full address">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Contact Information Section -->
+                    <!-- Contact Information -->
                     <div class="form-section">
                         <h3><i class="fas fa-user"></i> Contact Information</h3>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="full-name">Full Name <span class="required">*</span></label>
                                 <input type="text" id="full-name" name="fullName" required placeholder="Enter your full name">
                             </div>
+
                             <div class="form-group">
                                 <label for="email">Email Address <span class="required">*</span></label>
                                 <input type="email" id="email" name="email" required placeholder="your.email@example.com">
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="phone">Phone Number <span class="required">*</span></label>
                                 <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
                             </div>
+
                             <div class="form-group">
                                 <label for="budget">Budget Range (Optional)</label>
                                 <select id="budget" name="budget">
@@ -508,9 +477,10 @@
                         </div>
                     </div>
 
-                    <!-- Catering Preferences Section -->
+                    <!-- Catering Preferences -->
                     <div class="form-section">
                         <h3><i class="fas fa-utensils"></i> Catering Preferences</h3>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="cuisine-type">Preferred Cuisine Type <span class="required">*</span></label>
@@ -527,6 +497,7 @@
                                     <option value="custom">Custom</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="meal-type">Meal Type <span class="required">*</span></label>
                                 <select id="meal-type" name="meal-type" required>
@@ -541,10 +512,12 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="service-type">Service Style <span class="required">*</span></label>
-                                <select id="service-type" name="serviceType" required>
+                                <!-- ✅ FIXED name="service-type" -->
+                                <select id="service-type" name="service-type" required>
                                     <option value="">Select service style</option>
                                     <option value="buffet">Buffet</option>
                                     <option value="plated">Plated</option>
@@ -554,6 +527,7 @@
                                     <option value="brunch">Brunch/Luncheon</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="dietary-requirements">Dietary Requirements</label>
                                 <select id="dietary-requirements" name="dietary" multiple>
@@ -568,32 +542,36 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="menu-ideas">Menu Ideas or Requirements</label>
                             <textarea id="menu-ideas" name="menuIdeas" placeholder="Describe any specific dishes, themes, or menu ideas you have in mind..."></textarea>
                         </div>
                     </div>
 
-                    <!-- Additional Details Section -->
+                    <!-- Additional Details -->
                     <div class="form-section">
                         <h3><i class="fas fa-edit"></i> Additional Details</h3>
+
                         <div class="form-group">
                             <label for="special-requests">Special Requests or Notes</label>
                             <textarea id="special-requests" name="specialRequests" placeholder="Any special requirements, themes, or additional information..."></textarea>
                         </div>
+
                         <div class="form-group">
                             <label for="event-description">Event Description</label>
                             <textarea id="event-description" name="eventDescription" placeholder="Tell us more about your event, theme, or any specific details..."></textarea>
                         </div>
                     </div>
 
-                    <!-- Submit Section -->
+                    <!-- Submit -->
                     <div class="form-section submit-section">
                         <button type="submit" class="submit-btn" id="submit-btn">
                             <i class="fas fa-paper-plane"></i> Get My Free Quote
                         </button>
                         <p class="form-note">By submitting, you agree to our terms and that we may contact you about your catering inquiry.</p>
                     </div>
+
                 </form>
             </div>
         </section>
@@ -630,9 +608,9 @@
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
@@ -644,75 +622,78 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+
+    <!-- ✅ FIXED SUBMISSION SCRIPT -->
     <script>
-        // Catering Form Logic
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('catering-form');
             const submitBtn = document.getElementById('submit-btn');
             const successMessage = document.getElementById('success-message');
             const errorMessage = document.getElementById('error-message');
-            
-            // Form Submission
+
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
-                // Reset messages
+
                 successMessage.style.display = 'none';
                 errorMessage.style.display = 'none';
-                
-                // Validate form
+
                 const formData = new FormData(form);
+
+                const requiredFields = [
+                    'name', 'event-date', 'event-hour', 'event-minute', 'event-ampm',
+                    'guests', 'event-type', 'location', 'email', 'phone',
+                    'cuisineType', 'meal-type', 'service-type'
+                ];
+
                 let isValid = true;
-                const requiredFields = ['name', 'event-date', 'event-hour', 'event-minute', 'event-ampm', 'guests', 'event-type', 'location', 'email', 'phone', 'cuisineType', 'meal-type', 'serviceType'];
-                
                 requiredFields.forEach(field => {
                     if (!formData.get(field)) {
                         isValid = false;
                     }
                 });
-                
+
                 if (!isValid) {
                     errorMessage.style.display = 'block';
                     return;
                 }
-                
-                // Submit to Lambda function
+
+                // Convert FormData to JSON object
+                const data = {};
+                formData.forEach((value, key) => {
+                    if (data[key]) {
+                        if (!Array.isArray(data[key])) {
+                            data[key] = [data[key]];
+                        }
+                        data[key].push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                });
+
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Request...';
-                
+
                 try {
-                    // Get API URL from environment or use default
-                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/catering-submission'
+                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/catering-submission';
+
                     const response = await fetch(apiUrl, {
                         method: 'POST',
-                        body: formData
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
                     });
-                    
-                    console.log('Response status:', response.status);
-                    console.log('Response ok:', response.ok);
-                    
-                    if (response.ok) {
-                        let result;
-                        try {
-                            result = await response.json();
-                            console.log('Parsed JSON result:', result);
-                        } catch (jsonError) {
-                            console.log('JSON parse error, but response was successful');
-                            // If JSON parsing fails but response is ok, still show success
-                        }
-                        
-                        // Show success message
-                        successMessage.innerHTML = `
-                            <i class="fas fa-check-circle"></i>
-                            <strong>Thank you!</strong> Your catering inquiry has been submitted successfully. 
-                            We'll contact you within 24 hours with your personalized quote.
-                        `;
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
                         successMessage.style.display = 'block';
                         form.reset();
                     } else {
-                        throw new Error(`Server error: ${response.status}`);
+                        console.error("Server response error:", result);
+                        errorMessage.style.display = 'block';
                     }
-                    
+
                 } catch (error) {
                     console.error('Error submitting catering form:', error);
                     errorMessage.style.display = 'block';
@@ -723,5 +704,6 @@
             });
         });
     </script>
+
 </body>
 </html>

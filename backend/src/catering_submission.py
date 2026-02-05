@@ -4,6 +4,7 @@ import os
 import uuid
 from datetime import datetime
 from botocore.exceptions import ClientError
+import re
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
@@ -14,10 +15,8 @@ def lambda_handler(event, context):
     Lambda function to handle catering service form submissions
     """
     try:
-        # Parse the request body
-        if 'body' in event:
-            body = json.loads(event['body']) if isinstance(event['body'], str) else event['body']
-        else:
+        # ✅ Parse the request body safely (FIXED)
+        if 'body' not in event or event['body'] is None or event['body'] == "":
             return {
                 'statusCode': 400,
                 'headers': {
@@ -31,15 +30,31 @@ def lambda_handler(event, context):
                 })
             }
 
+        try:
+            body = json.loads(event['body']) if isinstance(event['body'], str) else event['body']
+        except json.JSONDecodeError:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'POST,OPTIONS'
+                },
+                'body': json.dumps({
+                    'success': False,
+                    'message': 'Invalid JSON format in request body'
+                })
+            }
+
         # Validate required fields
         required_fields = [
-            'name', 'email', 'phone', 'event-type', 'event-date', 
-            'event-hour', 'event-minute', 'event-ampm', 'location', 
+            'name', 'email', 'phone', 'event-type', 'event-date',
+            'event-hour', 'event-minute', 'event-ampm', 'location',
             'guests', 'meal-type', 'service-type'
         ]
-        
+
         missing_fields = [field for field in required_fields if not body.get(field)]
-        
+
         if missing_fields:
             return {
                 'statusCode': 400,
@@ -55,7 +70,6 @@ def lambda_handler(event, context):
             }
 
         # Validate email format
-        import re
         email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         if not re.match(email_pattern, body['email']):
             return {
@@ -120,17 +134,17 @@ def lambda_handler(event, context):
         # Build the submission record
         submission_id = str(uuid.uuid4())
         submission_time = datetime.utcnow().isoformat()
-        
+
         # Format event time
         event_time = f"{body['event-hour']}:{body['event-minute']} {body['event-ampm']}"
-        
+
         # Get cuisine preferences
         cuisine_preferences = []
         if 'cuisine' in body and isinstance(body['cuisine'], list):
             cuisine_preferences = body['cuisine']
         elif 'cuisine' in body:
             cuisine_preferences = [body['cuisine']]
-        
+
         # Add "other" cuisine if specified
         if body.get('cuisine-other'):
             cuisine_preferences.append(f"Other: {body['cuisine-other']}")
@@ -196,6 +210,7 @@ def lambda_handler(event, context):
                 'message': 'Internal server error'
             })
         }
+
     except Exception as e:
         print(f"Error processing request: {e}")
         return {
