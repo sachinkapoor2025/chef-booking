@@ -194,43 +194,6 @@ Resources:
             Path: /submit
             Method: post
 
-  SubmitFormFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub "${AWS::StackName}-submit-form"
-      CodeUri: src/
-      Handler: submit_form.lambda_handler
-      Runtime: python3.12
-      Timeout: 60
-      Environment:
-        Variables:
-          SUBMISSIONS_TABLE: !Ref SubmissionsTable
-          S3_BUCKET: maharaja-chef-submissions
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SubmissionsTable
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - s3:PutObject
-                - s3:GetObject
-                - s3:DeleteObject
-              Resource: "arn:aws:s3:::maharaja-chef-submissions/*"
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - ses:SendEmail
-                - ses:SendRawEmail
-              Resource: "*"
-      Events:
-        SubmitForm:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /submit-form
-            Method: post
 
   AdminFunction:
     Type: AWS::Serverless::Function
@@ -565,6 +528,29 @@ Resources:
             Path: /blog-submission/{submissionId}/reject
             Method: put
 
+  # Catering Submission Function
+  CateringSubmissionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-catering-submission"
+      CodeUri: src/
+      Handler: catering_submission.lambda_handler
+      Runtime: python3.12
+      Timeout: 60
+      Environment:
+        Variables:
+          SUBMISSIONS_TABLE: !Ref SubmissionsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SubmissionsTable
+      Events:
+        SubmitCatering:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /catering-submission
+            Method: post
+
   BookChefFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -649,28 +635,6 @@ Resources:
             Path: /chef-application/health
             Method: get
 
-  # Catering Submission Function
-  CateringSubmissionFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub "${AWS::StackName}-catering-submission"
-      CodeUri: src/
-      Handler: catering_submission.lambda_handler
-      Runtime: python3.12
-      Timeout: 60
-      Environment:
-        Variables:
-          SUBMISSIONS_TABLE: !Ref SubmissionsTable
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SubmissionsTable
-      Events:
-        SubmitCatering:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /catering-submission
-            Method: post
 
   # Diet Plan Worker Function (Background Processing)
   DietPlanWorkerFunction:
