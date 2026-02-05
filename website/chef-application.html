@@ -927,15 +927,15 @@
                     return;
                 }
                 
-                // Submit to Lambda function
+                    // Submit to Lambda function
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Application...';
                 
                 try {
                     // Get API URL from environment or use default
-                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
+                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/chef-application';
                     
-                    const response = await fetch(apiUrl, {
+                    const response = await fetch(`${apiUrl}/chef-application`, {
                         method: 'POST',
                         body: formData
                     });

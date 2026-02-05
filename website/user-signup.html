@@ -403,7 +403,6 @@
                         <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
                         <ul class="dropdown-menu">
                             <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                            <li><a href="special-events.html">Special Events & Gatherings</a></li>
                         </ul>
                     </li>
                     <li><a href="explore-chefs.html">Explore Chefs</a></li>
@@ -487,7 +486,7 @@
                         };
                         
                         // Send to backend using API Gateway URL
-                        const apiGatewayUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
+                        const apiGatewayUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/signup';
                         const response = await fetch(`${apiGatewayUrl}/diet-plan/signup`, {
                             method: 'POST',
                             headers: {
