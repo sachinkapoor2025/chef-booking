@@ -688,8 +688,18 @@
                         body: formData
                     });
                     
+                    console.log('Response status:', response.status);
+                    console.log('Response ok:', response.ok);
+                    
                     if (response.ok) {
-                        const result = await response.json();
+                        let result;
+                        try {
+                            result = await response.json();
+                            console.log('Parsed JSON result:', result);
+                        } catch (jsonError) {
+                            console.log('JSON parse error, but response was successful');
+                            // If JSON parsing fails but response is ok, still show success
+                        }
                         
                         // Show success message
                         successMessage.innerHTML = `
@@ -700,12 +710,12 @@
                         successMessage.style.display = 'block';
                         form.reset();
                     } else {
-                        throw new Error('Server error occurred');
+                        throw new Error(`Server error: ${response.status}`);
                     }
                     
                 } catch (error) {
-                    errorMessage.style.display = 'block';
                     console.error('Error submitting catering form:', error);
+                    errorMessage.style.display = 'block';
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Get My Free Quote';
