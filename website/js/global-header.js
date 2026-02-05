@@ -95,17 +95,20 @@
     function initHeaderFunctionality() {
         // Mobile menu toggle
         function initMobileMenu() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-            if (mobileMenuToggle && navMenu) {
-                mobileMenuToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navMenu.classList.toggle('mobile-active');
-                    mobileMenuToggle.classList.toggle('active');
-                });
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            if (window.innerWidth <= 768) {
+                navMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
             }
-        }
+        });
+    }
+}
 
         // Dropdown functionality
         function initDropdowns() {
