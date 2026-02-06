@@ -3421,3 +3421,8 @@ footer hr {
     display: flex;
   }
 }
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .nav-menu.active { display: flex; }
+}
+

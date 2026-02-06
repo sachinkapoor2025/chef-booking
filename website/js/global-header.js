@@ -185,3 +185,15 @@
         });
     }
 })();
+        function initMobileMenu() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+              const navMenu = document.querySelector('.nav-menu');
+
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            navMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+    }
+}
