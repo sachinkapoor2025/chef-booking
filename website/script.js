@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.style.display = 'block';
 
         navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            navMenu.classList.toggle('mobile-active');
         });
 
         // Mobile dropdown click handlers
