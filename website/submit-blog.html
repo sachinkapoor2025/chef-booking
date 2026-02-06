@@ -799,9 +799,9 @@
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
                     
                     // Get API URL from environment or use default
-                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/submit-form';
+                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
                     
-                    const response = await fetch(`${apiUrl}/submit-form`, {
+                    const response = await fetch(`${apiUrl}/blog-submission`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
