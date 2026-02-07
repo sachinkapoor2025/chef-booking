@@ -24,6 +24,7 @@
         <section id="book-weekly-service">
             <h1>Book Weekly Service</h1>
             <p>Request a weekly meal service. Fill out the form below and we'll get back to you promptly.</p>
+
             <form id="weekly-booking-form" class="booking-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -176,6 +177,7 @@
 
         document.getElementById('weekly-booking-form').addEventListener('submit', function(e) {
             e.preventDefault();
+
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
@@ -189,8 +191,14 @@
                     data: data
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Server error");
+                }
+                return response.json();
+            })
             .then(result => {
+                // ✅ POPUP MESSAGE
                 alert('Weekly service booking request submitted successfully! We will contact you soon.');
                 this.reset();
             })
@@ -200,8 +208,10 @@
             });
         });
     </script>
+
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+
     <!-- Chatbot Integration -->
     <script>
         // Load chatbot

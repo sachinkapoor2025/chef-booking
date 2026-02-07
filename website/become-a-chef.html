@@ -624,7 +624,7 @@
                 </div>
                     
                     <div class="cta-actions">
-                        <a href="chef-application.html" class="btn btn-primary">
+                        <a href="chef-application.html" class="btn btn-primary" id="start-application-btn">
                             <i class="fas fa-rocket"></i> Start Your Application
                         </a>
                         
@@ -803,5 +803,19 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+
+    <!-- ✅ POPUP MESSAGE SCRIPT (Added Only) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("start-application-btn");
+
+            if (btn) {
+                btn.addEventListener("click", function () {
+                    alert("Redirecting to Chef Application Form...");
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

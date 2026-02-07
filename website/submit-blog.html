@@ -823,6 +823,9 @@
                     
                     if (response.ok) {
                         const result = await response.json();
+
+                        // ✅ POPUP MESSAGE ADDED (SAME AS CHEF BOOKING)
+                        alert("Blog submitted successfully! We will review it within 3-5 business days.");
                         
                         // Show success message with submission ID
                         successMessage.innerHTML = `

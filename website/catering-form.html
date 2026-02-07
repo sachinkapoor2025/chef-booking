@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -516,7 +516,6 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="service-type">Service Style <span class="required">*</span></label>
-                                <!-- ✅ FIXED name="service-type" -->
                                 <select id="service-type" name="service-type" required>
                                     <option value="">Select service style</option>
                                     <option value="buffet">Buffet</option>
@@ -687,6 +686,10 @@
                     const result = await response.json();
 
                     if (response.ok && result.success) {
+
+                        // ✅ POPUP SUCCESS MESSAGE
+                        alert("Your catering inquiry has been submitted successfully! We'll contact you within 24 hours.");
+
                         successMessage.style.display = 'block';
                         form.reset();
                     } else {
