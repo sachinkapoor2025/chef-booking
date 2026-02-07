@@ -290,6 +290,25 @@
             box-sizing: border-box;
         }
 
+        /* Fix double dropdown arrow issue */
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #3b82f6 50%), linear-gradient(135deg, #3b82f6 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1px), calc(100% - 15px) calc(1px), calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select:focus {
+            background-image: linear-gradient(45deg, transparent 50%, #1d4ed8 50%), linear-gradient(135deg, #1d4ed8 50%, transparent 50%);
+            background-position: calc(100% - 20px) 1px, calc(100% - 15px) 1px, calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+        }
+
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
@@ -760,6 +779,22 @@
                 fileName.textContent = `Selected: ${file.name}`;
                 fileName.style.display = 'block';
             }
+
+            // Make checkboxes mutually exclusive
+            const termsAgreement = document.getElementById('terms-agreement');
+            const newsletterSignup = document.getElementById('newsletter-signup');
+            
+            termsAgreement.addEventListener('change', () => {
+                if (termsAgreement.checked) {
+                    newsletterSignup.checked = false;
+                }
+            });
+            
+            newsletterSignup.addEventListener('change', () => {
+                if (newsletterSignup.checked) {
+                    termsAgreement.checked = false;
+                }
+            });
 
             // Form Submission
             form.addEventListener('submit', async (e) => {

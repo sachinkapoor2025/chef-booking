@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -342,6 +342,25 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             box-sizing: border-box;
+        }
+
+        /* Fix double dropdown arrow issue */
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #3b82f6 50%), linear-gradient(135deg, #3b82f6 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1px), calc(100% - 15px) calc(1px), calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select:focus {
+            background-image: linear-gradient(45deg, transparent 50%, #1d4ed8 50%), linear-gradient(135deg, #1d4ed8 50%, transparent 50%);
+            background-position: calc(100% - 20px) 1px, calc(100% - 15px) 1px, calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
         }
 
         .form-group input:focus,
@@ -895,6 +914,18 @@
                 });
             }
             
+        // Make Terms & Conditions checkbox mutually exclusive with other checkboxes
+        const termsAgreement = document.getElementById('terms-agreement');
+        const backgroundCheck = document.getElementById('background-check');
+        const newsletterSignup = document.getElementById('newsletter-signup');
+        
+        termsAgreement.addEventListener('change', () => {
+            if (termsAgreement.checked) {
+                backgroundCheck.checked = false;
+                newsletterSignup.checked = false;
+            }
+        });
+
         // Form Submission
         form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -918,8 +949,17 @@
                     isValid = false;
                 }
                 
-                if (!formData.get('resume')) {
+                // Check if resume file is uploaded
+                const resumeFile = document.getElementById('resume').files[0];
+                if (!resumeFile) {
                     isValid = false;
+                    // Highlight the resume upload area to show it's required
+                    resumeUpload.style.borderColor = '#ef4444';
+                    resumeUpload.style.backgroundColor = '#fee2e2';
+                } else {
+                    // Reset resume upload styling if file is present
+                    resumeUpload.style.borderColor = '#e5e7eb';
+                    resumeUpload.style.backgroundColor = '#f8fafc';
                 }
                 
                 if (!isValid) {
@@ -933,7 +973,7 @@
                 
                 try {
                     // Get API URL from environment or use default
-                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
+                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
                     
                     const response = await fetch(`${apiUrl}/chef-application`, {
                         method: 'POST',
@@ -952,6 +992,10 @@
                             You'll receive an email notification regarding our decision.
                         `;
                         successMessage.style.display = 'block';
+
+                        // ✅ Popup Alert Added Here (No functionality changed)
+                        alert("Chef application submitted successfully! We will contact you soon.");
+
                         form.reset();
                         
                         // Reset file upload displays
