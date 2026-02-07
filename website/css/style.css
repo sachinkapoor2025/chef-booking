@@ -114,33 +114,6 @@ header {
     justify-content: flex-end;
 }
 
-/* Mobile menu toggle button */
-.mobile-menu-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid #3b82f6;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-left: 1rem;
-}
-
-.mobile-menu-toggle i {
-    color: #3b82f6;
-    font-size: 1.2rem;
-}
-
-.mobile-menu-toggle.active {
-    background: #3b82f6;
-}
-
-.mobile-menu-toggle.active i {
-    color: white;
-}
 
 /* Dropdown styles for global header */
 .global-nav .dropdown-menu {
@@ -223,10 +196,6 @@ header {
         width: 100%;
     }
 
-    .header-center {
-        display: none;
-    }
-
     .header-right {
         justify-content: flex-start;
         margin-top: 1rem;
@@ -239,23 +208,10 @@ header {
     }
 
     .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: white;
         flex-direction: column;
-        gap: 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        z-index: 1000;
-        border-radius: 8px;
-        margin-top: 0.5rem;
-        padding: 0.5rem 0;
-    }
-
-    .nav-menu.mobile-active {
-        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        width: 100%;
     }
 
     .nav-menu li {
@@ -263,23 +219,12 @@ header {
     }
 
     .nav-menu a {
-        padding: 1rem;
-        border-bottom: 1px solid #eee;
-        display: block;
+        width: 100%;
         text-align: center;
-        background: white;
-        color: #3b82f6;
-        border: 1px solid #3b82f6;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
         border-radius: 10px;
-        margin: 0.5rem;
-        font-weight: 600;
         font-size: 0.9rem;
-    }
-
-    .nav-menu a:hover {
-        background: #f8fafc;
-        color: #2563eb;
-        transform: translateY(-1px);
     }
 
     .dropdown-menu {
@@ -291,21 +236,18 @@ header {
         opacity: 1;
         visibility: visible;
         transform: none;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        margin: 0;
-        padding: 0;
-        border-radius: 0;
-    }
-
-    .dropdown-menu.active {
-        max-height: 500px;
-        margin-bottom: 1rem;
+        max-height: none;
+        overflow: visible;
+        transition: none;
+        margin: 0.5rem 0;
+        padding: 0.5rem 0;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .dropdown-menu a {
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 1rem;
         display: block;
         text-align: left;
         border-bottom: 1px solid #f0f0f0;
@@ -316,14 +258,11 @@ header {
         margin: 0;
         width: 100%;
         border-radius: 0;
+        border: none;
     }
 
     .dropdown-menu a:last-child {
         border-bottom: none;
-    }
-
-    .mobile-menu-toggle {
-        display: flex;
     }
 
     /* Mobile sticky CTA improvements */
@@ -2769,19 +2708,15 @@ footer hr {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-    nav {
-        padding: 0.5rem 1rem;
+    .global-nav {
         flex-direction: column;
         align-items: stretch;
+        padding: 0.5rem 1rem;
     }
 
     .header-left, .header-center, .header-right {
         flex: none;
         width: 100%;
-    }
-
-    .header-center {
-        display: none;
     }
 
     .header-right {
@@ -2796,20 +2731,10 @@ footer hr {
     }
 
     .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: white;
         flex-direction: column;
-        gap: 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        z-index: 1000;
-    }
-
-    .nav-menu.active {
-        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        width: 100%;
     }
 
     .nav-menu li {
@@ -2817,23 +2742,12 @@ footer hr {
     }
 
     .nav-menu a {
-        padding: 1rem;
-        border-bottom: 1px solid #eee;
-        display: block;
+        width: 100%;
         text-align: center;
-        background: white;
-        color: #3b82f6;
-        border: 1px solid #3b82f6;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
         border-radius: 10px;
-        margin: 0.5rem;
-        font-weight: 600;
         font-size: 0.9rem;
-    }
-
-    .nav-menu a:hover {
-        background: #f8fafc;
-        color: #2563eb;
-        transform: translateY(-1px);
     }
 
     .dropdown-menu {
@@ -2845,18 +2759,18 @@ footer hr {
         opacity: 1;
         visibility: visible;
         transform: none;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-
-    .dropdown-menu.open {
-        max-height: 500px;
-        margin-bottom: 1rem;
+        max-height: none;
+        overflow: visible;
+        transition: none;
+        margin: 0.5rem 0;
+        padding: 0.5rem 0;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .dropdown-menu a {
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 1rem;
         display: block;
         text-align: left;
         border-bottom: 1px solid #f0f0f0;
@@ -2864,33 +2778,14 @@ footer hr {
         background: white;
         color: #333;
         box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        border: none;
     }
 
     .dropdown-menu a:last-child {
         border-bottom: none;
-    }
-
-    /* Mobile menu toggle button */
-    .mobile-menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.75rem 1rem;
-        background-color: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        cursor: pointer;
-        margin-bottom: 1rem;
-    }
-
-    .mobile-menu-toggle-text {
-        font-weight: 600;
-        color: #333;
-    }
-
-    .mobile-menu-toggle-icon {
-        font-size: 1.2rem;
-        color: #3b82f6;
     }
 
     /* Hero section mobile adjustments */

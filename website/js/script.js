@@ -1,6 +1,3 @@
-// Mobile navigation toggle
-
-
 document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
     const header = document.querySelector('header');
@@ -36,76 +33,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const navToggle = document.createElement('div');
-    navToggle.innerHTML = '☰';
-    navToggle.style.cssText = `
-        display: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #1e293b;
-        z-index: 1001;
-        transition: all 0.3s ease;
-    `;
-
     const nav = document.querySelector('nav');
     const navMenu = document.querySelector('.nav-menu');
     
-    // Add toggle button for mobile
-    if (window.innerWidth <= 768) {
-        nav.style.position = 'relative';
-        nav.appendChild(navToggle);
-        navToggle.style.display = 'block';
+    // Ensure menu is always visible on all screen sizes
+    navMenu.classList.add('active');
+    
+    // Mobile dropdown click handlers for better mobile experience
+    const mobileDropdowns = navMenu.querySelectorAll('.dropdown');
+    mobileDropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        const menu = dropdown.querySelector('.dropdown-menu');
 
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-    // Make Terms & Conditions checkbox mutually exclusive with other checkboxes
-           const termsAgreement = document.getElementById('terms-agreement');
-           const backgroundCheck = document.getElementById('background-check');
-           const newsletterSignup = document.getElementById('newsletter-signup');
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
 
-           termsAgreement.addEventListener('change', () => {
-        if (termsAgreement.checked) {
-           backgroundCheck.checked = false;
-           newsletterSignup.checked = false;
-        }
-        });
-
-        // Mobile dropdown click handlers
-        const mobileDropdowns = navMenu.querySelectorAll('.dropdown');
-        mobileDropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('a');
-            const menu = dropdown.querySelector('.dropdown-menu');
-
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // Close all other submenus (accordion behavior)
-                mobileDropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        const otherMenu = otherDropdown.querySelector('.dropdown-menu');
-                        if (otherMenu) {
-                            otherMenu.classList.remove('open');
-                        }
+            // Close all other submenus (accordion behavior)
+            mobileDropdowns.forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+                    if (otherMenu) {
+                        otherMenu.classList.remove('open');
                     }
-                });
-
-                // Toggle current submenu
-                if (menu) {
-                    menu.classList.toggle('open');
                 }
             });
-        });
-    }
-    
-    // Dropdown functionality is now handled by Bootstrap JS
-    // This section removed to prevent conflicts with Bootstrap dropdowns
-    
 
+            // Toggle current submenu
+            if (menu) {
+                menu.classList.toggle('open');
+            }
+        });
+    });
     
     // Smooth scrolling for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
@@ -259,10 +217,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Responsive adjustments
     window.addEventListener('resize', function() {
         if (window.innerWidth <= 768) {
-            navToggle.style.display = 'block';
-            navMenu.classList.remove('active');
+            navMenu.classList.add('active'); // Keep menu visible on mobile
         } else {
-            navToggle.style.display = 'none';
             navMenu.classList.add('active'); // Ensure menu is always visible on desktop
         }
     });
