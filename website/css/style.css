@@ -3399,10 +3399,17 @@ footer hr {
     left: 0;
     right: 0;
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
   }
 
   .nav-menu.active {
     display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .nav-menu li {

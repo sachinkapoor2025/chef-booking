@@ -112,8 +112,15 @@
             const navMenu = document.querySelector('.nav-menu');
 
             if (mobileMenuToggle && navMenu) {
+                // Ensure menu is closed by default on mobile
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+
                 mobileMenuToggle.addEventListener('click', function (e) {
                     e.preventDefault();
+                    e.stopPropagation();
 
                     navMenu.classList.toggle('active');
                     mobileMenuToggle.classList.toggle('active');
@@ -126,25 +133,23 @@
             const dropdowns = document.querySelectorAll('.dropdown');
 
             dropdowns.forEach(dropdown => {
-                const trigger = dropdown.querySelector('a');
+                const trigger = dropdown.querySelector('.dropdown-toggle');
                 const menu = dropdown.querySelector('.dropdown-menu');
 
                 if (trigger && menu) {
                     trigger.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
 
-                        // Only dropdown click on mobile
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
+                        // Toggle dropdown on click (both mobile and desktop)
+                        dropdown.classList.toggle('active');
 
-                            dropdown.classList.toggle('active');
-
-                            // Close other dropdowns
-                            dropdowns.forEach(otherDropdown => {
-                                if (otherDropdown !== dropdown) {
-                                    otherDropdown.classList.remove('active');
-                                }
-                            });
-                        }
+                        // Close other dropdowns
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
                     });
 
                     // Close dropdown when clicking outside

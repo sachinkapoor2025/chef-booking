@@ -444,6 +444,58 @@
             display: none;
         }
 
+        /* Toggle Button Styles */
+        .toggle-btn {
+            background: white;
+            color: #64748b;
+            border: 2px solid #e5e7eb;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .toggle-btn.active i {
+            color: white;
+        }
+
+        .toggle-btn i {
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: white;
+            opacity: 0.5;
+        }
+
         /* Progress Indicator */
         .progress-container {
             margin-bottom: 2rem;
@@ -579,18 +631,22 @@
                         </ul>
                     </div>
 
+                    <!-- Toggle Buttons Section -->
                     <div class="form-group">
-                        <label>
-                            <input type="checkbox" id="terms-agreement" name="termsAgreement" required>
-                            I agree to the <a href="terms-conditions.html" target="_blank">terms and conditions</a> and understand that my submission may be edited for publication
-                        </label>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" id="newsletter-signup" name="newsletterSignup">
-                            I'd like to receive updates about Maharaja Chef Services and blog publication status
-                        </label>
+                        <label style="display: block; margin-bottom: 1rem; font-weight: 700; color: #1e3a8a;">Choose Your Preference:</label>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button type="button" class="toggle-btn active" id="terms-btn" onclick="toggleSelection('terms')">
+                                <i class="fas fa-file-contract"></i> Terms and Conditions
+                            </button>
+                            <button type="button" class="toggle-btn" id="updates-btn" onclick="toggleSelection('updates')">
+                                <i class="fas fa-bell"></i> Updates on Maharaja Chef
+                            </button>
+                        </div>
+                        <input type="hidden" id="terms-agreement" name="termsAgreement" value="false">
+                        <input type="hidden" id="newsletter-signup" name="newsletterSignup" value="false">
+                        <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
+                            <i class="fas fa-info-circle"></i> Select one option - the other will be automatically deselected
+                        </div>
                     </div>
 
                     <button type="submit" class="submit-btn" id="submit-btn">
@@ -707,6 +763,28 @@
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
     <script>
+        // Toggle Selection Functionality
+        function toggleSelection(type) {
+            const termsBtn = document.getElementById('terms-btn');
+            const updatesBtn = document.getElementById('updates-btn');
+            const termsAgreement = document.getElementById('terms-agreement');
+            const newsletterSignup = document.getElementById('newsletter-signup');
+            
+            if (type === 'terms') {
+                // Select Terms button
+                termsBtn.classList.add('active');
+                updatesBtn.classList.remove('active');
+                termsAgreement.value = 'true';
+                newsletterSignup.value = 'false';
+            } else if (type === 'updates') {
+                // Select Updates button
+                updatesBtn.classList.add('active');
+                termsBtn.classList.remove('active');
+                newsletterSignup.value = 'true';
+                termsAgreement.value = 'false';
+            }
+        }
+
         // Blog Submission Form Logic
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('blog-submission-form');
