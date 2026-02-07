@@ -1,18 +1,21 @@
-<header class="global-header" id="global-header">
+<header class="global-header" id="global-header"> 
     <nav class="global-nav">
         <div class="header-left">
             <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;"></a></h1>
+                <h1>
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;">
+                    </a>
+                </h1>
             </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
+
         <div class="header-center">
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="catering-services.html">Catering Services</a></li>
                 <li><a href="balanced-diet.html">Balanced Diet</a></li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">
                         Services <span class="dropdown-arrow"></span>
@@ -25,6 +28,7 @@
                         <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
                     </ul>
                 </li>
+
                 <li class="dropdown">
                     <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow"></span></a>
                     <ul class="dropdown-menu">
@@ -34,6 +38,7 @@
                         <li><a href="success-stories.html">Success Stories</a></li>
                     </ul>
                 </li>
+
                 <li class="dropdown">
                     <a href="#">Explore More <span class="dropdown-arrow"></span></a>
                     <ul class="dropdown-menu">
@@ -46,9 +51,9 @@
                         <li><a href="contact-us.html">Contact Us</a></li>
                     </ul>
                 </li>
-                    <li><a href="owner.html">Business Owner</a></li>
-                    <li><a href="login.html">Log In</a></li>
 
+                <li><a href="owner.html">Business Owner</a></li>
+                <li><a href="login.html">Log In</a></li>
             </ul>
         </div>
     </nav>
@@ -64,52 +69,28 @@
 // Inline header functionality for immediate execution
 (function() {
     'use strict';
-    
-    // Mobile menu toggle
-    function initMobileMenu() {
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        if (mobileMenuToggle && navMenu) {
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                navMenu.classList.toggle('active');
-                mobileMenuToggle.classList.toggle('active');
-                
-                // Add animation for smooth transition
-                if (navMenu.classList.contains('active')) {
-                    navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
-                } else {
-                    navMenu.style.maxHeight = '0';
-                }
-            });
-        }
-    }
 
     // Dropdown functionality
     function initDropdowns() {
         const dropdowns = document.querySelectorAll('.dropdown');
-        
+
         dropdowns.forEach(dropdown => {
             const trigger = dropdown.querySelector('a');
             const menu = dropdown.querySelector('.dropdown-menu');
-            
+
             if (trigger && menu) {
                 trigger.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
-                    // Toggle dropdown visibility
+
                     dropdown.classList.toggle('active');
-                    
-                    // Close other dropdowns
+
                     dropdowns.forEach(otherDropdown => {
                         if (otherDropdown !== dropdown) {
                             otherDropdown.classList.remove('active');
                         }
                     });
                 });
-                
-                // Close dropdown when clicking outside
+
                 document.addEventListener('click', function(e) {
                     if (!dropdown.contains(e.target)) {
                         dropdown.classList.remove('active');
@@ -123,12 +104,10 @@
     function initMobileCTA() {
         const stickyBar = document.getElementById('sticky-cta-bar');
         if (stickyBar) {
-            // Show CTA bar on mobile devices
             if (window.innerWidth <= 768) {
                 stickyBar.style.display = 'flex';
             }
-            
-            // Handle resize events
+
             window.addEventListener('resize', function() {
                 if (window.innerWidth <= 768) {
                     stickyBar.style.display = 'flex';
@@ -139,18 +118,14 @@
         }
     }
 
-    // Initialize all functionality
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-            initMobileMenu();
             initDropdowns();
             initMobileCTA();
         });
     } else {
-        initMobileMenu();
         initDropdowns();
         initMobileCTA();
     }
 })();
 </script>
-
