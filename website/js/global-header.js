@@ -102,6 +102,139 @@
     }
 
     function initHeaderFunctionality() {
+        // Add CSS styles for mobile menu and dropdowns
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Mobile Menu Styles */
+            .mobile-menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: #1e3a8a;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-toggle:hover {
+                background: rgba(30, 58, 138, 0.1);
+            }
+
+            .mobile-menu-toggle.active {
+                background: #3b82f6;
+                color: white;
+            }
+
+            .nav-menu {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                padding: 1rem;
+                z-index: 1000;
+            }
+
+            .nav-menu.active li {
+                margin-bottom: 0.5rem;
+            }
+
+            .nav-menu.active li a {
+                display: block;
+                padding: 0.75rem;
+                border-radius: 6px;
+                color: #1e3a8a;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active li a:hover {
+                background: #f3f4f6;
+                color: #3b82f6;
+            }
+
+            /* Mobile responsive styles */
+            @media (max-width: 768px) {
+                .mobile-menu-toggle {
+                    display: block;
+                }
+
+                .header-center {
+                    position: relative;
+                }
+
+                .nav-menu {
+                    display: none;
+                }
+
+                .nav-menu.active {
+                    display: flex;
+                }
+
+                .dropdown .dropdown-menu {
+                    position: static;
+                    box-shadow: none;
+                    background: transparent;
+                    border: none;
+                    padding: 0;
+                    display: block;
+                    opacity: 1;
+                    visibility: visible;
+                    transform: none;
+                }
+
+                .dropdown .dropdown-menu li {
+                    margin-left: 1rem;
+                }
+
+                .dropdown .dropdown-menu li a {
+                    color: #64748b;
+                    padding: 0.5rem 0.75rem;
+                }
+
+                .dropdown .dropdown-menu li a:hover {
+                    color: #3b82f6;
+                    background: transparent;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    navMenu.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!document.querySelector('.global-nav').contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
+        }
 
         // Dropdown functionality
         function initDropdowns() {
@@ -161,6 +294,7 @@
         }
 
         // Initialize all functionality
+        initMobileMenu();
         initDropdowns();
         initMobileCTA();
     }
