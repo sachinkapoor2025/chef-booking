@@ -102,29 +102,6 @@
     }
 
     function initHeaderFunctionality() {
-        // Mobile menu toggle
-        function initMobileMenu() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (mobileMenuToggle && navMenu) {
-                mobileMenuToggle.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    navMenu.classList.toggle('active');
-                    mobileMenuToggle.classList.toggle('active');
-                });
-
-                // Close menu when clicking outside
-                document.addEventListener('click', function (e) {
-                    if (!document.querySelector('.global-nav').contains(e.target)) {
-                        navMenu.classList.remove('active');
-                        mobileMenuToggle.classList.remove('active');
-                    }
-                });
-            }
-        }
 
         // Dropdown functionality
         function initDropdowns() {
@@ -183,8 +160,7 @@
             }
         }
 
-        // Initialize all functionality
-        initMobileMenu();
+        // Initialize remaining functionality
         initDropdowns();
         initMobileCTA();
     }
