@@ -83,6 +83,13 @@
                         </h1>
                     </div>
                 </div>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
                 <div class="header-center">
                     <ul class="nav-menu">
                         <li><a href="index.html">Home</a></li>
@@ -103,11 +110,44 @@
 
     function initHeaderFunctionality() {
 
+        // Hamburger Menu Functionality (Works on All Pages)
+        function initMobileMenu() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!mobileMenuToggle || !navMenu) return;
+
+            // Toggle menu
+            mobileMenuToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                navMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.global-nav')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking on a menu link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function () {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+        }
+
         // Dropdown functionality
         function initDropdowns() {
             const dropdowns = document.querySelectorAll('.dropdown');
 
-            if (dropdowns.length === 0) return; // No dropdowns found
+            if (dropdowns.length === 0) return;
 
             dropdowns.forEach(dropdown => {
                 const trigger = dropdown.querySelector('.dropdown-toggle');
@@ -118,7 +158,6 @@
                         e.preventDefault();
                         e.stopPropagation();
 
-                        // Toggle dropdown on click (both mobile and desktop)
                         dropdown.classList.toggle('active');
 
                         // Close other dropdowns
@@ -144,23 +183,21 @@
             const stickyBar = document.getElementById('sticky-cta-bar');
 
             if (stickyBar) {
-                if (window.innerWidth <= 768) {
-                    stickyBar.style.display = 'flex';
-                } else {
-                    stickyBar.style.display = 'none';
-                }
-
-                window.addEventListener('resize', function () {
+                function updateCTA() {
                     if (window.innerWidth <= 768) {
                         stickyBar.style.display = 'flex';
                     } else {
                         stickyBar.style.display = 'none';
                     }
-                });
+                }
+
+                updateCTA();
+                window.addEventListener('resize', updateCTA);
             }
         }
 
-        // Initialize remaining functionality
+        // Initialize all functionality
+        initMobileMenu();
         initDropdowns();
         initMobileCTA();
     }
