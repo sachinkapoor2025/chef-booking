@@ -82,9 +82,6 @@
                             </a>
                         </h1>
                     </div>
-                    <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
                 </div>
                 <div class="header-center">
                     <ul class="nav-menu">
@@ -105,28 +102,6 @@
     }
 
     function initHeaderFunctionality() {
-
-        // Mobile menu toggle
-        function initMobileMenu() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (mobileMenuToggle && navMenu) {
-                // Ensure menu is closed by default on mobile
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                }
-
-                mobileMenuToggle.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    navMenu.classList.toggle('active');
-                    mobileMenuToggle.classList.toggle('active');
-                });
-            }
-        }
 
         // Dropdown functionality
         function initDropdowns() {
@@ -186,7 +161,6 @@
         }
 
         // Initialize all functionality
-        initMobileMenu();
         initDropdowns();
         initMobileCTA();
     }
