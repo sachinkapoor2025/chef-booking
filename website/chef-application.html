@@ -1092,17 +1092,31 @@
                 });
             }
             
-        // Make Terms & Conditions checkbox mutually exclusive with other checkboxes
+        // Make all three checkboxes mutually exclusive (three-way toggle)
         const termsAgreement = document.getElementById('terms-agreement');
         const backgroundCheck = document.getElementById('background-check');
         const newsletterSignup = document.getElementById('newsletter-signup');
         
-        termsAgreement.addEventListener('change', () => {
-            if (termsAgreement.checked) {
-                backgroundCheck.checked = false;
-                newsletterSignup.checked = false;
-            }
-        });
+        // Function to handle three-way toggle
+        function handleThreeWayToggle() {
+            const checkboxes = [termsAgreement, backgroundCheck, newsletterSignup];
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        // Deselect the other two checkboxes
+                        checkboxes.forEach(otherCheckbox => {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Initialize the three-way toggle functionality
+        handleThreeWayToggle();
 
         // Form Submission
         form.addEventListener('submit', async (e) => {

@@ -132,6 +132,8 @@
         function initDropdowns() {
             const dropdowns = document.querySelectorAll('.dropdown');
 
+            if (dropdowns.length === 0) return; // No dropdowns found
+
             dropdowns.forEach(dropdown => {
                 const trigger = dropdown.querySelector('.dropdown-toggle');
                 const menu = dropdown.querySelector('.dropdown-menu');
