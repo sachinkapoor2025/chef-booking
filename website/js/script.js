@@ -63,6 +63,17 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
         });
+    // Make Terms & Conditions checkbox mutually exclusive with other checkboxes
+           const termsAgreement = document.getElementById('terms-agreement');
+           const backgroundCheck = document.getElementById('background-check');
+           const newsletterSignup = document.getElementById('newsletter-signup');
+
+           termsAgreement.addEventListener('change', () => {
+        if (termsAgreement.checked) {
+           backgroundCheck.checked = false;
+           newsletterSignup.checked = false;
+        }
+        });
 
         // Mobile dropdown click handlers
         const mobileDropdowns = navMenu.querySelectorAll('.dropdown');
