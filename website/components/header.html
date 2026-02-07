@@ -11,7 +11,15 @@
         </div>
 
         <div class="header-center">
-            <ul class="nav-menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="catering-services.html">Catering Services</a></li>
                 <li><a href="balanced-diet.html">Balanced Diet</a></li>
@@ -70,6 +78,36 @@
 (function() {
     'use strict';
 
+    // Mobile menu toggle functionality
+    function initMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
+        }
+    }
+
     // Dropdown functionality
     function initDropdowns() {
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -120,10 +158,12 @@
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
+            initMobileMenu();
             initDropdowns();
             initMobileCTA();
         });
     } else {
+        initMobileMenu();
         initDropdowns();
         initMobileCTA();
     }
