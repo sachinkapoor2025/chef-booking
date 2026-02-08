@@ -25,6 +25,76 @@
     <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
+    <!-- Mobile Menu Toggle Button (for pages that don't use header.html) -->
+    <header class="global-header" id="global-header"> 
+        <nav class="global-nav">
+            <div class="header-left">
+                <div class="logo">
+                    <h1>
+                        <a href="index.html" style="text-decoration: none; color: inherit;">
+                            <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;">
+                        </a>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                    <span class="hamburger-icon">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </span>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catering-services.html">Catering Services</a></li>
+                    <li><a href="balanced-diet.html">Balanced Diet</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            Services <span class="dropdown-arrow"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="book-a-chef.html">Book a Chef</a></li>
+                            <li><a href="catering-services.html">Catering Services</a></li>
+                            <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                            <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="become-a-chef.html">Become a Chef</a></li>
+                            <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                            <li><a href="chef-faq.html">Chef FAQ</a></li>
+                            <li><a href="success-stories.html">Success Stories</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Explore More <span class="dropdown-arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                            <li><a href="menu-services.html">Menu Services</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="owner.html">Business Owner</a></li>
+                    <li><a href="login.html">Log In</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
         <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
@@ -427,6 +497,37 @@
         // Check on load and resize
         window.addEventListener('load', checkMobileStickyCTA);
         window.addEventListener('resize', checkMobileStickyCTA);
+    </script>
+    
+    <!-- Mobile Navigation Script -->
+    <script>
+        // Mobile menu toggle functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
+        }
     </script>
     </body>
     <!-- Chatbot Integration -->
