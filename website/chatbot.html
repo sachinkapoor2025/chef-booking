@@ -240,10 +240,19 @@
 
         /* Responsive design */
         @media (max-width: 768px) {
+            /* Move chatbot up on mobile to avoid sticky CTA overlap */
+            .chatbot-container {
+                bottom: 90px; /* Move up by 70px to clear sticky CTA */
+            }
+            
+            .chatbot-toggle {
+                bottom: 90px; /* Match container position */
+            }
+            
             .chatbot-popup {
                 width: 90%;
                 height: 80vh;
-                bottom: 80px;
+                bottom: 160px; /* Move up to clear both toggle and sticky CTA */
                 right: 5%;
                 left: 5%;
             }

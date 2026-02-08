@@ -154,13 +154,19 @@
 
         if (mobileMenuToggle && mobileMenuOverlay && mobileMenuClose) {
             // Toggle mobile menu
-            mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 mobileMenuOverlay.classList.add('active');
                 mobileMenuToggle.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
             });
 
-            mobileMenuClose.addEventListener('click', function() {
+            mobileMenuClose.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 mobileMenuOverlay.classList.remove('active');
                 mobileMenuToggle.classList.remove('active');
                 document.body.style.overflow = ''; // Re-enable background scrolling
@@ -211,6 +217,8 @@
             mobileDropdownToggles.forEach(toggle => {
                 toggle.addEventListener('click', function(e) {
                     e.preventDefault();
+                    e.stopPropagation();
+                    
                     const dropdown = this.closest('.mobile-dropdown');
                     const isActive = dropdown.classList.contains('active');
                     
