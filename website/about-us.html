@@ -24,68 +24,8 @@
     <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
-    <!-- Mobile Menu Header -->
-<header class="global-header" id="global-header"> 
-    <nav class="global-nav">
-        <div class="header-left">
-            <div class="logo">
-                <h1>
-                    <a href="index.html" style="text-decoration: none; color: inherit;">
-                        <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;">
-                    </a>
-                </h1>
-            </div>
-        </div>
-
-        <div class="header-center">
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catering-services.html">Catering Services</a></li>
-                <li><a href="balanced-diet.html">Balanced Diet</a></li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        Services <span class="dropdown-arrow"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="catering-services.html">Catering Services</a></li>
-                        <li><a href="balanced-diet.html">Balanced Diet</a></li>
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="become-a-chef.html">Become a Chef</a></li>
-                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
-                        <li><a href="chef-faq.html">Chef FAQ</a></li>
-                        <li><a href="success-stories.html">Success Stories</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                        <li><a href="menu-services.html">Menu Services</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="owner.html">Business Owner</a></li>
-                <li><a href="login.html">Log In</a></li>
-            </ul>
-        </div>
-    </nav>
- </header>   
+    <!-- Include the header component -->
+    <div id="header-container"></div>
     <main>
         <section id="our-story" style="padding: 6rem 2rem; text-align: center; background: #f8f9fa;">
             <div class="container" style="max-width: 1200px; margin: 0 auto;">
@@ -306,6 +246,17 @@
         </div>
     </footer>
 
+    <script>
+        // Load header component
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+    </script>
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
 </body>
