@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Hamburger Menu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+        
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-result {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the header component -->
+    <div id="header-container"></div>
+
+    <div class="test-section">
+        <h2>🧪 Hamburger Menu Test Page</h2>
+        <div class="instructions">
+            <h3>Test Instructions:</h3>
+            <ol>
+                <li>Resize your browser to mobile width (less than 768px)</li>
+                <li>Look for the hamburger menu button in the header (top right)</li>
+                <li>Click the hamburger button to open the mobile menu</li>
+                <li>Test the dropdown functionality within the mobile menu</li>
+                <li>Click outside the menu or the close button to close it</li>
+                <li>Test on different mobile devices if possible</li>
+            </ol>
+        </div>
+
+        <div class="test-result">
+            <h4>Expected Results:</h4>
+            <ul>
+                <li>✅ Hamburger button appears only on mobile devices</li>
+                <li>✅ Mobile menu slides in from the right when clicked</li>
+                <li>✅ All header links are accessible in the mobile menu</li>
+                <li>✅ Dropdown menus work within the mobile menu</li>
+                <li>✅ Menu closes when clicking outside or on close button</li>
+                <li>✅ Smooth animations and transitions</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>📱 Current Viewport Size:</h3>
+        <p id="viewport-size">Width: <span id="width">0</span>px, Height: <span id="height">0</span>px</p>
+        
+        <h3>📱 Device Detection:</h3>
+        <p id="device-type">Device type: <span id="device">Unknown</span></p>
+    </div>
+
+    <!-- Load the header component -->
+    <script>
+        // Load header component
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+
+        // Viewport size monitoring
+        function updateViewportInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const deviceType = width <= 768 ? 'Mobile' : width <= 1024 ? 'Tablet' : 'Desktop';
+            
+            document.getElementById('width').textContent = width;
+            document.getElementById('height').textContent = height;
+            document.getElementById('device').textContent = deviceType;
+        }
+
+        window.addEventListener('resize', updateViewportInfo);
+        updateViewportInfo();
+    </script>
+</body>
+</html>
