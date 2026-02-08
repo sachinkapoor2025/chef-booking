@@ -1,5 +1,3 @@
-// Mobile navigation toggle 
-
 document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
     const header = document.querySelector('header');
@@ -37,21 +35,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const nav = document.querySelector('nav');
     const navMenu = document.querySelector('.nav-menu');
+    
+    // Ensure menu is always visible on all screen sizes
+    navMenu.classList.add('active');
+    
+    // Mobile dropdown click handlers for better mobile experience
+    const mobileDropdowns = navMenu.querySelectorAll('.dropdown');
+    mobileDropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        const menu = dropdown.querySelector('.dropdown-menu');
 
-    // Make Terms & Conditions checkbox mutually exclusive with other checkboxes
-    const termsAgreement = document.getElementById('terms-agreement');
-    const backgroundCheck = document.getElementById('background-check');
-    const newsletterSignup = document.getElementById('newsletter-signup');
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
 
-    if (termsAgreement && backgroundCheck && newsletterSignup) {
-        termsAgreement.addEventListener('change', () => {
-            if (termsAgreement.checked) {
-                backgroundCheck.checked = false;
-                newsletterSignup.checked = false;
+            // Close all other submenus (accordion behavior)
+            mobileDropdowns.forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+                    if (otherMenu) {
+                        otherMenu.classList.remove('open');
+                    }
+                }
+            });
+
+            // Toggle current submenu
+            if (menu) {
+                menu.classList.toggle('open');
             }
         });
-    }
-
+    });
+    
     // Smooth scrolling for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
@@ -132,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Play video when modal opens
         modalVideo.play().catch(function(error) {
             console.log('Video play failed:', error);
+            // Fallback: show alert for video hosting issues
             alert('Video playback requires proper hosting configuration. Please ensure video files are correctly uploaded and server supports video streaming.');
         });
     }
@@ -144,12 +158,15 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = ''; // Restore scrolling
     }
 
-    if (modalBackdrop) modalBackdrop.addEventListener('click', closeVideoModal);
-    if (modalClose) modalClose.addEventListener('click', closeVideoModal);
+    // Close modal when clicking backdrop
+    modalBackdrop.addEventListener('click', closeVideoModal);
+
+    // Close modal when clicking close button
+    modalClose.addEventListener('click', closeVideoModal);
 
     // Close modal on ESC key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && videoModal && videoModal.style.display === 'block') {
+        if (e.key === 'Escape' && videoModal.style.display === 'block') {
             closeVideoModal();
         }
     });
@@ -159,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     allVideoContainers.forEach(container => {
         const video = container.querySelector('video');
         const playButton = container.querySelector('.play-button, .play-button-gallery');
+        const playOverlay = container.querySelector('.play-overlay, .play-overlay-gallery');
 
         if (video && playButton) {
             // Handle play button click - now opens modal
@@ -172,16 +190,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Handle container click to open modal
             container.addEventListener('click', function(e) {
+                // Only open modal if not clicking on play button directly
                 if (!e.target.closest('.play-button, .play-button-gallery')) {
                     const videoSrc = video.querySelector('source').src;
                     openVideoModal(videoSrc);
                 }
             });
 
-            // Auto-play on hover for muted videos (if supported)
+            // Auto-play on hover for muted videos (if supported) - keep this for thumbnail preview
             if (video.muted && video.loop) {
                 container.addEventListener('mouseenter', function() {
                     video.play().catch(function(error) {
+                        // Silent fail for auto-play restrictions
                         console.log('Auto-play failed:', error);
                     });
                 });
@@ -191,6 +211,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     video.currentTime = 0;
                 });
             }
+        }
+    });
+
+    // Responsive adjustments
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            navMenu.classList.add('active'); // Keep menu visible on mobile
+        } else {
+            navMenu.classList.add('active'); // Ensure menu is
+            navToggle.style.display = 'none';
+            navMenu.classList.add('active'); // Ensure menu is always visible on desktop
         }
     });
 
@@ -227,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chefCards.forEach(card => {
             let showCard = true;
 
-            // Location filter
+            // Location filter - expand to include more California cities
             if (location && location !== '') {
                 const cardLocation = card.getAttribute('data-location') || '';
                 const validLocations = ['california', 'ca', 'san jose', 'san francisco', 'los angeles', 'la', 'sacramento', 'fresno', 'bakersfield'];
@@ -252,6 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
+            // Show/hide card with animation
             if (showCard) {
                 card.style.display = 'block';
                 card.style.opacity = '0';
@@ -267,6 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Show/hide no results message with better styling
         if (visibleCount === 0) {
             noResults.style.display = 'block';
             noResults.innerHTML = `
@@ -282,10 +315,50 @@ document.addEventListener('DOMContentLoaded', function() {
             noResults.style.display = 'none';
             if (chefCardsContainer) chefCardsContainer.style.display = 'grid';
         }
+
+        // Provide user feedback
+        const feedback = document.createElement('div');
+        feedback.id = 'search-feedback';
+        feedback.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        `;
+
+        // Remove existing feedback
+        const existingFeedback = document.getElementById('search-feedback');
+        if (existingFeedback) {
+            existingFeedback.remove();
+        }
+
+        feedback.textContent = `Found ${visibleCount} chef${visibleCount !== 1 ? 's' : ''} matching your criteria`;
+        document.body.appendChild(feedback);
+
+        // Animate feedback
+        setTimeout(() => {
+            feedback.style.opacity = '1';
+            feedback.style.transform = 'translateY(0)';
+        }, 100);
+
+        // Remove feedback after 3 seconds
+        setTimeout(() => {
+            feedback.style.opacity = '0';
+            feedback.style.transform = 'translateY(-20px)';
+            setTimeout(() => feedback.remove(), 300);
+        }, 3000);
     }
 
     // Function to reset search
-    window.resetSearch = function() {
+    function resetSearch() {
         document.getElementById('location-search').value = '';
         document.getElementById('cuisine-search').value = '';
         document.getElementById('dietary-search').value = '';
@@ -330,14 +403,3 @@ function createPlaceholderImage(alt, width = 300, height = 200) {
     
     return canvas.toDataURL();
 }
-document.addEventListener("DOMContentLoaded", function () {
-    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-    const navMenu = document.getElementById("navMenu");
-
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener("click", function () {
-            navMenu.classList.toggle("active");
-            mobileMenuToggle.classList.toggle("active");
-        });
-    }
-});
