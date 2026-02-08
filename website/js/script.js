@@ -330,3 +330,14 @@ function createPlaceholderImage(alt, width = 300, height = 200) {
     
     return canvas.toDataURL();
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+            mobileMenuToggle.classList.toggle("active");
+        });
+    }
+});
