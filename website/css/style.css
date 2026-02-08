@@ -608,10 +608,270 @@ header {
         padding: 0.75rem 1rem;
     }
     
-    .sticky-cta-bar .btn {
-        padding: 0.75rem 1rem;
+  .sticky-cta-bar .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-width: 45%;
+  }
+}
+
+/* Serving Major Areas Across California */
+#serving-areas {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+#serving-areas h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+#serving-areas h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #007bff;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.area-item {
+    background-color: white;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.area-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.area-item i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.area-item h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.area-item p {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Trusted by Customers Nationwide */
+#trusted-nationwide {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: white;
+    border-radius: 16px;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+#trusted-nationwide h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+#trusted-nationwide h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #ffc107;
+}
+
+.trust-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 4rem auto 0;
+}
+
+.trust-stat {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.trust-stat:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.trust-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffc107;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.trust-label {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 500;
+}
+
+.trust-logos {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.trust-logos p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Tablet responsiveness for new sections */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .trust-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile responsiveness for new sections */
+@media (max-width: 768px) {
+    #serving-areas,
+    #trusted-nationwide {
+        padding: 3rem 1.5rem;
+    }
+    
+    #serving-areas h2,
+    #trusted-nationwide h2 {
+        font-size: 2rem;
+    }
+    
+    .trust-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .trust-stat {
+        padding: 1.5rem 1rem;
+    }
+    
+    .trust-number {
+        font-size: 2rem;
+    }
+    
+    .trust-label {
+        font-size: 0.95rem;
+    }
+    
+    .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .area-item {
+        padding: 1.5rem 1rem;
+    }
+    
+    .area-item h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #serving-areas,
+    #trusted-nationwide {
+        padding: 2rem 1rem;
+    }
+    
+    #serving-areas h2,
+    #trusted-nationwide h2 {
+        font-size: 1.75rem;
+    }
+    
+    .trust-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .trust-stat {
+        padding: 1rem 0.75rem;
+    }
+    
+    .trust-number {
+        font-size: 1.75rem;
+    }
+    
+    .trust-label {
+        font-size: 0.85rem;
+    }
+    
+    .trust-logos p {
+        font-size: 0.95rem;
+    }
+    
+    .areas-grid {
+        gap: 1rem;
+    }
+    
+    .area-item {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .area-item i {
+        font-size: 2rem;
+    }
+    
+    .area-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    .area-item p {
         font-size: 0.9rem;
-        min-width: 45%;
     }
 }
 

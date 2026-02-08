@@ -12,1024 +12,381 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maharaja Chef Services - Book a Personal Chef Today</title>
+    <title>Maharaja Chef Services - Home</title>
     <meta name="description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
-    <meta name="keywords" content="personal chef, chef services, home cooking, California, San Jose, mobile-friendly">
+    <meta name="keywords" content="personal chef, chef services, home cooking, California, San Jose">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Maharaja Chef Services - Home">
+    <meta property="og:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/index.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Maharaja Chef Services - Home">
+    <meta name="twitter:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
+    <meta name="twitter:image" content="images/logo.jpg">
     <style>
-        /* Homepage-specific styles */
-        .hero-section {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            padding: 4rem 0;
+        /* Chatbot styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-weight: bold;
+            font-size: 14px;
         }
-        
-        .hero-content {
+
+        .chatbot-toggle:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .chatbot-toggle img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .chatbot-popup {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            gap: 60px;
-            position: relative;
-            z-index: 2;
         }
-        
-        .hero-text {
-            flex: 1;
-            text-align: left;
-            min-width: 400px;
-        }
-        
-        .hero-text h1 {
-            color: #1e3a8a;
-            margin-top: 0;
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            text-shadow: none;
-            word-wrap: normal;
-            hyphens: none;
-            margin-bottom: 1rem;
-        }
-        
-        .hero-subtitle {
-            color: #1e3a8a;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: none;
-        }
-        
-        .hero-description {
-            color: #1e3a8a;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            font-weight: 500;
-            text-shadow: none;
-        }
-        
-        .hero-features {
-            color: #1e3a8a;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            padding-left: 0;
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-        }
-        
-        .hero-features li {
-            margin-bottom: 0;
-            padding-left: 1.5rem;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .hero-features .feature-icon {
-            color: #28a745;
-            font-size: 1.2rem;
-            min-width: 20px;
-        }
-        
-        /* Feature Items for Hero Section */
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            background: rgba(59, 130, 246, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .feature-item i {
-            font-size: 1.2rem;
-            color: #3b82f6;
-            min-width: 24px;
-            text-align: center;
-        }
-        
-        .feature-item span {
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        /* Hero Benefits List */
-        .hero-benefits {
-            color: #1e3a8a;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            padding-left: 0;
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-        }
-        
-        .hero-benefits li {
-            margin-bottom: 0;
-            padding-left: 1.5rem;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .hero-benefits .feature-icon {
-            color: #28a745;
-            font-size: 1.2rem;
-            min-width: 20px;
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-            justify-content: flex-start;
-        }
-        
-        .stat-item {
-            text-align: center;
-            background: rgba(255,255,255,0.8);
-            padding: 1rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1e3a8a;
-            margin-bottom: 0.25rem;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .hero-actions {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
-            border: 2px solid #3b82f6;
-            padding: 1.25rem 2.5rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: #1d4ed8;
-            border: 2px solid #1d4ed8;
-            padding: 1.25rem 2.5rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-secondary:hover {
-            background: #1d4ed8;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 420px;
-            position: relative;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            max-width: 520px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .hero-image:hover img {
-            transform: scale(1.02);
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        /* Service Cards */
-        .services-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1e3a8a;
-            font-weight: 800;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 3rem;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border-color: #e9ecef;
-        }
-        
-        .service-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        
-        .service-title {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .service-description {
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-        
-        .service-features {
-            text-align: left;
-            color: #666;
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-        
-        .service-features li {
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.2rem;
-        }
-        
-        .service-features .feature-bullet {
-            position: absolute;
-            left: 0;
-            color: #3b82f6;
-            font-weight: bold;
-        }
-        
-        .service-card .btn {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
-            border: 2px solid #3b82f6;
-            padding: 0.75rem 2rem;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .service-card .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        /* How It Works */
-        .how-it-works-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-        
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .step-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        .step-title {
-            font-size: 1.3rem;
-            color: #333;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .step-description {
-            color: #666;
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-        
-        /* Testimonials */
-        .testimonials-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: left;
-            border-left: 4px solid #3b82f6;
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            background: #f3f4f6;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #666;
-        }
-        
-        .testimonial-info h4 {
+
+        .chatbot-header h3 {
             margin: 0;
-            font-size: 1.2rem;
-            color: #333;
-        }
-        
-        .testimonial-location {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.25rem;
-        }
-        
-        .stars {
-            color: #ffc107;
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .testimonial-text {
-            color: #555;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .service-tag {
-            display: inline-block;
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 16px;
             font-weight: 600;
+            color: white;
         }
-        
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 4rem 2rem;
+
+        .chatbot-header img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            height: calc(100% - 120px);
+        }
+
+        .chatbot-message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .chatbot-message.user {
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
-            border-radius: 16px;
-            margin: 2rem auto;
-            max-width: 1200px;
-        }
-        
-        .cta-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: white;
-            font-weight: 800;
-        }
-        
-        .cta-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
             margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chatbot-message.bot {
+            background-color: #e9ecef;
+            color: #212529;
             margin-right: auto;
-            color: white;
-            opacity: 0.9;
-        }
-        
-        .cta-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn-cta-primary {
-            background: white;
-            color: #1d4ed8;
-            border: 2px solid white;
-            padding: 1.25rem 3rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 8px 20px rgba(255,255,255,0.2);
-        }
-        
-        .btn-cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255,255,255,0.3);
-            background: #f8fafc;
-        }
-        
-        .btn-cta-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 1.25rem 3rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-cta-secondary:hover {
-            background: white;
-            color: #1d4ed8;
-            transform: translateY(-2px);
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: row;
-                gap: 40px;
-            }
-            .hero-text {
-                min-width: 350px;
-            }
-            .hero-image {
-                min-width: 350px;
-            }
-            .hero-features {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-                padding: 1rem;
-            }
-            .hero-text {
-                min-width: auto;
-                order: 2;
-                padding: 0 1rem;
-            }
-            .hero-image {
-                min-width: auto;
-                order: 1;
-                max-width: 100%;
-                padding: 0 1rem;
-            }
-            .hero-image img {
-                max-width: 100%;
-                height: auto;
-                border-radius: 16px;
-            }
-            .hero-text h1 {
-                font-size: 2.2rem;
-                line-height: 1.2;
-                margin-bottom: 1rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-            .hero-description {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            .hero-features {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            .hero-features .feature-item {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-            .hero-benefits {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-            .hero-stats {
-                gap: 1rem;
-                justify-content: center;
-            }
-            .stat-item {
-                padding: 0.75rem;
-                font-size: 0.9rem;
-            }
-            .stat-number {
-                font-size: 1.5rem;
-            }
-            .hero-actions {
-                justify-content: center;
-                gap: 1rem;
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                max-width: 320px;
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .service-card {
-                padding: 2rem;
-            }
-            .service-icon {
-                font-size: 2.5rem;
-            }
-            .service-title {
-                font-size: 1.3rem;
-            }
-            .service-description {
-                font-size: 1rem;
-            }
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .step-card {
-                padding: 2rem;
-            }
-            .step-number {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .testimonial-card {
-                padding: 1.5rem;
-            }
-            .testimonial-header {
-                gap: 0.75rem;
-            }
-            .testimonial-avatar {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            .testimonial-info h4 {
-                font-size: 1.1rem;
-            }
-            .cta-section {
-                padding: 2rem 1rem;
-                margin: 1rem;
-                border-radius: 12px;
-            }
-            .cta-title {
-                font-size: 2rem;
-            }
-            .cta-subtitle {
-                font-size: 1rem;
-            }
-            .cta-actions {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            .btn-cta-primary,
-            .btn-cta-secondary {
-                width: 100%;
-                max-width: 320px;
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-content {
-                padding: 0 15px;
-            }
-            .hero-text h1 {
-                font-size: 1.8rem;
-                line-height: 1.3;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            .hero-description {
-                font-size: 0.95rem;
-            }
-            .btn {
-                font-size: 1rem;
-                padding: 0.875rem 1.5rem;
-            }
-            .btn-primary,
-            .btn-secondary {
-                font-size: 1rem;
-                padding: 0.875rem 1.5rem;
-            }
-            .service-card {
-                padding: 1.5rem;
-            }
-            .service-icon {
-                font-size: 2rem;
-            }
-            .testimonial-card {
-                padding: 1rem;
-            }
-            .testimonial-header {
-                gap: 0.5rem;
-            }
-            .testimonial-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            .cta-actions {
-                gap: 0.75rem;
-            }
-            .btn-cta-primary,
-            .btn-cta-secondary {
-                font-size: 1rem;
-                padding: 0.875rem 1.5rem;
-            }
+            border-bottom-left-radius: 4px;
         }
 
-        /* Touch-friendly improvements */
-        .touch-target {
-            min-height: 44px;
-            min-width: 44px;
-            padding: 12px 16px;
-            display: inline-block;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .touch-target:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        /* Mobile typography improvements */
-        h1 {
-            font-size: clamp(1.8rem, 4vw, 3.5rem);
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-            line-height: 1.3;
-        }
-
-        h3 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            line-height: 1.4;
-        }
-
-        p {
-            font-size: clamp(0.9rem, 2.2vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        /* Mobile form improvements */
-        .form-control {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-            min-height: 48px;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-        }
-
-        /* Mobile navigation improvements */
-
-        .mobile-menu-toggle:hover {
-            background-color: #f0f0f0;
-        }
-
-        .mobile-menu-toggle.active {
-            background-color: #e3f2fd;
-            color: #1976d2;
-        }
-        /* Accessibility improvements */
-        a:focus,
-        button:focus,
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: 3px solid #007bff;
-            outline-offset: 2px;
-        }
-
-        /* Performance optimizations for mobile */
-        .hero-section {
-            will-change: transform;
-        }
-
-        .hero-content {
-            will-change: transform;
-        }
-
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Mobile-specific spacing */
-        .section-padding {
-            padding: 2rem 1rem;
-        }
-
-        .card {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Image optimization for mobile */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Video optimization for mobile */
-        video {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-
-        /* Mobile-specific button improvements */
-        .btn {
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            min-height: 48px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-        }
-
-        /* Mobile-specific text alignment */
-        .text-center {
-            text-align: center;
-        }
-
-        .text-left {
-            text-align: left;
-        }
-
-        .text-right {
+        .chatbot-message .message-time {
+            font-size: 10px;
+            opacity: 0.7;
+            margin-top: 3px;
             text-align: right;
+        }
+
+        .chatbot-typing {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            margin-right: auto;
+            background-color: #e9ecef;
+            color: #212529;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chatbot-typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #6c757d;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .chatbot-typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .chatbot-typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .chatbot-typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .chatbot-input-area {
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .language-selector {
+            margin-bottom: 10px;
+        }
+
+        .language-selector select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .chatbot-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chatbot-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .chatbot-send {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+        }
+
+        .chatbot-send:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .chatbot-send:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                bottom: 80px;
+            }
+            
+            .chatbot-toggle {
+                bottom: 80px;
+            }
+            
+            .chatbot-popup {
+                width: 90%;
+                height: 60vh;
+                max-height: 400px;
+                bottom: 145px;
+                right: 5%;
+                left: 5%;
+            }
+
+            .chatbot-message {
+                max-width: 90%;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chatbot-popup.show {
+            animation: slideUp 0.3s ease-out forwards;
         }
     </style>
 </head>
 <body>
-    <!-- Sticky CTA Bar for Mobile -->
-    <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
-        <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
-        <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
-        <a href="diet-plan.html" class="btn btn-large" style="color: white; text-decoration: none; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">Prepare My Diet Plan</a>
-    </div>
+    <!-- Mobile Menu Header -->
+<header class="global-header" id="global-header"> 
+    <nav class="global-nav">
+        <div class="header-left">
+            <div class="logo">
+                <h1>
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;">
+                    </a>
+                </h1>
+            </div>
+        </div>
 
-    <main>
-        <!-- Mobile Menu Toggle Button (for pages that don't use header.html) -->
-        <header class="global-header" id="global-header"> 
-            <nav class="global-nav">
-                <div class="header-left">
-                    <div class="logo">
-                        <h1>
-                            <a href="index.html" style="text-decoration: none; color: inherit;">
-                                <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;">
-                            </a>
-                        </h1>
-                    </div>
-                </div>
+        <div class="header-center">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catering-services.html">Catering Services</a></li>
+                <li><a href="balanced-diet.html">Balanced Diet</a></li>
 
-                <div class="header-center">
-                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                        <span class="hamburger-icon">
-                            <span class="hamburger-line"></span>
-                            <span class="hamburger-line"></span>
-                            <span class="hamburger-line"></span>
-                        </span>
-                    </button>
-                    
-                    <ul class="nav-menu" id="navMenu">
-                        <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Services <span class="dropdown-arrow"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
                         <li><a href="catering-services.html">Catering Services</a></li>
                         <li><a href="balanced-diet.html">Balanced Diet</a></li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">
-                                Services <span class="dropdown-arrow"></span>
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li><a href="book-a-chef.html">Book a Chef</a></li>
-                                <li><a href="catering-services.html">Catering Services</a></li>
-                                <li><a href="balanced-diet.html">Balanced Diet</a></li>
-                                <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="become-a-chef.html">Become a Chef</a></li>
-                                <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
-                                <li><a href="chef-faq.html">Chef FAQ</a></li>
-                                <li><a href="success-stories.html">Success Stories</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#">Explore More <span class="dropdown-arrow"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                                <li><a href="menu-services.html">Menu Services</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="blogs.html">Blogs</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="owner.html">Business Owner</a></li>
-                        <li><a href="login.html">Log In</a></li>
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
                     </ul>
-                </div>
-            </nav>
-        </header>
+                </li>
 
-    <!-- Mobile Menu Overlay with Logo -->
-    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+                <li class="dropdown">
+                    <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="become-a-chef.html">Become a Chef</a></li>
+                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                        <li><a href="chef-faq.html">Chef FAQ</a></li>
+                        <li><a href="success-stories.html">Success Stories</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Explore More <span class="dropdown-arrow"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                        <li><a href="menu-services.html">Menu Services</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="owner.html">Business Owner</a></li>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="mobile-menu-content">
-            <div class="mobile-menu-header" style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white;">
+            <div class="mobile-menu-header">
                 <div class="logo">
-                    <a href="index.html" style="text-decoration: none; color: inherit;">
-                        <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 50px; width: auto;">
-                    </a>
+                    <h1>
+                        <a href="index.html" style="text-decoration: none; color: inherit;">
+                            <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 60px; width: auto;">
+                        </a>
+                    </h1>
                 </div>
-                <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close mobile menu" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 2rem; cursor: pointer; padding: 0.5rem 0.75rem; border-radius: 8px;">
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">
                     <span>&times;</span>
                 </button>
             </div>
@@ -1083,159 +440,315 @@
             </ul>
         </div>
     </div>
+</header>
+<!-- Sticky CTA Bar for Mobile -->
+    <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+        <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
+        <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
+        <a href="catering-services.html" class="btn btn-large" style="color: white; text-decoration: none; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">Get Catering Quote</a>
+    </div>
 
-        <!-- Hero Section - Conversion Focused -->
-        <section class="hero-section">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-        <div class="hero-text">
-                    <h1 style="font-size: 3.5rem; margin-top: 0; font-weight: 700; line-height: 1.1; text-shadow: none; word-wrap: normal; hyphens: none;">PRIVATE PERSONAL CHEF SERVICES</h1>
-                    <div class="hero-subtitle">Authentic Indian Home-Style Meals — Cooked in Your Kitchen</div>
-                    
-                    <div class="hero-features">
-                        <div class="feature-item">
-                            <i class="fas fa-utensils"></i>
-                            <span>Freshly cooked meals in your home</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-leaf"></i>
-                            <span>Customized menus (dietary needs supported)</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-broom"></i>
-                            <span>No shopping. No cooking. No cleaning.</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="hero-benefits">
-                        <li><span class="feature-icon">✓</span> Verified Professional Chefs</li>
-                        <li><span class="feature-icon">✓</span> Customized Menus for Every Occasion</li>
-                        <li><span class="feature-icon">✓</span> Restaurant-Quality Dining at Home</li>
-                        <li><span class="feature-icon">✓</span> Last-Minute Bookings Available</li>
-                    </ul>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">4.6/5</div>
-                            <div class="stat-label">Customer Rating</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">2000+</div>
-                            <div class="stat-label">Meals Served</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">98%</div>
-                            <div class="stat-label">Satisfaction Rate</div>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-actions">
-                        <a href="explore-chefs.html" class="btn-primary">
-                            <i class="fas fa-search" style="margin-right: 10px;"></i>
-                            Find Your Chef Now
-                        </a>
-                        <a href="book-a-chef.html" class="btn-secondary">
-                            <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
-                            Book Chef Today
-                        </a>
+    <main>
+        <!-- Hero Section with Large Image -->
+        <section id="hero-large">
+            <div class="hero-content" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="hero-text" style="flex: 1; padding-right: 40px; text-align: left;">
+                    <h1 style="color: #1e3a8a;">Find Your Perfect Personal Chef</h1>
+                    <p style="color: #1e3a8a;">Discover elite professional chefs in your area who deliver bespoke, fine-dining experiences directly to your home. Our platform connects you with hand-selected private chefs who craft personalized menus using premium ingredients, transforming everyday meals into unforgettable culinary moments. Whether you are hosting an intimate candlelight dinner, a luxury house party, a family celebration, or an exclusive private event, our chefs bring restaurant-quality cuisine, elegant presentation, and world-class service to your kitchen.</p>
+
+                    <p style="color: #1e3a8a;">From gourmet multi-course dinners and live chef experiences to customized weekly meal services and special-occasion catering, we make private dining effortless, refined, and memorable.</p>
+                    <div class="hero-cta-buttons" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <a href="explore-chefs.html" class="btn btn-large" style="color: white; text-decoration: none;">Explore Chefs</a>
+                        <a href="book-a-chef.html" class="btn btn-large" style="color: white; text-decoration: none;">Book a Chef</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="images/chef-work1.jpg" alt="Chef cooking gourmet meal" loading="lazy">
+                    <img src="images/chef-cooking-hero.jpg" alt="Chef cooking and plating food">
                 </div>
             </div>
         </section>
 
-        <!-- Services Section - Clear Value Propositions -->
-        <section class="services-section">
-            <h2 class="section-title">Our Chef Services</h2>
-            <p class="section-subtitle">Choose the perfect service for your dining needs</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-utensils service-icon" style="color: #28a745;"></i>
-                    <h3 class="service-title">Weekly Meal Prep</h3>
-                    <p class="service-description">Fresh, healthy meals prepared weekly in your kitchen</p>
-                    
-                    <ul class="service-features">
-                        <li><span class="feature-bullet">•</span> Customized to your dietary needs</li>
-                        <li><span class="feature-bullet">•</span> Shop, cook, and clean included</li>
-                        <li><span class="feature-bullet">•</span> Save time on meal planning</li>
-                        <li><span class="feature-bullet">•</span> Perfect for busy families</li>
-                    </ul>
-                    
-                    <a href="weekly-meals.html" class="btn">Learn More</a>
+        <!-- Book a Chef CTA before Chef Creations -->
+        <section id="book-chef-before-creations" style="text-align:center; margin: 60px 0;">
+            <a href="book-a-chef.html" class="btn btn-large">Book a Chef</a>
+        </section>
+
+        <!-- Chef Photos Gallery Section -->
+        <section id="chef-photos">
+            <h2>Chef Creations</h2>
+            <p>Explore beautiful moments captured from our chefs' culinary artistry</p>
+            <div class="photos-gallery">
+                <div class="photo-item">
+                    <img src="images/chef-work1.jpg" alt="Chef cooking">
+                    <div class="photo-overlay">
+                        <span>Professional Cooking</span>
+                    </div>
                 </div>
-                
-                <div class="service-card">
-                    <i class="fas fa-glass-cheers service-icon" style="color: #007bff;"></i>
-                    <h3 class="service-title">Private Events</h3>
-                    <p class="service-description">Elevate your special occasions with professional catering</p>
-                    
-                    <ul class="service-features">
-                        <li><span class="feature-bullet">•</span> Weddings, birthdays, anniversaries</li>
-                        <li><span class="feature-bullet">•</span> Custom menus for your guests</li>
-                        <li><span class="feature-bullet">•</span> Full service from setup to cleanup</li>
-                        <li><span class="feature-bullet">•</span> Impress your guests</li>
-                    </ul>
-                    
-                    <a href="catering-services.html" class="btn">Get Quote</a>
+                <div class="photo-item">
+                    <img src="images/chef-work2.jpg" alt="Kitchen preparation">
+                    <div class="photo-overlay">
+                        <span>Fresh Ingredients</span>
+                    </div>
                 </div>
-                
-                <div class="service-card">
-                    <i class="fas fa-concierge-bell service-icon" style="color: #ffc107;"></i>
-                    <h3 class="service-title">One-Time Dining</h3>
-                    <p class="service-description">Restaurant-quality dinner without leaving home</p>
-                    
-                    <ul class="service-features">
-                        <li><span class="feature-bullet">•</span> Date nights, family dinners</li>
-                        <li><span class="feature-bullet">•</span> Any cuisine you desire</li>
-                        <li><span class="feature-bullet">•</span> Professional presentation</li>
-                        <li><span class="feature-bullet">•</span> Complete cleanup included</li>
-                    </ul>
-                    
-                    <a href="book-a-chef.html" class="btn">Book Now</a>
+                <div class="photo-item">
+                    <img src="images/chef-work3.jpg" alt="Event cooking">
+                    <div class="photo-overlay">
+                        <span>Special Events</span>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="images/chef-work4.jpg" alt="Chef plating">
+                    <div class="photo-overlay">
+                        <span>Perfect Presentation</span>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="images/chef-work5.jpg" alt="Chef with team">
+                    <div class="photo-overlay">
+                        <span>Team Excellence</span>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="images/chef-work6.jpg" alt="Chef in action">
+                    <div class="photo-overlay">
+                        <span>Master Chefs</span>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="images/chef-work7.jpg" alt="Chef workspace">
+                    <div class="photo-overlay">
+                        <span>Clean & Professional</span>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="images/chef-work8.jpg" alt="Chef finishing dish">
+                    <div class="photo-overlay">
+                        <span>Quality Assurance</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- How It Works - Simple 4 Steps -->
-        <section class="how-it-works-section">
-            <h2 class="section-title">How It Works</h2>
+        <!-- Chef Videos Section -->
+        <section id="chef-videos">
+            <h2>Watch Our Chefs in Action</h2>
+            <p>Experience the artistry and precision of professional cooking</p>
+            <div class="videos-gallery">
+                <div class="video-item">
+                    <video muted loop>
+                        <source src="images/chef-video1.mp4" type="video/mp4">
+                        <!-- Fallback image for browsers that don't support video -->
+                    </video muted loop>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <video muted loop>
+                        <source src="images/chef-video2.mp4" type="video/mp4">
+                    </video muted loop>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <video muted loop>
+                        <source src="images/chef-video3.mp4" type="video/mp4">
+                    </video>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <video muted loop>
+                        <source src="images/chef-video4.mp4" type="video/mp4">
+                    </video>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <video muted loop>
+                        <source src="images/chef-video5.mp4" type="video/mp4">
+                    </video>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <video muted loop>
+                        <source src="images/chef-video6.mp4" type="video/mp4">
+
+                    </video>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works-home">
+            <h2>How It Works</h2>
             <p class="section-subtitle">Four simple steps to your perfect dining experience</p>
-            
-            <div class="steps-grid">
+            <div class="how-it-works-steps">
                 <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
                     <div class="step-number">1</div>
-                    <h3 class="step-title">Explore Chefs</h3>
-                    <p class="step-description">Browse professional chefs based on location, cuisine, and dietary needs</p>
+                    <h3>Explore Chefs Near You</h3>
+                    <p>Browse professional chefs based on location, cuisine, and dietary needs.</p>
                 </div>
-                
                 <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
                     <div class="step-number">2</div>
-                    <h3 class="step-title">Choose Menu</h3>
-                    <p class="step-description">Select your preferred meals, cuisine type, and dietary requirements</p>
+                    <h3>Choose Menu & Preferences</h3>
+                    <p>Select your preferred meals, cuisine type, and dietary requirements.</p>
                 </div>
-                
                 <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
                     <div class="step-number">3</div>
-                    <h3 class="step-title">Book Date</h3>
-                    <p class="step-description">Schedule your chef for a specific date, time, and event</p>
+                    <h3>Book Date & Time</h3>
+                    <p>Schedule your chef for a specific date, time, and event.</p>
                 </div>
-                
                 <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
                     <div class="step-number">4</div>
-                    <h3 class="step-title">Enjoy Dining</h3>
-                    <p class="step-description">Relax while your chef prepares fresh, restaurant-quality food</p>
+                    <h3>Enjoy Chef-Crafted Meals</h3>
+                    <p>Relax while your chef prepares fresh, restaurant-quality food in your kitchen.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials - Social Proof -->
-        <section class="testimonials-section">
-            <h2 class="section-title">What Our Customers Say</h2>
+         <!-- Who We Are Section -->
+        <section id="who-we-are">
+            <div class="who-we-are-content">
+                <div class="who-we-are-image">
+                    <img src="images/chef-team.jpg" alt="Chef team and kitchen" style="height: 1350px; width: 500px;">
+                </div>
+                <div class="who-we-are-text">
+                    <h2>Who We Are</h2>
+                    <p>Maharaja Chef Services is a premium personal chef platform designed to bring restaurant-quality dining into the comfort of your home. We connect customers across the United States with experienced, professional chefs who are passionate about creating memorable culinary experiences tailored to individual tastes, lifestyles, and occasions.</p>
+
+                    <h3>Our Mission</h3>
+                    <p>To provide exceptional, customized chef services that elevate everyday meals and special occasions, ensuring every client feels like royalty in their own home.</p>
+
+                    <h3>Trust & Reliability</h3>
+                    <p>Founded with the vision of combining convenience, quality, and authenticity, Maharaja Chef Services makes it easy to enjoy fresh, customized meals without the stress of cooking, planning, or cleanup. Whether you're looking for daily home-cooked meals, weekly meal preparation, intimate family dinners, or elegant private events, our chefs deliver exceptional service every time.</p>
+
+                    <h3>Quality & Expertise</h3>
+                    <p>Our network consists of highly skilled chefs specializing in a wide range of global cuisines, including American, Indian, Italian, Mediterranean, Asian, Vegan, Keto, and more. Each chef is carefully vetted, background-checked, and selected based on culinary expertise, professionalism, and commitment to excellence. We place strong emphasis on food safety, hygiene standards, and ingredient quality to ensure every meal is both delicious and trustworthy.</p>
+
+                    <h3>Customer Focus</h3>
+                    <p>At Maharaja Chef Services, we believe great food should be personal. That's why our chefs work closely with clients to design menus based on dietary preferences, allergies, health goals, and cultural tastes. From plant-based meals to gluten-free, dairy-free, and low-carb options, we cater to diverse nutritional needs with precision and care.</p>
+
+                    <p>More than just a chef booking service, we are a hospitality-driven platform built on trust, transparency, and customer satisfaction. Our mission is to elevate everyday dining while providing a seamless booking experience and dependable support. With Maharaja Chef Services, you don't just hire a chef—you gain a personalized culinary partner dedicated to making every meal special.</p>
+                    <a href="about-us.html" class="btn">Learn More About Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serving Major Areas Across California -->
+        <section id="serving-areas">
+            <h2>Serving Major Areas Across California</h2>
+            <div class="areas-grid">
+                <div class="area-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>San Jose</h3>
+                    <p>San Jose, Cupertino, Santa Clara, Sunnyvale, and surrounding areas</p>
+                </div>
+                <div class="area-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>San Francisco</h3>
+                    <p>San Francisco, Oakland, Berkeley, Daly City, and surrounding areas</p>
+                </div>
+                <div class="area-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Los Angeles</h3>
+                    <p>Los Angeles, Beverly Hills, Santa Monica, Pasadena, and surrounding areas</p>
+                </div>
+                <div class="area-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>San Diego</h3>
+                    <p>San Diego, La Jolla, Carlsbad, Encinitas, and surrounding areas</p>
+                </div>
+                <div class="area-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Sacramento</h3>
+                    <p>Sacramento, Roseville, Davis, Elk Grove, and surrounding areas</p>
+                </div>
+                <div class="area-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Fresno</h3>
+                    <p>Fresno, Clovis, Madera, Visalia, and surrounding areas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted by Customers Nationwide -->
+        <section id="trusted-nationwide">
+            <h2>Trusted by Customers Nationwide</h2>
+            <div class="trust-stats">
+                <div class="trust-stat">
+                    <div class="trust-number">5000+</div>
+                    <div class="trust-label">Happy Customers</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-number">200+</div>
+                    <div class="trust-label">Professional Chefs</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-number">50+</div>
+                    <div class="trust-label">Cities Covered</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-number">4.8/5</div>
+                    <div class="trust-label">Average Rating</div>
+                </div>
+            </div>
+            <div class="trust-logos">
+                <p>Trusted by customers from: New York, Los Angeles, Chicago, Houston, Phoenix, Philadelphia, San Antonio, San Diego, Dallas, San Jose, and more across the United States.</p>
+            </div>
+        </section>
+
+        <!-- Why Choose Maharaja Chef Services Section -->
+        <section id="why-choose-us">
+            <h2>Why Choose Maharaja Chef Services</h2>
+            <div class="why-choose-grid">
+                <div class="why-choose-item">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Experienced Chefs</h3>
+                    <p>Our chefs have years of professional experience in top restaurants and culinary schools.</p>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Food Safety & Hygiene</h3>
+                    <p>We maintain the highest standards of food safety and kitchen hygiene.</p>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Customized Menus</h3>
+                    <p>Every menu is tailored to your preferences, dietary restrictions, and special requests.</p>
+                </div>
+                <div class="why-choose-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Trusted US-Based Service</h3>
+                    <p>We operate across the USA with local chefs who understand regional tastes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Testimonials Section -->
+        <section id="testimonials">
+            <h2>What Our Customers Say</h2>
             <p class="section-subtitle">Real experiences from satisfied clients across the USA</p>
-            
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -1254,10 +767,11 @@
                             </div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"The chef prepared an amazing 5-course meal for our anniversary. It was better than any restaurant we've been to! The presentation was stunning and every bite was perfection."</p>
-                    <span class="service-tag">Special Event</span>
+                    <blockquote>"The chef prepared an amazing 5-course meal for our anniversary. It was better than any restaurant we've been to! The presentation was stunning and every bite was perfection."</blockquote>
+                    <div class="testimonial-service">
+                        <span class="service-tag">Special Event</span>
+                    </div>
                 </div>
-                
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">
@@ -1275,10 +789,11 @@
                             </div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Weekly meal prep has changed our lives. Healthy, delicious meals ready every day without the hassle. Our chef understands our dietary needs perfectly."</p>
-                    <span class="service-tag">Weekly Service</span>
+                    <blockquote>"Weekly meal prep has changed our lives. Healthy, delicious meals ready every day without the hassle. Our chef understands our dietary needs perfectly."</blockquote>
+                    <div class="testimonial-service">
+                        <span class="service-tag">Weekly Service</span>
+                    </div>
                 </div>
-                
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">
@@ -1296,32 +811,17 @@
                             </div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Our catering event was a huge success thanks to the professional chef service. The team was punctual, professional, and the food received rave reviews from all attendees."</p>
-                    <span class="service-tag">Catering Event</span>
+                    <blockquote>"Our corporate event was a huge success thanks to the professional chef service. The team was punctual, professional, and the food received rave reviews from all attendees."</blockquote>
+                    <div class="testimonial-service">
+                        <span class="service-tag">Corporate Event</span>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Final CTA - Strong Conversion Focus -->
-        <section class="cta-section">
-            <h2 class="cta-title">Ready for an Amazing Culinary Experience?</h2>
-            <p class="cta-subtitle">Book your personal chef today and enjoy restaurant-quality meals in the comfort of your home</p>
-            
-            <div class="cta-actions">
-                <a href="explore-chefs.html" class="btn-cta-primary">
-                    <i class="fas fa-search" style="margin-right: 10px;"></i>
-                    Find Your Chef Now
-                </a>
-                <a href="book-a-chef.html" class="btn-cta-secondary">
-                    <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
-                    Book Chef Today
-                </a>
             </div>
         </section>
 
     </main>
 
-    <footer>
+      <footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Maharaja Chef Services</h3>
@@ -1362,83 +862,27 @@
             <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
         </div>
     </footer>
+        
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-backdrop" id="video-modal-backdrop"></div>
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <button class="video-modal-close" id="video-modal-close">&times;</button>
+            </div>
+            <div class="video-modal-body">
+                <video id="modal-video" controls preload="metadata">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
 
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
-    
-    <!-- Mobile Navigation Script -->
-    <script>
-        // Mobile menu toggle functionality - works with mobile-menu-overlay
-        (function() {
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-            
-            if (mobileMenuToggle && mobileMenuOverlay) {
-                mobileMenuToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    mobileMenuOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
 
-            if (mobileMenuClose && mobileMenuOverlay) {
-                mobileMenuClose.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-
-            if (mobileMenuOverlay) {
-                mobileMenuOverlay.addEventListener('click', function(e) {
-                    if (e.target === mobileMenuOverlay) {
-                        mobileMenuOverlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-
-            if (mobileDropdownToggles.length > 0) {
-                mobileDropdownToggles.forEach(toggle => {
-                    toggle.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const dropdown = this.closest('.mobile-dropdown');
-                        const isActive = dropdown.classList.contains('active');
-                        
-                        mobileDropdownToggles.forEach(otherToggle => {
-                            if (otherToggle !== toggle) {
-                                const otherDropdown = otherToggle.closest('.mobile-dropdown');
-                                otherDropdown.classList.remove('active');
-                                otherToggle.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                        
-                        dropdown.classList.toggle('active');
-                        this.setAttribute('aria-expanded', !isActive);
-                    });
-                });
-            }
-        })();
-    </script>
-    
     <!-- Mobile Sticky CTA Script -->
     <script>
-        // Show sticky CTA bar on mobile devices
         function checkMobileStickyCTA() {
             const stickyCTA = document.querySelector('.sticky-cta-bar');
             if (window.innerWidth <= 768) {
@@ -1447,42 +891,274 @@
                 stickyCTA.style.display = 'none';
             }
         }
-        
-        // Check on load and resize
+
         window.addEventListener('load', checkMobileStickyCTA);
         window.addEventListener('resize', checkMobileStickyCTA);
     </script>
     
-    <!-- Chatbot Integration -->
+    <!-- Mobile Navigation Script -->
     <script>
-        // Load chatbot
-        fetch('chatbot.html')
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const chatbotContainer = doc.querySelector('.chatbot-container');
-                const styleTags = doc.querySelectorAll('style');
-
-                // Add styles
-                styleTags.forEach(style => {
-                    document.head.appendChild(style.cloneNode(true));
-                });
-
-                // Add chatbot container
-                document.body.appendChild(chatbotContainer.cloneNode(true));
-
-                // Initialize chatbot script
-                const scriptTags = doc.querySelectorAll('script');
-                scriptTags.forEach(script => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading chatbot:', error);
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        
+        if (mobileMenuToggle && mobileMenuOverlay && mobileMenuClose) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenuOverlay.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+                document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
             });
+            
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            mobileMenuOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileMenuOverlay) {
+                    mobileMenuOverlay.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+                    mobileMenuOverlay.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const dropdown = this.closest('.mobile-dropdown');
+                    const isActive = dropdown.classList.contains('active');
+                    
+                    mobileDropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            const otherDropdown = otherToggle.closest('.mobile-dropdown');
+                            otherDropdown.classList.remove('active');
+                            otherToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    
+                    dropdown.classList.toggle('active');
+                    this.setAttribute('aria-expanded', isActive ? 'false' : 'true');
+                });
+            });
+            
+            const navLinks = document.querySelectorAll('.mobile-nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+    
+    <!-- Chatbot Container -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" id="chatbotToggle">
+            Chat
+        </button>
+
+        <div class="chatbot-popup" id="chatbotPopup">
+            <div class="chatbot-header">
+                <div style="display: flex; align-items: center;">
+                    <h3>Maharaja Chef Chat</h3>
+                </div>
+                <button class="chatbot-close" id="chatbotClose">&times;</button>
+            </div>
+
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chatbot-message bot">
+                    Hello! Welcome to Maharaja Chef Services. How can I help you today?
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="chatbot-input-area">
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="zh">Chinese</option>
+                        <option value="tag">Tagalog</option>
+                        <option value="vi">Vietnamese</option>
+                        <option value="fr">French</option>
+                        <option value="ar">Arabic</option>
+                        <option value="ko">Korean</option>
+                        <option value="ru">Russian</option>
+                        <option value="de">German</option>
+                        <option value="hi">Hindi</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="it">Italian</option>
+                        <option value="ja">Japanese</option>
+                        <option value="pl">Polish</option>
+                        <option value="uk">Ukrainian</option>
+                        <option value="ht">Haitian Creole</option>
+                        <option value="bn">Bengali</option>
+                        <option value="pa">Punjabi</option>
+                        <option value="tl">Filipino</option>
+                    </select>
+                </div>
+
+                <div class="chatbot-input-container">
+                    <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+                    <button class="chatbot-send" id="chatbotSend">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot functionality
+        (function() {
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotPopup = document.getElementById('chatbotPopup');
+            const chatbotClose = document.getElementById('chatbotClose');
+            const chatbotSend = document.getElementById('chatbotSend');
+            const chatbotInput = document.getElementById('chatbotInput');
+            const chatbotMessages = document.getElementById('chatbotMessages');
+            const languageSelect = document.getElementById('languageSelect');
+
+            let sessionId = localStorage.getItem('chatSessionId') || generateSessionId();
+            let isTyping = false;
+
+            // Initialize chatbot
+            function initChatbot() {
+                loadChatHistory();
+
+                chatbotToggle.addEventListener('click', toggleChatbot);
+                chatbotClose.addEventListener('click', toggleChatbot);
+                chatbotSend.addEventListener('click', sendMessage);
+                chatbotInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+
+            // Toggle chatbot visibility
+            function toggleChatbot() {
+                if (chatbotPopup.style.display === 'flex') {
+                    chatbotPopup.style.display = 'none';
+                } else {
+                    chatbotPopup.style.display = 'flex';
+                    chatbotPopup.classList.add('show');
+                    chatbotInput.focus();
+                    scrollToBottom();
+                }
+            }
+
+            // Generate session ID
+            function generateSessionId() {
+                const id = 'chat-' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('chatSessionId', id);
+                return id;
+            }
+
+            // Send message to chatbot
+            async function sendMessage() {
+                const message = chatbotInput.value.trim();
+                if (!message || isTyping) return;
+
+                addMessage('user', message);
+                chatbotInput.value = '';
+                showTypingIndicator();
+
+                try {
+                    const response = await fetch('https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: message, language: languageSelect.value, sessionId: sessionId })
+                    });
+
+                    const data = await response.json();
+                    hideTypingIndicator();
+
+                    if (data.message) {
+                        addMessage('bot', data.message);
+                        scrollToBottom();
+                    } else {
+                        addMessage('bot', 'Sorry, I encountered an error. Please try again.');
+                    }
+
+                    if (data.sessionId) {
+                        sessionId = data.sessionId;
+                        localStorage.setItem('chatSessionId', sessionId);
+                    }
+                } catch (error) {
+                    console.error('Chatbot error:', error);
+                    hideTypingIndicator();
+                    addMessage('bot', 'Sorry, there was a connection error. Please try again.');
+                }
+            }
+
+            // Add message to chat
+            function addMessage(role, text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message ' + role;
+
+                const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const messageTime = document.createElement('div');
+                messageTime.className = 'message-time';
+                messageTime.textContent = timestamp;
+
+                messageDiv.textContent = text;
+                messageDiv.appendChild(messageTime);
+                chatbotMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            // Show typing indicator
+            function showTypingIndicator() {
+                isTyping = true;
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'chatbot-typing';
+                typingDiv.innerHTML = '<span>Typing</span><span class="chatbot-typing-dot"></span><span class="chatbot-typing-dot"></span><span class="chatbot-typing-dot"></span>';
+                chatbotMessages.appendChild(typingDiv);
+                scrollToBottom();
+            }
+
+            // Hide typing indicator
+            function hideTypingIndicator() {
+                isTyping = false;
+                const typingIndicators = document.querySelectorAll('.chatbot-typing');
+                typingIndicators.forEach(indicator => indicator.remove());
+            }
+
+            // Load chat history
+            async function loadChatHistory() {
+                try {
+                    const response = await fetch('https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/chat/history?sessionId=' + sessionId);
+                    const data = await response.json();
+
+                    if (data.history && data.history.length > 0) {
+                        chatbotMessages.innerHTML = '';
+                        data.history.forEach(item => {
+                            addMessage(item.role, item.content);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading chat history:', error);
+                }
+            }
+
+            // Scroll to bottom of chat
+            function scrollToBottom() {
+                setTimeout(function() {
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 100);
+            }
+
+            initChatbot();
+        })();
     </script>
 </body>
 </html>
