@@ -964,7 +964,7 @@
                 </div>
 
                 <div class="header-center">
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
                         <span class="hamburger-icon">
                             <span class="hamburger-line"></span>
                             <span class="hamburger-line"></span>
@@ -1019,6 +1019,70 @@
                 </div>
             </nav>
         </header>
+
+    <!-- Mobile Menu Overlay with Logo -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header" style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white;">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 50px; width: auto;">
+                    </a>
+                </div>
+                <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close mobile menu" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 2rem; cursor: pointer; padding: 0.5rem 0.75rem; border-radius: 8px;">
+                    <span>&times;</span>
+                </button>
+            </div>
+            
+            <ul class="mobile-nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catering-services.html">Catering Services</a></li>
+                <li><a href="balanced-diet.html">Balanced Diet</a></li>
+
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        Services <span class="mobile-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="catering-services.html">Catering Services</a></li>
+                        <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                    </ul>
+                </li>
+
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        For Chefs <span class="mobile-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="become-a-chef.html">Become a Chef</a></li>
+                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                        <li><a href="chef-faq.html">Chef FAQ</a></li>
+                        <li><a href="success-stories.html">Success Stories</a></li>
+                    </ul>
+                </li>
+
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        Explore More <span class="mobile-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                        <li><a href="menu-services.html">Menu Services</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="owner.html">Business Owner</a></li>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </div>
+    </div>
 
         <!-- Hero Section - Conversion Focused -->
         <section class="hero-section">
@@ -1307,31 +1371,69 @@
     
     <!-- Mobile Navigation Script -->
     <script>
-        // Mobile menu toggle functionality
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
-        
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
+        // Mobile menu toggle functionality - works with mobile-menu-overlay
+        (function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            
+            if (mobileMenuToggle && mobileMenuOverlay) {
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    mobileMenuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
             }
-        });
+
+            if (mobileMenuClose && mobileMenuOverlay) {
+                mobileMenuClose.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileMenuOverlay) {
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            if (mobileDropdownToggles.length > 0) {
+                mobileDropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const dropdown = this.closest('.mobile-dropdown');
+                        const isActive = dropdown.classList.contains('active');
+                        
+                        mobileDropdownToggles.forEach(otherToggle => {
+                            if (otherToggle !== toggle) {
+                                const otherDropdown = otherToggle.closest('.mobile-dropdown');
+                                otherDropdown.classList.remove('active');
+                                otherToggle.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        
+                        dropdown.classList.toggle('active');
+                        this.setAttribute('aria-expanded', !isActive);
+                    });
+                });
+            }
+        })();
     </script>
     
     <!-- Mobile Sticky CTA Script -->
