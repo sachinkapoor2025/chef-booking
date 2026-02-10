@@ -106,48 +106,55 @@
         // Hamburger Menu Functionality
         function initHamburgerMenu() {
             const hamburger = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');   // ← MOVE HERE
             const mobileOverlay = document.querySelector('.mobile-menu-overlay');
             const mobileContent = document.querySelector('.mobile-menu-content');
             const closeBtn = document.querySelector('.mobile-menu-close');
             const body = document.body;
 
-            if (!hamburger || !mobileOverlay || !mobileContent || !closeBtn) {
-                console.warn('Hamburger menu elements not found');
+            if (!hamburger || !navMenu) {
+                console.warn('Hamburger or navMenu not found');
                 return;
             }
 
-            // Open menu
+
             hamburger.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
-                mobileOverlay.classList.add('active');
-                mobileContent.classList.add('active');
-                body.style.overflow = 'hidden'; // Prevent background scrolling
+
+                navMenu.classList.add('mobile-active');   // THIS shows the menu
+                body.style.overflow = 'hidden';
                 hamburger.classList.add('active');
             });
 
+
             // Close menu - overlay click
-            mobileOverlay.addEventListener('click', function (e) {
-                if (e.target === mobileOverlay) {
-                    closeMenu();
-                }
-            });
+// Close menu - overlay click
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', function (e) {
+                    if (e.target === mobileOverlay) {
+                        closeMenu();
+                    }
+                });
+            }
 
             // Close menu - close button
-            closeBtn.addEventListener('click', closeMenu);
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+            }
+
 
             // Close menu - escape key
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
+                if (e.key === 'Escape' && navMenu.classList.contains('mobile-active')) {
                     closeMenu();
                 }
+
             });
 
             // Close menu function
             function closeMenu() {
-                mobileOverlay.classList.remove('active');
-                mobileContent.classList.remove('active');
+                navMenu.classList.remove('mobile-active');
                 body.style.overflow = ''; // Restore scrolling
                 hamburger.classList.remove('active');
                 
