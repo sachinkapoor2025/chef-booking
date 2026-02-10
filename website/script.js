@@ -253,10 +253,10 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         if (window.innerWidth <= 768) {
             navToggle.style.display = 'block';
-            navMenu.classList.remove('active');
+            navMenu.classList.remove('active'); // keep hidden until click
         } else {
             navToggle.style.display = 'none';
-            navMenu.classList.add('active'); // Ensure menu is always visible on desktop
+            navMenu.classList.remove('active'); // don't force open
         }
     });
 

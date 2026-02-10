@@ -36,35 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const nav = document.querySelector('nav');
     const navMenu = document.querySelector('.nav-menu');
     
-    // Ensure menu is always visible on all screen sizes
-    navMenu.classList.add('active');
-    
-    // Mobile dropdown click handlers for better mobile experience
-    const mobileDropdowns = navMenu.querySelectorAll('.dropdown');
-    mobileDropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        const menu = dropdown.querySelector('.dropdown-menu');
-
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            // Close all other submenus (accordion behavior)
-            mobileDropdowns.forEach(otherDropdown => {
-                if (otherDropdown !== dropdown) {
-                    const otherMenu = otherDropdown.querySelector('.dropdown-menu');
-                    if (otherMenu) {
-                        otherMenu.classList.remove('open');
-                    }
-                }
-            });
-
-            // Toggle current submenu
-            if (menu) {
-                menu.classList.toggle('open');
-            }
-        });
-    });
-    
     // Smooth scrolling for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
@@ -211,17 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     video.currentTime = 0;
                 });
             }
-        }
-    });
-
-    // Responsive adjustments
-    window.addEventListener('resize', function() {
-        if (window.innerWidth <= 768) {
-            navMenu.classList.add('active'); // Keep menu visible on mobile
-        } else {
-            navMenu.classList.add('active'); // Ensure menu is
-            navToggle.style.display = 'none';
-            navMenu.classList.add('active'); // Ensure menu is always visible on desktop
         }
     });
 

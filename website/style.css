@@ -11,10 +11,6 @@ body {
     color: #2c2a2a;
     background-color: #f9f9f9;
 }
-.nav-menu.active,
-.nav-menu.mobile-active {
-    left: 0;
-}
 
 
 h1, h2, h3 {
