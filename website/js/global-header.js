@@ -107,9 +107,6 @@
         function initHamburgerMenu() {
             const hamburger = document.querySelector('.mobile-menu-toggle');
             const navMenu = document.querySelector('.nav-menu');   // ← MOVE HERE
-            const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-            const mobileContent = document.querySelector('.mobile-menu-content');
-            const closeBtn = document.querySelector('.mobile-menu-close');
             const body = document.body;
 
             if (!hamburger || !navMenu) {
@@ -122,26 +119,21 @@
                 e.preventDefault();
                 e.stopPropagation();
 
-                navMenu.classList.add('mobile-active');   // THIS shows the menu
-                body.style.overflow = 'hidden';
-                hamburger.classList.add('active');
+                const isOpen = navMenu.classList.contains('mobile-active');
+
+                if (isOpen) {
+                    // CLOSE
+                    navMenu.classList.remove('mobile-active');
+                    body.style.overflow = '';
+                    hamburger.classList.remove('active');
+                } else {
+                    // OPEN
+                    navMenu.classList.add('mobile-active');
+                    body.style.overflow = 'hidden';
+                    hamburger.classList.add('active');
+                }
             });
 
-
-            // Close menu - overlay click
-// Close menu - overlay click
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', function (e) {
-                    if (e.target === mobileOverlay) {
-                        closeMenu();
-                    }
-                });
-            }
-
-            // Close menu - close button
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeMenu);
-            }
 
 
             // Close menu - escape key
