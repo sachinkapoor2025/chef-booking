@@ -6,12 +6,7 @@
         const navMenu = document.querySelector('.nav-menu');
         const body = document.body;
 
-        if (!hamburger || !navMenu) {
-            console.warn("Hamburger or nav menu not found");
-            return;
-        }
-
-        console.log("Hamburger initialized");
+        if (!hamburger || !navMenu) return;
 
         hamburger.onclick = null;
 
@@ -30,16 +25,16 @@
                 body.style.overflow = 'hidden';
             }
         });
-
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                navMenu.classList.remove('mobile-active');
-                hamburger.classList.remove('active');
-                body.style.overflow = '';
-            }
-        });
     }
 
-    document.addEventListener("DOMContentLoaded", initHeader);
+    // Wait until header is inserted
+    const observer = new MutationObserver(() => {
+        if (document.querySelector('.mobile-menu-toggle')) {
+            initHeader();
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
 
 })();
