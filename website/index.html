@@ -15,12 +15,292 @@
     <title>Maharaja Chef Services - Home</title>
     <meta name="description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
     <meta name="keywords" content="personal chef, chef services, home cooking, California, San Jose">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="js/script.js" as="script">
+    
+    <!-- Global Header Styles -->
+    <style>
+        /* Global Header Styles - Optimized for Fast Loading */
+        .global-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            will-change: transform; /* Optimize for smooth scrolling */
+        }
+
+        .global-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .global-nav .logo h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .global-nav .logo img {
+            height: 60px;
+            width: auto;
+            display: block;
+            transition: transform 0.2s ease; /* Smooth hover effect */
+        }
+
+        .global-nav .logo:hover img {
+            transform: scale(1.02);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.5rem; /* Reduced gap for better mobile spacing */
+            align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.75rem 1rem; /* Increased padding for better touch targets */
+            border-radius: 6px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-menu a:hover {
+            background-color: #f8fafc;
+            color: #1e3a8a;
+            transform: translateY(-1px);
+        }
+
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 220px;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #333;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f8fafc;
+            color: #1e3a8a;
+            padding-left: 1.25rem;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+
+        .mobile-menu-toggle.active {
+            color: #1e3a8a;
+            background-color: #e3f2fd;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 992px) {
+            .global-nav {
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 4rem 2rem 2rem;
+                gap: 1.5rem;
+                box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1002;
+                overflow-y: auto;
+                display: none;
+            }
+            
+            .nav-menu.mobile-active {
+                left: 0;
+                display: flex !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+                font-size: 1rem;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            
+            .dropdown-menu a {
+                padding: 0.5rem 0;
+                margin-bottom: 0.25rem;
+                border-radius: 0;
+                background: transparent;
+            }
+            
+            .dropdown-menu a:hover {
+                padding-left: 0;
+                background: transparent;
+                color: #1e3a8a;
+            }
+        }
+
+        /* Sticky CTA Bar for Mobile */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            padding: 1rem;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-cta-bar .btn {
+            background: white;
+            color: #1d4ed8;
+            border: 2px solid #1d4ed8;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .sticky-cta-bar .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
+        }
+
+        .sticky-cta-bar .btn.secondary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: 2px solid #3b82f6;
+        }
+
+        .sticky-cta-bar .btn.secondary:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .sticky-cta-bar {
+                display: flex;
+            }
+        }
+
+        /* Performance optimizations */
+        .global-header {
+            contain: layout style paint; /* Optimize rendering */
+        }
+
+        .nav-menu {
+            will-change: transform; /* Optimize animations */
+        }
+    </style>
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Maharaja Chef Services - Home">
     <meta property="og:description" content="Book trusted personal chefs near you for professional, customized menus and unforgettable dining experiences at home.">
@@ -306,7 +586,10 @@
     </style>
 </head>
 <body>
-<!-- Sticky CTA Bar for Mobile -->
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
         <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
         <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
@@ -745,6 +1028,92 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+
+    <!-- Inline Header Implementation -->
+    <script>
+        (function () {
+            'use strict';
+
+            function initHeader() {
+                const hamburger = document.querySelector('.mobile-menu-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                const body = document.body;
+
+                if (!hamburger || !navMenu) {
+                    console.warn("Hamburger or nav menu not found");
+                    return;
+                }
+
+                console.log("Hamburger initialized");
+
+                // Remove old listener safety (prevents duplicates)
+                hamburger.onclick = null;
+
+                hamburger.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    console.log("Hamburger clicked");
+
+                    // Toggle menu state
+                    const isMenuOpen = navMenu.classList.contains('mobile-active');
+                    console.log("Menu is currently open:", isMenuOpen);
+                    console.log("Nav menu element:", navMenu);
+                    console.log("Nav menu computed style:", window.getComputedStyle(navMenu));
+                    console.log("Nav menu left position:", window.getComputedStyle(navMenu).left);
+                    console.log("Nav menu display property:", window.getComputedStyle(navMenu).display);
+                    console.log("Nav menu position property:", window.getComputedStyle(navMenu).position);
+                    console.log("Nav menu width:", window.getComputedStyle(navMenu).width);
+                    console.log("Nav menu height:", window.getComputedStyle(navMenu).height);
+                    
+                    if (isMenuOpen) {
+                        // Close menu
+                        console.log("Closing menu");
+                        navMenu.classList.remove('mobile-active');
+                        hamburger.classList.remove('active');
+                        body.style.overflow = '';
+                        console.log("After closing - left position:", window.getComputedStyle(navMenu).left);
+                        console.log("After closing - display property:", window.getComputedStyle(navMenu).display);
+                    } else {
+                        // Open menu
+                        console.log("Opening menu");
+                        navMenu.classList.add('mobile-active');
+                        hamburger.classList.add('active');
+                        body.style.overflow = 'hidden';
+                        console.log("After opening - left position:", window.getComputedStyle(navMenu).left);
+                        console.log("After opening - display property:", window.getComputedStyle(navMenu).display);
+                    }
+                });
+
+                // Close on ESC
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        console.log("ESC key pressed, closing menu");
+                        navMenu.classList.remove('mobile-active');
+                        hamburger.classList.remove('active');
+                        body.style.overflow = '';
+                        console.log("Menu closed via ESC key");
+                    }
+                });
+            }
+
+            // Initialize header immediately since we have all HTML in one file
+            console.log("Initializing header...");
+            initHeader();
+
+            // Mobile Sticky CTA Script
+            function checkMobileStickyCTA() {
+                const stickyCTA = document.querySelector('.sticky-cta-bar');
+                if (window.innerWidth <= 768) {
+                    stickyCTA.style.display = 'flex';
+                } else {
+                    stickyCTA.style.display = 'none';
+                }
+            }
+
+            window.addEventListener('load', checkMobileStickyCTA);
+            window.addEventListener('resize', checkMobileStickyCTA);
+
+        })();
+    </script>
 
     <!-- Mobile Sticky CTA Script -->
     <script>
