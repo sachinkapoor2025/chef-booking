@@ -15,10 +15,25 @@
 
                 document.getElementById('header-container')
                     .appendChild(headerElement);
+                
+                // Load mobile dropdown script after header is inserted
+                loadMobileDropdownScript();
             })
             .catch(error => {
                 console.error("Header load failed:", error);
             });
+    }
+    
+    function loadMobileDropdownScript() {
+        // Check if already loaded
+        if (document.querySelector('script[src="js/mobile-dropdown.js"]')) {
+            return;
+        }
+        
+        const script = document.createElement('script');
+        script.src = 'js/mobile-dropdown.js';
+        script.async = true;
+        document.body.appendChild(script);
     }
 
     document.addEventListener('DOMContentLoaded', loadHeader);
