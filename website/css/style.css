@@ -531,7 +531,7 @@ header {
         transition: all 0.3s ease;
     }
 
-    .nav-menu.active {
+    .nav-menu.mobile-active {
         display: flex;
         opacity: 1;
         visibility: visible;
@@ -3947,7 +3947,7 @@ footer hr {
     transition: all 0.3s ease;
   }
 
-  .nav-menu.active {
+  .nav-menu.mobile-active {
     display: flex;
     opacity: 1;
     visibility: visible;
