@@ -211,12 +211,24 @@
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
-                const chatbotContainer = doc.querySelector('.chatbot-container');
+                
+                // Add styles
                 const styleTags = doc.querySelectorAll('style');
                 styleTags.forEach(style => {
                     document.head.appendChild(style.cloneNode(true));
                 });
+                
+                // Add chatbot container
+                const chatbotContainer = doc.querySelector('.chatbot-container');
                 document.body.appendChild(chatbotContainer.cloneNode(true));
+                
+                // Execute scripts from chatbot.html
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
             })
             .catch(error => {
                 console.error('Error loading chatbot:', error);
