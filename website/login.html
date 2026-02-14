@@ -372,5 +372,24 @@
             });
         });
     </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
 </body>
 </html>
