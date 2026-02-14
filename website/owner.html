@@ -16,6 +16,72 @@
     <meta name="description" content="Meet Aman Deep Manrai, the owner of Maharaja Chef Services. Learn about his vision and passion for culinary excellence.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Mobile Menu Styles -->
+    <style>
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+
+        .mobile-menu-toggle.active {
+            color: #1e3a8a;
+            background-color: #e3f2fd;
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                padding: 4rem 2rem 2rem;
+                gap: 1rem;
+                box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                z-index: 1001;
+                overflow-y: auto;
+                display: flex !important;
+            }
+            
+            .nav-menu.mobile-active {
+                left: 0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding-left: 1rem;
+                background: transparent;
+            }
+            
+            .dropdown.mobile-dropdown-open .dropdown-menu {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Mobile Menu Toggle Button -->
