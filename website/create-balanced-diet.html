@@ -25,53 +25,8 @@
     <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
-    <header class="global-header">
-        <nav class="global-nav">
-            <div class="header-left">
-                <div class="logo">
-                    <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px; width: auto;"></a></h1>
-                </div>
-            </div>
-            <div class="header-center">
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                    <li><a href="balanced-diet.html">Balanced Diet</a></li>
-                    <li class="dropdown">
-                        <a href="services.html">Services <span class="dropdown-arrow"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="become-a-chef.html">For Chefs <span class="dropdown-arrow"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="become-a-chef.html">Become a Chef</a></li>
-                            <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
-                            <li><a href="chef-faq.html">Chef FAQ</a></li>
-                            <li><a href="success-stories.html">Success Stories</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Explore More <span class="dropdown-arrow"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="blogs.html">Blogs</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="header-right">
-                <div class="action-buttons">
-                    <a href="owner.html" class="btn">Business Owner</a>
-                    <a href="login.html" class="btn">Log In</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
 
     <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
@@ -381,6 +336,7 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
     
     <!-- Mobile Sticky CTA Script -->
     <script>
