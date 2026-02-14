@@ -8,6 +8,98 @@
     <meta name="keywords" content="catering services, event catering, wedding catering, corporate catering, party catering, California">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Mobile Menu Styles -->
+    <style>
+        /* Mobile menu toggle button */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+
+        .mobile-menu-toggle.active {
+            color: #1e3a8a;
+            background-color: #e3f2fd;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 992px) {
+            .global-nav {
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 4rem 2rem 2rem;
+                gap: 1.5rem;
+                box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1002;
+                overflow-y: auto;
+                display: none;
+            }
+            
+            .nav-menu.mobile-active {
+                left: 0;
+                display: flex !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+                font-size: 1rem;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            
+            .dropdown-menu a {
+                padding: 0.5rem 0;
+                margin-bottom: 0.25rem;
+                border-radius: 0;
+                background: transparent;
+            }
+            
+            .dropdown-menu a:hover {
+                padding-left: 0;
+                background: transparent;
+                color: #1e3a8a;
+            }
+        }
+
+        /* Header right section */
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+    </style>
     <!-- Bootstrap CSS -->
     <!-- Speed Optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,14 +132,6 @@
         </div>
 
         <div class="header-center">
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
-                <span class="hamburger-icon">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </span>
-            </button>
-            
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="catering-services.html">Catering Services</a></li>
@@ -93,73 +177,14 @@
                 <li><a href="login.html">Log In</a></li>
             </ul>
         </div>
+
+        <div class="header-right">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                ☰
+            </button>
+        </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-        <div class="mobile-menu-content">
-            <div class="mobile-menu-header">
-                <div class="logo">
-                    <h1>
-                        <a href="index.html" style="text-decoration: none; color: inherit;">
-                            <img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 60px; width: auto;">
-                        </a>
-                    </h1>
-                </div>
-                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">
-                    <span>&times;</span>
-                </button>
-            </div>
-            
-            <ul class="mobile-nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catering-services.html">Catering Services</a></li>
-                <li><a href="balanced-diet.html">Balanced Diet</a></li>
-
-                <li class="mobile-dropdown">
-                    <button class="mobile-dropdown-toggle" aria-expanded="false">
-                        Services <span class="mobile-dropdown-arrow">▼</span>
-                    </button>
-                    <ul class="mobile-dropdown-menu">
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="catering-services.html">Catering Services</a></li>
-                        <li><a href="balanced-diet.html">Balanced Diet</a></li>
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                    </ul>
-                </li>
-
-                <li class="mobile-dropdown">
-                    <button class="mobile-dropdown-toggle" aria-expanded="false">
-                        For Chefs <span class="mobile-dropdown-arrow">▼</span>
-                    </button>
-                    <ul class="mobile-dropdown-menu">
-                        <li><a href="become-a-chef.html">Become a Chef</a></li>
-                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
-                        <li><a href="chef-faq.html">Chef FAQ</a></li>
-                        <li><a href="success-stories.html">Success Stories</a></li>
-                    </ul>
-                </li>
-
-                <li class="mobile-dropdown">
-                    <button class="mobile-dropdown-toggle" aria-expanded="false">
-                        Explore More <span class="mobile-dropdown-arrow">▼</span>
-                    </button>
-                    <ul class="mobile-dropdown-menu">
-                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                        <li><a href="menu-services.html">Menu Services</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="owner.html">Business Owner</a></li>
-                <li><a href="login.html">Log In</a></li>
-            </ul>
-        </div>
-    </div>
 </header>
 <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
@@ -632,6 +657,62 @@
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
 
+    <!-- Mobile Navigation Script -->
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('mobile-active');
+                    mobileMenuToggle.classList.toggle('active');
+                    
+                    // Toggle hamburger icon between ☰ and ✕
+                    if (mobileMenuToggle.classList.contains('active')) {
+                        mobileMenuToggle.innerHTML = '✕';
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        mobileMenuToggle.innerHTML = '☰';
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = navMenu.querySelectorAll('a');
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('mobile-active');
+                        mobileMenuToggle.classList.remove('active');
+                        mobileMenuToggle.innerHTML = '☰';
+                        document.body.style.overflow = '';
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navMenu.classList.remove('mobile-active');
+                        mobileMenuToggle.classList.remove('active');
+                        mobileMenuToggle.innerHTML = '☰';
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu on escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && navMenu.classList.contains('mobile-active')) {
+                        navMenu.classList.remove('mobile-active');
+                        mobileMenuToggle.classList.remove('active');
+                        mobileMenuToggle.innerHTML = '☰';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+    </script>
+
     <!-- Mobile Sticky CTA Script -->
     <script>
         // Show sticky CTA bar on mobile devices
@@ -649,79 +730,6 @@
         window.addEventListener('resize', checkMobileStickyCTA);
     </script>
     
-    <!-- Mobile Navigation Script -->
-    <script>
-        // Mobile menu toggle functionality
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        
-        if (mobileMenuToggle && mobileMenuOverlay && mobileMenuClose) {
-            // Toggle mobile menu
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenuOverlay.classList.toggle('active');
-                mobileMenuToggle.classList.toggle('active');
-                document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
-            });
-            
-            // Close menu
-            mobileMenuClose.addEventListener('click', () => {
-                mobileMenuOverlay.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            // Close menu when clicking overlay
-            mobileMenuOverlay.addEventListener('click', (e) => {
-                if (e.target === mobileMenuOverlay) {
-                    mobileMenuOverlay.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-            
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
-                    mobileMenuOverlay.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-            
-            // Mobile dropdown functionality
-            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-            mobileDropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const dropdown = this.closest('.mobile-dropdown');
-                    const isActive = dropdown.classList.contains('active');
-                    
-                    // Close all other dropdowns
-                    mobileDropdownToggles.forEach(otherToggle => {
-                        if (otherToggle !== toggle) {
-                            const otherDropdown = otherToggle.closest('.mobile-dropdown');
-                            otherDropdown.classList.remove('active');
-                            otherToggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                    
-                    // Toggle current dropdown
-                    dropdown.classList.toggle('active');
-                    this.setAttribute('aria-expanded', isActive ? 'false' : 'true');
-                });
-            });
-            
-            // Close menu when clicking nav links
-            const navLinks = document.querySelectorAll('.mobile-nav-menu a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenuOverlay.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-    </script>
     </body>
     <!-- Chatbot Integration -->
     <script>
