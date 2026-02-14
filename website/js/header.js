@@ -12,17 +12,37 @@
 
         hamburger.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation();
 
-            const isMenuOpen = navMenu.classList.contains('mobile-active');
+            const isMenuOpen = navMenu.classList.contains('active');
 
             if (isMenuOpen) {
-                navMenu.classList.remove('mobile-active');
+                navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
                 body.style.overflow = '';
             } else {
-                navMenu.classList.add('mobile-active');
+                navMenu.classList.add('active');
                 hamburger.classList.add('active');
                 body.style.overflow = 'hidden';
+            }
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                body.style.overflow = '';
             }
         });
     }
