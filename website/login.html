@@ -9,71 +9,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Mobile Menu Styles -->
-    <style>
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #333;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-toggle:hover {
-            background-color: #f0f0f0;
-        }
-
-        .mobile-menu-toggle.active {
-            color: #1e3a8a;
-            background-color: #e3f2fd;
-        }
-
-        @media (max-width: 992px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: white;
-                flex-direction: column;
-                padding: 4rem 2rem 2rem;
-                gap: 1rem;
-                box-shadow: 2px 0 20px rgba(0,0,0,0.1);
-                transition: left 0.3s ease;
-                z-index: 1001;
-                overflow-y: auto;
-                display: flex !important;
-            }
-            
-            .nav-menu.mobile-active {
-                left: 0;
-            }
-            
-            .dropdown-menu {
-                position: static;
-                display: none;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                padding-left: 1rem;
-                background: transparent;
-            }
-            
-            .dropdown.mobile-dropdown-open .dropdown-menu {
-                display: block;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Global Header will be loaded here -->
@@ -284,49 +219,8 @@
     <script src="js/global-header.js"></script>
     <script src="js/header.js"></script>
     
-    <!-- Mobile Navigation Script -->
+    <!-- Mobile Sticky CTA Script -->
     <script>
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        if (mobileMenuToggle && navMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('mobile-active');
-                mobileMenuToggle.classList.toggle('active');
-            });
-            
-            // Handle mobile dropdown toggles
-            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-            dropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 992) {
-                        e.preventDefault();
-                        const dropdown = toggle.parentElement;
-                        dropdown.classList.toggle('mobile-dropdown-open');
-                        const menu = dropdown.querySelector('.dropdown-menu');
-                        if (menu) {
-                            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-                        }
-                    }
-                });
-            });
-            
-            const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('mobile-active');
-                    mobileMenuToggle.classList.remove('active');
-                });
-            });
-            
-            document.addEventListener('click', (e) => {
-                if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                    navMenu.classList.remove('mobile-active');
-                    mobileMenuToggle.classList.remove('active');
-                }
-            });
-        }
-        
         function checkMobileStickyCTA() {
             const stickyCTA = document.querySelector('.sticky-cta-bar');
             if (window.innerWidth <= 768) {
