@@ -209,7 +209,7 @@ header {
     display: block;
     width: 24px;
     height: 3px;
-    background-color: #000000;
+    background-color: #3b82f6;
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
