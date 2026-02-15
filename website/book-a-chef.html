@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
+    <!-- Header Component -->
+    <div id="header-container"></div>
+    
+    <!-- Main Content -->
     <main>
         <section id="book-a-chef">
             <h1>Book a Chef</h1>
@@ -137,14 +140,14 @@
     </footer>
 
     <script>
-        const API_URL = 'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
+        const API_URL = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
 
         document.getElementById('booking-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
-            fetch(`${API_URL}/submit`, {
+            fetch(`${API_URL}/book-chef`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -167,6 +170,8 @@
     </script>
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/mobile-dropdown.js"></script>
     <!-- Chatbot Integration -->
     <script>
         // Load chatbot

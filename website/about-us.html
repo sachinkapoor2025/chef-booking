@@ -24,6 +24,8 @@
     <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
+    <!-- Include the header component -->
+    <div id="header-container"></div>
     <main>
         <section id="our-story" style="padding: 6rem 2rem; text-align: center; background: #f8f9fa;">
             <div class="container" style="max-width: 1200px; margin: 0 auto;">
@@ -33,7 +35,7 @@
                     Maharaja Chef Services has grown into a trusted platform connecting food lovers with talented culinary professionals across the United States.
                 </p>
                 
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 4rem;">
+                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 4rem;">
                     <div style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                         <div style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;">👑</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #333;">Royal Treatment</h3>
@@ -246,5 +248,31 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
 </body>
 </html>

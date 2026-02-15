@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emily Chen - Chinese Cuisine Chef - Maharaja Chef Services</title>
+    <meta name="description" content="Meet Chef Emily Chen, expert Chinese cuisine chef with 12 years experience. Authentic dim sum, wok cooking, and traditional Chinese dishes.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Chef Emily Chen specific styles */
+        .chef-profile-emily {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chef-header-emily {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border: 2px solid #e9ecef;
+        }
+
+        .chef-main-photo-emily {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #dc3545;
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .chef-main-photo-emily:hover {
+            transform: scale(1.05);
+        }
+
+        .chef-header-info-emily h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 800;
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chef-location-emily {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chef-location-emily i {
+            color: #dc3545;
+            font-size: 1.2rem;
+        }
+
+        .chef-details-emily, .pricing-section-emily, .menu-options-emily, .dietary-tags-emily, .reviews-section-emily, .booking-cta-emily {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border: 1px solid #f0f0f0;
+        }
+
+        .chef-details-emily h2, .pricing-section-emily h2, .menu-options-emily h2, .dietary-tags-emily h2, .reviews-section-emily h2 {
+            color: #dc3545;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-bottom: 3px solid #f8d7da;
+            padding-bottom: 0.5rem;
+        }
+
+        .chef-details-emily p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .chef-specialties-emily {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .specialty-item-emily {
+            background: #fff;
+            border: 2px solid #f8d7da;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialty-item-emily:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(220, 53, 69, 0.15);
+            border-color: #dc3545;
+        }
+
+        .specialty-item-emily::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc3545 0%, #6f42c1 100%);
+        }
+
+        .specialty-icon-emily {
+            font-size: 2.5rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+
+        .specialty-title-emily {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .specialty-desc-emily {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .pricing-cards-emily {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .pricing-card-emily {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid #f8d7da;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card-emily:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(220, 53, 69, 0.2);
+            border-color: #dc3545;
+        }
+
+        .pricing-card-emily::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc3545 0%, #6f42c1 100%);
+        }
+
+        .pricing-card-emily h3 {
+            color: #dc3545;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .price-emily {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #dc3545;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .price-note-emily {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-categories-emily {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .menu-category-emily {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid #f8d7da;
+            transition: all 0.3s ease;
+        }
+
+        .menu-category-emily:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(220, 53, 69, 0.15);
+            border-color: #dc3545;
+        }
+
+        .menu-category-emily h3 {
+            color: #dc3545;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border-bottom: 2px solid #f8d7da;
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-category-emily ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-category-emily li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-category-emily li:hover {
+            background: #fff;
+            padding-left: 1rem;
+        }
+
+        .menu-category-emily li:last-child {
+            border-bottom: none;
+        }
+
+        .menu-bullet-emily {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .tags-emily {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tag-emily {
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tag-emily:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+        }
+
+        .rating-summary-emily {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 16px;
+            border: 2px solid #f8d7da;
+        }
+
+        .stars-emily {
+            font-size: 2.5rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .rating-text-emily {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .reviews-emily {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .review-emily {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid #dc3545;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .review-emily:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .review-header-emily {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .reviewer-emily {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .review-stars-emily {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+
+        .review-text-emily {
+            font-style: italic;
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-service-emily {
+            display: inline-block;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #f5c6cb;
+        }
+
+        .booking-cta-emily {
+            text-align: center;
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(220, 53, 69, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .booking-cta-emily h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .booking-cta-emily p {
+            margin-bottom: 2.5rem;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .btn-emily {
+            background: white;
+            color: #dc3545;
+            border: 3px solid white;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-emily:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.5);
+            background: #fff;
+            color: #dc3545;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .chef-header-emily {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .chef-main-photo-emily {
+                width: 150px;
+                height: 150px;
+            }
+
+            .chef-header-info-emily h1 {
+                font-size: 2rem;
+            }
+
+            .chef-details-emily h2, .pricing-section-emily h2, .menu-options-emily h2, .dietary-tags-emily h2, .reviews-section-emily h2 {
+                font-size: 1.5rem;
+            }
+
+            .booking-cta-emily h2 {
+                font-size: 2rem;
+            }
+
+            .booking-cta-emily p {
+                font-size: 1.1rem;
+            }
+
+            .btn-emily {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.1rem;
+            }
+
+            .pricing-cards-emily,
+            .menu-categories-emily {
+                grid-template-columns: 1fr;
+            }
+
+            .tags-emily {
+                justify-content: center;
+            }
+
+            .review-header-emily {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="chef-profile" class="chef-profile-emily">
+            <!-- Chef Header Section -->
+            <div class="chef-header chef-header-emily">
+                <img src="../images/chef1.jpg" alt="Chef Emily Chen" class="chef-main-photo chef-main-photo-emily">
+                <div class="chef-header-info chef-header-info-emily">
+                    <h1>Emily Chen</h1>
+                    <p class="chef-location chef-location-emily"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="tag-emily">⭐ 4.8/5 Rating</span>
+                        <span class="tag-emily">12+ Years Experience</span>
+                        <span class="tag-emily">Chinese Cuisine Expert</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chef Details Section -->
+            <div class="chef-details chef-details-emily">
+                <h2>About Chef Emily</h2>
+                <p>Emily Chen brings the rich and diverse flavors of Chinese cuisine to your table. Born in Shanghai and trained in both traditional and modern Chinese cooking techniques, Emily has over 12 years of experience creating authentic Chinese dishes. She specializes in dim sum, wok cooking, and regional Chinese specialties that showcase the complexity and balance of Chinese flavors.</p>
+                
+                <p>Emily believes that Chinese cuisine is about harmony, balance, and the perfect combination of textures and flavors. She uses traditional techniques like stir-frying, steaming, and braising to create dishes that are both authentic and beautifully presented. Her passion for Chinese tea culture also influences her cooking and presentation.</p>
+
+                <h3>Cuisine Specialties</h3>
+                <div class="chef-specialties-emily">
+                    <div class="specialty-item-emily">
+                        <i class="fas fa-dumpling specialty-icon-emily"></i>
+                        <h4 class="specialty-title-emily">Dim Sum</h4>
+                        <p class="specialty-desc-emily">Handmade dumplings, buns, and traditional dim sum dishes</p>
+                    </div>
+                    <div class="specialty-item-emily">
+                        <i class="fas fa-wok specialty-icon-emily"></i>
+                        <h4 class="specialty-title-emily">Wok Cooking</h4>
+                        <p class="specialty-desc-emily">High-heat stir-frying and traditional wok techniques</p>
+                    </div>
+                    <div class="specialty-item-emily">
+                        <i class="fas fa-tea specialty-icon-emily"></i>
+                        <h4 class="specialty-title-emily">Tea Pairing</h4>
+                        <p class="specialty-desc-emily">Expert Chinese tea selection and pairing with meals</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing & Rates -->
+            <div class="pricing-section pricing-section-emily">
+                <h2>Pricing & Rates</h2>
+                <div class="pricing-cards pricing-cards-emily">
+                    <div class="pricing-card pricing-card-emily">
+                        <h3>Dim Sum Brunch</h3>
+                        <div class="price-emily">$160/hr</div>
+                        <p class="price-note-emily">Up to 8 guests, traditional dim sum service</p>
+                        <a href="../book-a-chef.html" class="btn-emily">Book Now</a>
+                    </div>
+                    <div class="pricing-card pricing-card-emily">
+                        <h3>Family Dinner</h3>
+                        <div class="price-emily">$140/hr</div>
+                        <p class="price-note-emily">Up to 10 guests, authentic Chinese dinner</p>
+                        <a href="../book-a-chef.html" class="btn-emily">Book Now</a>
+                    </div>
+                    <div class="pricing-card pricing-card-emily">
+                        <h3>Event Catering</h3>
+                        <div class="price-emily">$190/hr</div>
+                        <p class="price-note-emily">Up to 25 guests, full Chinese banquet</p>
+                        <a href="../book-a-chef.html" class="btn-emily">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Options -->
+            <div class="menu-options menu-options-emily">
+                <h2>Menu Options</h2>
+                <div class="menu-categories menu-categories-emily">
+                    <div class="menu-category menu-category-emily">
+                        <h3>Dim Sum</h3>
+                        <ul>
+                            <li><span class="menu-bullet-emily">•</span> Shumai (pork dumplings)</li>
+                            <li><span class="menu-bullet-emily">•</span> Har gow (shrimp dumplings)</li>
+                            <li><span class="menu-bullet-emily">•</span> Char siu bao (BBQ pork buns)</li>
+                            <li><span class="menu-bullet-emily">•</span> Spring rolls</li>
+                        </ul>
+                    </div>
+                    <div class="menu-category menu-category-emily">
+                        <h3>Main Dishes</h3>
+                        <ul>
+                            <li><span class="menu-bullet-emily">•</span> Peking duck</li>
+                            <li><span class="menu-bullet-emily">•</span> Kung Pao chicken</li>
+                            <li><span class="menu-bullet-emily">•</span> Mapo tofu</li>
+                            <li><span class="menu-bullet-emily">•</span> Wonton noodles</li>
+                        </ul>
+                    </div>
+                    <div class="menu-category menu-category-emily">
+                        <h3>Vegetables</h3>
+                        <ul>
+                            <li><span class="menu-bullet-emily">•</span> Bok choy with garlic</li>
+                            <li><span class="menu-bullet-emily">•</span> Eggplant in garlic sauce</li>
+                            <li><span class="menu-bullet-emily">•</span> Stir-fried snow peas</li>
+                            <li><span class="menu-bullet-emily">•</span> Buddha's delight</li>
+                        </ul>
+                    </div>
+                    <div class="menu-category menu-category-emily">
+                        <h3>Desserts</h3>
+                        <ul>
+                            <li><span class="menu-bullet-emily">•</span> Sesame balls</li>
+                            <li><span class="menu-bullet-emily">•</span> Almond cookies</li>
+                            <li><span class="menu-bullet-emily">•</span> Mango pudding</li>
+                            <li><span class="menu-bullet-emily">•</span> Chinese donuts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dietary Tags -->
+            <div class="dietary-tags dietary-tags-emily">
+                <h2>Dietary Specialties</h2>
+                <div class="tags tags-emily">
+                    <span class="tag-emily">Gluten-Free Options</span>
+                    <span class="tag-emily">Vegetarian</span>
+                    <span class="tag-emily">Dairy-Free</span>
+                    <span class="tag-emily">Chinese Cuisine</span>
+                    <span class="tag-emily">Tea Pairing</span>
+                </div>
+            </div>
+
+            <!-- Customer Reviews & Ratings -->
+            <div class="reviews-section reviews-section-emily">
+                <h2>Customer Reviews & Ratings</h2>
+                <div class="rating-summary rating-summary-emily">
+                    <div class="stars stars-emily">★★★★★</div>
+                    <p class="rating-text-emily">4.8 out of 5 stars (105 reviews)</p>
+                </div>
+                <div class="reviews reviews-emily">
+                    <div class="review review-emily">
+                        <div class="review-header review-header-emily">
+                            <span class="reviewer reviewer-emily">Lisa Wang</span>
+                            <div class="review-stars review-stars-emily">★★★★★</div>
+                        </div>
+                        <p class="review-text-emily">"Chef Emily's dim sum brunch was absolutely authentic! The har gow were perfect, and the char siu bao were the best I've had outside of Hong Kong. The presentation was beautiful and the tea pairing was perfect."</p>
+                        <span class="review-service-emily">Dim Sum Brunch Service</span>
+                    </div>
+                    <div class="review review-emily">
+                        <div class="review-header review-header-emily">
+                            <span class="reviewer reviewer-emily">Robert Chen</span>
+                            <div class="review-stars review-stars-emily">★★★★★</div>
+                        </div>
+                        <p class="review-text-emily">"Our family dinner was incredible. Emily made the most amazing Peking duck, and the kung pao chicken had perfect balance of flavors. Everything tasted just like my grandmother used to make. Highly recommend!"</p>
+                        <span class="review-service-emily">Family Dinner Service</span>
+                    </div>
+                    <div class="review review-emily">
+                        <div class="review-header review-header-emily">
+                            <span class="reviewer reviewer-emily">Jennifer Thompson</span>
+                            <div class="review-stars review-stars-emily">★★★★☆</div>
+                        </div>
+                        <p class="review-text-emily">"Excellent catering for our Chinese New Year celebration. The wonton noodles were delicious, and the sesame balls were the perfect ending. Emily was professional and the whole experience was wonderful."</p>
+                        <span class="review-service-emily">Event Catering</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking CTA -->
+            <div class="booking-cta booking-cta-emily">
+                <h2>Ready to Book Emily?</h2>
+                <p>Experience the authentic and sophisticated flavors of Chinese cuisine with a master chef who brings tradition and artistry to every dish.</p>
+                <a href="../book-a-chef.html" class="btn-emily">Book Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../chef-services.html">Services</a></li>
+                    <li><a href="../explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="../gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="../terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="../refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/global-header.js"></script>
+</body>
+</html>

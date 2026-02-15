@@ -1,6 +1,3 @@
-// Mobile navigation toggle
-
-
 document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
     const header = document.querySelector('header');
@@ -36,65 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const navToggle = document.createElement('div');
-    navToggle.innerHTML = '☰';
-    navToggle.style.cssText = `
-        display: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #1e293b;
-        z-index: 1001;
-        transition: all 0.3s ease;
-    `;
-
     const nav = document.querySelector('nav');
     const navMenu = document.querySelector('.nav-menu');
-    
-    // Add toggle button for mobile
-    if (window.innerWidth <= 768) {
-        nav.style.position = 'relative';
-        nav.appendChild(navToggle);
-        navToggle.style.display = 'block';
-
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-
-        // Mobile dropdown click handlers
-        const mobileDropdowns = navMenu.querySelectorAll('.dropdown');
-        mobileDropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('a');
-            const menu = dropdown.querySelector('.dropdown-menu');
-
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // Close all other submenus (accordion behavior)
-                mobileDropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        const otherMenu = otherDropdown.querySelector('.dropdown-menu');
-                        if (otherMenu) {
-                            otherMenu.classList.remove('open');
-                        }
-                    }
-                });
-
-                // Toggle current submenu
-                if (menu) {
-                    menu.classList.toggle('open');
-                }
-            });
-        });
-    }
-    
-    // Dropdown functionality is now handled by Bootstrap JS
-    // This section removed to prevent conflicts with Bootstrap dropdowns
-    
-
     
     // Smooth scrolling for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
@@ -242,17 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     video.currentTime = 0;
                 });
             }
-        }
-    });
-
-    // Responsive adjustments
-    window.addEventListener('resize', function() {
-        if (window.innerWidth <= 768) {
-            navToggle.style.display = 'block';
-            navMenu.classList.remove('active');
-        } else {
-            navToggle.style.display = 'none';
-            navMenu.classList.add('active'); // Ensure menu is always visible on desktop
         }
     });
 

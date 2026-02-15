@@ -1,194 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-999Q8EMQJM');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Maharaja Chef Services</title>
-    <meta name="description" content="Frequently asked questions about our chef services, booking process, pricing, and more. Find answers to all your questions.">
-    <meta name="keywords" content="chef services FAQ, booking questions, pricing information, chef service details">
+    <meta name="description" content="Frequently asked questions about our personal chef services, weekly meal prep, catering, and diet plans. Find answers to all your chef booking questions.">
+    <meta name="keywords" content="chef services FAQ, personal chef questions, meal prep FAQ, catering questions, diet plan FAQ">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="js/script.js" as="script">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="FAQ - Maharaja Chef Services">
-    <meta property="og:description" content="Frequently asked questions about our chef services, booking process, pricing, and more. Find answers to all your questions.">
-    <meta property="og:image" content="images/logo.jpg">
-    <meta property="og:url" content="https://maharajachef.com/faq.html">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FAQ - Maharaja Chef Services">
-    <meta name="twitter:description" content="Frequently asked questions about our chef services, booking process, pricing, and more. Find answers to all your questions.">
-    <meta name="twitter:image" content="images/logo.jpg">
+    <style>
+        /* FAQ Page Styles */
+        .faq-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .faq-hero h1 {
+            color: #1e3a8a;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .faq-hero p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .faq-category {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .category-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .category-header .category-icon {
+            font-size: 2rem;
+        }
+        
+        .faq-list {
+            padding: 0;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .faq-question .question-icon {
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+        
+        .faq-answer {
+            padding: 0 2rem 1.5rem;
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+            display: none;
+            background: #fafafa;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .faq-search {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 1rem 4rem 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .search-box .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 1.1rem;
+            display: none;
+        }
+        
+        .faq-summary {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            border-radius: 16px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .summary-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .summary-card ul {
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+        
+        .summary-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 0.5rem;
+        }
+        
+        .summary-card .bullet {
+            position: absolute;
+            left: -1.2rem;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .contact-cta {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+        
+        .contact-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .contact-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-contact {
+            background: white;
+            color: #1d4ed8;
+            border: 2px solid white;
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .faq-hero h1 {
+                font-size: 2.5rem;
+            }
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .category-header {
+                padding: 1rem 1.5rem;
+            }
+            .category-header h2 {
+                font-size: 1.2rem;
+            }
+            .faq-question {
+                padding: 1.25rem 1.5rem;
+            }
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
     <main>
-        <section id="faq-content" style="padding: 6rem 2rem; background: #f8f9fa;">
-            <div class="container" style="max-width: 1200px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem; color: #333; text-align: center; margin-bottom: 1rem;">Find Your Answers</h2>
-                <p style="font-size: 1.2rem; color: #666; text-align: center; margin-bottom: 4rem;">Browse our comprehensive FAQ sections to find the information you need</p>
+        <!-- FAQ Hero Section -->
+        <section class="faq-hero">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to all your questions about our chef services, meal plans, and booking process</p>
+        </section>
 
-                <div class="faq-accordion">
-                    <!-- Booking & Services -->
-                    <div class="faq-category">
-                        <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem; border-left: 4px solid #007bff; padding-left: 1rem;">Booking & Services</h3>
-                        
 
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">Do I need to do groceries?</span>
-                                <i class="fas fa-plus" style="color: #007bff;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">No, our chefs handle all grocery shopping. We'll provide a detailed ingredient list and cost breakdown. You can either have us shop for you (included in the service) or provide the ingredients yourself if preferred.</p>
-                            </div>
+        <!-- FAQ Container -->
+        <div class="faq-container">
+            
+            <!-- Chef Booking Section -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <i class="fas fa-chef-hat category-icon"></i>
+                    <h2>👨‍🍳 Chef Booking</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I book a personal chef?</h3>
+                            <i class="fas fa-plus question-icon"></i>
                         </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">What cuisines do your chefs cook?</span>
-                                <i class="fas fa-plus" style="color: #007bff;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Our chefs specialize in a wide variety of cuisines including Italian, Indian, Chinese, French, Mexican, Mediterranean, Thai, Japanese, and American. Each chef has their own specialty, so you can choose based on your preferences.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">Can menus be customized?</span>
-                                <i class="fas fa-plus" style="color: #007bff;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Absolutely! We specialize in custom menus tailored to your preferences, dietary restrictions, and occasion. Our chefs will work with you to create a personalized menu that meets your exact requirements.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">Do chefs clean up after cooking?</span>
-                                <i class="fas fa-plus" style="color: #007bff;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Yes, our chefs always clean up after cooking. This includes washing dishes, cleaning cooking surfaces, and leaving your kitchen as clean as they found it. Cleanup is included in all our services.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">How far in advance should I book?</span>
-                                <i class="fas fa-plus" style="color: #007bff;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We recommend booking 2-4 weeks in advance for the best availability, especially for weekends and holidays. However, we can often accommodate last-minute requests depending on chef availability.</p>
-                            </div>
+                        <div class="faq-answer">
+                            Booking a personal chef is simple! You can book online through our website by visiting the "Book a Chef" page, or call us directly at 408-690-1610. Our team will help you find the perfect chef based on your preferences, dietary needs, and event requirements. We'll confirm availability and provide a detailed quote before finalizing your booking.
                         </div>
                     </div>
-
-                    <!-- Safety & Quality -->
-                    <div class="faq-category" style="margin-top: 4rem;">
-                        <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem; border-left: 4px solid #28a745; padding-left: 1rem;">Safety & Quality</h3>
-                        
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;">
-                                <span style="font-weight: 600; color: #333;">Are chefs background checked?</span>
-                                <i class="fas fa-plus" style="color: #28a745;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Yes, all our chefs undergo comprehensive background checks including criminal history, professional references, and culinary certification verification. Your safety and security are our top priorities.</p>
-                            </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How far in advance should I book a chef?</h3>
+                            <i class="fas fa-plus question-icon"></i>
                         </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">How are food allergies handled?</span>
-                                <i class="fas fa-plus" style="color: #28a745;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We take food allergies extremely seriously. Our chefs follow strict cross-contamination protocols and can prepare meals in dedicated areas. Please inform us of any allergies when booking, and we'll ensure your safety is our top priority.</p>
-                            </div>
+                        <div class="faq-answer">
+                            We recommend booking 1-2 weeks in advance for the best availability, especially for weekends and holidays. However, we often have chefs available on short notice for urgent requests. For large events or special occasions, we suggest booking 3-4 weeks ahead to ensure we can accommodate your specific needs and preferences.
                         </div>
                     </div>
-
-                    <!-- Payment & Policies -->
-                    <div class="faq-category" style="margin-top: 4rem;">
-                        <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem; border-left: 4px solid #ffc107; padding-left: 1rem;">Payment & Policies</h3>
-                        
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;">
-                                <span style="font-weight: 600; color: #333;">What payment methods are accepted?</span>
-                                <i class="fas fa-plus" style="color: #ffc107;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We accept all major credit cards, PayPal, and bank transfers. Payment is typically required at the time of booking, with flexible payment plans available for larger events. For cattering clients, we can arrange invoice billing.</p>
-                            </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Are your chefs verified and background checked?</h3>
+                            <i class="fas fa-plus question-icon"></i>
                         </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">Is tipping required or optional?</span>
-                                <i class="fas fa-plus" style="color: #ffc107;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">Tipping is completely optional and based on your satisfaction with the service. If you're happy with your chef's performance, a tip of 15-20% is customary but never expected. The chef's service fee is included in your booking price.</p>
-                            </div>
+                        <div class="faq-answer">
+                            Yes, absolutely! All our chefs undergo a comprehensive verification process including background checks, professional experience verification, and food safety certifications. Each chef is carefully vetted to ensure they meet our high standards for professionalism, culinary expertise, and customer service. Your safety and satisfaction are our top priorities.
                         </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" style="background: white; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; margin-top: 1rem;">
-                                <span style="font-weight: 600; color: #333;">What is the cancellation policy?</span>
-                                <i class="fas fa-plus" style="color: #ffc107;"></i>
-                            </button>
-                            <div class="faq-answer" style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-                                <p style="padding: 1.5rem 0; color: #666; line-height: 1.6;">We offer flexible cancellation: Full refund for cancellations 48+ hours before service, 50% refund for 24-48 hours, and no refund for cancellations within 24 hours. Rescheduling is subject to chef availability with no additional fees for changes made 48+ hours in advance.</p>
-                            </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I customize the menu with the chef?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes! Menu customization is one of our specialties. After booking, you'll have a consultation with your chef to discuss your preferences, dietary restrictions, and any special requirements. Whether you want to adapt traditional recipes, accommodate allergies, or create a completely unique menu, our chefs work with you to create a personalized dining experience that meets your exact needs.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What happens after I complete a chef booking?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            After booking, you'll receive a confirmation email with all the details. Your assigned chef will contact you within 24-48 hours to schedule a consultation call. During this call, you'll discuss menu preferences, dietary needs, and any special requirements. The chef will provide a detailed plan and answer any questions you may have before your service date.
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="support-contact" style="padding: 6rem 2rem; background: white; text-align: center;">
-            <div class="container" style="max-width: 800px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 1rem;">Still Have Questions?</h2>
-                <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Our team is here to help you with any questions or concerns you may have.</p>
+            <!-- Weekly Meal Services Section -->
+            <div class="faq-category">
+                <div class="category-header" style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);">
+                    <i class="fas fa-calendar-week category-icon"></i>
+                    <h2>🍱 Weekly Meal Services</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the weekly meal service?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Our weekly meal service provides fresh, healthy meals prepared in your kitchen by a professional chef. The chef visits your home once a week for 2-3 hours to prepare 10-12 meals that are ready to eat or easily reheated. This service includes grocery shopping, meal preparation, and cleanup, making healthy eating convenient and stress-free.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How many meals are included in weekly meal plans?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Our standard weekly meal plan includes 10-12 fresh meals per week. The exact number depends on your household size and preferences. We can customize the plan to include more or fewer meals based on your needs. Each meal is portion-controlled and designed to provide balanced nutrition throughout the week.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I change or pause my weekly meal service?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, our weekly meal service is completely flexible. You can modify your meal plan, change the frequency, or pause the service at any time with 48 hours notice. Whether you're going on vacation, have a busy week, or want to adjust your meal preferences, we accommodate your schedule and needs without any penalties or fees.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do chefs provide groceries for weekly meals?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, grocery shopping is included in our weekly meal service price. Your chef will shop for fresh, high-quality ingredients based on your customized meal plan. We use local markets and stores to source the best seasonal ingredients. If you have specific preferences for organic, local, or specialty stores, we can accommodate those requests.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is weekly meal service available for families?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely! Our weekly meal service is perfect for families. We can customize meals to accommodate different dietary needs and preferences within the same household. Whether you have picky eaters, dietary restrictions, or specific nutritional goals, we create balanced meals that the whole family will enjoy. We also offer kid-friendly options and can adjust portion sizes for different age groups.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catering Services Section -->
+            <div class="faq-category">
+                <div class="category-header" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);">
+                    <i class="fas fa-glass-cheers category-icon"></i>
+                    <h2>🎉 Catering Services</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What types of catering services do you offer?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            We offer comprehensive catering services for various events including weddings, corporate functions, private parties, anniversaries, birthdays, and holiday gatherings. Our services range from elegant plated dinners to buffet-style service, cocktail parties, and family-style meals. We can accommodate events from 2 to 50 guests with fully customized menus and professional service.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is there a minimum number of guests for catering?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Our minimum for catering services is 2 guests, making us perfect for intimate dinners and small gatherings. However, our pricing is optimized for groups of 6 or more guests. For smaller parties, we offer our one-time dining service which provides the same quality and experience at a更适合 smaller group size.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can catering menus be customized?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, all our catering menus are fully customizable. We work with you to create a menu that reflects your taste preferences, dietary needs, and event theme. Whether you want a traditional multi-course meal, fusion cuisine, or specific cultural dishes, our chefs will design a personalized menu. We also accommodate all dietary restrictions and preferences including vegetarian, vegan, gluten-free, and more.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do you provide serving staff and equipment for events?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, our catering service includes professional serving staff and all necessary equipment. We provide tableware, glassware, linens, serving dishes, and cooking equipment. Our staff handles food service, plating, and cleanup. For larger events, we can also provide bartenders, servers, and event coordinators to ensure your event runs smoothly from start to finish.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How early should catering services be booked?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            For catering services, we recommend booking 3-4 weeks in advance for the best availability and menu planning. For large events, holidays, or popular dates, booking 6-8 weeks ahead is ideal. However, we can often accommodate last-minute requests with 1-2 weeks notice, depending on chef availability and event complexity.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diet Plan Section -->
+            <div class="faq-category">
+                <div class="category-header" style="background: linear-gradient(135deg, #ffc107 0%, #f39c12 100%);">
+                    <i class="fas fa-utensils category-icon"></i>
+                    <h2>🥗 Diet Plan</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the diet plan service?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Our diet plan service provides personalized nutrition guidance and meal planning tailored to your health goals, dietary needs, and lifestyle. After an initial consultation, our nutrition experts create a customized plan that considers your medical history, food preferences, allergies, and nutritional requirements. The plan includes meal suggestions, portion guidance, and ongoing support.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do you offer diet plans for weight loss or medical needs?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, we specialize in diet plans for various health goals including weight loss, diabetes management, heart health, digestive issues, food allergies, and other medical conditions. Our plans are created by certified nutrition professionals who work with your healthcare providers when necessary. We focus on sustainable, healthy eating patterns that support your overall well-being.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Are diet plans customized for individual preferences?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely! Every diet plan is completely customized to your individual needs, preferences, and lifestyle. We consider your cultural background, food likes and dislikes, cooking skills, budget, schedule, and health goals. Our plans are designed to be realistic and sustainable, not restrictive or one-size-fits-all. We believe in creating eating patterns that you can maintain long-term.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can a chef cook meals according to my diet plan?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes! This is one of our most popular services. Our chefs are trained to prepare delicious meals that adhere to your specific diet plan requirements. Whether you need low-sodium, diabetic-friendly, gluten-free, or any other specialized cooking, our chefs can create flavorful meals that support your health goals. We can incorporate this into our weekly meal service or special meal preparation sessions.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How often can I update or change my diet plan?</h3>
+                            <i class="fas fa-plus question-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            You can update your diet plan as often as needed. We recommend regular check-ins every 4-6 weeks to assess progress and make adjustments based on your results, changing goals, or lifestyle modifications. Our nutrition experts are available for ongoing support and can modify your plan whenever you experience changes in your health status, activity level, or personal preferences.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Summary -->
+        <section class="faq-summary">
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3><i class="fas fa-clock" style="margin-right: 10px; color: #3b82f6;"></i>Booking Process</h3>
+                    <ul>
+                        <li><span class="bullet">•</span> Online booking available 24/7</li>
+                        <li><span class="bullet">•</span> Phone support: 408-690-1610</li>
+                        <li><span class="bullet">•</span> Confirmation within 2 hours</li>
+                        <li><span class="bullet">•</span> Chef consultation before service</li>
+                        <li><span class="bullet">•</span> Flexible scheduling and rescheduling</li>
+                    </ul>
+                </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;">📞</div>
-                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Call Us</h3>
-                        <p style="color: #666; line-height: 1.6;">408-690-1610</p>
-                        <p style="color: #666; font-size: 0.9rem;"></p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 3rem; color: #28a745; margin-bottom: 1rem;">📧</div>
-                        <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Email Us</h3>
-                        <p style="color: #666; line-height: 1.6;">info@maharajachef.com</p>
-                        <p style="color: #666; font-size: 0.9rem;">Response within 24 hours</p>
-                    </div>
-                </div>
-
-                <div style="background: #f8f9fa; padding: 3rem; border-radius: 12px; border-left: 4px solid #007bff;">
-                    <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 1rem;">Quick Response Guarantee</h3>
-                    <p style="color: #666; margin-bottom: 2rem;">We guarantee a response to all inquiries within 24 hours during business days. For urgent matters, please call us directly.</p>
-                    <a href="contact-us.html" class="btn btn-large" style="background: #007bff; color: white; border: 2px solid #007bff; padding: 1.5rem 3rem; font-size: 1.2rem; font-weight: 600;">Contact Us Now</a>
+                <div class="summary-card">
+                    <h3><i class="fas fa-shield-alt" style="margin-right: 10px; color: #28a745;"></i>Quality Assurance</h3>
+                    <ul>
+                        <li><span class="bullet">•</span> Background-checked professional chefs</li>
+                        <li><span class="bullet">•</span> Food safety and hygiene certified</li>
+                        <li><span class="bullet">•</span> Fresh, high-quality ingredients</li>
+                        <li><span class="bullet">•</span> Dietary restriction accommodations</li>
+                        <li><span class="bullet">•</span> 100% satisfaction guarantee</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="cta" style="padding: 6rem 2rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; text-align: center;">
-            <div class="container" style="max-width: 800px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready to Experience Professional Cooking?</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9);">Let our chefs create unforgettable culinary experiences for you and your loved ones.</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">👨‍🍳 Find Your Chef</a>
-                    <a href="book-a-chef.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">📅 Book Now</a>
-                    <a href="weekly-meals.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">🍽️ Weekly Meals</a>
-                </div>
-            </div>
+        <!-- Contact CTA -->
+        <section class="contact-cta">
+            <h3>Still Have Questions?</h3>
+            <p>Our team is here to help you find the perfect chef service for your needs</p>
+            <a href="contact-us.html" class="btn-contact">
+                <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                Contact Us Today
+            </a>
         </section>
+
     </main>
 
     <footer>
@@ -207,11 +598,12 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Legal</h3>
+                <h3>Services</h3>
                 <ul>
-                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                    <li><a href="weekly-meals.html">Weekly Meal Prep</a></li>
+                    <li><a href="catering-services.html">Private Events</a></li>
+                    <li><a href="book-a-chef.html">One-Time Dining</a></li>
+                    <li><a href="menu-services.html">Menu Options</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -233,32 +625,137 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <!-- FAQ JavaScript -->
     <script>
-        // FAQ accordion functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', function() {
-                    const answer = this.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    
-                    if (answer.style.maxHeight) {
-                        answer.style.maxHeight = null;
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                        icon.style.color = getComputedStyle(this).getPropertyValue('--primary-color') || '#007bff';
-                    } else {
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                        icon.style.color = '#666';
+        // FAQ Toggle Functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items in the same category
+                const category = item.closest('.faq-list');
+                const allItems = category.querySelectorAll('.faq-item');
+                
+                allItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
                     }
                 });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    question.querySelector('.question-icon').classList.remove('fa-plus');
+                    question.querySelector('.question-icon').classList.add('fa-minus');
+                } else {
+                    item.classList.remove('active');
+                    question.querySelector('.question-icon').classList.remove('fa-minus');
+                    question.querySelector('.question-icon').classList.add('fa-plus');
+                }
             });
         });
+        
+        // FAQ Search Functionality
+        const searchInput = document.getElementById('faq-search');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResults = document.querySelector('.no-results');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            let hasResults = false;
+            
+            faqItems.forEach(item => {
+                const questionText = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('active');
+                    item.querySelector('.question-icon').classList.remove('fa-minus');
+                    item.querySelector('.question-icon').classList.add('fa-plus');
+                }
+            });
+            
+            noResults.style.display = hasResults ? 'none' : 'block';
+        });
+        
+        // Open first question by default in each category
+        document.querySelectorAll('.faq-list').forEach(list => {
+            const firstItem = list.querySelector('.faq-item');
+            if (firstItem) {
+                firstItem.classList.add('active');
+                firstItem.querySelector('.question-icon').classList.remove('fa-plus');
+                firstItem.querySelector('.question-icon').classList.add('fa-minus');
+            }
+        });
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
     </script>
 </body>
 </html>

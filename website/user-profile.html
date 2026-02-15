@@ -609,7 +609,7 @@
         
         async function loadDietPlans(userId) {
             try {
-                const response = await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/user/${userId}/plans`, {
+                const response = await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/user/${userId}/plans`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('userSession')}`
@@ -641,7 +641,7 @@
             
             if (currentPlanId) {
                 try {
-                    const response = await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/${currentPlanId}`, {
+                    const response = await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/${currentPlanId}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('userSession')}`
@@ -656,7 +656,7 @@
                         // Check if plan is ready
                         if (plan.status === 'ready') {
                             // Plan is ready, update user ID and redirect
-                            await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/user/${userId}/plans`, {
+                            await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/user/${userId}/plans`, {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -847,7 +847,7 @@
         async function viewMyDietPlan() {
             try {
                 const userSession = JSON.parse(localStorage.getItem('userSession'));
-                const response = await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/user/${userSession.userId}/plans`, {
+                const response = await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/user/${userSession.userId}/plans`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('userSession')}`
@@ -892,7 +892,7 @@
         
         async function viewPlan(planId) {
             try {
-                const response = await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/${planId}`, {
+                const response = await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/${planId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('userSession')}`
@@ -916,7 +916,7 @@
         
         async function downloadPlan(planId) {
             try {
-                const response = await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/diet-plan/${planId}/download`, {
+                const response = await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/diet-plan/${planId}/download`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('userSession')}`

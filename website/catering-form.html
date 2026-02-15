@@ -1,0 +1,732 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Services Form - Maharaja Chef Services</title>
+    <meta name="description" content="Get your free catering quote and fill out our catering services form for your special event.">
+    <meta name="keywords" content="catering form, catering quote, event catering, catering services">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Catering Form Styles */
+        #hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+            border-color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Form Section */
+        #catering-form-section {
+            padding: 4rem 2rem;
+            background: #f8fafc;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .form-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .form-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .form-section h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .form-section h3 i {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 1.1rem;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        /* Fix double dropdown arrow issue */
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #3b82f6 50%), linear-gradient(135deg, #3b82f6 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1px), calc(100% - 15px) calc(1px), calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select:focus {
+            background-image: linear-gradient(45deg, transparent 50%, #1d4ed8 50%), linear-gradient(135deg, #1d4ed8 50%, transparent 50%);
+            background-position: calc(100% - 20px) 1px, calc(100% - 15px) 1px, calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Submit Section */
+        .submit-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-note {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Success/Error Messages */
+        .message-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .message-container i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ✅ GLOBAL HEADER -->
+    <header id="global-header"></header>
+
+    <main>
+        <section id="catering-form-section">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Catering Services Form</h2>
+                    <p>Fill out the form below to get your free, no-obligation catering quote</p>
+                </div>
+
+                <div id="success-message" class="message-container success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Thank you!</strong> Your catering inquiry has been submitted successfully. We'll contact you within 24 hours.
+                </div>
+
+                <div id="error-message" class="message-container error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Oops!</strong> There was an error submitting your form. Please check all required fields and try again.
+                </div>
+
+                <form id="catering-form">
+                    <!-- Event Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar-alt"></i> Event Information</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-name">Event Name <span class="required">*</span></label>
+                                <input type="text" id="event-name" name="name" required placeholder="e.g., Wedding Event">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="event-date">Event Date <span class="required">*</span></label>
+                                <input type="date" id="event-date" name="event-date" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Event Time <span class="required">*</span></label>
+                                <div style="display: flex; gap: 10px;">
+                                    <select id="event-hour" name="event-hour" required style="flex: 1;">
+                                        <option value="">Hour</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+
+                                    <select id="event-minute" name="event-minute" required style="flex: 1;">
+                                        <option value="">Minute</option>
+                                        <option value="00">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+
+                                    <select id="event-ampm" name="event-ampm" required style="flex: 1;">
+                                        <option value="">AM/PM</option>
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="guest-count">Estimated Guest Count <span class="required">*</span></label>
+                                <input type="number" id="guest-count" name="guests" required min="1" placeholder="e.g., 50">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-type">Event Type <span class="required">*</span></label>
+                                <select id="event-type" name="event-type" required>
+                                    <option value="">Select event type</option>
+                                    <option value="wedding">Wedding</option>
+                                    <option value="corporate">Corporate Event</option>
+                                    <option value="birthday">Birthday Party</option>
+                                    <option value="anniversary">Anniversary</option>
+                                    <option value="baby-shower">Baby Shower</option>
+                                    <option value="bridal-shower">Bridal Shower</option>
+                                    <option value="graduation">Graduation</option>
+                                    <option value="holiday">Holiday Party</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="event-location">Event Location <span class="required">*</span></label>
+                                <input type="text" id="event-location" name="location" required placeholder="Enter full address">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Contact Information</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="full-name">Full Name <span class="required">*</span></label>
+                                <input type="text" id="full-name" name="fullName" required placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget">Budget Range (Optional)</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select budget range</option>
+                                    <option value="under-1000">Under $1,000</option>
+                                    <option value="1000-2500">$1,000 - $2,500</option>
+                                    <option value="2500-5000">$2,500 - $5,000</option>
+                                    <option value="5000-10000">$5,000 - $10,000</option>
+                                    <option value="10000-plus">$10,000+</option>
+                                    <option value="not-sure">Not Sure</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Catering Preferences -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-utensils"></i> Catering Preferences</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cuisine-type">Preferred Cuisine Type <span class="required">*</span></label>
+                                <select id="cuisine-type" name="cuisineType" required>
+                                    <option value="">Select cuisine type</option>
+                                    <option value="american">American</option>
+                                    <option value="italian">Italian</option>
+                                    <option value="french">French</option>
+                                    <option value="indian">Indian</option>
+                                    <option value="asian">Asian</option>
+                                    <option value="mediterranean">Mediterranean</option>
+                                    <option value="mexican">Mexican</option>
+                                    <option value="fusion">Fusion</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="meal-type">Meal Type <span class="required">*</span></label>
+                                <select id="meal-type" name="meal-type" required>
+                                    <option value="">Select meal type</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                    <option value="brunch">Brunch</option>
+                                    <option value="cocktail">Cocktail/Passed Hors d'oeuvres</option>
+                                    <option value="dessert">Dessert</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="service-type">Service Style <span class="required">*</span></label>
+                                <select id="service-type" name="service-type" required>
+                                    <option value="">Select service style</option>
+                                    <option value="buffet">Buffet</option>
+                                    <option value="plated">Plated</option>
+                                    <option value="family-style">Family Style</option>
+                                    <option value="stations">Food Stations</option>
+                                    <option value="cocktail">Cocktail/Passed Hors d'oeuvres</option>
+                                    <option value="brunch">Brunch/Luncheon</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dietary-requirements">Dietary Requirements</label>
+                                <select id="dietary-requirements" name="dietary" required>
+                                    <option value="">Select dietary requirements</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="vegan">Vegan</option>
+                                    <option value="gluten-free">Gluten-Free</option>
+                                    <option value="dairy-free">Dairy-Free</option>
+                                    <option value="nut-free">Nut-Free</option>
+                                    <option value="halal">Halal</option>
+                                    <option value="kosher">Kosher</option>
+                                    <option value="none">No Restrictions</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="menu-ideas">Menu Ideas or Requirements</label>
+                            <textarea id="menu-ideas" name="menuIdeas" placeholder="Describe any specific dishes, themes, or menu ideas you have in mind..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-edit"></i> Additional Details</h3>
+
+                        <div class="form-group">
+                            <label for="special-requests">Special Requests or Notes</label>
+                            <textarea id="special-requests" name="specialRequests" placeholder="Any special requirements, themes, or additional information..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event-description">Event Description</label>
+                            <textarea id="event-description" name="eventDescription" placeholder="Tell us more about your event, theme, or any specific details..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-section submit-section">
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Get My Free Quote
+                        </button>
+                        <p class="form-note">By submitting, you agree to our terms and that we may contact you about your catering inquiry.</p>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catering-services.html">Catering Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Catering Services</h3>
+                <ul>
+                    <li><a href="catering-form.html">Get Free Quote</a></li>
+                    <li><a href="catering-services.html">Event Catering</a></li>
+                    <li><a href="special-events.html">Special Events</a></li>
+                    <li><a href="corporate-catering.html">Corporate Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+
+    <!-- ✅ FIXED SUBMISSION SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('catering-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                const formData = new FormData(form);
+
+                const requiredFields = [
+                    'name', 'event-date', 'event-hour', 'event-minute', 'event-ampm',
+                    'guests', 'event-type', 'location', 'email', 'phone',
+                    'cuisineType', 'meal-type', 'service-type'
+                ];
+
+                let isValid = true;
+                requiredFields.forEach(field => {
+                    if (!formData.get(field)) {
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+
+                // Convert FormData to JSON object
+                const data = {};
+                formData.forEach((value, key) => {
+                    if (data[key]) {
+                        if (!Array.isArray(data[key])) {
+                            data[key] = [data[key]];
+                        }
+                        data[key].push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                });
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Request...';
+
+                try {
+                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/catering-submission';
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
+
+                        // ✅ POPUP SUCCESS MESSAGE
+                        alert("Your catering inquiry has been submitted successfully! We'll contact you within 24 hours.");
+
+                        successMessage.style.display = 'block';
+                        form.reset();
+                    } else {
+                        console.error("Server response error:", result);
+                        errorMessage.style.display = 'block';
+                    }
+
+                } catch (error) {
+                    console.error('Error submitting catering form:', error);
+                    errorMessage.style.display = 'block';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Get My Free Quote';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

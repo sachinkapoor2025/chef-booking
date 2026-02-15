@@ -8,25 +8,701 @@
     <meta name="keywords" content="chef success stories, culinary careers, personal chef success, chef testimonials">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Success Stories Styles */
+        #hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+            border-color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Enhanced hero image styling */
+        .hero-image {
+            position: relative;
+            margin-top: 3rem;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Floating elements for visual interest */
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; width: 30px; height: 30px; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; width: 15px; height: 15px; }
+        .floating-element:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; width: 25px; height: 25px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Featured Story */
+        #featured-story {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+        }
+
+        #featured-story h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        #featured-story h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .featured-story-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .story-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .story-details h3 {
+            font-size: 2rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-location {
+            color: #3b82f6;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-specialty {
+            color: #64748b;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .story-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        blockquote {
+            font-size: 1.2rem;
+            color: #1e3a8a;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Stories Grid */
+        #chef-stories {
+            padding: 4rem 2rem;
+            background: #ffffff;
+        }
+
+        #chef-stories h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        #chef-stories h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .story-header {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .story-header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #3b82f6;
+        }
+
+        .story-info h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1e3a8a;
+            font-size: 1.5rem;
+        }
+
+        .story-location {
+            color: #3b82f6;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .story-specialty {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-content blockquote {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .story-content p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-achievements {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Career Growth Section */
+        #career-growth {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+        }
+
+        #career-growth h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        #career-growth h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .growth-stories {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .growth-story {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .growth-story:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.2);
+        }
+
+        .growth-header h3 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chef-name {
+            color: #3b82f6;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .growth-content p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .growth-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .growth-stat {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .stat-label {
+            display: block;
+            color: #64748b;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            display: block;
+            color: #1e3a8a;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Testimonials Section */
+        #chef-testimonials {
+            padding: 4rem 2rem;
+            background: #ffffff;
+        }
+
+        #chef-testimonials h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        #chef-testimonials h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .testimonial-info h4 {
+            margin: 0 0 0.25rem 0;
+            color: #1e3a8a;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-location {
+            color: #3b82f6;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-style: italic;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Join CTA */
+        #join-cta {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            text-align: center;
+        }
+
+        #join-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #join-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        #join-cta .btn {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            margin: 0 1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        #join-cta .btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        #join-cta .btn.btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        #join-cta .btn.btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .featured-story-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .growth-stories {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .growth-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
 
     <main>
-        <!-- Hero Section -->
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Chef Success Stories</h1>
-                <p>Discover inspiring stories from professional chefs who have transformed their careers with Maharaja Chef Services. Learn how our platform has helped culinary professionals achieve their goals and build successful personal chef businesses.</p>
-                <div class="cta-buttons">
-                    <a href="become-a-chef.html" class="btn">Join Our Team</a>
-                    <a href="chef-guidelines.html" class="btn btn-outline">Learn How It Works</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/chef-work5.jpg" alt="Successful professional chef">
-            </div>
-        </section>
-
         <!-- Featured Success Story -->
         <section id="featured-story">
             <h2>Featured Success Story</h2>
@@ -48,7 +724,7 @@
                             <span class="stat-label">Services Completed</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">4.9</span>
+                            <span class="stat-number">4.6</span>
                             <span class="stat-label">Average Rating</span>
                         </div>
                     </div>
@@ -95,7 +771,7 @@
                         <p>Chef David brings a unique blend of Chinese, Japanese, and Thai influences to his dishes. He has catered high-profile events and built a reputation as one of the most creative chefs on the platform, with over 120 services completed.</p>
                         <div class="story-achievements">
                             <span class="achievement">🍳 Culinary Innovation Award</span>
-                            <span class="achievement">⭐ 4.9 Average Rating</span>
+                            <span class="achievement">⭐ 4.6 Average Rating</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +790,7 @@
                         <p>Chef Maria specializes in authentic Latin American cuisine with a modern twist. She has completed over 180 services and is known for her vibrant flavors and exceptional presentation. Her client base includes celebrities and high-profile individuals.</p>
                         <div class="story-achievements">
                             <span class="achievement">🌟 Rising Star Chef 2024</span>
-                            <span class="achievement">⭐ 4.9 Average Rating</span>
+                            <span class="achievement">⭐ 4.6 Average Rating</span>
                         </div>
                     </div>
                 </div>
@@ -130,7 +806,7 @@
                     </div>
                     <div class="story-content">
                         <blockquote>"After 20 years in restaurant kitchens, I was ready for a change. Maharaja Chef Services allowed me to transition to personal cheffing seamlessly. I now have the freedom to create personalized menus and build relationships with my clients, all while earning more than I did in restaurants."</blockquote>
-                        <p>Chef James brings elevated comfort food to his clients, focusing on high-quality ingredients and creative presentations. With over 25 years of experience, he has completed 220+ services and maintains a 4.9 rating.</p>
+                        <p>Chef James brings elevated comfort food to his clients, focusing on high-quality ingredients and creative presentations. With over 25 years of experience, he has completed 220+ services and maintains a 4.6 rating.</p>
                         <div class="story-achievements">
                             <span class="achievement">👨‍🍳 Master Chef Recognition</span>
                             <span class="achievement">⭐ Client Favorite</span>
@@ -237,15 +913,6 @@
             </div>
         </section>
 
-        <!-- Join Our Team CTA -->
-        <section id="join-cta">
-            <h2>Ready to Write Your Success Story?</h2>
-            <p>Join the growing community of professional chefs who are transforming their careers with Maharaja Chef Services. Whether you're looking for flexibility, higher earnings, or the opportunity to build your personal brand, our platform provides the tools and support you need to succeed.</p>
-            <div class="cta-buttons">
-                <a href="become-a-chef.html" class="btn">Apply to Join</a>
-                <a href="chef-guidelines.html" class="btn btn-outline">Learn More</a>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -292,5 +959,6 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>

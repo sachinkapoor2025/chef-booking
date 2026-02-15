@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu & Services - Maharaja Chef</title>
+    <meta name="description" content="Explore our chef services, menu options, and pricing. Weekly meal prep, private events, and one-time dining experiences.">
+    <meta name="keywords" content="chef menu, meal prep, catering services, private chef, home dining">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Menu Services specific styles */
+        .menu-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .menu-hero h1 {
+            color: #1e3a8a;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .menu-hero p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .menu-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #e9ecef;
+        }
+        
+        .menu-card-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .menu-card-header h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .menu-card-header .price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .menu-card-header .price-sub {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .menu-card-body {
+            padding: 2rem;
+        }
+        
+        .menu-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .menu-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .menu-features .feature-icon {
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+        
+        .menu-card-footer {
+            padding: 1.5rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .btn-menu {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: 2px solid #3b82f6;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-menu:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-menu-secondary {
+            background: transparent;
+            color: #1d4ed8;
+            border: 2px solid #1d4ed8;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+        
+        .btn-menu-secondary:hover {
+            background: #1d4ed8;
+            color: white;
+        }
+        
+        .service-details {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+        }
+        
+        .service-details h3 {
+            color: #1e3a8a;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .detail-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .detail-card h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .detail-card ul {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .detail-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .detail-card .bullet {
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .pricing-table {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+        
+        .pricing-table h3 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .pricing-item {
+            text-align: center;
+            padding: 2rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1);
+        }
+        
+        .pricing-item h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-sub {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Menu Hero Section -->
+        <section class="menu-hero">
+            <h1>Our Chef Services & Menu Options</h1>
+            <p>Choose from our premium service packages designed to fit your lifestyle and dining preferences</p>
+        </section>
+
+        <!-- Menu Packages -->
+        <section style="padding: 4rem 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+            <div class="menu-grid">
+                <!-- Weekly Meal Prep Package -->
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3><i class="fas fa-calendar-week" style="margin-right: 10px;"></i>Weekly Meal Prep</h3>
+                        <div class="price">$150<span class="price-sub">/ week</span></div>
+                        <p style="margin: 0; opacity: 0.9;">Perfect for busy families</p>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-features">
+                            <li><span class="feature-icon">✓</span> 10-12 fresh meals per week</li>
+                            <li><span class="feature-icon">✓</span> Customized to dietary needs</li>
+                            <li><span class="feature-icon">✓</span> Shop, cook, and clean included</li>
+                            <li><span class="feature-icon">✓</span> 2-3 hour chef visit</li>
+                            <li><span class="feature-icon">✓</span> Meal prep containers provided</li>
+                        </ul>
+                    </div>
+                    <div class="menu-card-footer">
+                        <a href="weekly-meals.html" class="btn-menu">
+                            <i class="fas fa-utensils" style="margin-right: 8px;"></i>
+                            View Weekly Menu
+                        </a>
+                        <br>
+                        <a href="book-a-chef.html" class="btn-menu btn-menu-secondary">
+                            <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Private Events Package -->
+                <div class="menu-card">
+                    <div class="menu-card-header" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);">
+                        <h3><i class="fas fa-glass-cheers" style="margin-right: 10px;"></i>Private Events</h3>
+                        <div class="price">$250<span class="price-sub">/ event</span></div>
+                        <p style="margin: 0; opacity: 0.9;">Elevate your special occasions</p>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-features">
+                            <li><span class="feature-icon">✓</span> Custom menu for your event</li>
+                            <li><span class="feature-icon">✓</span> Full service from setup to cleanup</li>
+                            <li><span class="feature-icon">✓</span> Professional presentation</li>
+                            <li><span class="feature-icon">✓</span> Up to 12 guests included</li>
+                            <li><span class="feature-icon">✓</span> Wine pairing available</li>
+                        </ul>
+                    </div>
+                    <div class="menu-card-footer">
+                        <a href="catering-services.html" class="btn-menu">
+                            <i class="fas fa-concierge-bell" style="margin-right: 8px;"></i>
+                            View Event Menus
+                        </a>
+                        <br>
+                        <a href="catering-enquiry.html" class="btn-menu btn-menu-secondary">
+                            <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- One-Time Dining Package -->
+                <div class="menu-card">
+                    <div class="menu-card-header" style="background: linear-gradient(135deg, #ffc107 0%, #f39c12 100%);">
+                        <h3><i class="fas fa-concierge-bell" style="margin-right: 10px;"></i>One-Time Dining</h3>
+                        <div class="price">$120<span class="price-sub">/ dinner</span></div>
+                        <p style="margin: 0; opacity: 0.9;">Restaurant quality at home</p>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul class="menu-features">
+                            <li><span class="feature-icon">✓</span> 3-course gourmet meal</li>
+                            <li><span class="feature-icon">✓</span> Any cuisine you desire</li>
+                            <li><span class="feature-icon">✓</span> Professional chef service</li>
+                            <li><span class="feature-icon">✓</span> Complete cleanup included</li>
+                            <li><span class="feature-icon">✓</span> Up to 6 guests</li>
+                        </ul>
+                    </div>
+                    <div class="menu-card-footer">
+                        <a href="book-a-chef.html" class="btn-menu">
+                            <i class="fas fa-search" style="margin-right: 8px;"></i>
+                            Browse Chef Options
+                        </a>
+                        <br>
+                        <a href="book-a-chef.html" class="btn-menu btn-menu-secondary">
+                            <i class="fas fa-calendar-check" style="margin-right: 8px;"></i>
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Details -->
+        <section class="service-details">
+            <h3>What's Included in Each Service</h3>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4><i class="fas fa-utensils" style="color: #28a745; margin-right: 10px;"></i>Weekly Meal Prep</h4>
+                    <ul>
+                        <li><span class="bullet">•</span> Chef consultation to understand your dietary needs</li>
+                        <li><span class="bullet">•</span> Customized weekly menu planning</li>
+                        <li><span class="bullet">•</span> Grocery shopping (included in price)</li>
+                        <li><span class="bullet">•</span> Professional meal preparation</li>
+                        <li><span class="bullet">•</span> Portion-controlled meals for the week</li>
+                        <li><span class="bullet">•</span> Storage instructions and reheating tips</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-card">
+                    <h4><i class="fas fa-glass-cheers" style="color: #007bff; margin-right: 10px;"></i>Private Events</h4>
+                    <ul>
+                        <li><span class="bullet">•</span> Pre-event consultation and menu tasting</li>
+                        <li><span class="bullet">•</span> Custom menu design for your occasion</li>
+                        <li><span class="bullet">•</span> Professional chef and service staff</li>
+                        <li><span class="bullet">•</span> Complete kitchen setup and equipment</li>
+                        <li><span class="bullet">•</span> Elegant plating and presentation</li>
+                        <li><span class="bullet">•</span> Full cleanup and dishwashing</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-card">
+                    <h4><i class="fas fa-concierge-bell" style="color: #ffc107; margin-right: 10px;"></i>One-Time Dining</h4>
+                    <ul>
+                        <li><span class="bullet">•</span> Chef selection based on cuisine preference</li>
+                        <li><span class="bullet">•</span> 3-course menu consultation</li>
+                        <li><span class="bullet">•</span> Professional table setting and presentation</li>
+                        <li><span class="bullet">•</span> Wine and beverage pairing suggestions</li>
+                        <li><span class="bullet">•</span> Chef service during dinner</li>
+                        <li><span class="bullet">•</span> Complete post-dinner cleanup</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-card">
+                    <h4><i class="fas fa-shield-alt" style="color: #28a745; margin-right: 10px;"></i>Quality Assurance</h4>
+                    <ul>
+                        <li><span class="bullet">•</span> Background-checked professional chefs</li>
+                        <li><span class="bullet">•</span> Food safety and hygiene certified</li>
+                        <li><span class="bullet">•</span> Fresh, high-quality ingredients</li>
+                        <li><span class="bullet">•</span> Dietary restriction accommodations</li>
+                        <li><span class="bullet">•</span> Flexible scheduling and rescheduling</li>
+                        <li><span class="bullet">•</span> 100% satisfaction guarantee</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Options -->
+        <section style="padding: 4rem 2rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+            <div class="pricing-table">
+                <h3>Flexible Pricing Options</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-item">
+                        <h4>Basic</h4>
+                        <div class="pricing-amount">$120</div>
+                        <div class="pricing-sub">Starting at</div>
+                        <ul style="text-align: left; color: #666;">
+                            <li>✓ One-time dining</li>
+                            <li>✓ Up to 4 guests</li>
+                            <li>✓ 3-course meal</li>
+                            <li>✓ Standard ingredients</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-item">
+                        <h4>Standard</h4>
+                        <div class="pricing-amount">$250</div>
+                        <div class="pricing-sub">Starting at</div>
+                        <ul style="text-align: left; color: #666;">
+                            <li>✓ Private events</li>
+                            <li>✓ Up to 8 guests</li>
+                            <li>✓ 5-course meal</li>
+                            <li>✓ Premium ingredients</li>
+                            <li>✓ Wine pairing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-item">
+                        <h4>Premium</h4>
+                        <div class="pricing-amount">$500+</div>
+                        <div class="pricing-sub">Custom pricing</div>
+                        <ul style="text-align: left; color: #666;">
+                            <li>✓ Large events</li>
+                            <li>✓ Up to 20 guests</li>
+                            <li>✓ Custom menu</li>
+                            <li>✓ Gourmet ingredients</li>
+                            <li>✓ Full service</li>
+                            <li>✓ Special dietary needs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+            <h2 style="font-size: 2.5rem; color: #1e3a8a; margin-bottom: 1rem;">Ready to Experience Restaurant-Quality Dining at Home?</h2>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Choose your service and book your chef today</p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="explore-chefs.html" class="btn-primary" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 1.25rem 3rem; font-size: 1.3rem; font-weight: 800; border-radius: 12px; text-decoration: none; display: inline-block;">
+                    <i class="fas fa-search" style="margin-right: 10px;"></i>
+                    Find Your Chef
+                </a>
+                <a href="book-a-chef.html" class="btn-secondary" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 1.25rem 3rem; font-size: 1.3rem; font-weight: 800; border-radius: 12px; text-decoration: none; display: inline-block;">
+                    <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                    Book Now
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="weekly-meals.html">Weekly Meal Prep</a></li>
+                    <li><a href="catering-services.html">Private Events</a></li>
+                    <li><a href="book-a-chef.html">One-Time Dining</a></li>
+                    <li><a href="menu-services.html">Menu Options</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+
+                // Add styles
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+
+                // Add chatbot container
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+
+                // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+</body>
+</html>

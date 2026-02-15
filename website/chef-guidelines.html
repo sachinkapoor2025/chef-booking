@@ -8,48 +8,1235 @@
     <meta name="keywords" content="chef guidelines, professional standards, culinary requirements, chef expectations">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Hero Section Enhancement */
+        #hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+            border-color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Enhanced hero image styling */
+        .hero-image {
+            position: relative;
+            margin-top: 3rem;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Floating elements for visual interest */
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; width: 30px; height: 30px; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; width: 15px; height: 15px; }
+        .floating-element:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; width: 25px; height: 25px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Enhanced Chef Guidelines Styles */
+        
+        /* Professional Standards Section */
+        #professional-standards {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+        }
+        
+        #professional-standards h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        #professional-standards h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .standard-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .standard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .standard-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.25);
+            border-color: #3b82f6;
+        }
+        
+        .standard-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .standard-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        .card-icon i {
+            font-size: 2.2rem;
+            color: white;
+        }
+        
+        .standard-card h3 {
+            color: #1e3a8a;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        
+        .card-description {
+            color: #64748b;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        
+        .card-description strong {
+            color: #1e3a8a;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e3f2fd;
+        }
+        
+        /* Service Requirements Section */
+        #service-requirements {
+            padding: 4rem 2rem;
+            background: #ffffff;
+        }
+        
+        #service-requirements h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        #service-requirements h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .requirement-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .requirement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .requirement-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .requirement-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .requirement-card i {
+            font-size: 2.8rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: all 0.4s ease;
+        }
+        
+        .requirement-card:hover i {
+            transform: scale(1.1);
+        }
+        
+        .requirement-card h3 {
+            color: #1e3a8a;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        
+        .requirement-card ul {
+            color: #64748b;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+        
+        .requirement-card li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .requirement-card li:hover {
+            color: #1e3a8a;
+            transform: translateX(5px);
+        }
+        
+        .requirement-card .bullet {
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Food Safety Section */
+        #food-safety {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #food-safety::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        #food-safety h2 {
+            font-size: 2.8rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #food-safety h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .safety-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .safety-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .safety-image:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+        }
+        
+        .safety-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        
+        .safety-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(29, 78, 216, 0.05) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        
+        .safety-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .safety-guidelines {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .safety-guidelines::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .safety-guidelines:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25);
+            border-color: #3b82f6;
+        }
+        
+        .safety-guidelines:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .safety-guidelines h3 {
+            color: #1e3a8a;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+        
+        .safety-guidelines h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .safety-guidelines .guideline-category {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e3f2fd;
+            transition: all 0.3s ease;
+        }
+        
+        .safety-guidelines .guideline-category:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .safety-guidelines .guideline-category:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+        
+        .safety-guidelines .guideline-category h4 {
+            color: #1e3a8a;
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .safety-guidelines .guideline-category h4::before {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        
+        .safety-guidelines ul {
+            color: #64748b;
+            line-height: 1.8;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .safety-guidelines li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 2rem;
+        }
+        
+        .safety-guidelines li:hover {
+            color: #1e3a8a;
+            transform: translateX(8px);
+            border-left-color: #3b82f6;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding-left: 2.5rem;
+        }
+        
+        .safety-guidelines .bullet {
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .safety-guidelines li:hover .bullet {
+            transform: translateX(-3px) scale(1.2);
+            color: #1d4ed8;
+        }
+        
+        /* Floating safety icons for visual enhancement */
+        .safety-icon {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .safety-icon:nth-child(1) { top: 10%; right: 10%; animation-delay: 0s; color: #3b82f6; }
+        .safety-icon:nth-child(2) { bottom: 20%; left: 10%; animation-delay: 3s; color: #1d4ed8; transform: rotate(180deg); }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+        
+        /* Client Communication Section */
+        #client-communication {
+            padding: 4rem 2rem;
+            background: #ffffff;
+        }
+        
+        #client-communication h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        #client-communication h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .communication-steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+        
+        .communication-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            z-index: 0;
+        }
+        
+        .communication-step {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .communication-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .communication-step:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .communication-step:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .communication-step:hover .step-number {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        .communication-step h3 {
+            color: #1e3a8a;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        
+        .communication-step p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Pricing & Payment Section */
+        #pricing-payment {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+        }
+        
+        #pricing-payment h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        #pricing-payment h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .pricing-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .pricing-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .pricing-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .pricing-info:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .pricing-info:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .pricing-info h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .pricing-info h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .pricing-info ul {
+            color: #64748b;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-info li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-info li:hover {
+            color: #1e3a8a;
+            transform: translateX(5px);
+        }
+        
+        .pricing-info .bullet {
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .pricing-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-image:hover img {
+            transform: scale(1.02);
+        }
+        
+        /* Code of Conduct Section */
+        #code-of-conduct {
+            padding: 4rem 2rem;
+            background: #ffffff;
+        }
+        
+        #code-of-conduct h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        #code-of-conduct h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .conduct-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .conduct-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+        }
+        
+        .conduct-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .conduct-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .conduct-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .conduct-item i {
+            font-size: 2.8rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: all 0.4s ease;
+        }
+        
+        .conduct-item:hover i {
+            transform: scale(1.1);
+        }
+        
+        .conduct-item h3 {
+            color: #1e3a8a;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        
+        .conduct-item p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+        
+        /* Equipment Checklist Section */
+        #equipment-checklist {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+        }
+        
+        #equipment-checklist h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        #equipment-checklist h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .checklist-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+        
+        .checklist-column {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .checklist-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .checklist-column:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .checklist-column:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .checklist-column h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .checklist-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+        
+        .checklist-column ul {
+            color: #64748b;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+        
+        .checklist-column li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-column li:hover {
+            color: #1e3a8a;
+            transform: translateX(5px);
+        }
+        
+        .checklist-column .bullet {
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .checklist-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .standards-grid {
+                grid-template-columns: 1fr;
+            }
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            .safety-content {
+                grid-template-columns: 1fr;
+            }
+            .pricing-content {
+                grid-template-columns: 1fr;
+            }
+            .conduct-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .checklist-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .communication-steps {
+                grid-template-columns: 1fr;
+            }
+            .communication-steps::before {
+                display: none;
+            }
+            .conduct-grid {
+                grid-template-columns: 1fr;
+            }
+            .standard-card {
+                padding: 2rem;
+            }
+            .card-icon {
+                width: 80px;
+                height: 80px;
+            }
+            .card-icon i {
+                font-size: 2rem;
+            }
+            .standard-card h3 {
+                font-size: 1.4rem;
+            }
+            .card-description {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .standard-card {
+                padding: 1.5rem;
+            }
+            .card-icon {
+                width: 70px;
+                height: 70px;
+            }
+            .card-icon i {
+                font-size: 1.75rem;
+            }
+            .standard-card h3 {
+                font-size: 1.3rem;
+            }
+            .card-description {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
 
     <main>
-        <!-- Hero Section -->
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Professional Chef Guidelines</h1>
-                <p>Welcome to Maharaja Chef Services! These comprehensive guidelines ensure consistent quality, professionalism, and exceptional service across our platform. Please review these standards carefully.</p>
-                <div class="cta-buttons">
-                    <a href="become-a-chef.html" class="btn">Apply to Join</a>
-                    <a href="chef-faq.html" class="btn btn-outline">Chef FAQ</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/chef-work2.jpg" alt="Professional chef following guidelines">
-            </div>
-        </section>
-
         <!-- Professional Standards -->
         <section id="professional-standards">
             <h2>Professional Standards</h2>
-            <div class="standards-content">
-                <div class="standard-item">
-                    <i class="fas fa-clock"></i>
+            <div class="standards-grid">
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
                     <h3>Punctuality</h3>
-                    <p>Arrive at least 30 minutes before the scheduled service time to set up and prepare. Notify clients immediately if any delays are expected.</p>
+                    <p class="card-description">Arrive at least <strong>30 minutes early</strong> before the scheduled service time to set up and prepare. Notify clients immediately if any delays are expected.</p>
                 </div>
-                <div class="standard-item">
-                    <i class="fas fa-tshirt"></i>
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
                     <h3>Professional Appearance</h3>
-                    <p>Wear clean, professional chef attire including chef coat, apron, and appropriate head covering. Maintain excellent personal hygiene.</p>
+                    <p class="card-description">Wear clean, professional chef attire including chef coat, apron, and appropriate head covering. Maintain <strong>excellent personal hygiene</strong>.</p>
                 </div>
-                <div class="standard-item">
-                    <i class="fas fa-handshake"></i>
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
                     <h3>Client Interaction</h3>
-                    <p>Maintain professional, courteous communication with clients. Be responsive to messages and requests throughout the service.</p>
+                    <p class="card-description">Maintain professional, courteous communication with clients. Be <strong>responsive to messages</strong> and requests throughout the service.</p>
                 </div>
-                <div class="standard-item">
-                    <i class="fas fa-soap"></i>
+                <div class="standard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-soap"></i>
+                    </div>
                     <h3>Hygiene & Cleanliness</h3>
-                    <p>Follow strict food safety protocols. Keep work areas clean and organized. Properly sanitize all surfaces and equipment.</p>
+                    <p class="card-description">Follow strict food safety protocols. Keep work areas clean and organized. <strong>Properly sanitize</strong> all surfaces and equipment.</p>
                 </div>
             </div>
         </section>
@@ -105,36 +1292,53 @@
         <section id="food-safety">
             <h2>Food Safety & Hygiene Standards</h2>
             <div class="safety-content">
-                <div class="safety-image">
-                    <img src="images/kitchen1.jpg" alt="Clean professional kitchen">
-                </div>
+            
                 <div class="safety-guidelines">
-                    <h3>Hygiene Requirements</h3>
+                    <h3>Personal Hygiene & Handwashing</h3>
                     <ul>
-                        <li>Wash hands frequently with antibacterial soap</li>
-                        <li>Use gloves when handling ready-to-eat foods</li>
-                        <li>Maintain clean work surfaces and equipment</li>
-                        <li>Follow proper food storage and temperature guidelines</li>
-                        <li>Use separate cutting boards for raw proteins and vegetables</li>
-                        <li>Sanitize all equipment between uses</li>
+                        <li class="bullet">•</li> <li>Wash hands thoroughly with warm water and antibacterial soap for at least 20 seconds before handling food</li>
+                        <li class="bullet">•</li> <li>Wash hands immediately after handling raw meat, poultry, seafood, or eggs</li>
+                        <li class="bullet">•</li> <li>Use disposable gloves when handling ready-to-eat foods and change them frequently</li>
                     </ul>
 
-                    <h3>Temperature Control</h3>
+                    <h3>Surface & Equipment Sanitation</h3>
                     <ul>
-                        <li>Keep cold foods below 40°F (4°C)</li>
-                        <li>Keep hot foods above 140°F (60°C)</li>
-                        <li>Cook foods to proper internal temperatures</li>
-                        <li>Use food thermometers to verify temperatures</li>
-                        <li>Store perishable items properly during transport</li>
+                        <li class="bullet">•</li> <li>Sanitize all work surfaces with food-safe sanitizer before and after food preparation</li>
+                        <li class="bullet">•</li> <li>Use NSF-approved cutting boards and replace when heavily worn or damaged</li>
+                        <li class="bullet">•</li> <li>Maintain separate cutting boards: RED for raw meat, YELLOW for poultry, BLUE for seafood, GREEN for vegetables</li>
+                       
                     </ul>
 
-                    <h3>Allergen Management</h3>
+                    <h3>Temperature Control & Food Storage</h3>
                     <ul>
-                        <li>Clearly understand client allergies and dietary restrictions</li>
-                        <li>Prevent cross-contamination of allergens</li>
-                        <li>Use separate equipment for allergen-free preparation when required</li>
-                        <li>Clearly label all dishes with potential allergens</li>
-                        <li>Be prepared to provide ingredient lists upon request</li>
+                        <li class="bullet">•</li> <li>Keep cold foods at or below 40°F (4°C) using ice packs or coolers</li>
+                        <li class="bullet">•</li> <li>Keep hot foods at or above 140°F (60°C) using chafing dishes or warming equipment</li>
+                        <li class="bullet">•</li> <li>Cook poultry to 165°F (74°C), ground meats to 160°F (71°C), fish to 145°F (63°C)</li>
+                      
+                    </ul>
+
+                    <h3>Cross-Contamination Prevention</h3>
+                    <ul>
+                        <li class="bullet">•</li> <li>Never place cooked foods on surfaces that previously held raw foods</li>
+                        <li class="bullet">•</li> <li>Use separate utensils, cutting boards, and containers for raw and cooked foods</li>
+                        <li class="bullet">•</li> <li>Store raw meats, poultry, and seafood separately from ready-to-eat foods</li>
+                        
+                    </ul>
+
+                    <h3>Allergen Management & Special Diets</h3>
+                    <ul>
+                        <li class="bullet">•</li> <li>Obtain detailed information about client allergies and dietary restrictions in advance</li>
+                        <li class="bullet">•</li> <li>Use dedicated equipment and preparation areas for allergen-free dishes</li>
+                        <li class="bullet">•</li> <li>Wash hands and change gloves before preparing allergen-free meals</li>
+                        
+                    </ul>
+
+                    <h3>Transportation & Service Safety</h3>
+                    <ul>
+                        <li class="bullet">•</li> <li>Use insulated containers to maintain proper food temperatures during transport</li>
+                        <li class="bullet">•</li> <li>Keep hot and cold foods in separate insulated containers</li>
+                        <li class="bullet">•</li> <li>Use clean, food-grade containers with secure lids</li>
+                       
                     </ul>
                 </div>
             </div>
@@ -285,32 +1489,6 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section id="guidelines-faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h3>What happens if a client cancels last minute?</h3>
-                    <p>Our cancellation policy protects chefs. Clients are charged a percentage of the service fee based on the notice period. You'll be compensated according to our policy.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How do I handle client complaints or issues?</h3>
-                    <p>Address concerns professionally and promptly. If you can't resolve the issue, contact our support team immediately for assistance. We're here to help mediate and find solutions.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What if I need to cancel a booking?</h3>
-                    <p>Notify the client and our platform as soon as possible. We'll work with you to find a suitable replacement chef if needed. Follow our cancellation policy for any applicable fees.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How are payments handled?</h3>
-                    <p>Clients pay through our secure platform. After service completion and client confirmation, funds are processed and transferred to your account within 3-5 business days.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What support does Maharaja Chef Services provide?</h3>
-                    <p>We offer 24/7 support for urgent issues, marketing assistance, client dispute resolution, and professional development resources to help you succeed.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -357,5 +1535,6 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>

@@ -1,0 +1,1222 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef Application - Maharaja Chef Services</title>
+    <meta name="description" content="Apply to join Maharaja Chef Services as a professional chef. Submit your application and join our elite team.">
+    <meta name="keywords" content="chef application, apply to be chef, culinary career, personal chef jobs">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Chef Application - Maharaja Chef Services">
+    <meta property="og:description" content="Apply to join Maharaja Chef Services as a professional chef. Submit your application and join our elite team.">
+    <meta property="og:image" content="images/logo.jpg">
+    <meta property="og:url" content="https://maharajachef.com/chef-application.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chef Application - Maharaja Chef Services">
+    <meta name="twitter:description" content="Apply to join Maharaja Chef Services as a professional chef. Submit your application and join our elite team.">
+    <meta name="twitter:image" content="images/logo.jpg">
+    <style>
+        /* Chef Application Styles */
+        #hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tab System Styles */
+        .tab-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid #e5e7eb;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: white;
+            opacity: 0.5;
+        }
+
+        .tab-btn i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        /* Tab Content Styles */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile responsive tabs */
+        @media (max-width: 768px) {
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+            border-color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Enhanced hero image styling */
+        .hero-image {
+            position: relative;
+            margin-top: 3rem;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Floating elements for visual interest */
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; width: 30px; height: 30px; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; width: 15px; height: 15px; }
+        .floating-element:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; width: 25px; height: 25px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Application Form Styles */
+        #application-form {
+            padding: 4rem 2rem;
+            background: #f8fafc;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .form-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .form-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .form-section h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .form-section h3 i {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 1.1rem;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        /* Fix double dropdown arrow issue */
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #3b82f6 50%), linear-gradient(135deg, #3b82f6 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1px), calc(100% - 15px) calc(1px), calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select:focus {
+            background-image: linear-gradient(45deg, transparent 50%, #1d4ed8 50%), linear-gradient(135deg, #1d4ed8 50%, transparent 50%);
+            background-position: calc(100% - 20px) 1px, calc(100% - 15px) 1px, calc(100% - 2.5rem) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* File Upload Styles */
+        .file-upload-container {
+            margin-top: 1rem;
+        }
+
+        .file-upload-wrapper {
+            border: 2px dashed #e5e7eb;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .file-upload-wrapper.dragover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .file-upload-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-wrapper:hover .file-upload-icon {
+            color: #3b82f6;
+            transform: scale(1.1);
+        }
+
+        .file-upload-text {
+            text-align: left;
+        }
+
+        .file-upload-title {
+            font-size: 1.2rem;
+            color: #1e3a8a;
+            margin: 0 0 0.25rem 0;
+            font-weight: 600;
+        }
+
+        .file-upload-subtitle {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .file-upload-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .file-upload-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* Submit Section */
+        .submit-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-note {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Success/Error Messages */
+        .message-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .message-container i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+    <body>
+        <main>
+            <!-- Tab Navigation -->
+            <section style="padding: 2rem 0; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);">
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="switchTab('application-form')">
+                            <i class="fas fa-edit"></i> Application Form
+                        </button>
+                        <button class="tab-btn" onclick="switchTab('application-process')">
+                            <i class="fas fa-tasks"></i> Application Process
+                        </button>
+                        <button class="tab-btn" onclick="switchTab('terms-conditions')">
+                            <i class="fas fa-file-contract"></i> Terms & Conditions
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Content Container -->
+            <div class="tab-container">
+                <!-- Application Form Section -->
+                <section id="application-form" class="tab-content active">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Chef Application Form</h2>
+                    <p>Join our elite team of professional chefs and showcase your culinary expertise</p>
+                </div>
+
+                <div id="success-message" class="message-container success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Application Submitted Successfully!</strong> We've received your application and will review it within 3-5 business days. You'll receive an email notification regarding our decision.
+                </div>
+
+                <div id="error-message" class="message-container error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Oops!</strong> There was an error submitting your application. Please check all required fields and try again.
+                </div>
+
+                <form id="chef-application-form" enctype="multipart/form-data">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="full-name">Full Name <span class="required">*</span></label>
+                                <input type="text" id="full-name" name="fullName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location (City, State) <span class="required">*</span></label>
+                                <input type="text" id="location" name="location" required placeholder="e.g., San Francisco, CA">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="experience">Years of Professional Experience <span class="required">*</span></label>
+                                <select id="experience" name="experience" required>
+                                    <option value="">Select years of experience</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialty">Culinary Specialty <span class="required">*</span></label>
+                                <select id="specialty" name="specialty" required>
+                                    <option value="">Select your specialty</option>
+                                    <option value="French">French Cuisine</option>
+                                    <option value="Italian">Italian Cuisine</option>
+                                    <option value="Asian">Asian Cuisine</option>
+                                    <option value="Indian">Indian Cuisine</option>
+                                    <option value="Mediterranean">Mediterranean Cuisine</option>
+                                    <option value="Vegan">Vegan/Vegetarian</option>
+                                    <option value="BBQ">BBQ & Grilling</option>
+                                    <option value="Baking">Baking & Pastry</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="certifications">Certifications</label>
+                                <input type="text" id="certifications" name="certifications" placeholder="e.g., Food Handler, ServSafe, Culinary Degree">
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Professional Website/Portfolio</label>
+                                <input type="url" id="website" name="website" placeholder="https://yourwebsite.com (optional)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Details Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-edit"></i> Additional Details</h3>
+                        <div class="form-group full-width">
+                            <label for="culinary-philosophy">Culinary Philosophy & Experience <span class="required">*</span></label>
+                            <textarea id="culinary-philosophy" name="culinaryPhilosophy" placeholder="Tell us about your culinary philosophy, experience, and what makes you unique as a chef..." rows="6" required></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="availability">Availability <span class="required">*</span></label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select your availability</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Weekends">Weekends only</option>
+                                <option value="Evenings">Evenings only</option>
+                                <option value="Flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Resume Upload Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-upload"></i> Resume & Documents</h3>
+                        <div class="form-group full-width">
+                            <label for="resume">Upload Your Resume <span class="required">*</span></label>
+                            <div class="file-upload-container">
+                                <div class="file-upload-wrapper" id="resume-upload">
+                                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="file-input">
+                                    <div class="file-upload-display">
+                                        <div class="file-upload-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <div class="file-upload-text">
+                                            <span class="file-upload-title">Choose Resume File</span>
+                                            <span class="file-upload-subtitle">PDF, DOC, or DOCX (Max 5MB)</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="file-upload-btn">Browse Files</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="culinary-photos">Culinary Photos (Optional)</label>
+                            <div class="file-upload-container">
+                                <div class="file-upload-wrapper" id="photos-upload">
+                                    <input type="file" id="culinary-photos" name="culinaryPhotos" accept="image/*" multiple class="file-input">
+                                    <div class="file-upload-display">
+                                        <div class="file-upload-icon">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                        <div class="file-upload-text">
+                                            <span class="file-upload-title">Choose Photos</span>
+                                            <span class="file-upload-subtitle">JPG, PNG (Max 10MB, Multiple files allowed)</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="file-upload-btn">Browse Files</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-contract"></i> Terms & Agreement</h3>
+                        <div class="form-group full-width">
+                            <label>
+                                <input type="checkbox" id="terms-agreement" name="termsAgreement" required>
+                                I agree to the <a href="terms-conditions.html" target="_blank">terms and conditions</a> and understand that my application will be reviewed by the Maharaja Chef Services team
+                            </label>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>
+                                <input type="checkbox" id="background-check" name="backgroundCheck">
+                                I consent to a background check as part of the application process
+                            </label>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>
+                                <input type="checkbox" id="newsletter-signup" name="newsletterSignup">
+                                I'd like to receive updates about Maharaja Chef Services and application status
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="form-section submit-section">
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Application
+                        </button>
+                        <p class="form-note">By submitting, you agree to our terms and that we may contact you about your application.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Application Process Section -->
+        <section id="application-process" class="tab-content">
+            <div class="form-container">
+                <h2 class="form-title">Application Process</h2>
+                <div class="steps" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;">
+                    <div class="step" style="text-align: center; padding: 2rem; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                            <i class="fas fa-file-alt" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="color: #1e3a8a; margin-bottom: 1rem;">1. Submit Application</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Complete our comprehensive application form with your professional details and experience.</p>
+                    </div>
+                    <div class="step" style="text-align: center; padding: 2rem; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                            <i class="fas fa-check-double" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="color: #1e3a8a; margin-bottom: 1rem;">2. Document Verification</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Provide proof of your culinary education, certifications, and professional experience.</p>
+                    </div>
+                    <div class="step" style="text-align: center; padding: 2rem; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                            <i class="fas fa-video" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="color: #1e3a8a; margin-bottom: 1rem;">3. Interview & Assessment</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Participate in a virtual interview and culinary skills assessment with our team.</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
+                    <div class="step" style="text-align: center; padding: 2rem; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                            <i class="fas fa-shield-alt" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="color: #1e3a8a; margin-bottom: 1rem;">4. Background Check</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Complete our standard background verification process for client safety.</p>
+                    </div>
+                    <div class="step" style="text-align: center; padding: 2rem; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                            <i class="fas fa-user-circle" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="color: #1e3a8a; margin-bottom: 1rem;">5. Profile Setup</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Create your professional profile with photos, menu samples, and service offerings.</p>
+                    </div>
+                    <div class="step" style="text-align: center; padding: 2rem; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                            <i class="fas fa-calendar-check" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="color: #1e3a8a; margin-bottom: 1rem;">6. Start Accepting Bookings</h3>
+                        <p style="color: #64748b; line-height: 1.6;">Begin receiving client requests and building your reputation on our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms & Conditions Section -->
+        <section id="terms-conditions" class="tab-content">
+            <div class="form-container">
+                <h2 class="form-title">Terms & Conditions</h2>
+                <div style="line-height: 1.8; color: #333; font-size: 1.1rem;">
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">1. Chef Agreement</h3>
+                    <p>By submitting this application, you agree to provide professional culinary services to clients through Maharaja Chef Services. You must maintain the highest standards of food safety, hygiene, and customer service.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">2. Professional Standards</h3>
+                    <p>All chefs must possess valid food handler certifications and maintain current knowledge of food safety regulations. You agree to follow all local health department guidelines and Maharaja Chef Services protocols.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">3. Client Confidentiality</h3>
+                    <p>Chefs agree to maintain strict confidentiality regarding client information, dietary preferences, and personal details. All client interactions and information must remain private and secure.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">4. Payment Terms</h3>
+                    <p>Chefs will be compensated according to the agreed-upon rates and payment schedule. Payment processing fees may apply. Late payments will incur applicable fees as outlined in your contract.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">5. Insurance Requirements</h3>
+                    <p>All chefs must maintain appropriate liability insurance coverage. Proof of insurance may be required before accepting bookings. Maharaja Chef Services is not responsible for any damages or injuries not covered by your insurance.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">6. Background Checks</h3>
+                    <p>All applicants must consent to comprehensive background checks including criminal history, employment verification, and professional references. Failure to pass background checks will result in application denial.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">7. Professional Conduct</h3>
+                    <p>Chefs are expected to maintain professional conduct at all times. Any behavior that reflects negatively on Maharaja Chef Services or violates client trust may result in immediate termination of services.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">8. Intellectual Property</h3>
+                    <p>Chefs retain ownership of their original recipes and culinary creations. By joining our platform, you grant Maharaja Chef Services the right to use your recipes for client services and marketing purposes.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">9. Termination</h3>
+                    <p>Either party may terminate this agreement with written notice. Maharaja Chef Services reserves the right to immediately suspend or terminate chefs for violations of these terms or professional misconduct.</p>
+
+                    <h3 style="color: #1e3a8a; margin-top: 2rem; margin-bottom: 1rem;">10. Liability</h3>
+                    <p>Chefs are responsible for their own actions and any consequences resulting from their services. Maharaja Chef Services is not liable for any damages, injuries, or losses occurring during chef services unless directly caused by our negligence.</p>
+
+                    <div style="background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; margin-top: 2rem;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 1rem;">Important Notice</h4>
+                        <p style="margin: 0; color: #64748b;">By clicking "I Agree" below, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions. This agreement is legally binding and enforceable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Chef Resources</h3>
+                <ul>
+                    <li><a href="become-a-chef.html">Become a Chef</a></li>
+                    <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                    <li><a href="chef-faq.html">Chef FAQ</a></li>
+                    <li><a href="success-stories.html">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script>
+        // Tab Switching Functionality
+        function switchTab(tabId) {
+            // Get all tab content elements
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            
+            // Hide all tab contents and remove active class from buttons
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show the selected tab content and activate the button
+            const selectedTab = document.getElementById(tabId);
+            const selectedButton = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
+            
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+            }
+        }
+
+        // Chef Application Form Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('chef-application-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // File Upload Functionality
+            const resumeUpload = document.getElementById('resume-upload');
+            const photosUpload = document.getElementById('photos-upload');
+            const resumeInput = document.getElementById('resume');
+            const photosInput = document.getElementById('culinary-photos');
+            
+            // Resume Upload
+            setupFileUpload(resumeUpload, resumeInput, 'Resume');
+            
+            // Photos Upload
+            setupFileUpload(photosUpload, photosInput, 'Photos');
+            
+            function setupFileUpload(wrapper, input, type) {
+                wrapper.addEventListener('click', () => input.click());
+                
+                input.addEventListener('change', () => {
+                    const files = input.files;
+                    const title = wrapper.querySelector('.file-upload-title');
+                    const subtitle = wrapper.querySelector('.file-upload-subtitle');
+                    
+                    if (files.length > 0) {
+                        if (type === 'Resume') {
+                            title.textContent = files[0].name;
+                            subtitle.textContent = 'File selected - Ready to upload';
+                        } else {
+                            title.textContent = `${files.length} file(s) selected`;
+                            subtitle.textContent = 'Photos ready to upload';
+                        }
+                        wrapper.style.borderColor = '#3b82f6';
+                        wrapper.style.backgroundColor = '#f0f7ff';
+                    }
+                });
+                
+                // Drag and drop
+                wrapper.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    wrapper.style.borderColor = '#3b82f6';
+                    wrapper.style.backgroundColor = '#eff6ff';
+                });
+                
+                wrapper.addEventListener('dragleave', () => {
+                    wrapper.style.borderColor = '#e5e7eb';
+                    wrapper.style.backgroundColor = '#f8fafc';
+                });
+                
+                wrapper.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    input.files = e.dataTransfer.files;
+                    const title = wrapper.querySelector('.file-upload-title');
+                    const subtitle = wrapper.querySelector('.file-upload-subtitle');
+                    
+                    if (e.dataTransfer.files.length > 0) {
+                        if (type === 'Resume') {
+                            title.textContent = e.dataTransfer.files[0].name;
+                            subtitle.textContent = 'File selected - Ready to upload';
+                        } else {
+                            title.textContent = `${e.dataTransfer.files.length} file(s) selected`;
+                            subtitle.textContent = 'Photos ready to upload';
+                        }
+                        wrapper.style.borderColor = '#3b82f6';
+                        wrapper.style.backgroundColor = '#f0f7ff';
+                    }
+                });
+            }
+            
+        // Make all three checkboxes mutually exclusive (three-way toggle)
+        const termsAgreement = document.getElementById('terms-agreement');
+        const backgroundCheck = document.getElementById('background-check');
+        const newsletterSignup = document.getElementById('newsletter-signup');
+        
+        // Function to handle three-way toggle
+        function handleThreeWayToggle() {
+            const checkboxes = [termsAgreement, backgroundCheck, newsletterSignup];
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        // Deselect the other two checkboxes
+                        checkboxes.forEach(otherCheckbox => {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Initialize the three-way toggle functionality
+        handleThreeWayToggle();
+
+        // Form Submission
+        form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Reset messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Validate form
+                const formData = new FormData(form);
+                let isValid = true;
+                const requiredFields = ['fullName', 'email', 'phone', 'location', 'experience', 'specialty', 'culinaryPhilosophy', 'availability'];
+                
+                requiredFields.forEach(field => {
+                    if (!formData.get(field)) {
+                        isValid = false;
+                    }
+                });
+                
+                if (!document.getElementById('terms-agreement').checked) {
+                    isValid = false;
+                }
+                
+                // Check if resume file is uploaded
+                const resumeFile = document.getElementById('resume').files[0];
+                if (!resumeFile) {
+                    isValid = false;
+                    // Highlight the resume upload area to show it's required
+                    resumeUpload.style.borderColor = '#ef4444';
+                    resumeUpload.style.backgroundColor = '#fee2e2';
+                } else {
+                    // Reset resume upload styling if file is present
+                    resumeUpload.style.borderColor = '#e5e7eb';
+                    resumeUpload.style.backgroundColor = '#f8fafc';
+                }
+                
+                if (!isValid) {
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                    // Submit to Lambda function
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Application...';
+                
+                try {
+                    // Get API URL from environment or use default
+                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod'; // Replace with actual API URL
+                    
+                    const response = await fetch(`${apiUrl}/chef-application`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        
+                        // Show success message with application ID
+                        successMessage.innerHTML = `
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Application Submitted Successfully!</strong> 
+                            Your application ID is: <strong>${result.applicationId}</strong><br>
+                            We've received your application and will review it within 3-5 business days. 
+                            You'll receive an email notification regarding our decision.
+                        `;
+                        successMessage.style.display = 'block';
+
+                        // ✅ Popup Alert Added Here (No functionality changed)
+                        alert("Chef application submitted successfully! We will contact you soon.");
+
+                        form.reset();
+                        
+                        // Reset file upload displays
+                        const resumeTitle = resumeUpload.querySelector('.file-upload-title');
+                        const resumeSubtitle = resumeUpload.querySelector('.file-upload-subtitle');
+                        const photosTitle = photosUpload.querySelector('.file-upload-title');
+                        const photosSubtitle = photosUpload.querySelector('.file-upload-subtitle');
+                        
+                        resumeTitle.textContent = 'Choose Resume File';
+                        resumeSubtitle.textContent = 'PDF, DOC, or DOCX (Max 5MB)';
+                        photosTitle.textContent = 'Choose Photos';
+                        photosSubtitle.textContent = 'JPG, PNG (Max 10MB, Multiple files allowed)';
+                        resumeUpload.style.borderColor = '#e5e7eb';
+                        resumeUpload.style.backgroundColor = '#f8fafc';
+                        photosUpload.style.borderColor = '#e5e7eb';
+                        photosUpload.style.backgroundColor = '#f8fafc';
+                    } else {
+                        throw new Error('Server error occurred');
+                    }
+                    
+                } catch (error) {
+                    errorMessage.style.display = 'block';
+                    console.error('Error submitting application:', error);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

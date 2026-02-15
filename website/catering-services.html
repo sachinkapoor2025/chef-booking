@@ -8,6 +8,8 @@
     <meta name="keywords" content="catering services, event catering, wedding catering, corporate catering, party catering, California">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    
     <!-- Bootstrap CSS -->
     <!-- Speed Optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +28,9 @@
     <meta name="twitter:image" content="images/chef-team.jpg">
 </head>
 <body>
-    <!-- Sticky CTA Bar for Mobile -->
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+<!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
         <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
         <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
@@ -75,7 +79,7 @@
                     </div>
                     <div style="margin-top: 3rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
                         <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">👨‍🍳 Explore Catering Chefs</a>
-                        <a href="book-a-chef.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">📅 Get Free Quote</a>
+                <a href="catering-form.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 1rem 2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px;">📝 Book Catering Services</a>
                     </div>
                 </div>
                 <div class="hero-image" style="flex: 1; display: flex; justify-content: center; align-items: center; min-width: 420px;">
@@ -251,6 +255,68 @@
             </div>
         </section>
 
+        <!-- Food Safety & Hygiene Standards -->
+        <section id="food-safety" style="text-align:center; margin: 60px 0; padding: 4rem 2rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e3a8a;">Food Safety & Hygiene Standards</h2>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Your safety is our top priority</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; border: 1px solid #f0f0f0; transition: transform 0.3s ease;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">🛡️</div>
+                    <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Certified Chefs</h3>
+                    <p style="color: #666; line-height: 1.6; font-size: 1rem;">All our chefs hold current food safety certifications and undergo regular training to maintain the highest standards.</p>
+                    <ul style="text-align: left; color: #666; margin-top: 1.5rem; padding-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Food Handler Certifications</li>
+                        <li>Regular Safety Training</li>
+                        <li>Hygiene Protocol Compliance</li>
+                        <li>Emergency Response Training</li>
+                    </ul>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; border: 1px solid #f0f0f0; transition: transform 0.3s ease;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #007bff, #0056b3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">🌡️</div>
+                    <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Temperature Control</h3>
+                    <p style="color: #666; line-height: 1.6; font-size: 1rem;">We maintain strict temperature controls from preparation through service to ensure food safety at every stage.</p>
+                    <ul style="text-align: left; color: #666; margin-top: 1.5rem; padding-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Proper Hot/Cold Holding</li>
+                        <li>Temperature Monitoring</li>
+                        <li>Cross-Contamination Prevention</li>
+                        <li>Safe Food Handling Practices</li>
+                    </ul>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; border: 1px solid #f0f0f0; transition: transform 0.3s ease;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ffc107, #fd7e14); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">🧼</div>
+                    <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Sanitation Protocols</h3>
+                    <p style="color: #666; line-height: 1.6; font-size: 1rem;">Our team follows comprehensive sanitation protocols to maintain a clean and safe food preparation environment.</p>
+                    <ul style="text-align: left; color: #666; margin-top: 1.5rem; padding-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Equipment Sanitization</li>
+                        <li>Surface Cleaning Procedures</li>
+                        <li>Hand Hygiene Compliance</li>
+                        <li>Waste Management</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; border: 1px solid #f0f0f0;">
+                <h3 style="color: #333; margin-bottom: 1.5rem; font-size: 1.5rem;">Our Commitment to Safety</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                    <div>
+                        <h4 style="color: #007bff; margin-bottom: 1rem;">Quality Assurance</h4>
+                        <p style="color: #666; line-height: 1.6;">We implement comprehensive quality assurance measures including regular inspections, supplier verification, and ingredient traceability to ensure the highest food safety standards.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #007bff; margin-bottom: 1rem;">Allergen Management</h4>
+                        <p style="color: #666; line-height: 1.6;">Our team is trained in allergen management and cross-contamination prevention. We can accommodate special dietary needs and provide detailed ingredient information upon request.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #007bff; margin-bottom: 1rem;">Equipment Standards</h4>
+                        <p style="color: #666; line-height: 1.6;">We use commercial-grade equipment that meets health department standards and maintain it according to manufacturer specifications for optimal performance and safety.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #007bff; margin-bottom: 1rem;">Emergency Preparedness</h4>
+                        <p style="color: #666; line-height: 1.6;">Our team is trained to handle food safety emergencies and follows established protocols to ensure quick and effective response to any situation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Process Section -->
         <section id="catering-process" style="text-align:center; margin: 60px 0; padding: 4rem 2rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
             <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e3a8a;">Our Catering Process</h2>
@@ -374,14 +440,15 @@
             <p style="margin-top: 2rem; color: #666; font-size: 0.9rem;">*Minimum guest requirements apply. Custom quotes available for larger events.</p>
         </section>
 
+
         <!-- CTA Section -->
         <section id="catering-cta" style="text-align:center; margin: 60px 0; padding: 3rem 1rem; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border-radius: 12px; margin: 2rem auto; max-width: 1200px;">
             <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready to Cater Your Event?</h2>
             <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: white;">Get in touch today for a personalized catering consultation and free quote.</p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="explore-chefs.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white;">👨‍🍳 Explore Catering Chefs</a>
-                <a href="book-a-chef.html" class="btn btn-large" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6;">📅 Get Free Quote</a>
-                <a href="contact-us.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white;">📞 Contact Us</a>
+                <a href="catering-form.html" class="btn btn-large" style="background: white; color: #1d4ed8; border: 2px solid white; padding: 1rem 2.5rem; font-size: 1.3rem;">📋 Get Free Catering Quote</a>
+                <a href="explore-chefs.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white; padding: 1rem 2.5rem; font-size: 1.3rem;">👨‍🍳 Explore Catering Chefs</a>
+                <a href="contact-us.html" class="btn btn-large" style="background: transparent; color: white; border: 2px solid white; padding: 1rem 2.5rem; font-size: 1.3rem;">📞 Contact Us</a>
             </div>
         </section>
 
@@ -433,6 +500,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+
 
     <!-- Mobile Sticky CTA Script -->
     <script>
@@ -450,6 +519,7 @@
         window.addEventListener('load', checkMobileStickyCTA);
         window.addEventListener('resize', checkMobileStickyCTA);
     </script>
+    
     </body>
     <!-- Chatbot Integration -->
     <script>

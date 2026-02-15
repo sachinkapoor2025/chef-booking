@@ -8,27 +8,472 @@
     <meta name="keywords" content="become a chef, chef jobs, personal chef, culinary career">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Chef Requirements Section Styles */
+        #requirements {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            text-align: center;
+        }
+
+        #requirements h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .requirement-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .requirement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(30, 58, 138, 0.25);
+            border-color: #3b82f6;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .requirement-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .card-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .requirement-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .requirement-card p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(29, 78, 216, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .requirement-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(5px);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .requirement-card:hover .overlay-content {
+            transform: translateY(0);
+        }
+
+        .overlay-content i {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .overlay-content span {
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Application CTA Section Enhancement */
+        #application-cta {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #application-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .form-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .cta-content {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .cta-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-text {
+            margin-bottom: 3rem;
+        }
+
+        .cta-text h3 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .cta-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cta-text li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e3f2fd;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cta-text li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-text li:hover {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            transform: translateX(10px);
+            padding-left: 1.5rem;
+        }
+
+        .cta-text li i {
+            color: #3b82f6;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e3f2fd;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .cta-text li:hover i {
+            background: #3b82f6;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .cta-text li span {
+            color: #64748b;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 16px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #1e3a8a;
+            border-color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 16px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e3f2fd;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+
+        .info-item i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover i {
+            transform: scale(1.1);
+            color: #1d4ed8;
+        }
+
+        .info-item strong {
+            color: #1e3a8a;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .info-item p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Floating elements for visual interest */
+        .floating-element {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 30%; right: 15%; animation-delay: 3s; width: 40px; height: 40px; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 6s; width: 25px; height: 25px; }
+        .floating-element:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; width: 35px; height: 35px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #requirements {
+                padding: 2rem 1rem;
+            }
+            
+            #requirements h2 {
+                font-size: 2rem;
+            }
+            
+            .requirement-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .card-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .card-icon i {
+                font-size: 1.5rem;
+            }
+
+            #application-cta {
+                padding: 4rem 1rem;
+            }
+
+            .cta-content {
+                padding: 2rem;
+            }
+
+            .form-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <!-- Sticky CTA Bar for Mobile -->
+    <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+        <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
+        <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
+    </div>
 
     <main>
-        <!-- Hero Section -->
-        <section id="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1>Join Our Elite Team of Professional Chefs</h1>
-                    <p>Become part of Maharaja Chef Services and connect with clients who appreciate your culinary expertise. We offer a platform for talented chefs to showcase their skills, build their reputation, and earn competitive compensation.</p>
-                    <div class="cta-buttons">
-                        <a href="#application" class="btn">Apply Now</a>
-                        <a href="chef-guidelines.html" class="btn btn-outline">Learn Requirements</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="images/chef-team.jpg" alt="Professional chefs working together">
-                </div>
-            </div>
-        </section>
-
         <!-- Why Join Us Section -->
         <section id="why-join-us">
             <h2>Why Join Maharaja Chef Services</h2>
@@ -59,41 +504,84 @@
         <!-- Requirements Section -->
         <section id="requirements">
             <h2>Chef Requirements</h2>
-            <div class="requirements-content">
-                <div class="requirements-list">
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Professional Experience</h3>
-                        <p>Minimum 3 years of professional cooking experience in restaurants, hotels, or catering.</p>
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chef-hat"></i>
                     </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Culinary Education</h3>
-                        <p>Formal culinary training or equivalent professional experience.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Food Safety Certification</h3>
-                        <p>Current food handler's certificate or equivalent food safety certification.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Professional Equipment</h3>
-                        <p>Access to professional-grade cooking equipment and tools.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Reliable Transportation</h3>
-                        <p>Ability to travel to client locations with your equipment.</p>
-                    </div>
-                    <div class="requirement-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Background Check</h3>
-                        <p>Willingness to undergo background verification for client safety.</p>
+                    <h3>Professional Experience</h3>
+                    <p>Minimum 3 years of professional cooking experience in restaurants, hotels, or catering.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-award"></i>
+                            <span>Industry Proven</span>
+                        </div>
                     </div>
                 </div>
-                <div class="requirements-image">
-                    <img src="images/chef-work1.jpg" alt="Professional chef at work">
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Culinary Education</h3>
+                    <p>Formal culinary training or equivalent professional experience.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-book"></i>
+                            <span>Expert Knowledge</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Food Safety Certification</h3>
+                    <p>Current food handler's certificate or equivalent food safety certification.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-check"></i>
+                            <span>Safety First</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Professional Equipment</h3>
+                    <p>Access to professional-grade cooking equipment and tools.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-tools"></i>
+                            <span>Quality Tools</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Reliable Transportation</h3>
+                    <p>Ability to travel to client locations with your equipment.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-route"></i>
+                            <span>Mobile Ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirement-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Background Check</h3>
+                    <p>Willingness to undergo background verification for client safety.</p>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-lock"></i>
+                            <span>Trusted Professional</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -135,124 +623,45 @@
             </div>
         </section>
 
-        <!-- Application Form -->
-        <section id="application">
+        <!-- Application Call to Action -->
+        <section id="application-cta">
             <div class="form-container">
                 <div class="form-header">
-                    <h2>Chef Application Form</h2>
-                    <p>Join our elite team of professional chefs and showcase your culinary expertise</p>
+                    <h2>Ready to Join Our Team?</h2>
+                    <p>Take the first step towards an exciting culinary career with Maharaja Chef Services</p>
                 </div>
-                
-                <form class="application-form" action="#" method="POST" enctype="multipart/form-data">
-                    <!-- Personal Information Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-user"></i> Personal Information</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="full-name">Full Name</label>
-                                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    
+                    <div class="cta-actions">
+                        <a href="chef-application.html" class="btn btn-primary" id="start-application-btn">
+                            <i class="fas fa-rocket"></i> Start Your Application
+                        </a>
+                        
+                    </div>
+                    
+                    <div class="cta-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Quick Process</strong>
+                                <p>Complete application in 10 minutes</p>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Fast Response</strong>
+                                <p>We review applications within 48 hours</p>
                             </div>
-                            <div class="form-group">
-                                <label for="location">Location (City, State)</label>
-                                <input type="text" id="location" name="location" placeholder="e.g., San Francisco, CA" required>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Secure</strong>
+                                <p>Your information is protected and confidential</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Professional Information Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="experience">Years of Professional Experience</label>
-                                <select id="experience" name="experience" required>
-                                    <option value="">Select years of experience</option>
-                                    <option value="3-5">3-5 years</option>
-                                    <option value="5-10">5-10 years</option>
-                                    <option value="10+">10+ years</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="specialty">Culinary Specialty</label>
-                                <select id="specialty" name="specialty" required>
-                                    <option value="">Select your specialty</option>
-                                    <option value="French">French Cuisine</option>
-                                    <option value="Italian">Italian Cuisine</option>
-                                    <option value="Asian">Asian Cuisine</option>
-                                    <option value="Indian">Indian Cuisine</option>
-                                    <option value="Mediterranean">Mediterranean Cuisine</option>
-                                    <option value="Vegan">Vegan/Vegetarian</option>
-                                    <option value="BBQ">BBQ & Grilling</option>
-                                    <option value="Baking">Baking & Pastry</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="certifications">Certifications</label>
-                                <input type="text" id="certifications" name="certifications" placeholder="e.g., Food Handler, ServSafe, Culinary Degree">
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Professional Website/Portfolio</label>
-                                <input type="url" id="website" name="website" placeholder="https://yourwebsite.com (optional)">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional Details Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-edit"></i> Additional Details</h3>
-                        <div class="form-group full-width">
-                            <label for="message">Culinary Philosophy & Experience</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your culinary philosophy, experience, and what makes you unique as a chef..." rows="6" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Resume Upload Section -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-file-upload"></i> Resume Upload</h3>
-                        <div class="form-group full-width">
-                            <label for="resume">Upload Your Resume</label>
-                            <div class="file-upload-container">
-                                <div class="file-upload-wrapper">
-                                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="file-input">
-                                    <div class="file-upload-display">
-                                        <div class="file-upload-icon">
-                                            <i class="fas fa-cloud-upload-alt"></i>
-                                        </div>
-                                        <div class="file-upload-text">
-                                            <span class="file-upload-title">Choose Resume File</span>
-                                            <span class="file-upload-subtitle">PDF, DOC, or DOCX (Max 5MB)</span>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="file-upload-btn">Browse Files</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Submit Section -->
-                    <div class="form-section submit-section">
-                        <div class="form-group full-width">
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                Submit Application
-                            </button>
-                            <p class="form-note">By submitting, you agree to our terms and that we may contact you about your application.</p>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </section>
 
@@ -318,7 +727,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
-                        <div class="testimonial-avatar">
+                         <div class="testimonial-avatar">
                             <i class="fas fa-user-chef"></i>
                         </div>
                         <div class="testimonial-info">
@@ -400,106 +809,43 @@
         </div>
     </footer>
 
+    <!-- Change hamburger color to blue -->
+    <style>
+        .hamburger,
+        .hamburger-menu,
+        .menu-toggle,
+        #hamburger,
+        .mobile-menu-btn,
+        .hamburger-icon,
+        .hamburger span,
+        .hamburger-line {
+            background-color: #3b82f6 !important;
+            color: #3b82f6 !important;
+        }
+        .hamburger svg,
+        .hamburger i,
+        .hamburger-menu svg,
+        .hamburger-menu i {
+            fill: #3b82f6 !important;
+            color: #3b82f6 !important;
+        }
+    </style>
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
-    <!-- Chef Application Form Script -->
+    <script src="js/header.js"></script>
+
+    <!-- ✅ POPUP MESSAGE SCRIPT (Added Only) -->
     <script>
-        // File upload functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('resume');
-            const fileUploadWrapper = document.querySelector('.file-upload-wrapper');
-            const fileUploadDisplay = document.querySelector('.file-upload-display');
-            const fileUploadTitle = document.querySelector('.file-upload-title');
-            const fileUploadSubtitle = document.querySelector('.file-upload-subtitle');
-            const fileUploadBtn = document.querySelector('.file-upload-btn');
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("start-application-btn");
 
-            // Handle file selection
-            fileUploadWrapper.addEventListener('click', function() {
-                fileInput.click();
-            });
-
-            fileUploadBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                fileInput.click();
-            });
-
-            fileInput.addEventListener('change', function() {
-                const file = this.files[0];
-                if (file) {
-                    fileUploadTitle.textContent = file.name;
-                    fileUploadSubtitle.textContent = 'File selected - Ready to upload';
-                    fileUploadWrapper.style.borderColor = '#007bff';
-                    fileUploadWrapper.style.backgroundColor = '#f0f7ff';
-                }
-            });
-
-            // Drag and drop functionality
-            fileUploadWrapper.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                fileUploadWrapper.style.borderColor = '#007bff';
-                fileUploadWrapper.style.backgroundColor = '#f0f7ff';
-            });
-
-            fileUploadWrapper.addEventListener('dragleave', function() {
-                fileUploadWrapper.style.borderColor = '#dee2e6';
-                fileUploadWrapper.style.backgroundColor = '#f8f9fa';
-            });
-
-            fileUploadWrapper.addEventListener('drop', function(e) {
-                e.preventDefault();
-                const file = e.dataTransfer.files[0];
-                if (file) {
-                    fileInput.files = e.dataTransfer.files;
-                    fileUploadTitle.textContent = file.name;
-                    fileUploadSubtitle.textContent = 'File selected - Ready to upload';
-                    fileUploadWrapper.style.borderColor = '#007bff';
-                    fileUploadWrapper.style.backgroundColor = '#f0f7ff';
-                }
-            });
-
-            // Form submission handling
-            const form = document.querySelector('.application-form');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation
-                const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
-                let isValid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.style.borderColor = '#dc3545';
-                        isValid = false;
-                    } else {
-                        field.style.borderColor = '#e9ecef';
-                    }
+            if (btn) {
+                btn.addEventListener("click", function () {
+                    alert("Redirecting to Chef Application Form...");
                 });
-
-                if (isValid) {
-                    // Simulate form submission
-                    const submitBtn = form.querySelector('.submit-btn');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-                    submitBtn.disabled = true;
-                    
-                    setTimeout(() => {
-                        alert('Application submitted successfully! We will review your application and contact you soon.');
-                        form.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        
-                        // Reset file upload display
-                        fileUploadTitle.textContent = 'Choose Resume File';
-                        fileUploadSubtitle.textContent = 'PDF, DOC, or DOCX (Max 5MB)';
-                        fileUploadWrapper.style.borderColor = '#dee2e6';
-                        fileUploadWrapper.style.backgroundColor = '#f8f9fa';
-                    }, 2000);
-                } else {
-                    alert('Please fill in all required fields.');
-                }
-            });
+            }
         });
     </script>
+
 </body>
 </html>

@@ -16,8 +16,18 @@
     <meta name="description" content="Meet Aman Deep Manrai, the owner of Maharaja Chef Services. Learn about his vision and passion for culinary excellence.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <!-- Sticky CTA Bar for Mobile -->
+    <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+        <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
+        <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
+    </div>
+
     <main>
         <section id="owner">
             <h1>Meet Our Business Owner</h1>
@@ -77,26 +87,41 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <!-- Mobile Sticky CTA Script -->
+    <script>
+        function checkMobileStickyCTA() {
+            const stickyCTA = document.querySelector('.sticky-cta-bar');
+            if (window.innerWidth <= 768) {
+                stickyCTA.style.display = 'flex';
+            } else {
+                stickyCTA.style.display = 'none';
+            }
+        }
+        window.addEventListener('load', checkMobileStickyCTA);
+        window.addEventListener('resize', checkMobileStickyCTA);
+    </script>
+    
     <!-- Chatbot Integration -->
     <script>
-        // Load chatbot
         fetch('chatbot.html')
             .then(response => response.text())
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
-                const chatbotContainer = doc.querySelector('.chatbot-container');
-                const styleTags = doc.querySelectorAll('style');
-
+                
                 // Add styles
+                const styleTags = doc.querySelectorAll('style');
                 styleTags.forEach(style => {
                     document.head.appendChild(style.cloneNode(true));
                 });
-
+                
                 // Add chatbot container
+                const chatbotContainer = doc.querySelector('.chatbot-container');
                 document.body.appendChild(chatbotContainer.cloneNode(true));
-
-                // Initialize chatbot script
+                
+                // Execute scripts from chatbot.html
                 const scriptTags = doc.querySelectorAll('script');
                 scriptTags.forEach(script => {
                     const newScript = document.createElement('script');

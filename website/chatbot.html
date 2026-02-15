@@ -240,10 +240,21 @@
 
         /* Responsive design */
         @media (max-width: 768px) {
+            /* Move chatbot toggle above sticky bottom CTA buttons */
+            .chatbot-container {
+                bottom: 80px;
+            }
+            
+            .chatbot-toggle {
+                bottom: 80px;
+            }
+            
+            /* Chatbot popup - fixed height at 60% of viewport, positioned above toggle */
             .chatbot-popup {
                 width: 90%;
-                height: 80vh;
-                bottom: 80px;
+                height: 60vh;
+                max-height: 400px;
+                bottom: 145px;
                 right: 5%;
                 left: 5%;
             }
@@ -392,7 +403,7 @@
                 showTypingIndicator();
 
                 try {
-                    const response = await fetch('https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/chat', {
+                    const response = await fetch('https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -477,7 +488,7 @@
             // Load chat history
             async function loadChatHistory() {
                 try {
-                    const response = await fetch(`https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod/chat/history?sessionId=${sessionId}`);
+                    const response = await fetch(`https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/chat/history?sessionId=${sessionId}`);
                     const data = await response.json();
 
                     if (data.history && data.history.length > 0) {

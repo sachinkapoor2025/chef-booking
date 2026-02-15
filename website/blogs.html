@@ -31,36 +31,322 @@
     <meta name="twitter:title" content="Blogs - Maharaja Chef Services">
     <meta name="twitter:description" content="Read our latest blogs on chef tips, healthy eating, meal prep, and US food trends.">
     <meta name="twitter:image" content="images/logo.jpg">
+    <style>
+        /* Blog Page Styles */
+        #blogs {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+        }
+
+        #blogs h1 {
+            font-size: 3rem;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        #blogs h1:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 2px;
+        }
+
+        .blog-intro {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blog-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-outline:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .blog-posts {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 300px;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .blog-post-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover .blog-post-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-post-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .blog-post-content h2 {
+            color: #1e3a8a;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            background: #f8fafc;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .blog-post-content p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .read-more {
+            align-self: flex-start;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .blog-post {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            
+            .blog-post-content {
+                padding: 2rem;
+            }
+            
+            .blog-post-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #blogs {
+                padding: 2rem 1rem;
+            }
+            
+            #blogs h1 {
+                font-size: 2.5rem;
+            }
+            
+            .blog-intro {
+                font-size: 1.1rem;
+            }
+            
+            .blog-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .blog-post-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
     <main>
         <section id="blogs">
-            <h1>Our Blogs</h1>
+            <h1>Our Culinary Blog</h1>
+            <p class="blog-intro">Discover expert tips, delicious recipes, and the latest food trends from our professional chefs. Whether you're a home cook or a culinary enthusiast, our blog offers valuable insights to elevate your cooking experience.</p>
+            
+            <div class="blog-actions">
+                <a href="submit-blog.html" class="btn btn-primary">
+                    <i class="fas fa-pen"></i> Submit Your Blog
+                </a>
+                <a href="success-stories.html" class="btn btn-outline">
+                    <i class="fas fa-star"></i> Read Success Stories
+                </a>
+            </div>
+
             <div class="blog-posts">
                 <article class="blog-post">
-                    <h2>Chef Tips for Perfect Home Cooking</h2>
-                    <p>Discover essential tips from our chefs to elevate your home cooking experience. From knife skills to flavor balancing, learn the secrets of professional chefs.</p>
-                    <a href="contact-us.html" class="read-more">Read More</a>
+                    <div class="blog-post-image">
+                        <img src="images/chef-work1.jpg" alt="Chef preparing food">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2>Chef Tips for Perfect Home Cooking</h2>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> March 15, 2024</span>
+                            <span><i class="fas fa-user-chef"></i> Chef Michael Thompson</span>
+                            <span><i class="fas fa-clock"></i> 8 min read</span>
+                        </div>
+                        <p>Discover essential tips from our chefs to elevate your home cooking experience. From knife skills to flavor balancing, learn the secrets of professional chefs.</p>
+                        <a href="blog-chef-tips.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </article>
+
                 <article class="blog-post">
-                    <h2>Healthy Eating Habits for Busy Professionals</h2>
-                    <p>Maintain a healthy lifestyle with simple, nutritious meal ideas. Our chefs share recipes and tips for balanced, delicious meals on the go.</p>
-                    <a href="contact-us.html" class="read-more">Read More</a>
+                    <div class="blog-post-image">
+                        <img src="images/food1.jpg" alt="Healthy meal preparation">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2>Healthy Eating Habits for Busy Professionals</h2>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> March 20, 2024</span>
+                            <span><i class="fas fa-user-chef"></i> Chef Sarah Johnson</span>
+                            <span><i class="fas fa-clock"></i> 6 min read</span>
+                        </div>
+                        <p>Maintain a healthy lifestyle with simple, nutritious meal ideas. Our chefs share recipes and tips for balanced, delicious meals on the go.</p>
+                        <a href="blog-healthy-eating.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </article>
+
                 <article class="blog-post">
-                    <h2>Meal Prep Guides for the Week</h2>
-                    <p>Save time and eat healthy with our comprehensive meal prep guides. Step-by-step instructions for preparing meals in advance.</p>
-                    <a href="contact-us.html" class="read-more">Read More</a>
+                    <div class="blog-post-image">
+                        <img src="images/food2.jpg" alt="Meal prep containers">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2>Meal Prep Guides for the Week</h2>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> March 25, 2024</span>
+                            <span><i class="fas fa-user-chef"></i> Chef David Chen</span>
+                            <span><i class="fas fa-clock"></i> 10 min read</span>
+                        </div>
+                        <p>Save time and eat healthy with our comprehensive meal prep guides. Step-by-step instructions for preparing meals in advance.</p>
+                        <a href="blog-meal-prep.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </article>
+
                 <article class="blog-post">
-                    <h2>Event Menu Ideas for Special Occasions</h2>
-                    <p>Plan the perfect menu for your next event. From birthdays to corporate gatherings, get inspiration from our curated menu suggestions.</p>
-                    <a href="contact-us.html" class="read-more">Read More</a>
+                    <div class="blog-post-image">
+                        <img src="images/event1.jpg" alt="Event catering setup">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2>Event Menu Ideas for Special Occasions</h2>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> March 30, 2024</span>
+                            <span><i class="fas fa-user-chef"></i> Chef Maria Rodriguez</span>
+                            <span><i class="fas fa-clock"></i> 8 min read</span>
+                        </div>
+                        <p>Plan the perfect menu for your next event. From birthdays to corporate gatherings, get inspiration from our curated menu suggestions.</p>
+                        <a href="blog-event-menu.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </article>
+
                 <article class="blog-post">
-                    <h2>Latest US Food Trends to Try</h2>
-                    <p>Stay ahead of the curve with the latest food trends in the US. Explore fusion cuisines, plant-based options, and innovative cooking techniques.</p>
-                    <a href="contact-us.html" class="read-more">Read More</a>
+                    <div class="blog-post-image">
+                        <img src="images/food3.jpg" alt="Modern food presentation">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2>Latest US Food Trends to Try</h2>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> April 5, 2024</span>
+                            <span><i class="fas fa-user-chef"></i> Chef James Wilson</span>
+                            <span><i class="fas fa-clock"></i> 7 min read</span>
+                        </div>
+                        <p>Stay ahead of the curve with the latest food trends in the US. Explore fusion cuisines, plant-based options, and innovative cooking techniques.</p>
+                        <a href="blog-food-trends.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </article>
             </div>
         </section>
@@ -110,6 +396,7 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
     <!-- Chatbot Integration -->
     <script>
         // Load chatbot
@@ -130,6 +417,31 @@
                 document.body.appendChild(chatbotContainer.cloneNode(true));
 
                 // Initialize chatbot script
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                document.body.appendChild(chatbotContainer.cloneNode(true));
                 const scriptTags = doc.querySelectorAll('script');
                 scriptTags.forEach(script => {
                     const newScript = document.createElement('script');

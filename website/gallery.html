@@ -24,6 +24,9 @@
     <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
     <main>
         <section id="gallery-filters" style="padding: 4rem 2rem; background: #f8f9fa;">
             <div class="container" style="max-width: 1200px; margin: 0 auto;">
@@ -149,7 +152,7 @@
                         <p style="color: #666; line-height: 1.6; margin-bottom: 2rem;">Our chefs have won numerous awards for their exceptional culinary creations and innovative techniques.</p>
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                             <div style="text-align: left;">
-                                <p style="margin: 0; color: #666; font-size: 0.9rem;">James Beard Awards</p>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Amandeep Awards</p>
                                 <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">3 Chefs</p>
                             </div>
                             <div style="text-align: left;">
@@ -162,7 +165,7 @@
                             </div>
                             <div style="text-align: left;">
                                 <p style="margin: 0; color: #666; font-size: 0.9rem;">Customer Reviews</p>
-                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">4.9/5 Stars</p>
+                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">4.6/5 Stars</p>
                             </div>
                         </div>
                     </div>
@@ -174,19 +177,19 @@
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                             <div style="text-align: left;">
                                 <p style="margin: 0; color: #666; font-size: 0.9rem;">Instagram Likes</p>
-                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">100K+</p>
+                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">✓</p>
                             </div>
                             <div style="text-align: left;">
                                 <p style="margin: 0; color: #666; font-size: 0.9rem;">Facebook Shares</p>
-                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">50K+</p>
+                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">✓</p>
                             </div>
                             <div style="text-align: left;">
                                 <p style="margin: 0; color: #666; font-size: 0.9rem;">YouTube Views</p>
-                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">1M+</p>
+                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">✓</p>
                             </div>
                             <div style="text-align: left;">
                                 <p style="margin: 0; color: #666; font-size: 0.9rem;">TikTok Followers</p>
-                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">250K+</p>
+                                <p style="margin: 0.5rem 0 0; color: #333; font-weight: 600;">✓ ,</p>
                             </div>
                         </div>
                     </div>
@@ -274,6 +277,7 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
     <script>
         // Gallery functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -303,6 +307,31 @@
                 });
             });
         });
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
     </script>
 </body>
 </html>

@@ -24,6 +24,15 @@
     <meta name="twitter:image" content="images/logo.jpg">
 </head>
 <body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <!-- Sticky CTA Bar for Mobile -->
+    <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
+        <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
+        <a href="book-a-chef.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: 2px solid #3b82f6; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">📅 Book Chef</a>
+    </div>
+
     <main>
         <section id="services-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6rem 2rem; text-align: center;">
             <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
@@ -66,8 +75,6 @@
                         <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
                             <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🎉</div>
                             <div>
-                                <h3 style="font-size: 1.8rem; color: #333; margin: 0;">Special Events & Gatherings</h3>
-                                <p style="color: #666; margin: 0.5rem 0 0; font-size: 0.9rem;">OCCASIONAL SERVICE</p>
                             </div>
                         </div>
                         <p style="color: #666; line-height: 1.6; margin-bottom: 2rem;">Make your special occasions unforgettable with professional chef services for parties, celebrations, and cattering events.</p>
@@ -78,7 +85,6 @@
                             <li>✅ Intimate dinner parties</li>
                             <li>✅ Wedding receptions and showers</li>
                         </ul>
-                        <a href="special-events.html" class="btn" style="background: #28a745; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -261,7 +267,6 @@
                         <div style="margin-bottom: 2rem;">
                             <span style="background: #e8f5e9; color: #2e7d32; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600;">Free consultation for events over 10 guests</span>
                         </div>
-                        <a href="special-events.html" class="btn" style="background: #28a745; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Get Started</a>
                     </div>
                 </div>
                 
@@ -380,5 +385,6 @@
 
     <script src="js/script.js"></script>
     <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>
