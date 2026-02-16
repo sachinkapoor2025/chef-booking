@@ -266,65 +266,33 @@
     </style>
 </head>
 <body>
-    <header id="global-header"></header>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <style>
+        /* Black hamburger menu for diet plan page */
+        .mobile-menu-toggle span {
+            background-color: #000000 !important;
+        }
+        .mobile-menu-toggle.active span {
+            background-color: #000000 !important;
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
     <script>
-        // Load global header
-        fetch('components/header.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('global-header').innerHTML = html;
-                
-                // Initialize dropdowns after header is loaded
-                const dropdowns = document.querySelectorAll('.dropdown');
-                dropdowns.forEach(dropdown => {
-                    const menu = dropdown.querySelector('.dropdown-menu');
-                    const link = dropdown.querySelector('a');
-                    
-                    dropdown.addEventListener('mouseenter', () => {
-                        menu.classList.add('show');
-                    });
-                    
-                    dropdown.addEventListener('mouseleave', () => {
-                        menu.classList.remove('show');
-                    });
-                });
-                
-                // Hide sticky CTA bar on diet plan page
+        // Hide sticky CTA bar on diet plan page after header loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
                 const stickyCtaBar = document.getElementById('sticky-cta-bar');
                 if (stickyCtaBar) {
                     stickyCtaBar.style.display = 'none';
                 }
-                
-                // Initialize hamburger menu
-                initHamburgerMenu();
-            })
-            .catch(error => {
-                console.error('Error loading header:', error);
-            });
-        
-        // Hamburger menu functionality
-        function initHamburgerMenu() {
-            const hamburger = document.querySelector('.mobile-menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const body = document.body;
-
-            if (!hamburger || !navMenu) return;
-
-            hamburger.addEventListener('click', function (e) {
-                e.preventDefault();
-                const isMenuOpen = navMenu.classList.contains('mobile-active');
-
-                if (isMenuOpen) {
-                    navMenu.classList.remove('mobile-active');
-                    hamburger.classList.remove('active');
-                    body.style.overflow = '';
-                } else {
-                    navMenu.classList.add('mobile-active');
-                    hamburger.classList.add('active');
-                    body.style.overflow = 'hidden';
-                }
-            });
-        }
+            }, 500);
+        });
     </script>
 
     <main>
