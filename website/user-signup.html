@@ -291,6 +291,12 @@
                         menu.classList.remove('show');
                     });
                 });
+                
+                // Hide sticky CTA bar on user signup page
+                const stickyCtaBar = document.getElementById('sticky-cta-bar');
+                if (stickyCtaBar) {
+                    stickyCtaBar.style.display = 'none';
+                }
             })
             .catch(error => {
                 console.error('Error loading header:', error);
