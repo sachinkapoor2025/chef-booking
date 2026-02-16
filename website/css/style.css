@@ -362,25 +362,31 @@ header {
 .mobile-nav-menu a {
     display: block;
     padding: 1.25rem 1.5rem;
-    color: #333;
+    color: white;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     border-left: 4px solid transparent;
     position: relative;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    margin: 0.5rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    text-align: center;
 }
 
 .mobile-nav-menu a:hover {
-    background-color: #f8fafc;
-    color: #3b82f6;
-    border-left-color: #3b82f6;
-    transform: translateX(2px);
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    border-left-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
 .mobile-nav-menu a:active {
-    background-color: #e3f2fd;
-    color: #1d4ed8;
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+    color: white;
 }
 
 /* Mobile dropdown styles for mobile menu */
@@ -394,33 +400,34 @@ header {
 }
 
 .mobile-dropdown-toggle {
-    width: 100%;
+    width: calc(100% - 2rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 1.5rem;
-    background: none;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     border: none;
     cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
-    color: #333;
-    text-align: left;
+    color: white;
+    text-align: center;
     transition: all 0.3s ease;
-    border-left: 4px solid transparent;
-    position: relative;
+    border-radius: 10px;
+    margin: 0.5rem 1rem;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .mobile-dropdown-toggle:hover {
-    background-color: #f8fafc;
-    color: #3b82f6;
-    border-left-color: #3b82f6;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
 .mobile-dropdown-toggle[aria-expanded="true"] {
-    background-color: #f8fafc;
-    color: #3b82f6;
-    border-left-color: #3b82f6;
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+    color: white;
 }
 
 .mobile-dropdown-arrow {
