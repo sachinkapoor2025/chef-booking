@@ -467,6 +467,32 @@
     <!-- Global Header will be loaded here -->
     <div id="header-container"></div>
 
+    <style>
+        /* Black hamburger menu for diet plan page */
+        .mobile-menu-toggle span {
+            background-color: #000000 !important;
+        }
+        .mobile-menu-toggle.active span {
+            background-color: #000000 !important;
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <script>
+        // Hide sticky CTA bar on diet plan page after header loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const stickyCtaBar = document.getElementById('sticky-cta-bar');
+                if (stickyCtaBar) {
+                    stickyCtaBar.style.display = 'none';
+                }
+            }, 500);
+        });
+    </script>
+
     <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
         <a href="explore-chefs.html" class="btn" style="background: white; color: #1d4ed8; border: 2px solid #1d4ed8; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 8px; text-decoration: none;">👨‍🍳 Explore Chefs</a>
@@ -809,25 +835,7 @@
         </div>
     </footer>
 
-    <!-- Black hamburger menu -->
-    <style>
-        .mobile-menu-toggle span {
-            background-color: #000000 !important;
-        }
-        .mobile-menu-toggle.active span {
-            background-color: #000000 !important;
-        }
-        
-        /* Hide sticky CTA bar on this page */
-        .sticky-cta-bar {
-            display: none !important;
-        }
-    </style>
-    <script src="js/script.js"></script>
-    <script src="js/global-header.js"></script>
-    <script src="js/header.js"></script>
-
-    <!-- ✅ POPUP MESSAGE SCRIPT (Added Only) -->
+     <!-- ✅ POPUP MESSAGE SCRIPT (Added Only) -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const btn = document.getElementById("start-application-btn");
