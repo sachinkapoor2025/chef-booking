@@ -11,7 +11,7 @@
     <style>
         /* Page Specific Styles */
         .enquiry-hero {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             padding: 5rem 2rem;
             text-align: center;
@@ -53,29 +53,29 @@
 
         /* Live Counter Info Section */
         .live-counter-section {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
             padding: 4rem;
             border-radius: 20px;
             margin-bottom: 4rem;
-            border: 2px solid #fbbf24;
+            border: 2px solid #3b82f6;
         }
 
         .live-counter-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #92400e;
+            color: #1e3a8a;
             margin-bottom: 2rem;
         }
 
         .live-counter-section h2 i {
-            color: #f59e0b;
+            color: #3b82f6;
             margin-right: 0.5rem;
         }
 
         .live-counter-intro {
             text-align: center;
             font-size: 1.2rem;
-            color: #78350f;
+            color: #374151;
             max-width: 800px;
             margin: 0 auto 3rem;
             line-height: 1.8;
@@ -93,30 +93,30 @@
             padding: 2rem;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
-            border: 2px solid #fcd34d;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+            border: 2px solid #93c5fd;
             transition: all 0.3s ease;
         }
 
         .highlight-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 32px rgba(245, 158, 11, 0.25);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.25);
         }
 
         .highlight-card i {
             font-size: 3rem;
-            color: #f59e0b;
+            color: #3b82f6;
             margin-bottom: 1.5rem;
         }
 
         .highlight-card h3 {
             font-size: 1.4rem;
-            color: #92400e;
+            color: #1e3a8a;
             margin-bottom: 1rem;
         }
 
         .highlight-card p {
-            color: #78350f;
+            color: #374151;
             line-height: 1.6;
         }
 
@@ -131,13 +131,13 @@
 
         .services-list h3 {
             font-size: 1.8rem;
-            color: #92400e;
+            color: #1e3a8a;
             margin-bottom: 1.5rem;
             text-align: center;
         }
 
         .services-list h3 i {
-            color: #f59e0b;
+            color: #3b82f6;
             margin-right: 0.5rem;
         }
 
@@ -151,9 +151,9 @@
 
         .services-list li {
             padding: 1rem 1.5rem;
-            background: #fffbeb;
+            background: #f8fafc;
             border-radius: 10px;
-            color: #78350f;
+            color: #374151;
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -161,7 +161,7 @@
         }
 
         .services-list li i {
-            color: #f59e0b;
+            color: #3b82f6;
         }
 
         /* Form Section */
@@ -334,7 +334,7 @@
 
         .trust-badge i {
             font-size: 2.5rem;
-            color: #10b981;
+            color: #3b82f6;
             margin-bottom: 0.5rem;
         }
 
@@ -511,14 +511,7 @@
                         </div>
                         <div class="form-group">
                             <label for="guests">Number of Guests</label>
-                            <select id="guests" name="guests">
-                                <option value="">Select range</option>
-                                <option value="25-50">25 - 50</option>
-                                <option value="50-100">50 - 100</option>
-                                <option value="100-200">100 - 200</option>
-                                <option value="200-500">200 - 500</option>
-                                <option value="500+">500+</option>
-                            </select>
+                            <input type="number" id="guests" name="guests" placeholder="Enter number of guests" min="1">
                         </div>
                     </div>
 
@@ -528,7 +521,7 @@
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="live-counter" name="services[]" value="live-counter">
-                                    <label for="live-counter">Live Counter</label>
+                                    <label for="live-counter">Live Counter (Tandoori Counter, Dessert Counter)</label>
                                 </div>
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="catering" name="services[]" value="catering">
@@ -541,14 +534,6 @@
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="sev-puri" name="services[]" value="sev-puri">
                                     <label for="sev-puri">Sev Puri Counter</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="tandoori" name="services[]" value="tandoori">
-                                    <label for="tandoori">Tandoori Counter</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="dessert" name="services[]" value="dessert">
-                                    <label for="dessert">Dessert Counter</label>
                                 </div>
                             </div>
                         </div>
