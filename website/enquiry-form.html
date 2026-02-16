@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry Form - Live Counter Services | Maharaja Chef Services</title>
+    <meta name="description" content="Book our Live Counter services for your parties and events. Authentic Punjabi cuisine with professional and hygienic service.">
+    <meta name="keywords" content="live counter, punjabi food, party catering, event catering, enquiry form">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Page Specific Styles */
+        .enquiry-hero {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enquiry-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .enquiry-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .enquiry-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        .enquiry-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Live Counter Info Section */
+        .live-counter-section {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            padding: 4rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            border: 2px solid #fbbf24;
+        }
+
+        .live-counter-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #92400e;
+            margin-bottom: 2rem;
+        }
+
+        .live-counter-section h2 i {
+            color: #f59e0b;
+            margin-right: 0.5rem;
+        }
+
+        .live-counter-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #78350f;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+            border: 2px solid #fcd34d;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(245, 158, 11, 0.25);
+        }
+
+        .highlight-card i {
+            font-size: 3rem;
+            color: #f59e0b;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.4rem;
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-card p {
+            color: #78350f;
+            line-height: 1.6;
+        }
+
+        /* Services List */
+        .services-list {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .services-list h3 {
+            font-size: 1.8rem;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .services-list h3 i {
+            color: #f59e0b;
+            margin-right: 0.5rem;
+        }
+
+        .services-list ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .services-list li {
+            padding: 1rem 1.5rem;
+            background: #fffbeb;
+            border-radius: 10px;
+            color: #78350f;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .services-list li i {
+            color: #f59e0b;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 2px solid #e5e7eb;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-section > p {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .enquiry-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group label span {
+            color: #ef4444;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #e5e7eb;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #3b82f6;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 1.25rem 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            margin-top: 2rem;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid #e5e7eb;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            text-align: center;
+        }
+
+        .trust-badge i {
+            font-size: 2.5rem;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-badge p {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .enquiry-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .enquiry-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .enquiry-hero p {
+                font-size: 1.1rem;
+            }
+
+            .enquiry-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .live-counter-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .live-counter-section h2,
+            .form-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-list ul {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-badges {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="enquiry-hero">
+            <h1><i class="fas fa-utensils"></i> Live Counter Services</h1>
+            <p>Experience the authentic taste of Punjabi cuisine with our professional Live Counter setup for your parties and events</p>
+        </section>
+
+        <div class="enquiry-content">
+            <!-- Live Counter Info Section -->
+            <section class="live-counter-section">
+                <h2><i class="fas fa-fire"></i> Punjabi Speciality Live Counters</h2>
+                <p class="live-counter-intro">
+                    One of our main specialties is providing Live Counter services for parties and events. 
+                    Watch our expert chefs prepare delicious Punjabi dishes right in front of your guests, 
+                    creating an interactive and memorable dining experience. Our live counters add excitement 
+                    and aroma to any celebration.
+                </p>
+
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Hygienic Service</h3>
+                        <p>We maintain the highest standards of hygiene with sanitized equipment, gloves, and clean preparation areas. Food safety is our top priority.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Professional Chefs</h3>
+                        <p>Our experienced chefs are trained in authentic Punjabi cooking techniques and provide courteous, professional service to your guests.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Fresh Ingredients</h3>
+                        <p>We use only the freshest ingredients sourced daily. All food is prepared on-site to ensure maximum freshness and taste.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Interactive Experience</h3>
+                        <p>Guests can customize their dishes and watch them being prepared fresh. It adds entertainment value to your event.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Quality Assured</h3>
+                        <p>We follow strict quality control measures and use premium spices and ingredients for authentic Punjabi flavours.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Timely Service</h3>
+                        <p>Our team ensures prompt service throughout your event, keeping the counters running smoothly for all your guests.</p>
+                    </div>
+                </div>
+
+                <div class="services-list">
+                    <h3><i class="fas fa-list-check"></i> Our Live Counter Specialities</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Tandoori Counter (Naan, Roti, Paratha)</li>
+                        <li><i class="fas fa-check-circle"></i> Chaat Counter (Pani Puri, Sev Puri)</li>
+                        <li><i class="fas fa-check-circle"></i> Live Dosa Counter</li>
+                        <li><i class="fas fa-check-circle"></i> Pasta Live Station</li>
+                        <li><i class="fas fa-check-circle"></i> Live Grill Counter</li>
+                        <li><i class="fas fa-check-circle"></i> Dessert Counter (Jalebi, Rabri)</li>
+                        <li><i class="fas fa-check-circle"></i> Refreshment Counter</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Menu Options</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Enquiry Form Section -->
+            <section class="form-section">
+                <h2><i class="fas fa-clipboard-list"></i> Send Enquiry</h2>
+                <p>Fill in the details below and we'll get back to you within 24 hours</p>
+
+                <form class="enquiry-form" action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name <span>*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span>*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span>*</span></label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Event Date</label>
+                            <input type="date" id="event-date" name="event_date">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-type">Event Type</label>
+                            <select id="event-type" name="event_type">
+                                <option value="">Select event type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="festival">Festival Celebration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests" name="guests">
+                                <option value="">Select range</option>
+                                <option value="25-50">25 - 50</option>
+                                <option value="50-100">50 - 100</option>
+                                <option value="100-200">100 - 200</option>
+                                <option value="200-500">200 - 500</option>
+                                <option value="500+">500+</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label>Services Interested In</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="live-counter" name="services[]" value="live-counter">
+                                    <label for="live-counter">Live Counter</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="catering" name="services[]" value="catering">
+                                    <label for="catering">Full Catering</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="pani-puri" name="services[]" value="pani-puri">
+                                    <label for="pani-puri">Pani Puri Counter</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="sev-puri" name="services[]" value="sev-puri">
+                                    <label for="sev-puri">Sev Puri Counter</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tandoori" name="services[]" value="tandoori">
+                                    <label for="tandoori">Tandoori Counter</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="dessert" name="services[]" value="dessert">
+                                    <label for="dessert">Dessert Counter</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="message">Additional Requirements</label>
+                            <textarea id="message" name="message" placeholder="Tell us more about your event, dietary requirements, or any special requests..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Enquiry
+                    </button>
+                </form>
+
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-check"></i>
+                        <p>100% Hygienic</p>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-clock"></i>
+                        <p>24hr Response</p>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-star"></i>
+                        <p>Premium Quality</p>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-headset"></i>
+                        <p>24/7 Support</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+</body>
+</html>

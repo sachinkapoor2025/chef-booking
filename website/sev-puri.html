@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sev Puri - Our Speciality | Maharaja Chef Services</title>
+    <meta name="description" content="Enjoy authentic Sev Puri with variety of flavoured waters at Maharaja Chef Services. Perfect for parties and events.">
+    <meta name="keywords" content="sev puri, indian snacks, chaat, flavoured water, party catering">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Page Specific Styles */
+        .speciality-hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speciality-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .speciality-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .speciality-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        .speciality-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .flavours-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .flavours-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .flavours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flavour-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .flavour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.25);
+            border-color: #3b82f6;
+        }
+
+        .flavour-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .flavour-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .flavour-card p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .features-section {
+            margin-bottom: 4rem;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #3b82f6;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #3b82f6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .speciality-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .speciality-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .speciality-hero p {
+                font-size: 1.1rem;
+            }
+
+            .speciality-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .intro-section h2,
+            .flavours-section h2,
+            .features-section h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .flavours-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .flavour-card {
+                padding: 1.5rem;
+            }
+
+            .flavour-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flavours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="speciality-hero">
+            <h1><i class="fas fa-utensils"></i> Sev Puri</h1>
+            <p>Experience the authentic taste of Mumbai's favourite street food, served with a variety of flavoured waters to tantalize your taste buds</p>
+        </section>
+
+        <div class="speciality-content">
+            <!-- Introduction Section -->
+            <section class="intro-section">
+                <h2>Authentic Sev Puri Experience</h2>
+                <p>Our Sev Puri is prepared with the finest ingredients and traditional recipes, bringing the true flavours of Indian street food to your events. Each puri is carefully crafted to deliver the perfect crunch and taste that will leave your guests wanting more.</p>
+            </section>
+
+            <!-- Flavours Section -->
+            <section class="flavours-section">
+                <h2><i class="fas fa-tint"></i> Flavoured Water Options</h2>
+                <div class="flavours-grid">
+                    <div class="flavour-card">
+                        <div class="flavour-icon">
+                            <i class="fas fa-candy-cane"></i>
+                        </div>
+                        <h3>Sweet</h3>
+                        <p>Traditional sweet and tangy flavour</p>
+                    </div>
+                    <div class="flavour-card">
+                        <div class="flavour-icon">
+                            <i class="fas fa-shrimp"></i>
+                        </div>
+                        <h3>Salty</h3>
+                        <p>Classic salted water with spices</p>
+                    </div>
+                    <div class="flavour-card">
+                        <div class="flavour-icon">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                        <h3>Spicy</h3>
+                        <p>Hot and fiery for spice lovers</p>
+                    </div>
+                    <div class="flavour-card">
+                        <div class="flavour-icon">
+                            <i class="fas fa-lemon"></i>
+                        </div>
+                        <h3>Tangy</h3>
+                        <p>Zesty lemon and tamarind blend</p>
+                    </div>
+                    <div class="flavour-card">
+                        <div class="flavour-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Mint</h3>
+                        <p>Refreshing mint and coriander</p>
+                    </div>
+                    <div class="flavour-card">
+                        <div class="flavour-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Garlic</h3>
+                        <p>Rich garlic infused flavour</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2>Why Choose Our Sev Puri?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Made with Love</h3>
+                        <p>Each sev puri is handcrafted with attention to detail, ensuring the perfect balance of flavours and textures in every bite.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Fresh Ingredients</h3>
+                        <p>We use only the freshest vegetables, premium sev, and authentic spices sourced from trusted suppliers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Perfect for Events</h3>
+                        <p>Ideal for parties, weddings, corporate events, and celebrations. Our live counter setup adds excitement to any occasion.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Hygienic Preparation</h3>
+                        <p>We maintain the highest standards of hygiene and food safety, ensuring safe and delicious food for your guests.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Customizable</h3>
+                        <p>Choose from multiple flavoured water options and customize the spice level to suit your preferences.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Live Counter Service</h3>
+                        <p>Our professional chefs prepare sev puri fresh at your venue, creating an interactive and memorable experience.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Ready to Order?</h2>
+                <p>Make your next event unforgettable with our delicious Sev Puri live counter service</p>
+                <div class="cta-buttons">
+                    <a href="enquiry-form.html" class="btn-primary"><i class="fas fa-clipboard-list"></i> Enquiry Form</a>
+                    <a href="contact-us.html" class="btn-secondary"><i class="fas fa-phone"></i> Contact Us</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+</body>
+</html>
