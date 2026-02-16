@@ -1,4 +1,4 @@
-e an button on clickable and attkable and attached to api gateway <!DOCTYPE html>
+pele an button on clickable and attkable and attached to api gateway <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@ e an button on clickable and attkable and attached to api gateway <!DOCTYPE html
     <style>
         /* User Login Specific Styles */
         .login-hero {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
@@ -68,12 +68,12 @@ e an button on clickable and attkable and attached to api gateway <!DOCTYPE html
         
         .form-control:focus {
             outline: none;
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -83,13 +83,13 @@ e an button on clickable and attkable and attached to api gateway <!DOCTYPE html
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
         }
         
         .btn-secondary {
@@ -125,14 +125,14 @@ e an button on clickable and attkable and attached to api gateway <!DOCTYPE html
         }
         
         .signup-link a {
-            color: #8b5cf6;
+            color: #3b82f6;
             font-weight: 600;
             text-decoration: none;
         }
         
         .signup-link a:hover {
             text-decoration: underline;
-            color: #7c3aed;
+            color: #1d4ed8;
         }
         
         .error-message {
@@ -173,7 +173,7 @@ e an button on clickable and attkable and attached to api gateway <!DOCTYPE html
         }
         
         .forgot-password a:hover {
-            color: #8b5cf6;
+            color: #3b82f6;
             text-decoration: underline;
         }
         
@@ -195,38 +195,22 @@ e an button on clickable and attkable and attached to api gateway <!DOCTYPE html
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-           <div class="logo">
-                <h1><a href="index.html" style="text-decoration: none; color: inherit;"><img src="images/logo.jpg" alt="Maharaja Chef Services Logo" style="height: 90px;"></a></h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="services.html">Services <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Explore More <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </li>
-                <li><a href="owner.html">Business Owner</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <style>
+        /* Black hamburger menu for user login page */
+        .mobile-menu-toggle span {
+            background-color: #000000 !important;
+        }
+        .mobile-menu-toggle.active span {
+            background-color: #000000 !important;
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
 
     <main>
         <!-- Login Hero Section -->

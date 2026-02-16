@@ -152,12 +152,14 @@
         .signin-cta h3 {
             margin: 0 0 0.5rem 0;
             font-size: 1.5rem;
+            color: white;
         }
         
         .signin-cta p {
             margin: 0 0 1rem 0;
             font-size: 1.1rem;
             opacity: 0.9;
+            color: white;
         }
         
         .signin-btn {
@@ -288,13 +290,19 @@
     <script src="js/header.js"></script>
     
     <script>
-        // Hide sticky CTA bar on user signup page after header loads
+        // Hide sticky CTA bar and any purple chat widgets on user signup page after header loads
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const stickyCtaBar = document.getElementById('sticky-cta-bar');
                 if (stickyCtaBar) {
                     stickyCtaBar.style.display = 'none';
                 }
+                
+                // Remove any chat widgets that might be added by external scripts
+                const chatWidgets = document.querySelectorAll('#chat-widget, .chat-widget, .chatbot-container, #chatbot');
+                chatWidgets.forEach(function(widget) {
+                    widget.remove();
+                });
             }, 500);
         });
     </script>
@@ -370,11 +378,11 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="termsCheckbox" required>
+                    <label for="termsCheckbox">
+                        <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required>
                         I agree to the <a href="terms-conditions.html" target="_blank">Terms & Conditions</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a> <span class="required">*</span>
                     </label>
-                    <div class="error-message" id="termsError">You must agree to the terms and conditions</div>
+                    <div class="error-message" id="termsCheckboxError">You must agree to the terms and conditions</div>
                 </div>
                 
                 <button type="submit" class="btn-primary" id="signupBtn">

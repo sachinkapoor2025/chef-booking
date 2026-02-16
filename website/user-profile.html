@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+bu<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <style>
         /* User Profile Specific Styles */
         .profile-hero {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
@@ -63,7 +63,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             margin: 0 auto 1rem;
             display: flex;
             align-items: center;
@@ -71,7 +71,7 @@
             color: white;
             font-size: 2rem;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .user-name {
@@ -110,12 +110,12 @@
         
         .sidebar-menu a:hover {
             background-color: #f3f4f6;
-            color: #8b5cf6;
+            color: #3b82f6;
         }
         
         .sidebar-menu a.active {
             background-color: #f3f4f6;
-            color: #8b5cf6;
+            color: #3b82f6;
             font-weight: 600;
         }
         
@@ -142,7 +142,7 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             padding: 0.75rem 2rem;
@@ -151,13 +151,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
         }
         
         .btn-secondary {
@@ -355,32 +355,33 @@
     </style>
 </head>
 <body>
-    <header id="global-header"></header>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <style>
+        /* Black hamburger menu for user profile page */
+        .mobile-menu-toggle span {
+            background-color: #000000 !important;
+        }
+        .mobile-menu-toggle.active span {
+            background-color: #000000 !important;
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
     <script>
-        // Load global header
-        fetch('components/header.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('global-header').innerHTML = html;
-                
-                // Initialize dropdowns after header is loaded
-                const dropdowns = document.querySelectorAll('.dropdown');
-                dropdowns.forEach(dropdown => {
-                    const menu = dropdown.querySelector('.dropdown-menu');
-                    const link = dropdown.querySelector('a');
-                    
-                    dropdown.addEventListener('mouseenter', () => {
-                        menu.classList.add('show');
-                    });
-                    
-                    dropdown.addEventListener('mouseleave', () => {
-                        menu.classList.remove('show');
-                    });
-                });
-            })
-            .catch(error => {
-                console.error('Error loading header:', error);
-            });
+        // Hide sticky CTA bar on user profile page after header loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const stickyCtaBar = document.getElementById('sticky-cta-bar');
+                if (stickyCtaBar) {
+                    stickyCtaBar.style.display = 'none';
+                }
+            }, 500);
+        });
     </script>
 
     <main>
@@ -481,7 +482,7 @@
 
     <!-- Chat Widget -->
     <div id="chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-        <div id="chat-button" style="width: 60px; height: 60px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); transition: all 0.3s ease;">
+        <div id="chat-button" style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); transition: all 0.3s ease;">
             <i class="fas fa-comments" style="color: white; font-size: 24px;"></i>
         </div>
         <div id="chat-container" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-height: 400px;">
@@ -499,7 +500,7 @@
             <div style="padding: 1rem; border-top: 1px solid #e5e7eb;">
                 <div style="display: flex; gap: 0.5rem;">
                     <input type="text" id="chat-input" placeholder="Type your message..." style="flex-grow: 1; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 6px; outline: none;">
-                    <button id="send-message" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                    <button id="send-message" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -532,7 +533,7 @@
             messageDiv.style.padding = '0.75rem';
             messageDiv.style.borderRadius = '8px';
             messageDiv.style.alignSelf = isUser ? 'flex-end' : 'flex-start';
-            messageDiv.style.background = isUser ? '#8b5cf6' : '#f3f4f6';
+            messageDiv.style.background = isUser ? '#3b82f6' : '#f3f4f6';
             messageDiv.style.color = isUser ? 'white' : '#374151';
             messageDiv.style.maxWidth = '80%';
             
