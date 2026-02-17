@@ -244,13 +244,12 @@ header {
 
 .mobile-menu-toggle span {
     display: block;
-    width: 24px;
+    width: 25px;
     height: 3px;
-    background-color: #000000;
+    background-color: #000 !important;
+    margin: 3px 0;
     border-radius: 2px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center;
-    box-shadow: none;
+    transition: all 0.3s ease;
 }
 
 .mobile-menu-toggle.active span {
