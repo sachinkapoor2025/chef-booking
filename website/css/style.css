@@ -4167,12 +4167,12 @@ footer hr {
 }
 
 /* Laptop/Desktop Button Size (1024px and above) */
-/* Balanced button size for laptop/computer screens */
+/* Balanced button size - 9 buttons visible without scrolling */
 @media (min-width: 1024px) {
   /* Main button class */
   .btn {
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     height: auto;
     font-size: 14px;
   }
@@ -4181,16 +4181,16 @@ footer hr {
   .btn-business-owner,
   .btn-login {
     height: auto;
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     font-size: 14px;
   }
   
   /* Outline buttons */
   .btn-outline {
     height: auto;
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     font-size: 14px;
   }
   
@@ -4199,14 +4199,14 @@ footer hr {
     height: auto;
     padding: 10px 20px;
     min-width: 100px;
-    font-size: 14px;
+    font-size: 13px;
   }
   
-  /* Navigation menu buttons/links */
+  /* Navigation menu buttons/links - balanced for 9 buttons fit */
   .nav-menu a {
     height: auto;
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     font-size: 14px;
   }
   
@@ -4218,38 +4218,38 @@ footer hr {
   /* Large buttons */
   .btn-large {
     padding: 14px 28px;
-    font-size: 16px;
+    font-size: 15px;
     height: auto;
   }
   
   /* Submit buttons in forms */
   .submit-btn {
     padding: 14px 28px;
-    font-size: 16px;
+    font-size: 15px;
   }
   
   /* Search button in filters */
   .search-btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     min-height: auto;
     font-size: 14px;
   }
   
   /* Dropdown menu buttons */
   .dropdown-menu a {
-    padding: 10px 16px;
+    padding: 12px 18px;
     font-size: 13px;
   }
   
   /* Mobile nav menu buttons (in desktop view shown in mobile overlay) */
   .mobile-nav-menu a {
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 15px;
   }
   
   /* Mobile dropdown toggle */
   .mobile-dropdown-toggle {
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 15px;
   }
 }
@@ -4257,8 +4257,8 @@ footer hr {
 /* Extra large screens (1200px and above) */
 @media (min-width: 1200px) {
   .btn {
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     height: auto;
     font-size: 14px;
   }
@@ -4266,8 +4266,8 @@ footer hr {
   .btn-business-owner,
   .btn-login {
     height: auto;
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     font-size: 14px;
   }
   
@@ -4276,13 +4276,13 @@ footer hr {
     height: auto;
     padding: 10px 20px;
     min-width: 100px;
-    font-size: 14px;
+    font-size: 13px;
   }
   
   .nav-menu a {
     height: auto;
-    padding: 10px 20px;
-    min-width: 100px;
+    padding: 12px 24px;
+    min-width: 115px;
     font-size: 14px;
   }
 }
