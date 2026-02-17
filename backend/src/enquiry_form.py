@@ -11,7 +11,7 @@ from botocore.exceptions import ClientError
 
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
-table_name = os.environ.get('SUBMISSIONS_TABLE', 'chef-services-submissions')
+table_name = os.environ.get('SUBMISSIONS_TABLE', 'chef-services-backend-submissions')
 enquiries_table = dynamodb.Table(table_name)
 
 def lambda_handler(event, context):
@@ -64,7 +64,7 @@ def lambda_handler(event, context):
         
         item = {
             'id': submission_id,
-            'type': 'enquiry_form',
+            'formType': 'enquiry',
             'timestamp': timestamp,
             'name': name,
             'email': email,
