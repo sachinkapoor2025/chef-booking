@@ -119,178 +119,6 @@
 <body>
     <!-- Global Header will be loaded here -->
     <div id="header-container"></div>
-    
-    <!-- Direct Mobile Hamburger Menu for reliability -->
-    <style>
-    /* Direct Mobile Menu Toggle Styles - High Priority */
-    #direct-mobile-toggle {
-        display: none;
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        width: 50px;
-        height: 44px;
-        background: #3b82f6 !important;
-        border: 2px solid #2563eb !important;
-        border-radius: 8px;
-        z-index: 10000 !important;
-        cursor: pointer;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        padding: 5px;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-    }
-    
-    #direct-mobile-toggle span {
-        display: block;
-        width: 28px;
-        height: 3px;
-        background: white !important;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
-    
-    #direct-mobile-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    #direct-mobile-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    #direct-mobile-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-    
-    /* Direct Mobile Menu Overlay */
-    #direct-mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        overflow-y: auto;
-    }
-    
-    #direct-mobile-menu.active {
-        display: block;
-    }
-    
-    #direct-mobile-menu .menu-content {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 300px;
-        max-width: 85%;
-        height: 100%;
-        background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
-        padding: 80px 20px 20px;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
-    }
-    
-    #direct-mobile-menu .menu-content a {
-        display: block;
-        color: white;
-        padding: 15px 10px;
-        font-size: 18px;
-        font-weight: 600;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    
-    #direct-mobile-menu .menu-content a:hover {
-        background: rgba(255,255,255,0.1);
-    }
-    
-    #direct-mobile-menu .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: white;
-        color: #3b82f6;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 24px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-    
-    @media (max-width: 768px) {
-        #direct-mobile-toggle {
-            display: flex !important;
-        }
-    }
-    </style>
-    
-    <!-- Direct Mobile Toggle Button -->
-    <button id="direct-mobile-toggle" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    
-    <!-- Direct Mobile Menu -->
-    <div id="direct-mobile-menu">
-        <div class="menu-content">
-            <button class="close-btn" id="direct-menu-close">&times;</button>
-            <a href="index.html">Home</a>
-            <a href="catering-services.html">Catering Services</a>
-            <a href="balanced-diet.html">Balanced Diet</a>
-            <a href="book-a-chef.html">Book a Chef</a>
-            <a href="weekly-meals.html">Weekly Meal Service</a>
-            <a href="explore-chefs.html">Explore Chefs</a>
-            <a href="menu-services.html">Menu Services</a>
-            <a href="about-us.html">About Us</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="faq.html">FAQ</a>
-            <a href="contact-us.html">Contact Us</a>
-            <a href="become-a-chef.html">Become a Chef</a>
-            <a href="login.html">Log In</a>
-        </div>
-    </div>
-    
-    <script>
-    // Direct Mobile Menu Functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        var toggle = document.getElementById('direct-mobile-toggle');
-        var menu = document.getElementById('direct-mobile-menu');
-        var closeBtn = document.getElementById('direct-menu-close');
-        
-        if (toggle && menu) {
-            toggle.addEventListener('click', function() {
-                menu.classList.add('active');
-                toggle.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
-        
-        if (closeBtn && menu) {
-            closeBtn.addEventListener('click', function() {
-                menu.classList.remove('active');
-                if (toggle) toggle.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-        
-        if (menu) {
-            menu.addEventListener('click', function(e) {
-                if (e.target === menu) {
-                    menu.classList.remove('active');
-                    if (toggle) toggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        }
-    });
-    </script>
 
     <!-- Sticky CTA Bar for Mobile -->
     <div class="sticky-cta-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 1rem; display: none; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15);">
@@ -375,13 +203,11 @@
                 .hero-content {
                     flex-direction: column;
                     text-align: center;
-                    gap: 1.5rem;
-                    padding: 1rem;
+                    gap: 2rem;
                 }
                 .hero-text {
                     min-width: auto;
                     order: 2;
-                    text-align: center !important;
                 }
                 .hero-image {
                     min-width: auto;
@@ -393,33 +219,10 @@
                     height: auto;
                 }
                 .hero-text h1 {
-                    font-size: 2rem !important;
-                    line-height: 1.2 !important;
+                    font-size: 2rem;
                 }
                 .hero-text p {
-                    font-size: 1.1rem !important;
-                }
-                .hero-text ul {
-                    font-size: 1rem !important;
-                    text-align: left !important;
-                    display: inline-block !important;
-                }
-                .hero-text ul li {
-                    font-size: 1rem !important;
-                }
-                .hero-text > div {
-                    flex-direction: row !important;
-                    gap: 1rem !important;
-                }
-                .hero-text > div > div {
-                    font-size: 0.9rem !important;
-                }
-                .hero-text > div > div div:first-child {
-                    font-size: 1.75rem !important;
-                }
-                .hero-text .btn {
-                    font-size: 1rem !important;
-                    padding: 0.75rem 1rem !important;
+                    font-size: 1.1rem;
                 }
                 
                 /* Social Proof - 4 columns to 2 */
@@ -520,19 +323,13 @@
             
             @media (max-width: 576px) {
                 .hero-content {
-                    padding: 0 10px;
+                    padding: 0 15px;
                 }
                 .hero-text h1 {
-                    font-size: 1.35rem !important;
+                    font-size: 1.75rem;
                 }
                 .hero-text p {
-                    font-size: 0.85rem !important;
-                }
-                .hero-text ul {
-                    font-size: 0.8rem !important;
-                }
-                .hero-text ul li {
-                    font-size: 0.8rem !important;
+                    font-size: 1rem;
                 }
                 
                 /* Social Proof - 2 to 1 */
