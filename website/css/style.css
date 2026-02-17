@@ -4167,122 +4167,122 @@ footer hr {
 }
 
 /* Laptop/Desktop Button Size (1024px and above) */
-/* Compact button size for laptop/computer screens */
+/* Balanced button size for laptop/computer screens */
 @media (min-width: 1024px) {
   /* Main button class */
   .btn {
-    padding: 6px 12px;
-    min-width: 70px;
+    padding: 10px 20px;
+    min-width: 100px;
     height: auto;
-    font-size: 12px;
+    font-size: 14px;
   }
   
   /* Business owner and login buttons */
   .btn-business-owner,
   .btn-login {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
   
   /* Outline buttons */
   .btn-outline {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
   
   /* Small buttons */
   .btn-small {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
   
   /* Navigation menu buttons/links */
   .nav-menu a {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
   
   /* Action buttons container */
   .action-buttons {
-    gap: 0.3rem;
+    gap: 0.5rem;
   }
   
   /* Large buttons */
   .btn-large {
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 14px 28px;
+    font-size: 16px;
     height: auto;
   }
   
   /* Submit buttons in forms */
   .submit-btn {
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 14px 28px;
+    font-size: 16px;
   }
   
   /* Search button in filters */
   .search-btn {
-    padding: 6px 12px;
+    padding: 10px 20px;
     min-height: auto;
-    font-size: 12px;
+    font-size: 14px;
   }
   
   /* Dropdown menu buttons */
   .dropdown-menu a {
-    padding: 6px 10px;
-    font-size: 11px;
+    padding: 10px 16px;
+    font-size: 13px;
   }
   
   /* Mobile nav menu buttons (in desktop view shown in mobile overlay) */
   .mobile-nav-menu a {
-    padding: 8px 14px;
-    font-size: 13px;
+    padding: 12px 24px;
+    font-size: 15px;
   }
   
   /* Mobile dropdown toggle */
   .mobile-dropdown-toggle {
-    padding: 8px 14px;
-    font-size: 13px;
+    padding: 12px 24px;
+    font-size: 15px;
   }
 }
 
 /* Extra large screens (1200px and above) */
 @media (min-width: 1200px) {
   .btn {
-    padding: 6px 12px;
-    min-width: 70px;
+    padding: 10px 20px;
+    min-width: 100px;
     height: auto;
-    font-size: 12px;
+    font-size: 14px;
   }
   
   .btn-business-owner,
   .btn-login {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
   
   .btn-outline,
   .btn-small {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
   
   .nav-menu a {
     height: auto;
-    padding: 6px 12px;
-    min-width: 70px;
-    font-size: 12px;
+    padding: 10px 20px;
+    min-width: 100px;
+    font-size: 14px;
   }
 }
