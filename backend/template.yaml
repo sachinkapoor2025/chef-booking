@@ -557,7 +557,7 @@ Resources:
     Properties:
       FunctionName: !Sub "${AWS::StackName}-enquiry-submission"
       CodeUri: src/
-      Handler: enquiry_submission.lambda_handler
+      Handler: enquiry_form.lambda_handler
       Runtime: python3.12
       Timeout: 60
       Environment:
