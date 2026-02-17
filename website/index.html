@@ -203,11 +203,13 @@
                 .hero-content {
                     flex-direction: column;
                     text-align: center;
-                    gap: 2rem;
+                    gap: 1.5rem;
+                    padding: 1rem;
                 }
                 .hero-text {
                     min-width: auto;
                     order: 2;
+                    text-align: center !important;
                 }
                 .hero-image {
                     min-width: auto;
@@ -219,10 +221,29 @@
                     height: auto;
                 }
                 .hero-text h1 {
-                    font-size: 2rem;
+                    font-size: 1.5rem !important;
+                    line-height: 1.3 !important;
                 }
                 .hero-text p {
-                    font-size: 1.1rem;
+                    font-size: 0.95rem !important;
+                }
+                .hero-text ul {
+                    font-size: 0.9rem !important;
+                    text-align: left !important;
+                    display: inline-block !important;
+                }
+                .hero-text ul li {
+                    font-size: 0.9rem !important;
+                }
+                .hero-text > div {
+                    flex-direction: column !important;
+                    gap: 1rem !important;
+                }
+                .hero-text > div > div {
+                    font-size: 0.85rem !important;
+                }
+                .hero-text > div > div div:first-child {
+                    font-size: 1.5rem !important;
                 }
                 
                 /* Social Proof - 4 columns to 2 */
@@ -323,13 +344,19 @@
             
             @media (max-width: 576px) {
                 .hero-content {
-                    padding: 0 15px;
+                    padding: 0 10px;
                 }
                 .hero-text h1 {
-                    font-size: 1.75rem;
+                    font-size: 1.35rem !important;
                 }
                 .hero-text p {
-                    font-size: 1rem;
+                    font-size: 0.85rem !important;
+                }
+                .hero-text ul {
+                    font-size: 0.8rem !important;
+                }
+                .hero-text ul li {
+                    font-size: 0.8rem !important;
                 }
                 
                 /* Social Proof - 2 to 1 */
