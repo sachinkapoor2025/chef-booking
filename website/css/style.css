@@ -4165,3 +4165,124 @@ footer hr {
     display: none !important;
   }
 }
+
+/* Laptop/Desktop Button Size Reduction (1024px and above) */
+/* Reduce button size but keep text size the same */
+@media (min-width: 1024px) {
+  /* Main button class */
+  .btn {
+    padding: 0.5rem 1rem;
+    min-width: 90px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+  
+  /* Business owner and login buttons */
+  .btn-business-owner,
+  .btn-login {
+    height: 32px;
+    padding: 0 12px;
+    min-width: 80px;
+    font-size: 0.9rem;
+  }
+  
+  /* Outline buttons */
+  .btn-outline {
+    height: 32px;
+    padding: 0 12px;
+    min-width: 80px;
+    font-size: 0.9rem;
+  }
+  
+  /* Small buttons */
+  .btn-small {
+    height: 32px;
+    padding: 0 12px;
+    min-width: 80px;
+    font-size: 0.9rem;
+  }
+  
+  /* Navigation menu buttons/links */
+  .nav-menu a {
+    height: 32px;
+    padding: 0 12px;
+    min-width: 75px;
+    font-size: 0.9rem;
+  }
+  
+  /* Action buttons container */
+  .action-buttons {
+    gap: 0.35rem;
+  }
+  
+  /* Large buttons */
+  .btn-large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    height: auto;
+  }
+  
+  /* Submit buttons in forms */
+  .submit-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Search button in filters */
+  .search-btn {
+    padding: 0.5rem 1rem;
+    min-height: 34px;
+    font-size: 0.95rem;
+  }
+  
+  /* Dropdown menu buttons */
+  .dropdown-menu a {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Mobile nav menu buttons (in desktop view shown in mobile overlay) */
+  .mobile-nav-menu a {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Mobile dropdown toggle */
+  .mobile-dropdown-toggle {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Extra large screens (1200px and above) - even smaller buttons */
+@media (min-width: 1200px) {
+  .btn {
+    padding: 0.45rem 0.9rem;
+    min-width: 85px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+  
+  .btn-business-owner,
+  .btn-login {
+    height: 30px;
+    padding: 0 10px;
+    min-width: 75px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-outline,
+  .btn-small {
+    height: 30px;
+    padding: 0 10px;
+    min-width: 75px;
+    font-size: 0.85rem;
+  }
+  
+  .nav-menu a {
+    height: 30px;
+    padding: 0 10px;
+    min-width: 70px;
+    font-size: 0.85rem;
+  }
+}
