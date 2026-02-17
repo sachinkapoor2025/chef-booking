@@ -551,6 +551,35 @@ Resources:
             Path: /catering-submission
             Method: post
 
+  # Enquiry Form Submission Function
+  EnquirySubmissionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-enquiry-submission"
+      CodeUri: src/
+      Handler: enquiry_submission.lambda_handler
+      Runtime: python3.12
+      Timeout: 60
+      Environment:
+        Variables:
+          SUBMISSIONS_TABLE: !Ref SubmissionsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SubmissionsTable
+      Events:
+        SubmitEnquiry:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /enquiry
+            Method: post
+        EnquiryOptions:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /enquiry
+            Method: options
+
   BookChefFunction:
     Type: AWS::Serverless::Function
     Properties:
