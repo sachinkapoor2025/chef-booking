@@ -4158,3 +4158,10 @@ footer hr {
   }
 }
 
+
+/* Hide dropdown arrows in laptop/desktop view (769px and above) */
+@media (min-width: 769px) {
+  .dropdown-arrow {
+    display: none !important;
+  }
+}
