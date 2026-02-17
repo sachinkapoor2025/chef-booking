@@ -419,46 +419,138 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            #requirements {
-                padding: 2rem 1rem;
+            #requirements, #application-cta, #application-process, #chef-benefits, #chef-testimonials {
+                padding: 2rem 1rem !important;
+                max-width: 100% !important;
+                overflow-x: hidden !important;
             }
             
-            #requirements h2 {
-                font-size: 2rem;
+            #requirements h2, #application-process h2, #chef-benefits h2, #chef-testimonials h2 {
+                font-size: 1.75rem !important;
+                text-align: center !important;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                padding: 0 0.5rem !important;
             }
             
             .requirement-card {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem 1rem !important;
             }
             
             .card-icon {
-                width: 70px;
-                height: 70px;
+                width: 60px !important;
+                height: 60px !important;
             }
             
             .card-icon i {
-                font-size: 1.5rem;
+                font-size: 1.25rem !important;
+            }
+            
+            .requirement-card h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .requirement-card p {
+                font-size: 0.95rem !important;
             }
 
             #application-cta {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem !important;
             }
 
             .cta-content {
-                padding: 2rem;
+                padding: 1.5rem 1rem !important;
             }
 
             .form-header h2 {
-                font-size: 2.5rem;
+                font-size: 1.75rem !important;
+            }
+            
+            .form-header p {
+                font-size: 1rem !important;
             }
 
             .cta-actions {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 1rem !important;
+            }
+
+            .cta-actions .btn {
+                width: 100% !important;
+                max-width: 300px !important;
+                padding: 1rem 1.5rem !important;
+                font-size: 1rem !important;
             }
 
             .cta-info {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .info-item {
+                padding: 1.5rem 1rem !important;
+            }
+
+            /* Steps grid */
+            .steps {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            /* Benefits grid */
+            .benefits-list {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            .benefit {
+                padding: 1.5rem 1rem !important;
+            }
+            
+            .benefit i {
+                font-size: 2rem !important;
+            }
+            
+            /* Testimonials */
+            .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem 1rem !important;
+            }
+            
+            /* Why Join Us */
+            #why-join-us {
+                padding: 2rem 1rem !important;
+            }
+            
+            #why-join-us .why-choose-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            #why-join-us h2 {
+                font-size: 1.75rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #requirements h2, #application-process h2, #chef-benefits h2, #chef-testimonials h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .form-header h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .cta-content {
+                padding: 1rem 0.75rem !important;
             }
         }
     </style>

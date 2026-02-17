@@ -16,6 +16,64 @@
     <meta name="description" content="Convenient weekly meal preparation and delivery services. Healthy, customized meals prepared fresh by professional chefs.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    /* Mobile Responsive Styles for Weekly Meals Page */
+    @media (max-width: 768px) {
+        #weekly-meals {
+            padding: 1rem !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+        #weekly-meals h1 {
+            font-size: 1.75rem !important;
+            text-align: center !important;
+        }
+        #weekly-meals > p {
+            font-size: 1rem !important;
+            text-align: center !important;
+            padding: 0 0.5rem !important;
+        }
+        .services {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 0.5rem !important;
+        }
+        .service {
+            padding: 1rem !important;
+        }
+        .service img {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 200px !important;
+            object-fit: cover !important;
+        }
+        .service h3 {
+            font-size: 1.25rem !important;
+            text-align: center !important;
+        }
+        .service p {
+            font-size: 0.95rem !important;
+            text-align: center !important;
+        }
+        #weekly-meals .btn {
+            display: block !important;
+            width: 100% !important;
+            max-width: 300px !important;
+            margin: 1.5rem auto !important;
+            text-align: center !important;
+            padding: 1rem !important;
+            font-size: 1rem !important;
+        }
+    }
+    @media (max-width: 480px) {
+        #weekly-meals h1 {
+            font-size: 1.5rem !important;
+        }
+        .service img {
+            max-height: 180px !important;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Global Header will be loaded here -->

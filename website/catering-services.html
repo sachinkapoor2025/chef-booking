@@ -9,6 +9,163 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <style>
+    /* Mobile Responsive Styles for Catering Services Page */
+    @media (max-width: 768px) {
+        /* Hero Section */
+        #hero-large .hero-content {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 2rem !important;
+            padding: 0 15px !important;
+        }
+        #hero-large .hero-text {
+            min-width: auto !important;
+            text-align: center !important;
+        }
+        #hero-large .hero-text h1 {
+            font-size: 2rem !important;
+        }
+        #hero-large .hero-text p {
+            font-size: 1rem !important;
+        }
+        #hero-large .hero-image {
+            min-width: auto !important;
+            width: 100% !important;
+        }
+        #hero-large .hero-image img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        
+        /* Service Categories - 3 columns to 1 */
+        #catering-services > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Menu Options - 2 columns to 1 */
+        #menu-options > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        #menu-options > div:nth-child(3) > div {
+            padding: 1.5rem !important;
+        }
+        #menu-options > div:nth-child(3) > div > div {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+        }
+        
+        /* Dietary Options - 4 columns to 2, then 1 */
+        #dietary-options > div:nth-child(3) {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+            padding: 0 15px !important;
+        }
+        #dietary-options > div:nth-child(3) > div {
+            padding: 1.5rem !important;
+        }
+        
+        /* Food Safety - 3 columns to 1 */
+        #food-safety > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        #food-safety > div:nth-child(3) > div {
+            padding: 1.5rem !important;
+        }
+        #food-safety > div:nth-child(5) {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Process Section - 4 columns to 2, then 1 */
+        #catering-process > div:nth-child(3) {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Testimonials - 3 columns to 1 */
+        #catering-testimonials > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Pricing - 3 columns to 1 */
+        #catering-pricing > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        #catering-pricing > div:nth-child(3) > div:nth-child(2) {
+            transform: scale(1) !important;
+            margin: 0.5rem 0 !important;
+        }
+        
+        /* CTA Section */
+        #catering-cta {
+            padding: 2rem 15px !important;
+        }
+        #catering-cta h2 {
+            font-size: 1.5rem !important;
+        }
+        #catering-cta p {
+            font-size: 1rem !important;
+        }
+        #catering-cta > div {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        #catering-cta > div a {
+            width: 100% !important;
+            max-width: 300px !important;
+            text-align: center !important;
+            padding: 0.75rem 1.5rem !important;
+            font-size: 1rem !important;
+        }
+        
+        /* Section headings */
+        h2 {
+            font-size: 1.75rem !important;
+        }
+        
+        /* Lists in sections */
+        ul {
+            padding-left: 1rem !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #hero-large {
+            padding: 2rem 0 !important;
+        }
+        #hero-large .hero-text h1 {
+            font-size: 1.5rem !important;
+        }
+        #dietary-options > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+        }
+        #catering-process > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+        }
+        
+        /* Pricing cards */
+        #catering-pricing > div:nth-child(3) > div {
+            padding: 1.5rem 1rem !important;
+        }
+        #catering-pricing > div:nth-child(3) > div > div:first-of-type {
+            font-size: 1.5rem !important;
+        }
+    }
+    </style>
+    
     
     <!-- Bootstrap CSS -->
     <!-- Speed Optimizations -->

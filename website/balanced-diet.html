@@ -12,6 +12,114 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="js/script.js" as="script">
+    
+    <style>
+    /* Mobile Responsive Styles for Balanced Diet Page */
+    @media (max-width: 768px) {
+        /* Hero Section */
+        #hero-large .hero-content {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 2rem !important;
+            padding: 0 15px !important;
+        }
+        #hero-large .hero-text {
+            padding-right: 0 !important;
+            text-align: center !important;
+        }
+        #hero-large .hero-text h1 {
+            font-size: 2rem !important;
+        }
+        #hero-large .hero-text p {
+            font-size: 1rem !important;
+        }
+        #hero-large .hero-image {
+            width: 100% !important;
+        }
+        #hero-large .hero-image img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        
+        /* What is Balanced Diet - 2 columns to 1 */
+        #what-is-balanced-diet > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Benefits - 3 columns to 1 */
+        #benefits > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Diet by Goals - 3 columns to 1 */
+        #diet-by-goals > div:nth-child(3) {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* CTA Section */
+        #main-cta {
+            padding: 2rem 15px !important;
+            margin: 2rem 15px !important;
+        }
+        #main-cta h2 {
+            font-size: 1.5rem !important;
+        }
+        #main-cta p {
+            font-size: 1rem !important;
+        }
+        #main-cta > div {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        #main-cta > div a {
+            width: 100% !important;
+            max-width: 300px !important;
+            text-align: center !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Section headings */
+        h2 {
+            font-size: 1.75rem !important;
+            padding: 0 15px !important;
+        }
+        
+        /* Section padding */
+        section {
+            padding: 2rem 15px !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #hero-large {
+            padding: 2rem 0 !important;
+        }
+        #hero-large .hero-text h1 {
+            font-size: 1.5rem !important;
+        }
+        
+        /* Benefits cards */
+        #benefits > div:nth-child(3) > div {
+            padding: 1.5rem !important;
+        }
+        
+        /* Diet goals cards */
+        #diet-by-goals > div:nth-child(3) > div {
+            padding: 1.5rem !important;
+        }
+        
+        /* Core principles and why it matters */
+        #what-is-balanced-diet > div:nth-child(3) > div {
+            padding: 1.5rem !important;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Global Header will be loaded here -->

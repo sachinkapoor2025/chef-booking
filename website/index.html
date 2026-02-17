@@ -184,7 +184,7 @@
             </div>
         </section>
 
-        <!-- Responsive styles for hero section -->
+        <!-- Responsive styles for home page -->
         <style>
             @media (max-width: 992px) {
                 .hero-content {
@@ -219,14 +219,105 @@
                     height: auto;
                 }
                 .hero-text h1 {
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                 }
                 .hero-text p {
-                    font-size: 1.2rem;
+                    font-size: 1.1rem;
                 }
-                .btn {
-                    width: 100%;
-                    max-width: 300px;
+                
+                /* Social Proof - 4 columns to 2 */
+                #social-proof > div:nth-child(3) {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1rem !important;
+                    padding: 0 15px !important;
+                }
+                
+                /* Main CTA - stack buttons */
+                #main-cta {
+                    padding: 2rem 15px !important;
+                    margin: 2rem 15px !important;
+                }
+                #main-cta > div {
+                    flex-direction: column !important;
+                    align-items: center !important;
+                }
+                #main-cta > div a {
+                    width: 100% !important;
+                    max-width: 300px !important;
+                }
+                
+                /* Chef Photos - 8 to 4 to 2 */
+                .photos-gallery {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1rem !important;
+                    padding: 0 15px !important;
+                }
+                
+                /* Videos - 3 columns to 2 */
+                .videos-gallery {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1rem !important;
+                }
+                
+                /* How It Works - 4 to 2 to 1 */
+                .how-it-works-steps {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1.5rem !important;
+                    padding: 0 15px !important;
+                }
+                
+                /* Who We Are */
+                .who-we-are-content {
+                    grid-template-columns: 1fr !important;
+                    gap: 2rem !important;
+                    text-align: center !important;
+                }
+                .who-we-are-image img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+                
+                /* Why Choose Us - 4 to 2 */
+                .why-choose-grid {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1.5rem !important;
+                    padding: 0 15px !important;
+                }
+                
+                /* Trust Badges */
+                #trust-badges > div {
+                    flex-direction: column !important;
+                    gap: 1rem !important;
+                }
+                #trust-badges > div > div {
+                    min-width: auto !important;
+                    width: 100% !important;
+                    max-width: 300px !important;
+                    margin: 0 auto !important;
+                }
+                
+                /* Service Areas */
+                #service-areas > div:last-child {
+                    flex-direction: column !important;
+                    align-items: center !important;
+                }
+                
+                /* Testimonials - 3 to 1 */
+                .testimonials-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 1.5rem !important;
+                    padding: 0 15px !important;
+                }
+                
+                /* Section headings */
+                h2 {
+                    font-size: 1.75rem !important;
+                    padding: 0 15px !important;
+                }
+                
+                /* Section padding */
+                section {
+                    padding: 2rem 15px !important;
                 }
             }
             
@@ -235,14 +326,46 @@
                     padding: 0 15px;
                 }
                 .hero-text h1 {
-                    font-size: 2rem;
+                    font-size: 1.75rem;
                 }
                 .hero-text p {
-                    font-size: 1.1rem;
-                }
-                .btn {
                     font-size: 1rem;
-                    padding: 0.75rem 1.5rem;
+                }
+                
+                /* Social Proof - 2 to 1 */
+                #social-proof > div:nth-child(3) {
+                    grid-template-columns: 1fr !important;
+                }
+                
+                /* Chef Photos - 2 to 1 */
+                .photos-gallery {
+                    grid-template-columns: 1fr !important;
+                }
+                
+                /* Videos - 2 to 1 */
+                .videos-gallery {
+                    grid-template-columns: 1fr !important;
+                }
+                
+                /* How It Works */
+                .how-it-works-steps {
+                    grid-template-columns: 1fr !important;
+                }
+                
+                /* Why Choose Us */
+                .why-choose-grid {
+                    grid-template-columns: 1fr !important;
+                }
+                
+                /* Trust Badges */
+                #trust-badges > div > div {
+                    padding: 1rem !important;
+                }
+                
+                /* Service Areas tags */
+                #service-areas > div:last-child > span {
+                    font-size: 0.85rem !important;
+                    padding: 0.5rem 1rem !important;
                 }
             }
         </style>
