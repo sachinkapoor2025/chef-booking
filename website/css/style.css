@@ -920,14 +920,18 @@ header {
 .logo img {
     display: block;
     height: 110px;
-    width: auto;
+    width: 110px;
+    max-width: 110px;
     transition: all 0.3s ease;
+    object-fit: contain;
 }
 
 /* Mobile logo - smaller size */
 @media (max-width: 768px) {
     .logo img {
         height: 60px !important;
+        width: 60px !important;
+        max-width: 60px !important;
     }
 }
 
@@ -4220,12 +4224,23 @@ footer hr {
     html, body {
         overflow-x: hidden;
         max-width: 100vw;
+        width: 100%;
     }
     
     /* Ensure main content containers don't overflow */
-    main, section, article, aside {
-        max-width: 100%;
-        overflow-x: hidden;
+    main, section, article, aside, div, .container {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* Fix all elements to respect viewport */
+    * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     /* Fix tables on mobile */
@@ -4236,15 +4251,37 @@ footer hr {
     }
     
     /* Fix grid layouts */
-    .grid, [class*="grid"] {
+    .grid, [class*="grid"], .footer-content, .trust-stats, .areas-grid, .testimonials-grid, .services, .blog-posts, .gallery-images, .chef-cards, .steps, .benefits-list, .how-it-works-steps, .why-choose-grid, .photos-gallery, .videos-gallery, .gallery-videos {
         grid-template-columns: 1fr !important;
+        gap: 1rem !important;
     }
     
-    /* Ensure text doesn't overflow */
-    p, h1, h2, h3, h4, h5, h6, span, a, li {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
+    /* Ensure text doesn't overflow - stronger rules */
+    p, h1, h2, h3, h4, h5, h6, span, a, li, td, th, label, input, textarea, select {
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+        width: auto !important;
+    }
+    
+    /* Remove any fixed widths on mobile */
+    img, video, iframe {
+        max-width: 100% !important;
+        height: auto !important;
+        width: 100% !important;
+    }
+    
+    /* Fix flex containers */
+    .hero-container, .cta-buttons, .action-buttons, .trust-badges, .contact-content, .pricing-cards, .menu-categories, .tags, .chef-specialties {
+        flex-wrap: wrap !important;
+        flex-direction: column !important;
+    }
+    
+    /* Fix flex items */
+    .hero-container > *, .cta-buttons > *, .action-buttons > *, .trust-badges > * {
+        max-width: 100% !important;
+        width: 100% !important;
+        flex: none !important;
     }
     
     /* Mobile menu overlay must be visible */
@@ -4265,6 +4302,54 @@ footer hr {
     .Sticky-cta-bar,
     .sticky-cta-bar {
         display: none !important;
+    }
+    
+    /* Reduce font sizes for mobile */
+    h1 { font-size: 1.75rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    h3 { font-size: 1.25rem !important; }
+    p, span, a, li { font-size: 1rem !important; }
+    
+    /* Fix form elements */
+    input, textarea, select, button {
+        max-width: 100% !important;
+        width: 100% !important;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    /* Fix footer */
+    footer {
+        padding: 2rem 1rem !important;
+        overflow-x: hidden;
+    }
+    
+    /* Fix hero sections */
+    .hero-content, .hero-text {
+        text-align: center !important;
+        padding: 0 !important;
+    }
+    
+    /* Fix overlay text */
+    .hero-overlay h1 {
+        font-size: 1.75rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .hero-overlay p {
+        font-size: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    /* Fix footer columns */
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* Fix cards */
+    .chef-card, .testimonial-card, .service, .blog-post, .area-item, .step-card, .benefit, .review, .pricing-card {
+        padding: 1rem !important;
+        margin: 0 !important;
     }
 }
 
