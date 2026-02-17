@@ -1,0 +1,18 @@
+# Robots.txt for Maharaja Chef Services
+# https://maharajachef.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://maharajachef.com/sitemap.xml
+
+# Crawl-delay (optional, for politeness)
+Crawl-delay: 1
+
+# Block access to certain directories (if needed)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Canonical domain preference
+Host: https://maharajachef.com
