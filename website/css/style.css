@@ -919,7 +919,7 @@ header {
 
 .logo img {
     display: block;
-    height: 90px;
+    height: 110px;
     width: auto;
     transition: all 0.3s ease;
 }
@@ -4251,6 +4251,20 @@ footer hr {
     .mobile-menu-overlay {
         overflow-x: hidden;
         overflow-y: auto;
+    }
+    
+    /* Hide sticky CTA bar on index page mobile view */
+    body#index-page .Sticky-cta-bar,
+    body#index-page .sticky-cta-bar,
+    body.index .Sticky-cta-bar,
+    body.index .sticky-cta-bar {
+        display: none !important;
+    }
+    
+    /* General fix: hide sticky CTA on home page mobile */
+    .Sticky-cta-bar,
+    .sticky-cta-bar {
+        display: none !important;
     }
 }
 
