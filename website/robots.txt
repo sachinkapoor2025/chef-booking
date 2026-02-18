@@ -1,0 +1,65 @@
+# Robots.txt for Maharaja Chef Services
+# Generated on 2024-12-18
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Crawl delay to be respectful to servers
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://maharajachef.com/sitemap.xml
+
+# Allow crawling of important directories
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /chef-profiles/
+
+# Disallow crawling of admin and system directories
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /test-*
+Disallow: /update_*
+Disallow: /add_*
+Disallow: /remove_*
+Disallow: /fix_*
+
+# Disallow crawling of temporary and development files
+Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /*.log$
+Disallow: /*.swp$
+
+# Disallow parameter-heavy URLs that might cause duplicate content
+Disallow: /*?*
+Allow: /*?ref=*
+
+# Allow specific search engines to crawl more aggressively
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block known bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Host declaration
+Host: https://maharajachef.com
