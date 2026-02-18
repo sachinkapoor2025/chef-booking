@@ -9,6 +9,9 @@ import uuid
 from datetime import datetime
 from botocore.exceptions import ClientError
 
+# Initialize SES for email
+ses = boto3.client('ses')
+
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
 table_name = os.environ.get('SUBMISSIONS_TABLE', 'chef-services-backend-submissions')
@@ -80,6 +83,9 @@ def lambda_handler(event, context):
         # Save to DynamoDB
         enquiries_table.put_item(Item=item)
         
+        # Send confirmation email
+        send_confirmation_email(item)
+        
         # Return success
         return {
             'statusCode': 200,
@@ -120,3 +126,94 @@ def error_response(message):
             'message': message
         })
     }
+
+
+def send_confirmation_email(enquiry_data):
+    """
+    Send confirmation email to the customer
+    """
+    try:
+        # Email content
+        subject = f"Enquiry Confirmation - {enquiry_data['id']}"
+        
+        # Format services list
+        services_list = ', '.join(enquiry_data.get('services', [])) if enquiry_data.get('services') else 'Not specified'
+        
+        body_text = f"""
+        Dear {enquiry_data['name']},
+
+        Thank you for your enquiry with Maharaja Chef Services!
+
+        Your enquiry details:
+        - Enquiry ID: {enquiry_data['id']}
+        - Event Type: {enquiry_data.get('eventType', 'Not specified')}
+        - Event Date: {enquiry_data.get('eventDate', 'Not specified')}
+        - Location: {enquiry_data.get('location', 'Not specified')}
+        - Number of Guests: {enquiry_data.get('guests', 'Not specified')}
+        - Services Interested In: {services_list}
+        - Contact Number: {enquiry_data['phone']}
+        - Message: {enquiry_data.get('message', 'Not specified')}
+
+        We will contact you shortly to discuss your requirements and provide a quote.
+
+        Best regards,
+        Maharaja Chef Services Team
+        """
+        
+        body_html = f"""
+        <html>
+        <head></head>
+        <body>
+            <h2>Enquiry Confirmation</h2>
+            <p>Dear {enquiry_data['name']},</p>
+            <p>Thank you for your enquiry with Maharaja Chef Services!</p>
+            
+            <h3>Your enquiry details:</h3>
+            <ul>
+                <li><strong>Enquiry ID:</strong> {enquiry_data['id']}</li>
+                <li><strong>Event Type:</strong> {enquiry_data.get('eventType', 'Not specified')}</li>
+                <li><strong>Event Date:</strong> {enquiry_data.get('eventDate', 'Not specified')}</li>
+                <li><strong>Location:</strong> {enquiry_data.get('location', 'Not specified')}</li>
+                <li><strong>Number of Guests:</strong> {enquiry_data.get('guests', 'Not specified')}</li>
+                <li><strong>Services Interested In:</strong> {services_list}</li>
+                <li><strong>Contact Number:</strong> {enquiry_data['phone']}</li>
+                <li><strong>Message:</strong> {enquiry_data.get('message', 'Not specified')}</li>
+            </ul>
+            
+            <p>We will contact you shortly to discuss your requirements and provide a quote.</p>
+            
+            <p>Best regards,<br>
+            Maharaja Chef Services Team</p>
+        </body>
+        </html>
+        """
+        
+        # Send email
+        response = ses.send_email(
+            Source='noreply@maharajachef.com',  # Replace with your verified email
+            Destination={
+                'ToAddresses': [enquiry_data['email']]
+            },
+            Message={
+                'Subject': {
+                    'Data': subject,
+                    'Charset': 'UTF-8'
+                },
+                'Body': {
+                    'Text': {
+                        'Data': body_text,
+                        'Charset': 'UTF-8'
+                    },
+                    'Html': {
+                        'Data': body_html,
+                        'Charset': 'UTF-8'
+                    }
+                }
+            }
+        )
+        
+        print(f"Confirmation email sent to {enquiry_data['email']}")
+        
+    except Exception as e:
+        print(f"Failed to send confirmation email: {str(e)}")
+        # Don't fail the enquiry if email fails

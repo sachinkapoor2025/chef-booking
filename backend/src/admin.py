@@ -77,6 +77,18 @@ def handler(event, context):
         elif http_method == 'GET' and path == '/admin/weekly-data':
             return get_weekly_data()
 
+        elif http_method == 'GET' and path == '/admin/chef-applications':
+            return get_chef_applications()
+
+        elif http_method == 'GET' and path == '/admin/blog-submissions':
+            return get_blog_submissions()
+
+        elif http_method == 'GET' and path == '/admin/catering-enquiries':
+            return get_catering_enquiries()
+
+        elif http_method == 'GET' and path == '/admin/enquiry-form':
+            return get_enquiry_form_data()
+
         return {
             'statusCode': 404,
             'headers': cors_headers(),
@@ -242,3 +254,141 @@ def get_weekly_data():
         'headers': cors_headers(),
         'body': json.dumps(response['Items'], default=str)
     }
+
+
+# =========================
+# NEW FORM DATA ENDPOINTS
+# =========================
+
+def get_chef_applications():
+    """
+    Get all chef applications from the ChefApplicationTable
+    """
+    try:
+        # Import the ChefApplicationTable from environment
+        import os
+        chef_application_table_name = os.environ.get('CHEF_APPLICATION_TABLE')
+        if not chef_application_table_name:
+            return {
+                'statusCode': 500,
+                'headers': cors_headers(),
+                'body': json.dumps({'error': 'Chef application table not configured'})
+            }
+        
+        table = dynamodb.Table(chef_application_table_name)
+        response = table.scan()
+        
+        # Sort by submittedAt descending (most recent first)
+        items = response.get('Items', [])
+        items.sort(key=lambda x: x.get('submittedAt', ''), reverse=True)
+        
+        return {
+            'statusCode': 200,
+            'headers': cors_headers(),
+            'body': json.dumps(items, default=str)
+        }
+    except Exception as e:
+        print(f"Error fetching chef applications: {str(e)}")
+        return {
+            'statusCode': 500,
+            'headers': cors_headers(),
+            'body': json.dumps({'error': str(e)})
+        }
+
+
+def get_blog_submissions():
+    """
+    Get all blog submissions from the BlogSubmissionsTable
+    """
+    try:
+        # Import the BlogSubmissionsTable from environment
+        import os
+        blog_submissions_table_name = os.environ.get('BLOG_SUBMISSIONS_TABLE')
+        if not blog_submissions_table_name:
+            return {
+                'statusCode': 500,
+                'headers': cors_headers(),
+                'body': json.dumps({'error': 'Blog submissions table not configured'})
+            }
+        
+        table = dynamodb.Table(blog_submissions_table_name)
+        response = table.scan()
+        
+        # Sort by submittedAt descending (most recent first)
+        items = response.get('Items', [])
+        items.sort(key=lambda x: x.get('submittedAt', ''), reverse=True)
+        
+        return {
+            'statusCode': 200,
+            'headers': cors_headers(),
+            'body': json.dumps(items, default=str)
+        }
+    except Exception as e:
+        print(f"Error fetching blog submissions: {str(e)}")
+        return {
+            'statusCode': 500,
+            'headers': cors_headers(),
+            'body': json.dumps({'error': str(e)})
+        }
+
+
+def get_catering_enquiries():
+    """
+    Get all catering enquiries from the SubmissionsTable with formType 'catering-enquiry'
+    """
+    try:
+        table = dynamodb.Table(SUBMISSIONS_TABLE)
+        
+        # Query using the formType-index
+        response = table.query(
+            IndexName='formType-index',
+            KeyConditionExpression=Key('formType').eq('catering-enquiry')
+        )
+        
+        # Sort by timestamp descending (most recent first)
+        items = response.get('Items', [])
+        items.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
+        
+        return {
+            'statusCode': 200,
+            'headers': cors_headers(),
+            'body': json.dumps(items, default=str)
+        }
+    except Exception as e:
+        print(f"Error fetching catering enquiries: {str(e)}")
+        return {
+            'statusCode': 500,
+            'headers': cors_headers(),
+            'body': json.dumps({'error': str(e)})
+        }
+
+
+def get_enquiry_form_data():
+    """
+    Get all enquiry form data from the SubmissionsTable with formType 'enquiry-form'
+    """
+    try:
+        table = dynamodb.Table(SUBMISSIONS_TABLE)
+        
+        # Query using the formType-index
+        response = table.query(
+            IndexName='formType-index',
+            KeyConditionExpression=Key('formType').eq('enquiry-form')
+        )
+        
+        # Sort by timestamp descending (most recent first)
+        items = response.get('Items', [])
+        items.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
+        
+        return {
+            'statusCode': 200,
+            'headers': cors_headers(),
+            'body': json.dumps(items, default=str)
+        }
+    except Exception as e:
+        print(f"Error fetching enquiry form data: {str(e)}")
+        return {
+            'statusCode': 500,
+            'headers': cors_headers(),
+            'body': json.dumps({'error': str(e)})
+        }

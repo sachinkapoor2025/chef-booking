@@ -6,6 +6,9 @@ from datetime import datetime
 from botocore.exceptions import ClientError
 import re
 
+# Initialize SES for email
+ses = boto3.client('ses')
+
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
 submissions_table = dynamodb.Table(os.environ['SUBMISSIONS_TABLE'])
@@ -181,6 +184,9 @@ def lambda_handler(event, context):
         # Save to DynamoDB
         submissions_table.put_item(Item=submission_record)
 
+        # Send confirmation email
+        send_catering_confirmation_email(submission_record)
+
         # Return success response
         return {
             'statusCode': 200,
@@ -225,3 +231,107 @@ def lambda_handler(event, context):
                 'message': 'Internal server error'
             })
         }
+
+
+def send_catering_confirmation_email(submission_data):
+    """
+    Send confirmation email to the customer for catering enquiry
+    """
+    try:
+        # Email content
+        subject = f"Catering Enquiry Confirmation - {submission_data['id']}"
+        
+        # Format cuisine preferences
+        cuisine_list = ', '.join(submission_data.get('cuisinePreferences', [])) if submission_data.get('cuisinePreferences') else 'Not specified'
+        
+        # Format dietary requirements
+        dietary_list = ', '.join(submission_data.get('dietaryRequirements', [])) if submission_data.get('dietaryRequirements') else 'Not specified'
+        
+        body_text = f"""
+        Dear {submission_data['name']},
+
+        Thank you for your catering enquiry with Maharaja Chef Services!
+
+        Your enquiry details:
+        - Enquiry ID: {submission_data['id']}
+        - Event Type: {submission_data.get('eventType', 'Not specified')}
+        - Event Date: {submission_data.get('eventDate', 'Not specified')}
+        - Event Time: {submission_data.get('eventTime', 'Not specified')}
+        - Location: {submission_data.get('location', 'Not specified')}
+        - Number of Guests: {submission_data.get('guests', 'Not specified')}
+        - Budget Range: {submission_data.get('budget', 'Not specified')}
+        - Cuisine Preferences: {cuisine_list}
+        - Meal Type: {submission_data.get('mealType', 'Not specified')}
+        - Dietary Requirements: {dietary_list}
+        - Service Type: {submission_data.get('serviceType', 'Not specified')}
+        - Contact Number: {submission_data['phone']}
+        - Special Requirements: {submission_data.get('specialRequirements', 'Not specified')}
+
+        We will contact you shortly to discuss your catering requirements and provide a personalized quote.
+
+        Best regards,
+        Maharaja Chef Services Team
+        """
+        
+        body_html = f"""
+        <html>
+        <head></head>
+        <body>
+            <h2>Catering Enquiry Confirmation</h2>
+            <p>Dear {submission_data['name']},</p>
+            <p>Thank you for your catering enquiry with Maharaja Chef Services!</p>
+            
+            <h3>Your enquiry details:</h3>
+            <ul>
+                <li><strong>Enquiry ID:</strong> {submission_data['id']}</li>
+                <li><strong>Event Type:</strong> {submission_data.get('eventType', 'Not specified')}</li>
+                <li><strong>Event Date:</strong> {submission_data.get('eventDate', 'Not specified')}</li>
+                <li><strong>Event Time:</strong> {submission_data.get('eventTime', 'Not specified')}</li>
+                <li><strong>Location:</strong> {submission_data.get('location', 'Not specified')}</li>
+                <li><strong>Number of Guests:</strong> {submission_data.get('guests', 'Not specified')}</li>
+                <li><strong>Budget Range:</strong> {submission_data.get('budget', 'Not specified')}</li>
+                <li><strong>Cuisine Preferences:</strong> {cuisine_list}</li>
+                <li><strong>Meal Type:</strong> {submission_data.get('mealType', 'Not specified')}</li>
+                <li><strong>Dietary Requirements:</strong> {dietary_list}</li>
+                <li><strong>Service Type:</strong> {submission_data.get('serviceType', 'Not specified')}</li>
+                <li><strong>Contact Number:</strong> {submission_data['phone']}</li>
+                <li><strong>Special Requirements:</strong> {submission_data.get('specialRequirements', 'Not specified')}</li>
+            </ul>
+            
+            <p>We will contact you shortly to discuss your catering requirements and provide a personalized quote.</p>
+            
+            <p>Best regards,<br>
+            Maharaja Chef Services Team</p>
+        </body>
+        </html>
+        """
+        
+        # Send email
+        response = ses.send_email(
+            Source='noreply@maharajachef.com',  # Replace with your verified email
+            Destination={
+                'ToAddresses': [submission_data['email']]
+            },
+            Message={
+                'Subject': {
+                    'Data': subject,
+                    'Charset': 'UTF-8'
+                },
+                'Body': {
+                    'Text': {
+                        'Data': body_text,
+                        'Charset': 'UTF-8'
+                    },
+                    'Html': {
+                        'Data': body_html,
+                        'Charset': 'UTF-8'
+                    }
+                }
+            }
+        )
+        
+        print(f"Catering confirmation email sent to {submission_data['email']}")
+        
+    except Exception as e:
+        print(f"Failed to send catering confirmation email: {str(e)}")
+        # Don't fail the enquiry if email fails

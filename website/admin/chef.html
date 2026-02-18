@@ -24,10 +24,14 @@
 
         <section id="admin-dashboard" style="display: none;">
             <h1>Admin Dashboard</h1>
-            <div class="form-buttons" style="display: flex; gap: 15px; justify-content: center; margin: 30px 0;">
+            <div class="form-buttons" style="display: flex; gap: 15px; justify-content: center; margin: 30px 0; flex-wrap: wrap;">
                 <button class="btn" data-form="book-chef" style="padding: 12px 24px; font-size: 1rem;">Enquiry</button>
                 <button class="btn" data-form="contact" style="padding: 12px 24px; font-size: 1rem;">Contact Us</button>
                 <button class="btn" data-form="weekly" style="padding: 12px 24px; font-size: 1rem;">Weekly Service</button>
+                <button class="btn" data-form="chef-applications" style="padding: 12px 24px; font-size: 1rem; background-color: #28a745; color: white;">Chef Applications</button>
+                <button class="btn" data-form="blog-submissions" style="padding: 12px 24px; font-size: 1rem; background-color: #17a2b8; color: white;">Blog Submissions</button>
+                <button class="btn" data-form="catering-enquiries" style="padding: 12px 24px; font-size: 1rem; background-color: #fd7e14; color: white;">Catering Enquiries</button>
+                <button class="btn" data-form="enquiry-form" style="padding: 12px 24px; font-size: 1rem; background-color: #6f42c1; color: white;">Live Counter Enquiry</button>
                 <button class="btn" id="add-chef-btn" style="padding: 12px 24px; font-size: 1rem;">Add Chef</button>
             </div>
             <div id="form-data" style="display: none;">
@@ -166,6 +170,14 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                 const formType = this.getAttribute('data-form');
                 if (formType === 'weekly') {
                     fetchWeeklyData();
+                } else if (formType === 'chef-applications') {
+                    fetchChefApplications();
+                } else if (formType === 'blog-submissions') {
+                    fetchBlogSubmissions();
+                } else if (formType === 'catering-enquiries') {
+                    fetchCateringEnquiries();
+                } else if (formType === 'enquiry-form') {
+                    fetchEnquiryFormData();
                 } else {
                     fetchFormData(formType);
                 }
@@ -725,6 +737,437 @@ Anna S.|★★★★☆|Innovative and delicious!'></textarea>
                 console.error('Error:', error);
                 alert('Failed to fetch weekly service data.');
             });
+        }
+
+        function fetchChefApplications() {
+            fetch(`${API_URL}/admin/chef-applications`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('form-title').textContent = 'Chef Applications';
+
+                // Sort data by submittedAt (most recent first)
+                data.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No chef applications found.';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+
+                    // Name cell
+                    const nameCell = row.insertCell(0);
+                    nameCell.style.border = '1px solid #ddd';
+                    nameCell.style.padding = '12px';
+                    nameCell.textContent = item.fullName || 'N/A';
+
+                    // Phone cell
+                    const phoneCell = row.insertCell(1);
+                    phoneCell.style.border = '1px solid #ddd';
+                    phoneCell.style.padding = '12px';
+                    phoneCell.textContent = item.phone || 'N/A';
+
+                    // Experience cell
+                    const experienceCell = row.insertCell(2);
+                    experienceCell.style.border = '1px solid #ddd';
+                    experienceCell.style.padding = '12px';
+                    experienceCell.textContent = item.experience || 'N/A';
+
+                    // Date cell
+                    const dateCell = row.insertCell(3);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.submittedAt);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Details';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showChefApplicationDetails(item));
+                    actionsCell.appendChild(viewBtn);
+                });
+
+                document.querySelector('.form-buttons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch chef applications.');
+            });
+        }
+
+        function fetchBlogSubmissions() {
+            fetch(`${API_URL}/admin/blog-submissions`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('form-title').textContent = 'Blog Submissions';
+
+                // Sort data by submittedAt (most recent first)
+                data.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No blog submissions found.';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+
+                    // Title cell
+                    const titleCell = row.insertCell(0);
+                    titleCell.style.border = '1px solid #ddd';
+                    titleCell.style.padding = '12px';
+                    titleCell.textContent = item.title || 'N/A';
+
+                    // Author cell
+                    const authorCell = row.insertCell(1);
+                    authorCell.style.border = '1px solid #ddd';
+                    authorCell.style.padding = '12px';
+                    authorCell.textContent = item.author || 'N/A';
+
+                    // Status cell
+                    const statusCell = row.insertCell(2);
+                    statusCell.style.border = '1px solid #ddd';
+                    statusCell.style.padding = '12px';
+                    statusCell.textContent = item.status || 'N/A';
+
+                    // Date cell
+                    const dateCell = row.insertCell(3);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.submittedAt);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Details';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showBlogSubmissionDetails(item));
+                    actionsCell.appendChild(viewBtn);
+                });
+
+                document.querySelector('.form-buttons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch blog submissions.');
+            });
+        }
+
+        function fetchCateringEnquiries() {
+            fetch(`${API_URL}/admin/catering-enquiries`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('form-title').textContent = 'Catering Enquiries';
+
+                // Sort data by timestamp (most recent first)
+                data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No catering enquiries found.';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+
+                    // Name cell
+                    const nameCell = row.insertCell(0);
+                    nameCell.style.border = '1px solid #ddd';
+                    nameCell.style.padding = '12px';
+                    nameCell.textContent = item.data.name || 'N/A';
+
+                    // Phone cell
+                    const phoneCell = row.insertCell(1);
+                    phoneCell.style.border = '1px solid #ddd';
+                    phoneCell.style.padding = '12px';
+                    phoneCell.textContent = item.data.phone || 'N/A';
+
+                    // Event Type cell
+                    const eventTypeCell = row.insertCell(2);
+                    eventTypeCell.style.border = '1px solid #ddd';
+                    eventTypeCell.style.padding = '12px';
+                    eventTypeCell.textContent = item.data.eventType || 'N/A';
+
+                    // Date cell
+                    const dateCell = row.insertCell(3);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.timestamp);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Details';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showEnquiryDetails(item, 'Catering Enquiry'));
+                    actionsCell.appendChild(viewBtn);
+                });
+
+                document.querySelector('.form-buttons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch catering enquiries.');
+            });
+        }
+
+        function fetchEnquiryFormData() {
+            fetch(`${API_URL}/admin/enquiry-form`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('form-title').textContent = 'Live Counter Enquiries';
+
+                // Sort data by timestamp (most recent first)
+                data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                const tableBody = document.getElementById('data-table-body');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    const row = tableBody.insertRow();
+                    const cell = row.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.style.textAlign = 'center';
+                    cell.style.padding = '20px';
+                    cell.textContent = 'No live counter enquiries found.';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+
+                    // Name cell
+                    const nameCell = row.insertCell(0);
+                    nameCell.style.border = '1px solid #ddd';
+                    nameCell.style.padding = '12px';
+                    nameCell.textContent = item.data.name || 'N/A';
+
+                    // Phone cell
+                    const phoneCell = row.insertCell(1);
+                    phoneCell.style.border = '1px solid #ddd';
+                    phoneCell.style.padding = '12px';
+                    phoneCell.textContent = item.data.phone || 'N/A';
+
+                    // Email cell
+                    const emailCell = row.insertCell(2);
+                    emailCell.style.border = '1px solid #ddd';
+                    emailCell.style.padding = '12px';
+                    emailCell.textContent = item.data.email || 'N/A';
+
+                    // Date cell
+                    const dateCell = row.insertCell(3);
+                    dateCell.style.border = '1px solid #ddd';
+                    dateCell.style.padding = '12px';
+                    const date = new Date(item.timestamp);
+                    dateCell.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                    // Actions cell
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.style.border = '1px solid #ddd';
+                    actionsCell.style.padding = '12px';
+                    actionsCell.style.textAlign = 'center';
+
+                    const viewBtn = document.createElement('button');
+                    viewBtn.textContent = 'View Details';
+                    viewBtn.className = 'btn';
+                    viewBtn.style.padding = '6px 12px';
+                    viewBtn.style.fontSize = '0.9rem';
+                    viewBtn.addEventListener('click', () => showEnquiryDetails(item, 'Live Counter Enquiry'));
+                    actionsCell.appendChild(viewBtn);
+                });
+
+                document.querySelector('.form-buttons').style.display = 'none';
+                document.getElementById('form-data').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch live counter enquiries.');
+            });
+        }
+
+        function showChefApplicationDetails(item) {
+            document.getElementById('modal-title').textContent = `Chef Application Details - ${item.applicationId}`;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = '';
+
+            // Create a nice formatted display of the chef application data
+            const detailsDiv = document.createElement('div');
+            detailsDiv.style.lineHeight = '1.6';
+
+            // Add submission date
+            const dateDiv = document.createElement('div');
+            dateDiv.innerHTML = `<strong>Submitted:</strong> ${new Date(item.submittedAt).toLocaleString()}`;
+            dateDiv.style.marginBottom = '20px';
+            detailsDiv.appendChild(dateDiv);
+
+            // Add application status
+            const statusDiv = document.createElement('div');
+            statusDiv.innerHTML = `<strong>Status:</strong> <span style="color: ${item.status === 'PENDING' ? '#ffc107' : '#28a745'}; font-weight: bold;">${item.status}</span>`;
+            statusDiv.style.marginBottom = '20px';
+            detailsDiv.appendChild(statusDiv);
+
+            // Add all form fields
+            const fields = [
+                { key: 'fullName', label: 'Full Name' },
+                { key: 'email', label: 'Email' },
+                { key: 'phone', label: 'Phone' },
+                { key: 'location', label: 'Location' },
+                { key: 'experience', label: 'Experience' },
+                { key: 'specialty', label: 'Specialty' },
+                { key: 'certifications', label: 'Certifications' },
+                { key: 'website', label: 'Website' },
+                { key: 'culinaryPhilosophy', label: 'Culinary Philosophy' },
+                { key: 'availability', label: 'Availability' },
+                { key: 'backgroundCheck', label: 'Background Check Consent' },
+                { key: 'newsletterSignup', label: 'Newsletter Signup' }
+            ];
+
+            fields.forEach(field => {
+                const fieldDiv = document.createElement('div');
+                fieldDiv.style.marginBottom = '15px';
+
+                const label = document.createElement('strong');
+                label.textContent = field.label + ': ';
+                fieldDiv.appendChild(label);
+
+                if (field.key === 'culinaryPhilosophy') {
+                    // Multi-line text
+                    const textArea = document.createElement('div');
+                    textArea.textContent = item[field.key] || 'N/A';
+                    textArea.style.whiteSpace = 'pre-wrap';
+                    textArea.style.backgroundColor = '#f8f9fa';
+                    textArea.style.padding = '10px';
+                    textArea.style.borderRadius = '4px';
+                    textArea.style.marginTop = '5px';
+                    fieldDiv.appendChild(textArea);
+                } else {
+                    // Regular field
+                    fieldDiv.appendChild(document.createTextNode(item[field.key] || 'N/A'));
+                }
+
+                detailsDiv.appendChild(fieldDiv);
+            });
+
+            content.appendChild(detailsDiv);
+            document.getElementById('enquiry-modal').style.display = 'block';
+        }
+
+        function showBlogSubmissionDetails(item) {
+            document.getElementById('modal-title').textContent = `Blog Submission Details - ${item.id}`;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = '';
+
+            // Create a nice formatted display of the blog submission data
+            const detailsDiv = document.createElement('div');
+            detailsDiv.style.lineHeight = '1.6';
+
+            // Add submission date
+            const dateDiv = document.createElement('div');
+            dateDiv.innerHTML = `<strong>Submitted:</strong> ${new Date(item.submittedAt).toLocaleString()}`;
+            dateDiv.style.marginBottom = '20px';
+            detailsDiv.appendChild(dateDiv);
+
+            // Add submission status
+            const statusDiv = document.createElement('div');
+            statusDiv.innerHTML = `<strong>Status:</strong> <span style="color: ${item.status === 'pending' ? '#ffc107' : '#28a745'}; font-weight: bold;">${item.status}</span>`;
+            statusDiv.style.marginBottom = '20px';
+            detailsDiv.appendChild(statusDiv);
+
+            // Add all form fields
+            const fields = [
+                { key: 'title', label: 'Blog Title' },
+                { key: 'author', label: 'Author' },
+                { key: 'email', label: 'Email' },
+                { key: 'category', label: 'Category' },
+                { key: 'tags', label: 'Tags' },
+                { key: 'summary', label: 'Summary' },
+                { key: 'content', label: 'Content' }
+            ];
+
+            fields.forEach(field => {
+                const fieldDiv = document.createElement('div');
+                fieldDiv.style.marginBottom = '15px';
+
+                const label = document.createElement('strong');
+                label.textContent = field.label + ': ';
+                fieldDiv.appendChild(label);
+
+                if (field.key === 'content' || field.key === 'summary') {
+                    // Multi-line text
+                    const textArea = document.createElement('div');
+                    textArea.textContent = item[field.key] || 'N/A';
+                    textArea.style.whiteSpace = 'pre-wrap';
+                    textArea.style.backgroundColor = '#f8f9fa';
+                    textArea.style.padding = '10px';
+                    textArea.style.borderRadius = '4px';
+                    textArea.style.marginTop = '5px';
+                    fieldDiv.appendChild(textArea);
+                } else if (field.key === 'tags') {
+                    // Array field
+                    const tagsText = Array.isArray(item[field.key]) ? item[field.key].join(', ') : item[field.key] || 'N/A';
+                    fieldDiv.appendChild(document.createTextNode(tagsText));
+                } else {
+                    // Regular field
+                    fieldDiv.appendChild(document.createTextNode(item[field.key] || 'N/A'));
+                }
+
+                detailsDiv.appendChild(fieldDiv);
+            });
+
+            content.appendChild(detailsDiv);
+            document.getElementById('enquiry-modal').style.display = 'block';
         }
 
         function formatFieldName(key) {

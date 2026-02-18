@@ -554,7 +554,7 @@
     </footer>
 
     <script>
-        const API_URL = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/catering-enquiry'; // Replace with actual API URL
+        const API_URL = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod/catering-submission'; // Correct endpoint
 
         document.getElementById('catering-enquiry-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -594,6 +594,17 @@
                 }
             }
 
+            // Format event time
+            const eventHour = document.getElementById('event-hour').value;
+            const eventMinute = document.getElementById('event-minute').value;
+            const eventAmpm = document.getElementById('event-ampm').value;
+            
+            if (eventHour && eventMinute && eventAmpm) {
+                data['event-hour'] = eventHour;
+                data['event-minute'] = eventMinute;
+                data['event-ampm'] = eventAmpm;
+            }
+
             // Validate required fields
             if (!data['cuisine-other'] && data.cuisine.includes('other')) {
                 showError('Please specify other cuisine preferences.');
@@ -602,15 +613,12 @@
             }
 
             // Submit to API
-            fetch(`${API_URL}/submit`, {
+            fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    formType: 'catering-enquiry',
-                    data: data
-                })
+                body: JSON.stringify(data)
             })
             .then(response => {
                 if (!response.ok) {
