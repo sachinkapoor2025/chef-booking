@@ -85,6 +85,70 @@
     </nav>
 </header>
 
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay">
+    <div class="mobile-menu-content">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close mobile menu">
+            <span>&times;</span>
+        </button>
+        <nav class="mobile-nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catering-services.html">Catering Services</a></li>
+                <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        Services <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="catering-services.html">Catering Services</a></li>
+                        <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        For Chefs <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="become-a-chef.html">Become a Chef</a></li>
+                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                        <li><a href="chef-faq.html">Chef FAQ</a></li>
+                        <li><a href="success-stories.html">Success Stories</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        Explore More <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                        <li><a href="menu-services.html">Menu Services</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-dropdown">
+                    <button class="mobile-dropdown-toggle" aria-expanded="false">
+                        Our Speciality <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="sev-puri.html">Sev Puri</a></li>
+                        <li><a href="pani-puri.html">Pani Puri</a></li>
+                        <li><a href="enquiry-form.html">Enquiry Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="owner.html">Business Owner</a></li>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
 <div class="sticky-cta-bar" id="sticky-cta-bar">
     <a href="explore-chefs.html" class="btn">&#128104;&#8205;&#127859; Explore Chefs</a>
     <a href="book-a-chef.html" class="btn secondary">&#128197; Book Chef</a>
@@ -112,6 +176,142 @@
     .hamburger-menu i {
         fill: #000000 !important;
         color: #000000 !important;
+    }
+    
+    /* Mobile Menu Overlay Styles */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.active {
+        display: flex;
+        opacity: 1;
+    }
+    
+    .mobile-menu-content {
+        background: white;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 12px;
+        padding: 2rem;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .mobile-menu-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #333;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.2s;
+    }
+    
+    .mobile-menu-close:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .mobile-nav-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .mobile-nav-menu li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .mobile-nav-menu a {
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+        color: #333;
+        border-radius: 8px;
+        transition: all 0.2s;
+        font-weight: 500;
+    }
+    
+    .mobile-nav-menu a:hover {
+        background-color: #f8f9fa;
+        color: #3b82f6;
+    }
+    
+    .mobile-dropdown {
+        margin-bottom: 0.5rem;
+    }
+    
+    .mobile-dropdown-toggle {
+        width: 100%;
+        padding: 1rem;
+        text-align: left;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.2s;
+    }
+    
+    .mobile-dropdown-toggle:hover {
+        background: #2563eb;
+    }
+    
+    .mobile-dropdown-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0 1rem 0;
+        display: none;
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+    
+    .mobile-dropdown.active .mobile-dropdown-menu {
+        display: block;
+    }
+    
+    .mobile-dropdown-menu li {
+        margin-bottom: 0.25rem;
+    }
+    
+    .mobile-dropdown-menu a {
+        padding: 0.75rem;
+        background: #3b82f6;
+        color: white;
+        margin: 0.25rem 0;
+        border-radius: 6px;
+        text-align: center;
+    }
+    
+    .mobile-dropdown-menu a:hover {
+        background: #2563eb;
+        color: white;
     }
     
     /* Mobile Menu Buttons - Solid Blue Background with White Text */
