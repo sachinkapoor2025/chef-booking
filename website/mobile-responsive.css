@@ -204,6 +204,16 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     }
     
     /* ========== SINGLE COLUMN LAYOUT ========== */
+    
+    /* FAQ Section - Single column on mobile */
+    #faq .faq-grid,
+    #faq > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    #faq > div > div {
+        margin-bottom: 1rem !important;
+    }
     /* Header and Navigation */
     .global-nav {
         flex-direction: column;
