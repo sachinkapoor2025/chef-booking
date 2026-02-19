@@ -95,17 +95,69 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 /* Mobile responsive styles - FIXED VERSION */
 @media (max-width: 768px) {
     
+    /* ========== BUTTON TEXT STYLING FOR MOBILE ========== */
+    /* Ensure button text is clear and readable on mobile */
+    .btn,
+    .btn-large,
+    .submit-btn,
+    .search-btn,
+    .action-btn,
+    button,
+    [class*="btn"],
+    [id*="btn"] {
+        color: white !important;
+        text-shadow: none !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow: visible !important;
+    }
+    
+    /* Ensure links that look like buttons also have proper text */
+    a.btn,
+    a.btn-large,
+    a[class*="btn"] {
+        color: white !important;
+        text-shadow: none !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+        text-decoration: none !important;
+    }
+    
+    /* Fix any text color issues when button background changes */
+    .btn:hover,
+    .btn:active,
+    .btn:focus,
+    .btn-large:hover,
+    .btn-large:active,
+    .btn-large:focus {
+        color: white !important;
+        text-decoration: none !important;
+    }
+
     /* ========== CHANGE GREEN BUTTONS TO BLUE IN MOBILE ========== */
-    /* Change green (#28a745) to blue (#007bff) on mobile */
+    /* Change green (#28a745, #20c997, #10b981) to blue (#007bff) on mobile */
+    
+    /* Target any element with green background colors */
     [style*="background: #28a745"],
     [style*="background:#28a745"],
     [style*="background: #20c997"],
     [style*="background:#20c997"],
     [style*="background: #10b981"],
     [style*="background:#10b981"],
+    [style*="background: #059669"],
+    [style*="background:#059669"],
     [style*="background: linear-gradient(135deg, #28a745"],
     [style*="background: linear-gradient(135deg, #20c997"],
     [style*="background: linear-gradient(135deg, #10b981"],
+    [style*="background: linear-gradient(45deg, #28a745"],
+    [style*="background: linear-gradient(45deg, #10b981"],
     [style*="border-left: 4px solid #28a745"],
     [style*="color: #28a745"],
     .btn[style*="#28a745"],
@@ -115,6 +167,13 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         background-color: #007bff !important;
         border-color: #007bff !important;
         color: #007bff !important;
+    }
+    
+    /* Target buttons with green gradient backgrounds */
+    [style*="linear-gradient(135deg, #28a745, #20c997)"],
+    [style*="linear-gradient(135deg, #10b981, #059669)"],
+    [style*="linear-gradient(45deg, #10b981, #059669)"] {
+        background: linear-gradient(135deg, #007bff, #0056b3) !important;
     }
     
     /* Change green icon colors to blue */
@@ -1137,5 +1196,99 @@ body {
     [style*="margin: 40px"],
     [style*="margin: 30px"] {
         margin: 2rem 0 !important;
+    }
+    
+    /* ========== BECOME A CHEF PAGE MOBILE FIXES ========== */
+    /* Why Join Us Section */
+    #why-join-us {
+        padding: 3rem 15px !important;
+    }
+    
+    #why-join-us h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    #why-join-us .why-choose-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Requirements Section */
+    #requirements {
+        padding: 3rem 15px !important;
+    }
+    
+    #requirements h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    #requirements .requirements-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Application Process Section */
+    #application-process {
+        padding: 3rem 15px !important;
+    }
+    
+    #application-process h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    #application-process .steps {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Application CTA Section */
+    #application-cta {
+        padding: 3rem 15px !important;
+    }
+    
+    #application-cta .form-header h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    #application-cta .cta-content {
+        padding: 1.5rem !important;
+    }
+    
+    #application-cta .cta-actions {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    #application-cta .cta-info {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Chef Benefits Section */
+    #chef-benefits {
+        padding: 3rem 15px !important;
+    }
+    
+    #chef-benefits h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    #chef-benefits .benefits-list {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Chef Testimonials Section */
+    #chef-testimonials {
+        padding: 3rem 15px !important;
+    }
+    
+    #chef-testimonials h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    #chef-testimonials .testimonials-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
     }
 }
