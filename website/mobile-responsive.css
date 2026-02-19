@@ -95,6 +95,55 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 /* Mobile responsive styles - FIXED VERSION */
 @media (max-width: 768px) {
     
+    /* ========== CHANGE GREEN BUTTONS TO BLUE IN MOBILE ========== */
+    /* Change green (#28a745) to blue (#007bff) on mobile */
+    [style*="background: #28a745"],
+    [style*="background:#28a745"],
+    [style*="background: #20c997"],
+    [style*="background:#20c997"],
+    [style*="background: #10b981"],
+    [style*="background:#10b981"],
+    [style*="background: linear-gradient(135deg, #28a745"],
+    [style*="background: linear-gradient(135deg, #20c997"],
+    [style*="background: linear-gradient(135deg, #10b981"],
+    [style*="border-left: 4px solid #28a745"],
+    [style*="color: #28a745"],
+    .btn[style*="#28a745"],
+    .btn[style*="#20c997"],
+    .btn[style*="#10b981"] {
+        background: #007bff !important;
+        background-color: #007bff !important;
+        border-color: #007bff !important;
+        color: #007bff !important;
+    }
+    
+    /* Change green icon colors to blue */
+    [style*="color: #28a745"] i,
+    [style*="color: #20c997"] i,
+    [style*="color: #10b981"] i {
+        color: #007bff !important;
+    }
+    
+    /* Change green border-left to blue */
+    [style*="border-left: 4px solid #28a745"] {
+        border-left: 4px solid #007bff !important;
+    }
+    
+    /* Change green background elements */
+    [style*="background: #28a745"],
+    [style*="background:#28a745"],
+    [style*="background: #20c997"],
+    [style*="background:#20c997"] {
+        background: #007bff !important;
+    }
+    
+    /* Change green gradient backgrounds */
+    [style*="linear-gradient(135deg, #28a745"],
+    [style*="linear-gradient(135deg, #20c997"],
+    [style*="linear-gradient(135deg, #10b981"] {
+        background: linear-gradient(135deg, #007bff, #0056b3) !important;
+    }
+
     /* ========== BIGGER BUTTONS FOR MOBILE ========== */
     .btn,
     .btn-large,

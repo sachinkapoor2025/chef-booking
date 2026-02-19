@@ -41,6 +41,77 @@
     <meta name="twitter:title" content="Contact Us - Maharaja Chef Services">
     <meta name="twitter:description" content="Get in touch with Maharaja Chef Services. Contact us for bookings, inquiries, or questions.">
     <meta name="twitter:image" content="images/logo.jpg">
+    
+    <!-- Mobile Responsive Styles -->
+    <style>
+        /* Contact Content Section Mobile */
+        @media (max-width: 768px) {
+            #contact-content {
+                padding: 3rem 15px !important;
+            }
+            #contact-content > div {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            #contact-content h2 {
+                font-size: 1.8rem !important;
+            }
+            #contact-content > div > div:first-child {
+                order: 2;
+            }
+            #contact-content > div > div:last-child {
+                order: 1;
+            }
+            #contact-content > div > div:first-child > div[style*="grid"] {
+                gap: 1rem !important;
+            }
+            
+            /* Contact Cards Grid */
+            #contact-content > div > div:first-child > div[style*="grid"] {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            
+            /* Form Grid */
+            #contact-content .grid-template-columns\:1fr\:1fr {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Form Styles */
+            #contact-content form {
+                padding: 1.5rem !important;
+            }
+            
+            #contact-content form > div[style*="grid"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            #contact-content input,
+            #contact-content select,
+            #contact-content textarea {
+                font-size: 16px !important;
+            }
+            
+            #contact-content button[type="submit"] {
+                width: 100% !important;
+                padding: 1rem !important;
+            }
+        }
+        
+        /* General Mobile Styles */
+        @media (max-width: 768px) {
+            section {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+            h2 {
+                font-size: 1.8rem !important;
+            }
+            p {
+                font-size: 1rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Global Header will be loaded here -->
