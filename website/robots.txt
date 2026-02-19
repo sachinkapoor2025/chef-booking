@@ -1,5 +1,5 @@
 # Robots.txt for Maharaja Chef Services
-# Generated on 2024-12-18
+# Generated on 2026-12-18
 
 # Allow all search engines to crawl the site
 User-agent: *

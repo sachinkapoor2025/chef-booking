@@ -143,12 +143,12 @@ The blog feature allows users to:
 
 2. **Approve Blog**:
    ```python
-   result = handler.approve_submission('blog_20240405_143022')
+   result = handler.approve_submission('blog_20260405_143022')
    ```
 
 3. **Reject Blog**:
    ```python
-   result = handler.reject_submission('blog_20240405_143022', 'Content needs improvement')
+   result = handler.reject_submission('blog_20260405_143022', 'Content needs improvement')
    ```
 
 ## File Structure

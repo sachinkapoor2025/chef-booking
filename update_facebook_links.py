@@ -1,93 +1,42 @@
-#!/usr/bin/env python3
-"""
-Script to update Facebook links in all HTML files to the correct URL.
-"""
-
 import os
-import re
-from pathlib import Path
 
-def update_facebook_links():
-    """Update Facebook links in all HTML files."""
-    
-    # The correct Facebook link
-    correct_facebook_link = "https://www.facebook.com/profile.php?id=61587294953271"
-    
-    # Patterns to match different variations of Facebook links
-    facebook_patterns = [
-        r'href="https://facebook\.com"',
-        r'href="https://www\.facebook\.com"',
-        r'href="https://www\.facebook\.com/"',
-        r'href="https://www\.facebook\.com/profile\.php\?id=[0-9]+"',
-        r'href="https://m\.facebook\.com"',
-        r'href="https://business\.facebook\.com"',
-    ]
-    
-    # Get all HTML files in the website directory
-    website_dir = Path("website")
-    html_files = []
-    
-    # Find all .html files recursively
-    for file_path in website_dir.rglob("*.html"):
-        html_files.append(file_path)
-    
-    print(f"Found {len(html_files)} HTML files to check...")
-    
-    updated_files = []
-    
-    for html_file in html_files:
+website_dir = 'website'
+old_facebook = 'https://facebook.com'
+new_facebook = 'https://www.facebook.com/profile.php?id=61587294953271'
+
+# List of files to update based on search results
+files_to_update = [
+    'privacy-policy.html', 'sev-puri.html', 'success-stories.html', 'user-login.html',
+    'user-profile.html', 'weekly-meals.html', 'user-signup.html', 'terms-conditions.html',
+    'submit-blog.html', 'special-events.html', 'signup.html', 'refund-policy.html',
+    'pani-puri.html', 'payment.html', 'owner.html', 'menu-services.html', 'login.html',
+    'gallery.html', 'diet-plan.html', 'enquiry-form.html', 'diet-plan-view.html',
+    'create-balanced-diet.html', 'chef-services.html', 'chef-profile-template.html',
+    'chef-profile-rajesh.html', 'chef-profile-michael.html', 'chef-profile-maria.html',
+    'chef-profiles/anna-smith.html', 'chef-profile-james.html', 'chef-profiles/carlos-mendez.html',
+    'chef-profiles/david-kim.html', 'chef-profile-david.html', 'chef-profiles/emily-chen.html',
+    'chef-profiles/michael-brown.html', 'chef-profile-carlos.html', 'chef-profiles/sarah-johnson.html',
+    'chef-profile-anna.html', 'chef-guidelines.html', 'chef-faq.html', 'chef-application.html',
+    'catering-services.html', 'catering-form.html', 'catering-enquiry.html', 'book-weekly-service.html',
+    'blogs.html', 'blog-meal-prep.html', 'blog-healthy-eating.html', 'blog-food-trends.html',
+    'blog-chef-tips.html', 'blog-event-menu.html', 'become-a-chef.html'
+]
+
+count = 0
+for file_path in files_to_update:
+    full_path = os.path.join(website_dir, file_path)
+    if os.path.exists(full_path):
         try:
-            # Read the file content
-            with open(html_file, 'r', encoding='utf-8') as f:
+            with open(full_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            # Check if the file contains any Facebook links that need updating
-            original_content = content
-            updated = False
-            
-            # Check if the correct link is already present
-            if correct_facebook_link in content:
-                print(f"✓ {html_file.relative_to(website_dir)} - Already has correct Facebook link")
-                continue
-            
-            # Look for incorrect Facebook links and replace them
-            for pattern in facebook_patterns:
-                if re.search(pattern, content):
-                    # Replace with the correct link
-                    content = re.sub(pattern, f'href="{correct_facebook_link}"', content)
-                    updated = True
-            
-            # If we made changes, write the file back
-            if updated:
-                with open(html_file, 'w', encoding='utf-8') as f:
-                    f.write(content)
-                
-                updated_files.append(html_file)
-                print(f"✓ {html_file.relative_to(website_dir)} - Updated Facebook link")
-            else:
-                print(f"• {html_file.relative_to(website_dir)} - No Facebook link found")
-                
+            if old_facebook in content:
+                new_content = content.replace(old_facebook, new_facebook)
+                with open(full_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)
+                count += 1
+                print(f'Updated: {file_path}')
         except Exception as e:
-            print(f"✗ Error processing {html_file}: {e}")
-    
-    print(f"\nSummary:")
-    print(f"Total files processed: {len(html_files)}")
-    print(f"Files updated: {len(updated_files)}")
-    
-    if updated_files:
-        print(f"\nUpdated files:")
-        for file_path in updated_files:
-            print(f"  - {file_path.relative_to(website_dir)}")
-    
-    return updated_files
+            print(f'Error updating {file_path}: {e}')
 
-if __name__ == "__main__":
-    print("Updating Facebook links in all HTML files...")
-    print("=" * 50)
-    
-    updated_files = update_facebook_links()
-    
-    if updated_files:
-        print(f"\n✅ Successfully updated Facebook links in {len(updated_files)} files!")
-    else:
-        print("\nℹ️  No files needed updating or no Facebook links found.")
+print(f'\nTotal files updated: {count}')

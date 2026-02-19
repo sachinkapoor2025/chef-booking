@@ -7,7 +7,7 @@
     <!-- Homepage -->
     <url>
         <loc>https://maharajachef.com/</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -15,28 +15,28 @@
     <!-- Main Service Pages -->
     <url>
         <loc>https://maharajachef.com/chef-services.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/catering-services.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/weekly-meals.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/balanced-diet.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -44,21 +44,21 @@
     <!-- Booking and Forms -->
     <url>
         <loc>https://maharajachef.com/book-a-chef.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/catering-form.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/enquiry-form.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -66,14 +66,14 @@
     <!-- Chef Pages -->
     <url>
         <loc>https://maharajachef.com/explore-chefs.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-application.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -81,42 +81,42 @@
     <!-- Chef Profiles -->
     <url>
         <loc>https://maharajachef.com/chef-profile-anna.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-profile-carlos.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-profile-david.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-profile-maria.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-profile-michael.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-profile-rajesh.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -124,49 +124,49 @@
     <!-- Blog Pages -->
     <url>
         <loc>https://maharajachef.com/blogs.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/submit-blog.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/blog-chef-tips.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/blog-healthy-eating.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/blog-meal-prep.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/blog-event-menu.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/blog-food-trends.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
@@ -174,28 +174,28 @@
     <!-- Special Pages -->
     <url>
         <loc>https://maharajachef.com/gallery.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/success-stories.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/faq.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/contact-us.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -203,21 +203,21 @@
     <!-- User Pages -->
     <url>
         <loc>https://maharajachef.com/user-login.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/user-signup.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/user-profile.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -225,21 +225,21 @@
     <!-- Legal Pages -->
     <url>
         <loc>https://maharajachef.com/terms-conditions.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/privacy-policy.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/refund-policy.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
@@ -247,14 +247,14 @@
     <!-- Chef Information Pages -->
     <url>
         <loc>https://maharajachef.com/chef-guidelines.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/chef-faq.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
@@ -262,42 +262,42 @@
     <!-- Additional Pages -->
     <url>
         <loc>https://maharajachef.com/about-us.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/become-a-chef.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/owner.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/menu-services.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/sev-puri.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/pani-puri.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
@@ -305,14 +305,14 @@
     <!-- Admin Pages -->
     <url>
         <loc>https://maharajachef.com/admin/chef.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.3</priority>
     </url>
     
     <url>
         <loc>https://maharajachef.com/admin/meet.html</loc>
-        <lastmod>2024-12-18</lastmod>
+        <lastmod>2026-12-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.3</priority>
     </url>

@@ -322,7 +322,7 @@ The Maharaja Chef Services Team
 
         <div class="footer">
             <p>For questions, contact us at info@maharajachef.com</p>
-            <p>&copy; 2024 Maharaja Chef Services. All rights reserved.</p>
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
         </div>
     </div>
 </body>
