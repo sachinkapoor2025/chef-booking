@@ -139,6 +139,158 @@
     <meta name="twitter:title" content="Catering Services - Professional Event Catering">
     <meta name="twitter:description" content="Professional catering services for events, weddings, corporate functions, and private parties. Restaurant-quality food delivered to your venue.">
     <meta name="twitter:image" content="images/chef-team.jpg">
+    
+    <!-- Mobile Responsive Styles -->
+    <style>
+        /* Hero Section Mobile */
+        @media (max-width: 768px) {
+            #hero-large .hero-content {
+                flex-direction: column !important;
+                gap: 2rem !important;
+                padding: 0 15px !important;
+            }
+            #hero-large .hero-text {
+                text-align: center !important;
+                min-width: auto !important;
+            }
+            #hero-large .hero-text h1 {
+                font-size: 2rem !important;
+            }
+            #hero-large .hero-text p {
+                font-size: 1rem !important;
+            }
+            #hero-large .hero-text ul {
+                text-align: left !important;
+                padding: 0 1rem !important;
+            }
+            #hero-large .hero-image {
+                min-width: auto !important;
+                width: 100% !important;
+            }
+            #hero-large .hero-image img {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            #hero-large .hero-text > div[style*="gap: 2rem"] {
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+            }
+            #hero-large .hero-text > div[style*="gap: 1.5rem"] {
+                justify-content: center !important;
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+        }
+        
+        /* Service Categories Mobile */
+        @media (max-width: 768px) {
+            #catering-services > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                padding: 0 15px !important;
+            }
+        }
+        
+        /* Menu Options Mobile */
+        @media (max-width: 768px) {
+            #menu-options > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                padding: 0 15px !important;
+            }
+            #menu-options .grid-template-columns\:1fr\:1fr {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Dietary Options Mobile */
+        @media (max-width: 768px) {
+            #dietary-options > div[style*="grid-template-columns"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+                padding: 0 15px !important;
+            }
+        }
+        @media (max-width: 480px) {
+            #dietary-options > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Food Safety Mobile */
+        @media (max-width: 768px) {
+            #food-safety > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                padding: 0 15px !important;
+            }
+            #food-safety > div[style*="margin-top: 3rem"] > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Process Section Mobile */
+        @media (max-width: 768px) {
+            #catering-process > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                padding: 0 15px !important;
+            }
+        }
+        
+        /* Testimonials Mobile */
+        @media (max-width: 768px) {
+            #catering-testimonials > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                padding: 0 15px !important;
+            }
+        }
+        
+        /* Pricing Section Mobile */
+        @media (max-width: 768px) {
+            #catering-pricing > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                padding: 0 15px !important;
+            }
+            #catering-pricing > div[style*="grid-template-columns"] > div[style*="transform: scale"] {
+                transform: none !important;
+            }
+        }
+        
+        /* CTA Section Mobile */
+        @media (max-width: 768px) {
+            #catering-cta {
+                margin: 2rem 15px !important;
+                max-width: calc(100% - 30px) !important;
+                padding: 2rem 1rem !important;
+            }
+            #catering-cta h2 {
+                font-size: 1.5rem !important;
+            }
+            #catering-cta p {
+                font-size: 1rem !important;
+            }
+            #catering-cta > div[style*="flex"] {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            #catering-cta > div[style*="flex"] a {
+                width: 100% !important;
+                max-width: 300px !important;
+                font-size: 1rem !important;
+                padding: 0.75rem 1rem !important;
+            }
+        }
+        
+        /* Section Padding Mobile */
+        @media (max-width: 768px) {
+            #catering-services, #dietary-options, #food-safety, #catering-process, #catering-testimonials, #catering-pricing {
+                padding: 3rem 15px !important;
+            }
+            #catering-services h2, #dietary-options h2, #food-safety h2, #catering-process h2, #catering-testimonials h2, #catering-pricing h2 {
+                font-size: 1.8rem !important;
+            }
+            #menu-options {
+                padding: 3rem 15px !important;
+            }
+        }
+    </style>
+
 </head>
 <body>
     <!-- Global Header will be loaded here -->
