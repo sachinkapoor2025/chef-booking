@@ -15,60 +15,17 @@
             <ul class="nav-menu">
 
                 <li><a href="index.html">Home</a></li>
-                <li><a href="catering-services.html">Catering Services</a></li>
-                <li><a href="balanced-diet.html">Balanced Diet</a></li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        Services <span class="dropdown-arrow">▼</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="book-a-chef.html">Book a Chef</a></li>
-                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
-                        <li><a href="catering-services.html">Catering Services</a></li>
-                        <li><a href="balanced-diet.html">Balanced Diet</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        For Chefs <span class="dropdown-arrow">▼</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="become-a-chef.html">Become a Chef</a></li>
-                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
-                        <li><a href="chef-faq.html">Chef FAQ</a></li>
-                        <li><a href="success-stories.html">Success Stories</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        Explore More <span class="dropdown-arrow">▼</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                        <li><a href="menu-services.html">Menu Services</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        Our Speciality <span class="dropdown-arrow">▼</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="sev-puri.html">Sev Puri</a></li>
-                        <li><a href="pani-puri.html">Pani Puri</a></li>
-                        <li><a href="enquiry-form.html">Enquiry Form</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="owner.html">Business Owner</a></li>
+                <li><a href="catering-services.html">Catering</a></li>
+                <li><a href="balanced-diet.html">Diet Plans</a></li>
+                <li><a href="book-a-chef.html">Book Chef</a></li>
+                <li><a href="weekly-meals.html">Weekly Meals</a></li>
+                <li><a href="explore-chefs.html">Chefs</a></li>
+                <li><a href="about-us.html">About</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+                <li><a href="owner.html">Owner</a></li>
                 <li><a href="login.html">Log In</a></li>
 
             </ul>
@@ -119,8 +76,9 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 1.5rem; /* Space between navigation items */
+            gap: 0.3rem; /* Space between navigation items */
             align-items: center;
+            flex-wrap: nowrap;
         }
         
         .nav-menu li {
@@ -131,15 +89,18 @@
             text-decoration: none;
             color: #333;
             font-weight: 600;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
+            padding: 0.5rem 0.6rem;
+            border-radius: 6px;
             transition: all 0.3s ease;
             position: relative;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            background: transparent;
         }
         
         .nav-menu a:hover {
-            background-color: #f8f9fa;
-            color: #3b82f6;
+            background-color: #3b82f6;
+            color: white;
         }
         
         .dropdown {
