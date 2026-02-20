@@ -15,17 +15,60 @@
             <ul class="nav-menu">
 
                 <li><a href="index.html">Home</a></li>
-                <li><a href="catering-services.html">Catering</a></li>
-                <li><a href="balanced-diet.html">Diet Plans</a></li>
-                <li><a href="book-a-chef.html">Book Chef</a></li>
-                <li><a href="weekly-meals.html">Weekly Meals</a></li>
-                <li><a href="explore-chefs.html">Chefs</a></li>
-                <li><a href="about-us.html">About</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact-us.html">Contact</a></li>
-                <li><a href="owner.html">Owner</a></li>
+                <li><a href="catering-services.html">Catering Services</a></li>
+                <li><a href="balanced-diet.html">Balanced Diet</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Services <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="book-a-chef.html">Book a Chef</a></li>
+                        <li><a href="weekly-meals.html">Weekly Meal Service</a></li>
+                        <li><a href="catering-services.html">Catering Services</a></li>
+                        <li><a href="balanced-diet.html">Balanced Diet</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        For Chefs <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="become-a-chef.html">Become a Chef</a></li>
+                        <li><a href="chef-guidelines.html">Chef Guidelines</a></li>
+                        <li><a href="chef-faq.html">Chef FAQ</a></li>
+                        <li><a href="success-stories.html">Success Stories</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Explore More <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                        <li><a href="menu-services.html">Menu Services</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Our Speciality <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sev-puri.html">Sev Puri</a></li>
+                        <li><a href="pani-puri.html">Pani Puri</a></li>
+                        <li><a href="enquiry-form.html">Enquiry Form</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="owner.html">Business Owner</a></li>
                 <li><a href="login.html">Log In</a></li>
 
             </ul>
@@ -96,11 +139,21 @@
             font-size: 0.85rem;
             white-space: nowrap;
             background: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         
         .nav-menu a:hover {
             background-color: #3b82f6;
             color: white;
+        }
+        
+        /* Show dropdown arrows in desktop view */
+        .dropdown-arrow {
+            display: inline-block !important;
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
         }
         
         .dropdown {
@@ -113,15 +166,16 @@
             left: 0;
             background: white;
             min-width: 200px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             border-radius: 8px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
-            z-index: 1000;
-            padding: 1rem 0;
+            z-index: 9999;
+            padding: 0.5rem 0;
             margin-top: 0.5rem;
+            overflow: visible;
         }
         
         .dropdown:hover .dropdown-menu {
