@@ -98,7 +98,7 @@ header {
 
 .header-left {
     flex: 0 0 auto;
-    margin-right: 8rem; /* Space between logo and navigation */
+    margin-right: 2rem; /* Space between logo and navigation */
     display: flex;
     justify-content: flex-start;
 }
