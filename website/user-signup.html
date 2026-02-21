@@ -120,6 +120,12 @@
             background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
         }
         
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         .btn-secondary {
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
@@ -345,7 +351,7 @@
                 </a>
             </div>
 
-            <form id="signupForm" novalidate>
+            <form id="signupForm">
                 <h2 style="text-align: center; margin-bottom: 2rem; color: #374151;">Create Account</h2>
                 
                 <div class="form-group">
@@ -448,53 +454,109 @@
     </footer>
 
     <script>
-        // Password strength checker
-        document.addEventListener('DOMContentLoaded', function() {
-            const passwordInput = document.getElementById('signupPassword');
-            const strengthFill = document.getElementById('strengthFill');
-            const strengthText = document.getElementById('strengthText');
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            const signupForm = document.getElementById('signupForm');
-            const signupBtn = document.getElementById('signupBtn');
+        // Wrap everything in an IIFE to avoid global namespace pollution
+        (function() {
+            console.log('Signup page JavaScript initializing...');
             
-            // Load plan data from localStorage if available
-            const planData = JSON.parse(localStorage.getItem('dietPlanData') || '{}');
-            if (planData && planData.planId) {
-                showPlanPreview(planData);
+            // Wait for DOM to be ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSignupForm);
+            } else {
+                // DOM is already loaded
+                initSignupForm();
             }
             
-            // Password strength checking
-            passwordInput.addEventListener('input', function() {
-                const password = this.value;
-                const strength = calculatePasswordStrength(password);
+            function initSignupForm() {
+                console.log('Initializing signup form...');
                 
-                strengthFill.style.width = strength.percent + '%';
-                strengthFill.style.backgroundColor = strength.color;
-                strengthText.textContent = strength.text;
-                strengthText.style.color = strength.color;
+                const passwordInput = document.getElementById('signupPassword');
+                const strengthFill = document.getElementById('strengthFill');
+                const strengthText = document.getElementById('strengthText');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                const signupForm = document.getElementById('signupForm');
+                const signupBtn = document.getElementById('signupBtn');
                 
-                validatePassword();
-            });
-            
-            // Confirm password checking
-            confirmPasswordInput.addEventListener('input', validateConfirmPassword);
-            
-            // Form submission
-            signupForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
+                if (!signupForm || !signupBtn) {
+                    console.error('Form or button not found!');
+                    return;
+                }
                 
-                if (validateForm()) {
+                console.log('Form and button found');
+                
+                // Load plan data from localStorage if available
+                let planData = {};
+                try {
+                    const storedPlan = localStorage.getItem('dietPlanData');
+                    if (storedPlan) {
+                        planData = JSON.parse(storedPlan);
+                        if (planData && planData.planId) {
+                            showPlanPreview(planData);
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error reading plan data:', e);
+                }
+                
+                // Password strength checking
+                if (passwordInput) {
+                    passwordInput.addEventListener('input', function() {
+                        const password = this.value;
+                        const strength = calculatePasswordStrength(password);
+                        
+                        strengthFill.style.width = strength.percent + '%';
+                        strengthFill.style.backgroundColor = strength.color;
+                        strengthText.textContent = strength.text;
+                        strengthText.style.color = strength.color;
+                    });
+                }
+                
+                // Confirm password checking
+                if (confirmPasswordInput) {
+                    confirmPasswordInput.addEventListener('input', function() {
+                        const password = passwordInput.value;
+                        const confirmPassword = this.value;
+                        const errorElement = document.getElementById('confirmPasswordError');
+                        
+                        if (confirmPassword && password !== confirmPassword) {
+                            errorElement.style.display = 'block';
+                        } else {
+                            errorElement.style.display = 'none';
+                        }
+                    });
+                }
+                
+                // Form submission
+                signupForm.addEventListener('submit', async function(e) {
+                    console.log('Form submitted!');
+                    e.preventDefault();
+                    
+                    // Clear previous errors
+                    clearErrors();
+                    
+                    // Validate form
+                    if (!validateForm()) {
+                        console.log('Form validation failed');
+                        return;
+                    }
+                    
+                    console.log('Form validation passed, submitting...');
+                    
                     signupBtn.disabled = true;
                     signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
                     
                     try {
-                        const formData = new FormData(signupForm);
+                        const fullName = document.getElementById('signupFullName').value.trim();
+                        const email = document.getElementById('signupEmail').value.trim();
+                        const password = document.getElementById('signupPassword').value;
+                        
                         const userData = {
-                            fullName: formData.get('fullName'),
-                            email: formData.get('email'),
-                            password: formData.get('password'),
+                            fullName: fullName,
+                            email: email,
+                            password: password,
                             planData: planData
                         };
+                        
+                        console.log('Sending data to API:', userData);
                         
                         // Send to backend using API Gateway URL
                         const apiGatewayUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
@@ -506,7 +568,10 @@
                             body: JSON.stringify(userData)
                         });
                         
+                        console.log('Response status:', response.status);
+                        
                         const result = await response.json();
+                        console.log('Response data:', result);
                         
                         if (response.ok) {
                             // Store user session
@@ -523,32 +588,24 @@
                         }
                     } catch (error) {
                         console.error('Error:', error);
-                        alert('Sorry, there was an error creating your account. Please try again.');
+                        alert('Sorry, there was an error creating your account. Please try again. Error: ' + error.message);
                     } finally {
                         signupBtn.disabled = false;
                         signupBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account & Access Diet Plan';
                     }
-                }
-            });
+                });
+                
+                console.log('Signup form initialized successfully');
+            }
             
             function calculatePasswordStrength(password) {
                 let score = 0;
-                let feedback = [];
                 
                 if (password.length >= 8) score++;
-                else feedback.push('At least 8 characters');
-                
                 if (/[a-z]/.test(password)) score++;
-                else feedback.push('Lowercase letter');
-                
                 if (/[A-Z]/.test(password)) score++;
-                else feedback.push('Uppercase letter');
-                
                 if (/[0-9]/.test(password)) score++;
-                else feedback.push('Number');
-                
                 if (/[^A-Za-z0-9]/.test(password)) score++;
-                else feedback.push('Special character');
                 
                 const strengths = [
                     { text: 'Very Weak', color: '#ef4444', percent: 20 },
@@ -561,72 +618,63 @@
                 return strengths[Math.min(score, 4)];
             }
             
-            function validatePassword() {
-                const password = passwordInput.value;
-                const errorElement = document.getElementById('signupPasswordError');
-                
-                if (password.length < 8) {
-                    errorElement.style.display = 'block';
-                    return false;
-                } else {
-                    errorElement.style.display = 'none';
-                    return true;
-                }
-            }
-            
-            function validateConfirmPassword() {
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-                const errorElement = document.getElementById('confirmPasswordError');
-                
-                if (confirmPassword && password !== confirmPassword) {
-                    errorElement.style.display = 'block';
-                    return false;
-                } else {
-                    errorElement.style.display = 'none';
-                    return true;
-                }
+            function clearErrors() {
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(function(el) {
+                    el.style.display = 'none';
+                });
             }
             
             function validateForm() {
                 let isValid = true;
+                let firstErrorField = null;
                 
-                // Validate required fields
-                const requiredFields = signupForm.querySelectorAll('[required]');
-                requiredFields.forEach(field => {
-                    const errorElement = document.getElementById(field.id + 'Error');
-                    
-                    if (errorElement) {
-                        errorElement.style.display = 'none';
-                    }
-                    
-                    // Check if field is checkbox - use checked property
-                    if (field.type === 'checkbox') {
-                        if (!field.checked) {
-                            if (errorElement) {
-                                errorElement.style.display = 'block';
-                            }
-                            isValid = false;
-                        }
-                    } else {
-                        // For text, email, password inputs
-                        if (!field.value.trim()) {
-                            if (errorElement) {
-                                errorElement.style.display = 'block';
-                            }
-                            isValid = false;
-                        }
-                    }
-                });
+                // Get form fields
+                const fullName = document.getElementById('signupFullName');
+                const email = document.getElementById('signupEmail');
+                const password = document.getElementById('signupPassword');
+                const confirmPassword = document.getElementById('confirmPassword');
+                const termsCheckbox = document.getElementById('termsCheckbox');
                 
-                // Validate password
-                if (!validatePassword()) {
+                // Validate full name
+                if (!fullName.value.trim()) {
+                    document.getElementById('signupFullNameError').style.display = 'block';
                     isValid = false;
+                    if (!firstErrorField) firstErrorField = fullName;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value.trim() || !emailRegex.test(email.value)) {
+                    document.getElementById('signupEmailError').style.display = 'block';
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = email;
+                }
+                
+                // Validate password (minimum 8 characters)
+                if (password.value.length < 8) {
+                    document.getElementById('signupPasswordError').style.display = 'block';
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = password;
                 }
                 
                 // Validate confirm password
-                if (!validateConfirmPassword()) {
+                if (!confirmPassword.value || confirmPassword.value !== password.value) {
+                    document.getElementById('confirmPasswordError').style.display = 'block';
                     isValid = false;
+                    if (!firstErrorField) firstErrorField = confirmPassword;
+                }
+                
+                // Validate terms checkbox
+                if (!termsCheckbox.checked) {
+                    document.getElementById('termsCheckboxError').style.display = 'block';
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = termsCheckbox;
+                }
+                
+                // Focus on first error field
+                if (firstErrorField) {
+                    firstErrorField.focus();
                 }
                 
                 return isValid;
@@ -654,7 +702,7 @@
                     targetWeight.textContent = planData.targetWeight + ' kg';
                 }
             }
-        });
+        })();
     </script>
 </body>
 </html>
