@@ -16,222 +16,12 @@
     <meta name="description" content="Share your culinary knowledge and experiences with our community. Submit your blog post for review and publication on Maharaja Chef Services.">
     <meta name="keywords" content="submit blog, write for us, culinary blog, food writing, chef blog, cooking blog">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="mobile-responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="js/script.js" as="script">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Submit Your Blog - Maharaja Chef Services">
-    <meta property="og:description" content="Share your culinary knowledge and experiences with our community. Submit your blog post for review and publication.">
-    <meta property="og:image" content="images/logo.jpg">
-    <meta property="og:url" content="https://maharajachef.com/submit-blog.html">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Submit Your Blog - Maharaja Chef Services">
-    <meta name="twitter:description" content="Share your culinary knowledge and experiences with our community. Submit your blog post for review and publication.">
-    <meta name="twitter:image" content="images/logo.jpg">
     <style>
-        /* Submit Blog Styles */
-        #hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            position: relative;
-            z-index: 1;
-        }
-
-        #hero p {
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
-            line-height: 1.6;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn {
-            padding: 1.25rem 2.5rem;
-            font-size: 1.2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #1e3a8a;
-            border: 2px solid white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: white;
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: #1e3a8a;
-            border-color: white;
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 1.5rem 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            display: block;
-            color: #fff;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-
-        /* Enhanced hero image styling */
-        .hero-image {
-            position: relative;
-            margin-top: 3rem;
-            z-index: 1;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 4px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-image:hover img {
-            transform: scale(1.02);
-        }
-
-        /* Floating elements for visual interest */
-        .floating-element {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; width: 30px; height: 30px; }
-        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; width: 15px; height: 15px; }
-        .floating-element:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; width: 25px; height: 25px; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Form Section */
-        #submit-form {
-            padding: 4rem 2rem;
-            background: #f8fafc;
-        }
-
         .form-container {
             max-width: 800px;
             margin: 0 auto;
@@ -290,7 +80,6 @@
             box-sizing: border-box;
         }
 
-        /* Fix double dropdown arrow issue */
         .form-group select {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -300,13 +89,6 @@
             background-size: 5px 5px, 5px 5px, 1px 1.5em;
             background-repeat: no-repeat;
             padding-right: 2.5rem;
-        }
-
-        .form-group select:focus {
-            background-image: linear-gradient(45deg, transparent 50%, #1d4ed8 50%), linear-gradient(135deg, #1d4ed8 50%, transparent 50%);
-            background-position: calc(100% - 20px) 1px, calc(100% - 15px) 1px, calc(100% - 2.5rem) 0.5em;
-            background-size: 5px 5px, 5px 5px, 1px 1.5em;
-            background-repeat: no-repeat;
         }
 
         .form-group input:focus,
@@ -412,39 +194,6 @@
             display: none;
         }
 
-        .file-upload {
-            border: 2px dashed #e5e7eb;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .file-upload:hover {
-            border-color: #3b82f6;
-            background: #f8fafc;
-        }
-
-        .file-upload.dragover {
-            border-color: #3b82f6;
-            background: #eff6ff;
-        }
-
-        .file-upload i {
-            font-size: 3rem;
-            color: #94a3b8;
-            margin-bottom: 1rem;
-        }
-
-        .file-name {
-            font-size: 0.9rem;
-            color: #64748b;
-            margin-top: 1rem;
-            display: none;
-        }
-
-        /* Toggle Button Styles */
         .toggle-btn {
             background: white;
             color: #64748b;
@@ -455,9 +204,6 @@
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -465,7 +211,6 @@
 
         .toggle-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             border-color: #3b82f6;
         }
 
@@ -473,67 +218,38 @@
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border-color: #3b82f6;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .toggle-btn.active i {
-            color: white;
         }
 
         .toggle-btn i {
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: white;
-            opacity: 0.5;
-        }
-
-        /* Progress Indicator */
-        .progress-container {
-            margin-bottom: 2rem;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .progress-text {
-            font-size: 0.9rem;
-            color: #64748b;
-            text-align: center;
         }
     </style>
 </head>
 <body>
-    <main>
+    <!-- Global Header -->
+    <div id="header-container"></div>
 
-        <!-- Submit Form Section -->
-        <section id="submit-form">
+    <style>
+        .mobile-menu-toggle span {
+            background-color: #000000 !important;
+        }
+        .mobile-menu-toggle.active span {
+            background-color: #000000 !important;
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+
+    <main>
+        <section id="submit-form" style="padding: 4rem 2rem; background: #f8fafc;">
             <div class="form-container">
                 <h2 class="form-title">Submit Your Blog Post</h2>
                 
                 <div id="success-message" class="success-message">
                     <i class="fas fa-check-circle"></i>
-                    <strong>Thank you for your submission!</strong> We've received your blog post and will review it within 3-5 business days. You'll receive an email notification regarding our decision.
+                    <strong>Thank you for your submission!</strong> We've received your blog post and will review it within 3-5 business days.
                 </div>
 
                 <div id="error-message" class="error-message">
@@ -541,7 +257,7 @@
                     <strong>Oops!</strong> There was an error submitting your form. Please check all required fields and try again.
                 </div>
 
-                <form id="blog-submission-form" enctype="multipart/form-data">
+                <form id="blog-submission-form">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="full-name">Full Name <span class="required">*</span></label>
@@ -576,7 +292,7 @@
 
                     <div class="form-group">
                         <label for="blog-title">Blog Title <span class="required">*</span></label>
-                        <input type="text" id="blog-title" name="blogTitle" required placeholder="Enter an engaging title for your blog post">
+                        <input type="text" id="blog-title" name="blogTitle" required placeholder="Enter an engaging title">
                     </div>
 
                     <div class="form-group">
@@ -591,8 +307,6 @@
                             <option value="Recipe Sharing">Recipe Sharing</option>
                             <option value="Nutrition Tips">Nutrition Tips</option>
                             <option value="Kitchen Hacks">Kitchen Hacks</option>
-                            <option value="Cultural Cuisine">Cultural Cuisine</option>
-                            <option value="Seasonal Cooking">Seasonal Cooking</option>
                         </select>
                     </div>
 
@@ -604,34 +318,20 @@
 
                     <div class="form-group">
                         <label for="blog-summary">Blog Summary <span class="required">*</span></label>
-                        <textarea id="blog-summary" name="blogSummary" required placeholder="Provide a 2-3 sentence summary of your blog post"></textarea>
+                        <textarea id="blog-summary" name="blogSummary" required placeholder="Provide a 2-3 sentence summary"></textarea>
                         <div class="word-count">0 / 500 characters</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="blog-image">Featured Image (Optional)</label>
-                        <div id="file-upload" class="file-upload">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h3>Drag & Drop Your Image Here</h3>
-                            <p>or click to browse files</p>
-                            <input type="file" id="blog-image" name="blogImage" accept="image/*" style="display: none;">
-                            <div id="file-name" class="file-name"></div>
-                        </div>
                     </div>
 
                     <div class="guidelines">
                         <h3><i class="fas fa-lightbulb"></i> Blog Guidelines</h3>
                         <ul>
-                            <li><strong>Original Content:</strong> Your submission must be original and not published elsewhere</li>
-                            <li><strong>Word Count:</strong> Aim for 800-2000 words for optimal engagement</li>
-                            <li><strong>Quality:</strong> Ensure proper grammar, spelling, and formatting</li>
-                            <li><strong>Relevance:</strong> Content should be relevant to cooking, food, or healthy living</li>
-                            <li><strong>Images:</strong> High-quality images (1200x800px minimum) are encouraged</li>
-                            <li><strong>Links:</strong> Include relevant links to reputable sources when appropriate</li>
+                            <li><strong>Original Content:</strong> Your submission must be original</li>
+                            <li><strong>Word Count:</strong> Aim for 800-2000 words</li>
+                            <li><strong>Quality:</strong> Ensure proper grammar and formatting</li>
+                            <li><strong>Relevance:</strong> Content should be relevant to cooking or food</li>
                         </ul>
                     </div>
 
-                    <!-- Toggle Buttons Section -->
                     <div class="form-group">
                         <label style="display: block; margin-bottom: 1rem; font-weight: 700; color: #1e3a8a;">Choose Your Preference:</label>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -644,9 +344,6 @@
                         </div>
                         <input type="hidden" id="terms-agreement" name="termsAgreement" value="true">
                         <input type="hidden" id="newsletter-signup" name="newsletterSignup" value="false">
-                        <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
-                            <i class="fas fa-info-circle"></i> Select one option - the other will be automatically deselected
-                        </div>
                     </div>
 
                     <button type="submit" class="submit-btn" id="submit-btn">
@@ -655,74 +352,13 @@
                 </form>
             </div>
         </section>
-
-        <!-- Blog Tips Section -->
-        <section id="blog-tips" style="padding: 4rem 2rem; background: white;">
-            <div class="form-container">
-                <h2 class="form-title">Tips for Writing Great Blog Posts</h2>
-                
-                <div class="guidelines" style="margin: 0;">
-                    <h3><i class="fas fa-pen-fancy"></i> Writing Tips</h3>
-                    <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
-                        <div>
-                            <h4>Structure Your Content</h4>
-                            <ul>
-                                <li>Start with a compelling introduction</li>
-                                <li>Use clear headings and subheadings</li>
-                                <li>Break up text with bullet points and lists</li>
-                                <li>End with a strong conclusion</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>Engage Your Readers</h4>
-                            <ul>
-                                <li>Write in a conversational tone</li>
-                                <li>Share personal experiences and stories</li>
-                                <li>Include practical tips and actionable advice</li>
-                                <li>Ask questions to encourage interaction</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="guidelines" style="margin: 2rem 0;">
-                    <h3><i class="fas fa-camera"></i> Visual Content</h3>
-                    <div class="form-row" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
-                        <div>
-                            <h4>Image Guidelines</h4>
-                            <ul>
-                                <li>Use high-resolution images (minimum 1200x800px)</li>
-                                <li>Ensure images are relevant to your content</li>
-                                <li>Use natural lighting for food photography</li>
-                                <li>Consider the rule of thirds for composition</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>Content Ideas</h4>
-                            <ul>
-                                <li>Step-by-step recipe tutorials</li>
-                                <li>Before and after transformations</li>
-                                <li>Ingredient spotlights</li>
-                                <li>Kitchen tool recommendations</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#submit-form" class="btn" style="background: #3b82f6; color: white; border: none;">
-                        <i class="fas fa-edit"></i> Ready to Submit? Start Here
-                    </a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Maharaja Chef Services</h3>
-                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+                <p>Premium personal chef services across the USA.</p>
             </div>
             <div class="footer-column">
                 <h3>Quick Links</h3>
@@ -730,15 +366,6 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="chef-services.html">Services</a></li>
                     <li><a href="explore-chefs.html">Explore Chefs</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Blog</h3>
-                <ul>
-                    <li><a href="blogs.html">Our Blogs</a></li>
-                    <li><a href="submit-blog.html">Submit Blog</a></li>
-                    <li><a href="success-stories.html">Success Stories</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -748,9 +375,8 @@
                     <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
                 </div>
                 <div class="social-media">
-                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -760,25 +386,19 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script src="js/global-header.js"></script>
-    <script src="js/header.js"></script>
     <script>
-        // Toggle Selection Functionality
         function toggleSelection(type) {
-            const termsBtn = document.getElementById('terms-btn');
-            const updatesBtn = document.getElementById('updates-btn');
-            const termsAgreement = document.getElementById('terms-agreement');
-            const newsletterSignup = document.getElementById('newsletter-signup');
+            var termsBtn = document.getElementById('terms-btn');
+            var updatesBtn = document.getElementById('updates-btn');
+            var termsAgreement = document.getElementById('terms-agreement');
+            var newsletterSignup = document.getElementById('newsletter-signup');
             
             if (type === 'terms') {
-                // Select Terms button
                 termsBtn.classList.add('active');
                 updatesBtn.classList.remove('active');
                 termsAgreement.value = 'true';
                 newsletterSignup.value = 'false';
             } else if (type === 'updates') {
-                // Select Updates button
                 updatesBtn.classList.add('active');
                 termsBtn.classList.remove('active');
                 newsletterSignup.value = 'true';
@@ -786,112 +406,35 @@
             }
         }
 
-        // Blog Submission Form Logic
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('blog-submission-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-            const fileUpload = document.getElementById('file-upload');
-            const blogImage = document.getElementById('blog-image');
-            const fileName = document.getElementById('file-name');
-            const contentTextarea = document.getElementById('blog-content');
-            const summaryTextarea = document.getElementById('blog-summary');
-            const contentWordCount = contentTextarea.nextElementSibling;
-            const summaryWordCount = summaryTextarea.nextElementSibling;
+            var form = document.getElementById('blog-submission-form');
+            var submitBtn = document.getElementById('submit-btn');
+            var successMessage = document.getElementById('success-message');
+            var errorMessage = document.getElementById('error-message');
+            var contentTextarea = document.getElementById('blog-content');
+            var summaryTextarea = document.getElementById('blog-summary');
 
-            // Word Count Functionality
-            function updateWordCount(textarea, counter) {
-                const text = textarea.value;
-                const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
-                const charCount = text.length;
-                
-                if (textarea === contentTextarea) {
-                    counter.textContent = `${wordCount} / 2000 words`;
-                    if (wordCount > 2000) {
-                        counter.style.color = '#ef4444';
-                    } else {
-                        counter.style.color = '#64748b';
-                    }
-                } else {
-                    counter.textContent = `${charCount} / 500 characters`;
-                    if (charCount > 500) {
-                        counter.style.color = '#ef4444';
-                    } else {
-                        counter.style.color = '#64748b';
-                    }
-                }
-            }
-
-            contentTextarea.addEventListener('input', () => updateWordCount(contentTextarea, contentWordCount));
-            summaryTextarea.addEventListener('input', () => updateWordCount(summaryTextarea, summaryWordCount));
-
-            // File Upload Functionality
-            fileUpload.addEventListener('click', () => blogImage.click());
-
-            fileUpload.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                fileUpload.classList.add('dragover');
+            contentTextarea.addEventListener('input', function() {
+                var wordCount = this.value.split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+                this.nextElementSibling.textContent = wordCount + ' / 2000 words';
             });
 
-            fileUpload.addEventListener('dragleave', () => {
-                fileUpload.classList.remove('dragover');
+            summaryTextarea.addEventListener('input', function() {
+                this.nextElementSibling.textContent = this.value.length + ' / 500 characters';
             });
 
-            fileUpload.addEventListener('drop', (e) => {
-                e.preventDefault();
-                fileUpload.classList.remove('dragover');
-                const file = e.dataTransfer.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    handleFileSelect(file);
-                }
-            });
-
-            blogImage.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    handleFileSelect(file);
-                }
-            });
-
-            function handleFileSelect(file) {
-                fileName.textContent = `Selected: ${file.name}`;
-                fileName.style.display = 'block';
-            }
-
-            // Make checkboxes mutually exclusive
-            const termsAgreement = document.getElementById('terms-agreement');
-            const newsletterSignup = document.getElementById('newsletter-signup');
-            
-            termsAgreement.addEventListener('change', () => {
-                if (termsAgreement.checked) {
-                    newsletterSignup.checked = false;
-                }
-            });
-            
-            newsletterSignup.addEventListener('change', () => {
-                if (newsletterSignup.checked) {
-                    termsAgreement.checked = false;
-                }
-            });
-
-            // Form Submission
-            form.addEventListener('submit', async (e) => {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Reset messages
                 successMessage.style.display = 'none';
                 errorMessage.style.display = 'none';
 
-                // Validate form
-                const formData = new FormData(form);
-                let isValid = true;
-                const requiredFields = ['fullName', 'email', 'profession', 'blogTitle', 'blogCategory', 'blogContent', 'blogSummary'];
+                var formData = new FormData(form);
+                var isValid = true;
+                var requiredFields = ['fullName', 'email', 'profession', 'blogTitle', 'blogCategory', 'blogContent', 'blogSummary'];
 
-                requiredFields.forEach(field => {
-                    if (!formData.get(field)) {
-                        isValid = false;
-                    }
+                requiredFields.forEach(function(field) {
+                    if (!formData.get(field)) isValid = false;
                 });
 
                 if (document.getElementById('terms-agreement').value !== 'true') {
@@ -903,104 +446,44 @@
                     return;
                 }
 
-                // Simulate form submission
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
-                try {
-                    // Submit to Lambda function
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-                    
-                    // Get API URL from environment or use default
-                    const apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
-                    
-                    const response = await fetch(`${apiUrl}/blog-submission`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            formType: 'blog-submission',
-                            fullName: formData.get('fullName'),
-                            email: formData.get('email'),
-                            phone: formData.get('phone'),
-                            profession: formData.get('profession'),
-                            blogTitle: formData.get('blogTitle'),
-                            blogCategory: formData.get('blogCategory'),
-                            blogContent: formData.get('blogContent'),
-                            blogSummary: formData.get('blogSummary'),
-                            termsAgreement: document.getElementById('terms-agreement').checked,
-                            newsletterSignup: document.getElementById('newsletter-signup').checked
-                        })
-                    });
-                    
-                    if (response.ok) {
-                        const result = await response.json();
-
-                        // ✅ POPUP MESSAGE ADDED (SAME AS CHEF BOOKING)
-                        alert("Blog submitted successfully! We will review it within 3-5 business days.");
-                        
-                        // Show success message with submission ID
-                        successMessage.innerHTML = `
-                            <i class="fas fa-check-circle"></i>
-                            <strong>Thank you for your submission!</strong> 
-                            Your submission ID is: <strong>${result.submissionId}</strong><br>
-                            We've received your blog post and will review it within 3-5 business days. 
-                            You'll receive an email notification regarding our decision.
-                        `;
-                        successMessage.style.display = 'block';
-                        form.reset();
-                        fileName.style.display = 'none';
-                        
-                        // Reset word counts
-                        contentWordCount.textContent = '0 / 2000 words';
-                        summaryWordCount.textContent = '0 / 500 characters';
-                    } else {
-                        throw new Error('Server error occurred');
-                    }
-                    
-                } catch (error) {
+                var apiUrl = 'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod';
+                
+                fetch(apiUrl + '/blog-submission', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        formType: 'blog-submission',
+                        fullName: formData.get('fullName'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        profession: formData.get('profession'),
+                        blogTitle: formData.get('blogTitle'),
+                        blogCategory: formData.get('blogCategory'),
+                        blogContent: formData.get('blogContent'),
+                        blogSummary: formData.get('blogSummary'),
+                        termsAgreement: document.getElementById('terms-agreement').checked,
+                        newsletterSignup: document.getElementById('newsletter-signup').checked
+                    })
+                })
+                .then(function(response) { return response.json(); })
+                .then(function(result) {
+                    alert("Blog submitted successfully! We will review it within 3-5 business days.");
+                    successMessage.style.display = 'block';
+                    form.reset();
+                })
+                .catch(function(error) {
                     errorMessage.style.display = 'block';
-                    console.error('Error submitting blog:', error);
-                } finally {
+                    console.error('Error:', error);
+                })
+                .finally(function() {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Blog Post';
-                }
+                });
             });
         });
-    </script>
-
-    <!-- Chatbot Integration -->
-    <script>
-        // Load chatbot
-        fetch('chatbot.html')
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const chatbotContainer = doc.querySelector('.chatbot-container');
-                const styleTags = doc.querySelectorAll('style');
-
-                // Add styles
-                styleTags.forEach(style => {
-                    document.head.appendChild(style.cloneNode(true));
-                });
-
-                // Add chatbot container
-                document.body.appendChild(chatbotContainer.cloneNode(true));
-
-                // Initialize chatbot script
-                const scriptTags = doc.querySelectorAll('script');
-                scriptTags.forEach(script => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading chatbot:', error);
-            });
     </script>
 </body>
 </html>
