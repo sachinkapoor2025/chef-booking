@@ -600,11 +600,22 @@
                         errorElement.style.display = 'none';
                     }
                     
-                    if (!field.value.trim()) {
-                        if (errorElement) {
-                            errorElement.style.display = 'block';
+                    // Check if field is checkbox - use checked property
+                    if (field.type === 'checkbox') {
+                        if (!field.checked) {
+                            if (errorElement) {
+                                errorElement.style.display = 'block';
+                            }
+                            isValid = false;
                         }
-                        isValid = false;
+                    } else {
+                        // For text, email, password inputs
+                        if (!field.value.trim()) {
+                            if (errorElement) {
+                                errorElement.style.display = 'block';
+                            }
+                            isValid = false;
+                        }
                     }
                 });
                 
@@ -623,21 +634,23 @@
             
             function showPlanPreview(planData) {
                 const preview = document.getElementById('planPreview');
+                if (!preview) return;
+                
                 const mealPreference = document.getElementById('previewMealPreference');
                 const primaryGoal = document.getElementById('previewPrimaryGoal');
                 const targetWeight = document.getElementById('previewTargetWeight');
                 
                 preview.style.display = 'block';
                 
-                if (planData.mealPreference) {
+                if (mealPreference && planData.mealPreference) {
                     mealPreference.textContent = planData.mealPreference.charAt(0).toUpperCase() + planData.mealPreference.slice(1);
                 }
                 
-                if (planData.primaryGoal) {
+                if (primaryGoal && planData.primaryGoal) {
                     primaryGoal.textContent = planData.primaryGoal.charAt(0).toUpperCase() + planData.primaryGoal.slice(1);
                 }
                 
-                if (planData.targetWeight) {
+                if (targetWeight && planData.targetWeight) {
                     targetWeight.textContent = planData.targetWeight + ' kg';
                 }
             }
