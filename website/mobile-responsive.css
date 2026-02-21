@@ -787,10 +787,13 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         backdrop-filter: blur(10px);
     }
 
-    .sticky-cta-bar .btn {
-        background: #007bff;
+    .sticky-cta-bar .btn,
+    .sticky-cta-bar a.btn,
+    #sticky-cta-bar .btn,
+    #sticky-cta-bar a.btn {
+        background: #007bff !important;
         color: white !important;
-        border: none;
+        border: none !important;
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
         font-weight: 700;
@@ -800,12 +803,13 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         min-width: 120px;
         text-align: center;
         min-height: 44px;
+        box-shadow: 0 2px 8px rgba(0,123,255,0.3);
     }
 
-    .sticky-cta-bar .btn.secondary {
-        background: #007bff;
-        color: white;
-        border: none;
+    .sticky-cta-bar .btn:hover,
+    .sticky-cta-bar a.btn:hover {
+        background: #0056b3 !important;
+        color: white !important;
     }
 
     /* Content spacing improvements */
