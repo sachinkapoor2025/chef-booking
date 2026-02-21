@@ -153,20 +153,87 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     [style*="background:#10b981"],
     [style*="background: #059669"],
     [style*="background:#059669"],
+    [style*="background: #1e7e34"],
+    [style*="background:#1e7e34"],
     [style*="background: linear-gradient(135deg, #28a745"],
     [style*="background: linear-gradient(135deg, #20c997"],
     [style*="background: linear-gradient(135deg, #10b981"],
     [style*="background: linear-gradient(45deg, #28a745"],
     [style*="background: linear-gradient(45deg, #10b981"],
+    [style*="background: linear-gradient(to right, #28a745"],
+    [style*="background: linear-gradient(to right, #20c997"],
     [style*="border-left: 4px solid #28a745"],
+    [style*="border-left: 4px solid #20c997"],
     [style*="color: #28a745"],
+    [style*="color: #20c997"],
+    [style*="color: #10b981"],
+    [style*="color: #1e7e34"],
     .btn[style*="#28a745"],
     .btn[style*="#20c997"],
-    .btn[style*="#10b981"] {
+    .btn[style*="#10b981"],
+    .btn[style*="#1e7e34"] {
         background: #007bff !important;
         background-color: #007bff !important;
         border-color: #007bff !important;
         color: #007bff !important;
+    }
+    
+    /* Target buttons with green gradient backgrounds */
+    [style*="linear-gradient(135deg, #28a745, #20c997)"],
+    [style*="linear-gradient(135deg, #10b981, #059669)"],
+    [style*="linear-gradient(45deg, #10b981, #059669)"],
+    [style*="linear-gradient(to right, #28a745"],
+    [style*="linear-gradient(to right, #20c997"] {
+        background: linear-gradient(135deg, #007bff, #0056b3) !important;
+    }
+    
+    /* Change green icon colors to blue */
+    [style*="color: #28a745"] i,
+    [style*="color: #20c997"] i,
+    [style*="color: #10b981"] i,
+    [style*="color: #1e7e34"] i,
+    .fa-check-circle[style*="color: #28a745"],
+    .fa-check-circle[style*="color: #20c997"] {
+        color: #007bff !important;
+    }
+    
+    /* Change green border-left to blue */
+    [style*="border-left: 4px solid #28a745"],
+    [style*="border-left: 4px solid #20c997"] {
+        border-left: 4px solid #007bff !important;
+    }
+    
+    /* Change green background elements */
+    [style*="background: #28a745"],
+    [style*="background:#28a745"],
+    [style*="background: #20c997"],
+    [style*="background:#20c997"],
+    [style*="background: #10b981"],
+    [style*="background:#10b981"] {
+        background: #007bff !important;
+    }
+    
+    /* Change green gradient backgrounds */
+    [style*="linear-gradient(135deg, #28a745"],
+    [style*="linear-gradient(135deg, #20c997"],
+    [style*="linear-gradient(135deg, #10b981"] {
+        background: linear-gradient(135deg, #007bff, #0056b3) !important;
+    }
+    
+    /* Target sticky-cta-bar buttons that might have green background */
+    .sticky-cta-bar .btn,
+    .sticky-cta-bar a.btn,
+    [class*="sticky"] .btn {
+        background: #007bff !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    /* Target any button or link with green background color in mobile */
+    button[style*="background"],
+    a.btn[style*="background"],
+    .btn[style*="background"] {
+        background: #007bff !important;
     }
     
     /* Target buttons with green gradient backgrounds */
@@ -604,6 +671,49 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         max-width: 100%;
         box-sizing: border-box;
     }
+    
+    /* Footer copyright for mobile - show copyright text */
+    .footer-bottom {
+        display: block !important;
+        text-align: center;
+        padding: 1rem;
+        background: #1a1a1a !important;
+        color: #888 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .footer-bottom p {
+        color: #888 !important;
+        font-size: 0.9rem;
+        margin: 0;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Ensure copyright text is visible in mobile */
+    .footer-bottom p::before {
+        content: "© 2026 Maharaja Chef Services. All rights reserved.";
+        display: inline;
+    }
+    
+    /* Hide any existing footer bottom content and replace with copyright */
+    footer .footer-bottom {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Footer - ensure it's visible in mobile */
+    footer {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    footer hr {
+        display: block !important;
+    }
 
     /* Form elements */
     .form-container,
@@ -678,9 +788,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     }
 
     .sticky-cta-bar .btn {
-        background: white;
-        color: #1d4ed8;
-        border: 2px solid #1d4ed8;
+        background: #007bff;
+        color: white !important;
+        border: none;
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
         font-weight: 700;
@@ -693,9 +803,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     }
 
     .sticky-cta-bar .btn.secondary {
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        background: #007bff;
         color: white;
-        border: 2px solid #3b82f6;
+        border: none;
     }
 
     /* Content spacing improvements */
