@@ -293,7 +293,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     .btn-primary,
     .btn-large[style*="background: #10b981"],
     a[href*="explore-chefs"][class*="btn"] {
-        background: #10b981 !important;
+        background: #4510b9 !important;
         color: white !important;
         border: none !important;
         padding: 1.25rem 2.5rem !important;
