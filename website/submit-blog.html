@@ -893,7 +893,7 @@
                     }
                 });
 
-                if (!document.getElementById('terms-agreement').checked) {
+                if (document.getElementById('terms-agreement').value !== 'true') {
                     isValid = false;
                 }
 
