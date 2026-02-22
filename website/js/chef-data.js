@@ -93,7 +93,7 @@ const STATIC_CHEFS = [
  */
 async function fetchDynamicChefs() {
     const API_URLS = [
-        'https://mygfyqg69g.execute-api.us-east-1.amazonaws.com/prod',
+        'https://fated6vcp8.execute-api.us-east-1.amazonaws.com/prod',
         'http://localhost:3001'
     ];
 
