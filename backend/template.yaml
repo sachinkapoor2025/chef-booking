@@ -194,6 +194,13 @@ Resources:
             Path: /submit
             Method: post
 
+        BookChef:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /book-chef
+            Method: post
+
 
   AdminFunction:
     Type: AWS::Serverless::Function
@@ -574,6 +581,7 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
+        - AmazonSESFullAccess   # ✅ ADD THIS LINE
       Events:
         SubmitCatering:
           Type: Api
@@ -618,44 +626,6 @@ Resources:
             Path: /enquiry
             Method: options
 
-  BookChefFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub "${AWS::StackName}-book-chef"
-      CodeUri: src/
-      Handler: book_chef.lambda_handler
-      Runtime: python3.12
-      Timeout: 60
-      Environment:
-        Variables:
-          BOOKINGS_TABLE: !Ref SubmissionsTable
-          S3_BUCKET: maharaja-chef-bookings
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SubmissionsTable
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - s3:PutObject
-                - s3:GetObject
-                - s3:DeleteObject
-              Resource: "arn:aws:s3:::maharaja-chef-bookings/*"
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - ses:SendEmail
-                - ses:SendRawEmail
-              Resource: "*"
-      Events:
-        BookChef:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ApiGateway
-            Path: /book-chef
-            Method: post
-
   # Chef Application Function
   ChefApplicationFunction:
     Type: AWS::Serverless::Function
@@ -669,7 +639,7 @@ Resources:
         Variables:
           CHEF_APPLICATION_TABLE: !Ref ChefApplicationTable
           CHEF_APPLICATION_BUCKET: maharaja-chef-applications
-          FROM_EMAIL: noreply@maharajachef.com
+          FROM_EMAIL: info@maharajachef.com
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ChefApplicationTable

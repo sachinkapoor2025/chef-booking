@@ -266,9 +266,9 @@ def send_confirmation_email(submission_data):
         
         # Send email
         response = ses.send_email(
-            Source='noreply@maharajachef.com',  # Replace with your verified email
+            Source='info@maharajachef.com',  # Replace with your verified email
             Destination={
-                'ToAddresses': [data.get('email', 'noreply@maharajachef.com')]
+                'ToAddresses': [data.get('email', 'info@maharajachef.com')]
             },
             Message={
                 'Subject': {
@@ -284,7 +284,7 @@ def send_confirmation_email(submission_data):
             }
         )
         
-        logger.info(f"Confirmation email sent to {data.get('email', 'noreply@maharajachef.com')}")
+        logger.info(f"Confirmation email sent to {data.get('email', 'info@maharajachef.com')}")
         
     except Exception as e:
         logger.error(f"Failed to send confirmation email: {str(e)}")

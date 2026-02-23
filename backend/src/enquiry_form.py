@@ -190,7 +190,7 @@ def send_confirmation_email(enquiry_data):
         
         # Send email
         response = ses.send_email(
-            Source='noreply@maharajachef.com',  # Replace with your verified email
+            Source='info@maharajachef.com',  # Replace with your verified email
             Destination={
                 'ToAddresses': [enquiry_data['email']]
             },

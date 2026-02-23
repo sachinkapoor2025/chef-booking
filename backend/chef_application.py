@@ -16,7 +16,7 @@ dynamodb = boto3.resource('dynamodb')
 # Environment variables
 BUCKET_NAME = os.environ.get('CHEF_APPLICATION_BUCKET')
 TABLE_NAME = os.environ.get('CHEF_APPLICATION_TABLE')
-FROM_EMAIL = os.environ.get('FROM_EMAIL', 'noreply@maharajachef.com')
+FROM_EMAIL = os.environ.get('FROM_EMAIL', 'info@maharajachef.com')
 
 def lambda_handler(event, context):
     """
