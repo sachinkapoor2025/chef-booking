@@ -581,6 +581,7 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
+        - AmazonSESFullAccess   # ✅ ADD THIS LINE
       Events:
         SubmitCatering:
           Type: Api
