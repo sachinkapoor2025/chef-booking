@@ -70,11 +70,11 @@ def send_email(form_type, data):
 
         # Set subject based on form type
         if form_type == 'book-chef':
-            subject = 'Chef Requirement - Chef Services'
+            subject = 'Chef Requirement - Enquiry'
         elif form_type == 'book-weekly':
-            subject = 'Weekly Service Requirement - Chef Services'
+            subject = 'Weekly Chef Requirement - Enquiry'
         elif form_type == 'contact':
-            subject = 'Contact Requirement - Chef Services'
+            subject = 'Contact Requirement - Support'
         else:
             subject = f'New {form_type} Submission'
 

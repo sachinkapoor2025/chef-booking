@@ -239,7 +239,7 @@ def send_catering_confirmation_email(submission_data):
     """
     try:
         # Email content
-        subject = f"Catering Enquiry Confirmation - {submission_data['id']}"
+        subject = f"Party Catering - Enquiry"
         
         # Format cuisine preferences
         cuisine_list = ', '.join(submission_data.get('cuisinePreferences', [])) if submission_data.get('cuisinePreferences') else 'Not specified'

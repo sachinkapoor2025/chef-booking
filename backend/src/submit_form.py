@@ -266,9 +266,9 @@ def send_confirmation_email(submission_data):
         
         # Send email
         response = ses.send_email(
-            Source='info@maharajachef.com',  # Replace with your verified email
+            Source='chef@mydgv.com',  # Replace with your verified SES email
             Destination={
-                'ToAddresses': [data.get('email', 'info@maharajachef.com')]
+                'ToAddresses': ['dgv@mydgv.com', 'amanmanrai1@gmail.com', 'aman@thegreatmaharaja.com', 'info@maharajachef.com']  # Replace with your admin emails
             },
             Message={
                 'Subject': {

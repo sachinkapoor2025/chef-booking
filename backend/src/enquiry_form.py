@@ -134,7 +134,7 @@ def send_confirmation_email(enquiry_data):
     """
     try:
         # Email content
-        subject = f"Enquiry Confirmation - {enquiry_data['id']}"
+        subject = f"Live Counter - Enquiry"
         
         # Format services list
         services_list = ', '.join(enquiry_data.get('services', [])) if enquiry_data.get('services') else 'Not specified'
@@ -190,9 +190,9 @@ def send_confirmation_email(enquiry_data):
         
         # Send email
         response = ses.send_email(
-            Source='info@maharajachef.com',  # Replace with your verified email
+            Source='chef@mydgv.com',  # Replace with your verified SES email
             Destination={
-                'ToAddresses': [enquiry_data['email']]
+                'ToAddresses': ['dgv@mydgv.com', 'amanmanrai1@gmail.com', 'aman@thegreatmaharaja.com', 'info@maharajachef.com']  # Replace with your admin emails
             },
             Message={
                 'Subject': {
