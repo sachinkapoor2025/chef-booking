@@ -639,7 +639,7 @@ Resources:
         Variables:
           CHEF_APPLICATION_TABLE: !Ref ChefApplicationTable
           CHEF_APPLICATION_BUCKET: maharaja-chef-applications
-          FROM_EMAIL: noreply@maharajachef.com
+          FROM_EMAIL: info@maharajachef.com
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ChefApplicationTable

@@ -393,7 +393,7 @@ def send_blog_confirmation_email(submission_data):
 
         # Send email
         response = ses.send_email(
-            Source='noreply@maharajachef.com',  # Replace with your verified email
+            Source='info@maharajachef.com',  # Replace with your verified email
             Destination={
                 'ToAddresses': [submission_data['email']]
             },
