@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greek Salad - Catering Services | Maharaja Chef Services</title>
+    <meta name="description" content="Fresh and authentic Greek Salad with feta cheese, olives, and Mediterranean vegetables. Perfect for events.">
+    <meta name="keywords" content="greek salad, horiatiki, mediterranean salad, feta cheese, healthy catering, party catering">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.jpg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    <meta name="msapplication-TileImage" content="images/logo.jpg">
+    
+    <style>
+        .speciality-hero {
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speciality-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .speciality-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .speciality-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        .speciality-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .ingredients-section {
+            background: linear-gradient(135deg, #f7fee7 0%, #ecfccb 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .ingredients-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ingredient-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .ingredient-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(132, 204, 22, 0.25);
+        }
+
+        .ingredient-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .ingredient-card span {
+            display: block;
+            color: #1e3a8a;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .variations-section {
+            margin-bottom: 4rem;
+        }
+
+        .variations-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .variations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .variation-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .variation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .variation-card i {
+            font-size: 2.5rem;
+            color: #84cc16;
+            margin-bottom: 1rem;
+        }
+
+        .variation-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .variation-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .features-section {
+            margin-bottom: 4rem;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #84cc16;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #65a30d;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #65a30d;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .speciality-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .speciality-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .speciality-hero p {
+                font-size: 1.1rem;
+            }
+
+            .speciality-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .intro-section h2,
+            .ingredients-section h2,
+            .variations-section h2,
+            .features-section h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .ingredients-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .variations-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ingredients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <section class="speciality-hero">
+            <h1><i class="fas fa-salad"></i> Greek Salad</h1>
+            <p>The classic Horiatiki - fresh vegetables, creamy feta, and authentic Mediterranean flavors</p>
+        </section>
+
+        <div class="speciality-content">
+            <section class="intro-section">
+                <h2>Authentic Horiatiki - The Village Salad</h2>
+                <p>Our Greek Salad (Horiatiki) is made with the freshest vegetables, premium Greek feta cheese, Kalamata olives, and extra virgin olive oil. It's a healthy, refreshing addition to any event menu that brings the authentic taste of Greece to your table.</p>
+            </section>
+
+            <section class="ingredients-section">
+                <h2><i class="fas fa-carrot"></i> Fresh Ingredients</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <span>Tomatoes</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <span>Cucumber</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <span>Red Onion</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                        <span>Green Peppers</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-cheese"></i>
+                        </div>
+                        <span>Feta Cheese</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <span>Kalamata Olives</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <span>Olive Oil</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <span>Oregano</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="variations-section">
+                <h2><i class="fas fa-utensils"></i> Salad Variations</h2>
+                <div class="variations-grid">
+                    <div class="variation-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Classic Greek</h3>
+                        <p>Traditional Horiatiki with all the classic ingredients and authentic dressing.</p>
+                    </div>
+                    <div class="variation-card">
+                        <i class="fas fa-plus-circle"></i>
+                        <h3>With Grilled Chicken</h3>
+                        <p>Add grilled chicken breast for a protein-rich main course salad.</p>
+                    </div>
+                    <div class="variation-card">
+                        <i class="fas fa-fish"></i>
+                        <h3>Seafood Greek</h3>
+                        <p>With grilled shrimp or salmon for a Mediterranean seafood twist.</p>
+                    </div>
+                    <div class="variation-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Vegan Option</h3>
+                        <p>Without feta, with vegan cheese alternative and extra vegetables.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <h2>Why Choose Our Greek Salad?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Heart Healthy</h3>
+                        <p>Rich in antioxidants, healthy fats, and fresh vegetables for a nutritious option.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-award"></i>
+                        <h3>Premium Feta</h3>
+                        <p>We use authentic Greek feta cheese imported for the best flavor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Fresh Daily</h3>
+                        <p>All vegetables are sourced fresh and prepared on the day of your event.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Perfect for Events</h3>
+                        <p>A refreshing addition to buffets, BBQs, cocktail parties, and luncheons.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Beautiful Presentation</h3>
+                        <p>Artistically arranged for visual appeal that enhances your event spread.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tint"></i>
+                        <h3>House Dressing</h3>
+                        <p>Our signature olive oil and herb dressing made with Greek oregano.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Book Greek Salad for Your Event</h2>
+                <p>Add fresh Mediterranean flavors to your next celebration</p>
+                <div class="cta-buttons">
+                    <a href="enquiry-form.html" class="btn-primary"><i class="fas fa-clipboard-list"></i> Get a Quote</a>
+                    <a href="contact-us.html" class="btn-secondary"><i class="fas fa-phone"></i> Contact Us</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+</body>
+</html>

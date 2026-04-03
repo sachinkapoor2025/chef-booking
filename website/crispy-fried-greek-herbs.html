@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crispy Fried with Greek Herbs - Catering Services | Maharaja Chef Services</title>
+    <meta name="description" content="Crispy fried dishes with authentic Greek herbs. Mediterranean flavors for your events and parties.">
+    <meta name="keywords" content="crispy fried, greek herbs, mediterranean food, party catering, event catering">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.jpg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    <meta name="msapplication-TileImage" content="images/logo.jpg">
+    
+    <style>
+        .speciality-hero {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speciality-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .speciality-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .speciality-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        .speciality-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .dishes-section {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .dishes-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .dish-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px rgba(5, 150, 105, 0.25);
+            border-color: #059669;
+        }
+
+        .dish-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .dish-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .dish-card p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .herbs-section {
+            margin-bottom: 4rem;
+        }
+
+        .herbs-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .herbs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .herb-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .herb-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.2);
+        }
+
+        .herb-item i {
+            font-size: 2rem;
+            color: #059669;
+            margin-bottom: 0.5rem;
+        }
+
+        .herb-item span {
+            display: block;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .features-section {
+            margin-bottom: 4rem;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #059669;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #059669;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #059669;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .speciality-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .speciality-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .speciality-hero p {
+                font-size: 1.1rem;
+            }
+
+            .speciality-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .intro-section h2,
+            .dishes-section h2,
+            .herbs-section h2,
+            .features-section h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .dishes-grid,
+            .herbs-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dishes-grid,
+            .herbs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <section class="speciality-hero">
+            <h1><i class="fas fa-seedling"></i> Crispy Fried with Greek Herbs</h1>
+            <p>Golden, crispy delights infused with aromatic Mediterranean herbs and spices</p>
+        </section>
+
+        <div class="speciality-content">
+            <section class="intro-section">
+                <h2>Mediterranean Crispy Delights</h2>
+                <p>Our Crispy Fried dishes with Greek Herbs combine the perfect crunch with the aromatic flavors of the Mediterranean. Using a special blend of oregano, thyme, rosemary, and other traditional Greek herbs, we create appetizers and sides that are both delicious and memorable.</p>
+            </section>
+
+            <section class="dishes-section">
+                <h2><i class="fas fa-utensils"></i> Our Crispy Creations</h2>
+                <div class="dishes-grid">
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <h3>Crispy Chicken</h3>
+                        <p>Herb-crusted fried chicken</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <h3>Fried Calamari</h3>
+                        <p>With lemon and oregano</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <i class="fas fa-cheese"></i>
+                        </div>
+                        <h3>Fried Feta Bites</h3>
+                        <p>Crispy outside, creamy inside</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <i class="fas fa-carrot"></i>
+                        </div>
+                        <h3>Fried Zucchini</h3>
+                        <p>Light and herbed crunch</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="herbs-section">
+                <h2><i class="fas fa-leaf"></i> Our Greek Herb Blend</h2>
+                <div class="herbs-grid">
+                    <div class="herb-item">
+                        <i class="fas fa-leaf"></i>
+                        <span>Oregano</span>
+                    </div>
+                    <div class="herb-item">
+                        <i class="fas fa-spa"></i>
+                        <span>Thyme</span>
+                    </div>
+                    <div class="herb-item">
+                        <i class="fas fa-tree"></i>
+                        <span>Rosemary</span>
+                    </div>
+                    <div class="herb-item">
+                        <i class="fas fa-seedling"></i>
+                        <span>Mint</span>
+                    </div>
+                    <div class="herb-item">
+                        <i class="fas fa-pepper-hot"></i>
+                        <span>Basil</span>
+                    </div>
+                    <div class="herb-item">
+                        <i class="fas fa-fire"></i>
+                        <span>Dill</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <h2>Why Choose Our Greek Herb Dishes?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Fresh Herbs</h3>
+                        <p>We use only fresh, aromatic Greek herbs sourced for their authentic Mediterranean flavor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-fire-alt"></i>
+                        <h3>Perfectly Crispy</h3>
+                        <p>Our special frying technique ensures a perfect golden crust every time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Great for Sharing</h3>
+                        <p>Perfect appetizers for parties, receptions, and corporate events.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Healthy Options</h3>
+                        <p>Available with lighter preparation methods and vegetarian options.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Customizable</h3>
+                        <p>Adjust herb levels and choose your preferred proteins and vegetables.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Live Frying Station</h3>
+                        <p>Available with live cooking for the freshest, crispiest experience.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Book Greek Herb Dishes for Your Event</h2>
+                <p>Add Mediterranean flavors to your next celebration</p>
+                <div class="cta-buttons">
+                    <a href="enquiry-form.html" class="btn-primary"><i class="fas fa-clipboard-list"></i> Get a Quote</a>
+                    <a href="contact-us.html" class="btn-secondary"><i class="fas fa-phone"></i> Contact Us</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+</body>
+</html>
