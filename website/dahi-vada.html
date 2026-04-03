@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samosa / Spanakopita - Catering Services | Maharaja Chef Services</title>
-    <meta name="description" content="Enjoy delicious Samosa and Spanakopita at your events. Authentic Indian and Greek appetizers for parties and catering.">
-    <meta name="keywords" content="samosa, spanakopita, indian appetizers, greek appetizers, party catering, event catering">
+    <title>Dahi Vada - Our Speciality | Maharaja Chef Services</title>
+    <meta name="description" content="Soft lentil dumplings soaked in creamy yogurt, topped with tangy chutneys and spices. A classic Indian delicacy.">
+    <meta name="keywords" content="dahi vada, dahi bhalla, lentil dumplings, indian snacks, yogurt snacks, party food, event catering">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -18,9 +18,8 @@
     <meta name="msapplication-TileImage" content="images/logo.jpg">
     
     <style>
-        /* Page Specific Styles */
         .speciality-hero {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
             color: white;
             padding: 5rem 2rem;
             text-align: center;
@@ -35,7 +34,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 50%);
         }
 
         .speciality-hero h1 {
@@ -50,7 +49,7 @@
             font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
             position: relative;
         }
 
@@ -67,7 +66,7 @@
 
         .intro-section h2 {
             font-size: 2.5rem;
-            color: #1e3a8a;
+            color: #7c3aed;
             margin-bottom: 1.5rem;
         }
 
@@ -79,67 +78,118 @@
             line-height: 1.8;
         }
 
-        .items-section {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        .ingredients-section {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
             padding: 4rem 2rem;
             border-radius: 20px;
             margin-bottom: 4rem;
         }
 
-        .items-section h2 {
+        .ingredients-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #1e3a8a;
+            color: #7c3aed;
             margin-bottom: 3rem;
         }
 
-        .items-grid {
+        .ingredients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .item-card {
+        .ingredient-card {
             background: white;
-            padding: 2.5rem;
+            padding: 1.5rem;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .ingredient-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+        }
+
+        .ingredient-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .ingredient-card span {
+            display: block;
+            color: #7c3aed;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .process-section {
+            margin-bottom: 4rem;
+        }
+
+        .process-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #7c3aed;
+            margin-bottom: 3rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            text-align: center;
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
 
-        .item-card:hover {
+        .process-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.25);
-            border-color: #3b82f6;
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
         }
 
-        .item-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        .process-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
             color: white;
         }
 
-        .item-card h3 {
-            font-size: 1.8rem;
-            color: #1e3a8a;
+        .process-card h3 {
+            font-size: 1.5rem;
+            color: #7c3aed;
             margin-bottom: 1rem;
         }
 
-        .item-card p {
+        .process-card p {
             color: #64748b;
-            font-size: 1rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .features-section {
@@ -149,7 +199,7 @@
         .features-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #1e3a8a;
+            color: #7c3aed;
             margin-bottom: 3rem;
         }
 
@@ -160,38 +210,38 @@
         }
 
         .feature-card {
-            background: white;
+            background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
             padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
         .feature-card i {
             font-size: 3rem;
-            color: #3b82f6;
+            color: #8b5cf6;
             margin-bottom: 1.5rem;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            color: #1e3a8a;
+            font-size: 1.4rem;
+            color: #7c3aed;
             margin-bottom: 1rem;
         }
 
         .feature-card p {
             color: #64748b;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #1e3a8a 0%, #f97316 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
             padding: 4rem 2rem;
             border-radius: 20px;
             text-align: center;
@@ -207,7 +257,7 @@
         .cta-section p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
         }
 
         .cta-buttons {
@@ -219,7 +269,7 @@
 
         .btn-primary {
             background: white;
-            color: #f97316;
+            color: #7c3aed;
             padding: 1rem 2.5rem;
             border-radius: 12px;
             font-weight: 700;
@@ -247,7 +297,7 @@
 
         .btn-secondary:hover {
             background: white;
-            color: #f97316;
+            color: #7c3aed;
         }
 
         /* Mobile Responsive */
@@ -269,17 +319,19 @@
             }
 
             .intro-section h2,
-            .items-section h2,
+            .ingredients-section h2,
+            .process-section h2,
             .features-section h2,
             .cta-section h2 {
                 font-size: 2rem;
             }
 
-            .items-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .ingredients-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
             }
 
+            .process-grid,
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -295,88 +347,148 @@
                 max-width: 300px;
             }
         }
+
+        @media (max-width: 480px) {
+            .ingredients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Global Header will be loaded here -->
     <div id="header-container"></div>
 
     <main>
-        <!-- Hero Section -->
         <section class="speciality-hero">
-            <h1><i class="fas fa-cookie-bite"></i> Samosa / Spanakopita</h1>
-            <p>A perfect fusion of Indian and Greek flavors - crispy, savory pastries filled with delicious ingredients</p>
+            <h1><i class="fas fa-circle"></i> Dahi Vada</h1>
+            <p>Soft, fluffy lentil dumplings soaked in creamy yogurt, topped with sweet and spicy chutneys</p>
         </section>
 
         <div class="speciality-content">
-            <!-- Introduction Section -->
             <section class="intro-section">
-                <h2>Authentic Appetizers for Your Events</h2>
-                <p>Our Samosas and Spanakopita bring together the best of two worlds - the spicy, aromatic flavors of India and the fresh, Mediterranean taste of Greece. These handcrafted appetizers are perfect for any occasion, from corporate events to wedding receptions.</p>
+                <h2>The King of Indian Chaat</h2>
+                <p>Dahi Vada, also known as Dahi Bhalla, is a beloved Indian delicacy featuring soft lentil fritters soaked in whipped yogurt, garnished with tangy tamarind chutney, spicy green chutney, and aromatic spices. It's the perfect blend of textures and flavors - soft, creamy, tangy, and spicy all at once.</p>
             </section>
 
-            <!-- Items Section -->
-            <section class="items-section">
-                <h2><i class="fas fa-utensils"></i> Our Specialties</h2>
-                <div class="items-grid">
-                    <div class="item-card">
-                        <div class="item-icon">
+            <section class="ingredients-section">
+                <h2><i class="fas fa-carrot"></i> Premium Ingredients</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <span>Urad Dal</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-ice-cream"></i>
+                        </div>
+                        <span>Fresh Yogurt</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                        <span>Green Chutney</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <span>Tamarind Chutney</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
                             <i class="fas fa-fire"></i>
                         </div>
-                        <h3>Indian Samosa</h3>
-                        <p>Crispy golden pastry filled with spiced potatoes, peas, and aromatic Indian spices. Served with mint chutney and tamarind sauce.</p>
+                        <span>Cumin Powder</span>
                     </div>
-                    <div class="item-card">
-                        <div class="item-icon">
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>Chaat Masala</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
                             <i class="fas fa-leaf"></i>
                         </div>
-                        <h3>Greek Spanakopita</h3>
-                        <p>Flaky phyllo dough filled with spinach, feta cheese, herbs, and olive oil. A classic Greek delicacy that melts in your mouth.</p>
+                        <span>Coriander</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <span>Sev</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Features Section -->
+            <section class="process-section">
+                <h2><i class="fas fa-magic"></i> Our Preparation Process</h2>
+                <div class="process-grid">
+                    <div class="process-card">
+                        <div class="process-number">1</div>
+                        <h3>Soaking & Grinding</h3>
+                        <p>Urad dal is soaked overnight and ground to a fluffy batter with perfect aeration.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="process-number">2</div>
+                        <h3>Frying to Perfection</h3>
+                        <p>Batter is shaped and deep-fried until golden brown and crispy on the outside.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="process-number">3</div>
+                        <h3>Soaking Process</h3>
+                        <p>Fried vadas are soaked in water to soften and then transferred to spiced yogurt.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="process-number">4</div>
+                        <h3>Final Garnish</h3>
+                        <p>Topped with chutneys, spices, sev, and fresh coriander for the perfect finish.</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="features-section">
-                <h2>Why Choose Our Samosa & Spanakopita?</h2>
+                <h2>Why Choose Our Dahi Vada?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <i class="fas fa-heart"></i>
-                        <h3>Handcrafted with Love</h3>
-                        <p>Each piece is handmade by our expert chefs using traditional recipes passed down through generations.</p>
+                        <i class="fas fa-crown"></i>
+                        <h3>Traditional Recipe</h3>
+                        <p>Authentic North Indian recipe passed down through generations for genuine taste.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-leaf"></i>
-                        <h3>Fresh Ingredients</h3>
-                        <p>We use only the freshest vegetables, premium spices, and authentic cheeses for the best taste.</p>
+                        <i class="fas fa-feather"></i>
+                        <h3>Light & Fluffy</h3>
+                        <p>Our vadas are incredibly soft, melting in your mouth with every bite.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-blender"></i>
+                        <h3>Fresh Yogurt</h3>
+                        <p>We use only fresh, homemade-style yogurt for the creamiest experience.</p>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-users"></i>
-                        <h3>Perfect for Events</h3>
-                        <p>Ideal for parties, weddings, corporate events, and celebrations of all sizes.</p>
+                        <h3>Party Favorite</h3>
+                        <p>A crowd-pleasing appetizer that guests of all ages absolutely love.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-certificate"></i>
-                        <h3>Hygienic Preparation</h3>
-                        <p>We maintain the highest standards of hygiene and food safety in all our preparations.</p>
+                        <i class="fas fa-heart"></i>
+                        <h3>Protein Rich</h3>
+                        <p>Loaded with protein from lentils and yogurt for a healthy snack option.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-palette"></i>
-                        <h3>Customizable Options</h3>
-                        <p>Choose from various fillings and spice levels to suit your guests' preferences.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-truck"></i>
-                        <h3>Live Preparation</h3>
-                        <p>Available with live cooking stations for an interactive dining experience at your venue.</p>
+                        <i class="fas fa-clock"></i>
+                        <h3>Made Fresh</h3>
+                        <p>Prepared fresh for your event ensuring the best taste and texture.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- CTA Section -->
             <section class="cta-section">
-                <h2>Book Samosa / Spanakopita for Your Event</h2>
-                <p>Make your next event memorable with our delicious appetizers</p>
+                <h2>Book Dahi Vada for Your Event</h2>
+                <p>Impress your guests with this royal Indian delicacy</p>
                 <div class="cta-buttons">
                     <a href="enquiry-form.html" class="btn-primary"><i class="fas fa-clipboard-list"></i> Get a Quote</a>
                     <a href="contact-us.html" class="btn-secondary"><i class="fas fa-phone"></i> Contact Us</a>
@@ -431,7 +543,6 @@
     <script src="js/global-header.js"></script>
     <script src="js/header.js"></script>
     
-    <!-- Chatbot Integration -->
     <script>
         fetch('chatbot.html')
             .then(response => response.text())

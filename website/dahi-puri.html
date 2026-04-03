@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samosa / Spanakopita - Catering Services | Maharaja Chef Services</title>
-    <meta name="description" content="Enjoy delicious Samosa and Spanakopita at your events. Authentic Indian and Greek appetizers for parties and catering.">
-    <meta name="keywords" content="samosa, spanakopita, indian appetizers, greek appetizers, party catering, event catering">
+    <title>Dahi Puri - Our Speciality | Maharaja Chef Services</title>
+    <meta name="description" content="Delicious Dahi Puri - Crispy puris filled with yogurt, chutneys, and spices. A perfect Indian street food for your events.">
+    <meta name="keywords" content="dahi puri, indian street food, chaat, yogurt puri, party snacks, event catering">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -18,9 +18,8 @@
     <meta name="msapplication-TileImage" content="images/logo.jpg">
     
     <style>
-        /* Page Specific Styles */
         .speciality-hero {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             color: white;
             padding: 5rem 2rem;
             text-align: center;
@@ -35,7 +34,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 50%);
         }
 
         .speciality-hero h1 {
@@ -50,7 +49,7 @@
             font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
             position: relative;
         }
 
@@ -67,7 +66,7 @@
 
         .intro-section h2 {
             font-size: 2.5rem;
-            color: #1e3a8a;
+            color: #ea580c;
             margin-bottom: 1.5rem;
         }
 
@@ -79,67 +78,110 @@
             line-height: 1.8;
         }
 
-        .items-section {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        .ingredients-section {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
             padding: 4rem 2rem;
             border-radius: 20px;
             margin-bottom: 4rem;
         }
 
-        .items-section h2 {
+        .ingredients-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #1e3a8a;
+            color: #ea580c;
             margin-bottom: 3rem;
         }
 
-        .items-grid {
+        .ingredients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .item-card {
+        .ingredient-card {
             background: white;
-            padding: 2.5rem;
+            padding: 1.5rem;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
-        .item-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.25);
-            border-color: #3b82f6;
+        .ingredient-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.25);
         }
 
-        .item-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        .ingredient-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
             color: white;
         }
 
-        .item-card h3 {
-            font-size: 1.8rem;
-            color: #1e3a8a;
+        .ingredient-card span {
+            display: block;
+            color: #ea580c;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .flavors-section {
+            margin-bottom: 4rem;
+        }
+
+        .flavors-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ea580c;
+            margin-bottom: 3rem;
+        }
+
+        .flavors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .flavor-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .flavor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.2);
+            border-color: #f97316;
+        }
+
+        .flavor-card i {
+            font-size: 3rem;
+            color: #f97316;
+            margin-bottom: 1.5rem;
+        }
+
+        .flavor-card h3 {
+            font-size: 1.5rem;
+            color: #ea580c;
             margin-bottom: 1rem;
         }
 
-        .item-card p {
+        .flavor-card p {
             color: #64748b;
-            font-size: 1rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .features-section {
@@ -149,7 +191,7 @@
         .features-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #1e3a8a;
+            color: #ea580c;
             margin-bottom: 3rem;
         }
 
@@ -160,38 +202,38 @@
         }
 
         .feature-card {
-            background: white;
+            background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
             padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
         .feature-card i {
             font-size: 3rem;
-            color: #3b82f6;
+            color: #f97316;
             margin-bottom: 1.5rem;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            color: #1e3a8a;
+            font-size: 1.4rem;
+            color: #ea580c;
             margin-bottom: 1rem;
         }
 
         .feature-card p {
             color: #64748b;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #1e3a8a 0%, #f97316 100%);
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
             padding: 4rem 2rem;
             border-radius: 20px;
             text-align: center;
@@ -207,7 +249,7 @@
         .cta-section p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
         }
 
         .cta-buttons {
@@ -219,7 +261,7 @@
 
         .btn-primary {
             background: white;
-            color: #f97316;
+            color: #ea580c;
             padding: 1rem 2.5rem;
             border-radius: 12px;
             font-weight: 700;
@@ -247,7 +289,7 @@
 
         .btn-secondary:hover {
             background: white;
-            color: #f97316;
+            color: #ea580c;
         }
 
         /* Mobile Responsive */
@@ -269,17 +311,19 @@
             }
 
             .intro-section h2,
-            .items-section h2,
+            .ingredients-section h2,
+            .flavors-section h2,
             .features-section h2,
             .cta-section h2 {
                 font-size: 2rem;
             }
 
-            .items-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .ingredients-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
             }
 
+            .flavors-grid,
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -295,88 +339,148 @@
                 max-width: 300px;
             }
         }
+
+        @media (max-width: 480px) {
+            .ingredients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Global Header will be loaded here -->
     <div id="header-container"></div>
 
     <main>
-        <!-- Hero Section -->
         <section class="speciality-hero">
-            <h1><i class="fas fa-cookie-bite"></i> Samosa / Spanakopita</h1>
-            <p>A perfect fusion of Indian and Greek flavors - crispy, savory pastries filled with delicious ingredients</p>
+            <h1><i class="fas fa-cookie-bite"></i> Dahi Puri</h1>
+            <p>Crispy golden puris filled with creamy yogurt, tangy chutneys, and a burst of Indian spices</p>
         </section>
 
         <div class="speciality-content">
-            <!-- Introduction Section -->
             <section class="intro-section">
-                <h2>Authentic Appetizers for Your Events</h2>
-                <p>Our Samosas and Spanakopita bring together the best of two worlds - the spicy, aromatic flavors of India and the fresh, Mediterranean taste of Greece. These handcrafted appetizers are perfect for any occasion, from corporate events to wedding receptions.</p>
+                <h2>The Ultimate Chaat Experience</h2>
+                <p>Dahi Puri is a beloved Indian street food that combines the crunch of crispy puris with the coolness of fresh yogurt, the tang of tamarind chutney, and the kick of aromatic spices. Each bite is an explosion of flavors and textures that will leave your guests wanting more.</p>
             </section>
 
-            <!-- Items Section -->
-            <section class="items-section">
-                <h2><i class="fas fa-utensils"></i> Our Specialties</h2>
-                <div class="items-grid">
-                    <div class="item-card">
-                        <div class="item-icon">
-                            <i class="fas fa-fire"></i>
+            <section class="ingredients-section">
+                <h2><i class="fas fa-carrot"></i> Fresh Ingredients</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-circle"></i>
                         </div>
-                        <h3>Indian Samosa</h3>
-                        <p>Crispy golden pastry filled with spiced potatoes, peas, and aromatic Indian spices. Served with mint chutney and tamarind sauce.</p>
+                        <span>Crispy Puris</span>
                     </div>
-                    <div class="item-card">
-                        <div class="item-icon">
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-ice-cream"></i>
+                        </div>
+                        <span>Fresh Yogurt</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                        <span>Green Chutney</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <span>Tamarind Chutney</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <span>Boiled Potatoes</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
                             <i class="fas fa-leaf"></i>
                         </div>
-                        <h3>Greek Spanakopita</h3>
-                        <p>Flaky phyllo dough filled with spinach, feta cheese, herbs, and olive oil. A classic Greek delicacy that melts in your mouth.</p>
+                        <span>Onions & Coriander</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <span>Chaat Masala</span>
+                    </div>
+                    <div class="ingredient-card">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>Sev</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Features Section -->
+            <section class="flavors-section">
+                <h2><i class="fas fa-utensils"></i> A Symphony of Flavors</h2>
+                <div class="flavors-grid">
+                    <div class="flavor-card">
+                        <i class="fas fa-snowflake"></i>
+                        <h3>Cool & Creamy</h3>
+                        <p>Fresh yogurt provides a smooth, cooling base that balances the spices perfectly.</p>
+                    </div>
+                    <div class="flavor-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Tangy & Sweet</h3>
+                        <p>Our signature tamarind chutney adds the perfect sweet and tangy kick.</p>
+                    </div>
+                    <div class="flavor-card">
+                        <i class="fas fa-fire-alt"></i>
+                        <h3>Spicy & Zesty</h3>
+                        <p>Green chutney and chaat masala bring the heat and aromatic flavors.</p>
+                    </div>
+                    <div class="flavor-card">
+                        <i class="fas fa-cookie"></i>
+                        <h3>Crispy & Crunchy</h3>
+                        <p>Golden puris and sev provide the satisfying crunch in every bite.</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="features-section">
-                <h2>Why Choose Our Samosa & Spanakopita?</h2>
+                <h2>Why Choose Our Dahi Puri?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <i class="fas fa-heart"></i>
-                        <h3>Handcrafted with Love</h3>
-                        <p>Each piece is handmade by our expert chefs using traditional recipes passed down through generations.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-leaf"></i>
-                        <h3>Fresh Ingredients</h3>
-                        <p>We use only the freshest vegetables, premium spices, and authentic cheeses for the best taste.</p>
+                        <i class="fas fa-clock"></i>
+                        <h3>Freshly Prepared</h3>
+                        <p>Made fresh at your event for the crispiest, most delicious experience.</p>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-users"></i>
-                        <h3>Perfect for Events</h3>
-                        <p>Ideal for parties, weddings, corporate events, and celebrations of all sizes.</p>
+                        <h3>Perfect for Parties</h3>
+                        <p>An interactive food station that guests love to watch and enjoy.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-certificate"></i>
-                        <h3>Hygienic Preparation</h3>
-                        <p>We maintain the highest standards of hygiene and food safety in all our preparations.</p>
+                        <i class="fas fa-sliders-h"></i>
+                        <h3>Customizable</h3>
+                        <p>Adjust spice levels and ingredients to suit your guests' preferences.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-palette"></i>
-                        <h3>Customizable Options</h3>
-                        <p>Choose from various fillings and spice levels to suit your guests' preferences.</p>
+                        <i class="fas fa-leaf"></i>
+                        <h3>Vegetarian Friendly</h3>
+                        <p>100% vegetarian and can be made vegan upon request.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-truck"></i>
-                        <h3>Live Preparation</h3>
-                        <p>Available with live cooking stations for an interactive dining experience at your venue.</p>
+                        <i class="fas fa-heart"></i>
+                        <h3>Light & Healthy</h3>
+                        <p>A guilt-free snack with protein from yogurt and fresh vegetables.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Authentic Taste</h3>
+                        <p>Traditional recipe with authentic Indian spices and flavors.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- CTA Section -->
             <section class="cta-section">
-                <h2>Book Samosa / Spanakopita for Your Event</h2>
-                <p>Make your next event memorable with our delicious appetizers</p>
+                <h2>Book Dahi Puri for Your Event</h2>
+                <p>Add the magic of Indian street food to your next celebration</p>
                 <div class="cta-buttons">
                     <a href="enquiry-form.html" class="btn-primary"><i class="fas fa-clipboard-list"></i> Get a Quote</a>
                     <a href="contact-us.html" class="btn-secondary"><i class="fas fa-phone"></i> Contact Us</a>
@@ -431,7 +535,6 @@
     <script src="js/global-header.js"></script>
     <script src="js/header.js"></script>
     
-    <!-- Chatbot Integration -->
     <script>
         fetch('chatbot.html')
             .then(response => response.text())
