@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feta Saganaki - Our Speciality | Maharaja Chef Services</title>
+    <meta name="description" content="Enjoy authentic Feta Saganaki - crispy pan-fried Greek cheese at Maharaja Chef Services. Perfect for parties and events.">
+    <meta name="keywords" content="feta saganaki, greek cheese, appetizers, mediterranean food, party catering">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.jpg">
+    <meta name="msapplication-TileImage" content="images/logo.jpg">
+    
+    <style>
+        /* Page Specific Styles */
+        .speciality-hero {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speciality-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .speciality-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .speciality-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        .speciality-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .varieties-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .varieties-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .varieties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .variety-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .variety-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.25);
+            border-color: #6366f1;
+        }
+
+        .variety-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .variety-card h3 {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .variety-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .features-section {
+            margin-bottom: 4rem;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #6366f1;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .ingredients-section {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .ingredients-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .ingredient-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .ingredient-card i {
+            font-size: 2.5rem;
+            color: #6366f1;
+            margin-bottom: 1rem;
+        }
+
+        .ingredient-card h3 {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredient-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #4f46e5;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #4f46e5;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .speciality-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .speciality-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .speciality-hero p {
+                font-size: 1.1rem;
+            }
+
+            .speciality-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .intro-section h2,
+            .varieties-section h2,
+            .features-section h2,
+            .ingredients-section h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .varieties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ingredients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="speciality-hero">
+            <h1><i class="fas fa-cheese"></i> Feta Saganaki</h1>
+            <p>Crispy pan-fried Greek cheese - a beloved Mediterranean appetizer with golden exterior and melt-in-your-mouth interior</p>
+        </section>
+
+        <div class="speciality-content">
+            <!-- Introduction Section -->
+            <section class="intro-section">
+                <h2>Greek Culinary Delight</h2>
+                <p>Our Feta Saganaki is prepared using traditional Greek methods - thick slices of premium feta cheese, lightly breaded and pan-fried to golden perfection. The result is a deliciously crispy exterior with a warm, creamy interior that will delight your taste buds.</p>
+            </section>
+
+            <!-- Varieties Section -->
+            <section class="varieties-section">
+                <h2><i class="fas fa-utensils"></i> Our Saganaki Varieties</h2>
+                <div class="varieties-grid">
+                    <div class="variety-card">
+                        <div class="variety-icon">
+                            <i class="fas fa-cheese"></i>
+                        </div>
+                        <h3>Classic Feta Saganaki</h3>
+                        <p>Traditional recipe with feta cheese, lightly breaded and fried until golden brown.</p>
+                    </div>
+                    <div class="variety-card">
+                        <div class="variety-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Herb Crusted Saganaki</h3>
+                        <p>Feta cheese coated with a blend of Mediterranean herbs and breadcrumbs.</p>
+                    </div>
+                    <div class="variety-card">
+                        <div class="variety-icon">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                        <h3>Spicy Saganaki</h3>
+                        <p>Kicked up with jalapeños and chili flakes for those who love some heat.</p>
+                    </div>
+                    <div class="variety-card">
+                        <div class="variety-icon">
+                            <i class="fas fa-lemon"></i>
+                        </div>
+                        <h3>Lemon Saganaki</h3>
+                        <p>Infused with fresh lemon zest and herbs for a bright, refreshing flavor.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ingredients Section -->
+            <section class="ingredients-section">
+                <h2><i class="fas fa-carrot"></i> Quality Ingredients</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-card">
+                        <i class="fas fa-cheese"></i>
+                        <h3>Feta Cheese</h3>
+                        <p>Aged authentic Greek feta</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa-wheat-awn"></i>
+                        <h3>Fresh Breadcrumbs</h3>
+                        <p>Handmade golden breadcrumbs</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa-egg"></i>
+                        <h3>Egg Batter</h3>
+                        <p>Light and crispy coating</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Fresh Herbs</h3>
+                        <p>Oregano, thyme, dill</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa-lemon"></i>
+                        <h3>Fresh Lemons</h3>
+                        <p>Juicy Mediterranean lemons</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa-olive-oil"></i>
+                        <h3>Olive Oil</h3>
+                        <p>Extra virgin Greek olive oil</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa-pepper-hot"></i>
+                        <h3>Spices</h3>
+                        <p>Sea salt, black pepper</p>
+                    </div>
+                    <div class="ingredient-card">
+                        <i class="fas fa Garlic"></i>
+                        <h3>Garlic</h3>
+                        <p>Fresh roasted garlic</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2>Why Choose Our Feta Saganaki?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-award"></i>
+                        <h3>Authentic Recipe</h3>
+                        <p>Prepared following traditional Greek recipes passed down through generations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cheese"></i>
+                        <h3>Premium Feta</h3>
+                        <p>We use only the finest quality feta cheese from trusted Greek producers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-fire-flame-curved"></i>
+                        <h3>Perfect Fry</h3>
+                        <p>Pan-fried to golden perfection with a crispy exterior and soft interior.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-olive-oil"></i>
+                        <h3>Olive Oil</h3>
+                        <p>Cooked in premium extra virgin olive oil for authentic Mediterranean taste.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Live Counter</h3>
+                        <p>Freshly prepared Saganaki at your event with our live cooking service.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Made with Love</h3>
+                        <p>Each piece is crafted with care and traditional Greek hospitality.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Book Feta Saganaki Counter</h2>
+                <p>Add this delicious Greek appetizer to your next event with our live counter service</p>
+                <div class="cta-buttons">
+                    <a href="enquiry-form.html" class="btn-primary"><i class="fas fa-clipboard-list"></i> Live Counter Requirement</a>
+                    <a href="contact-us.html" class="btn-secondary"><i class="fas fa-phone"></i> Contact Us</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+    <script src="js/header.js"></script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+</body>
+</html>
