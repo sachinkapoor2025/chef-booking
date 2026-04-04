@@ -19,65 +19,6 @@
     
     <style>
         /* Page Specific Styles */
-        .speciality-hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            margin-top: 0;
-            margin-bottom: 0;
-            padding-top: 80px; /* Account for fixed header height */
-            box-sizing: border-box;
-        }
-
-        .speciality-hero-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            z-index: 1;
-        }
-
-        .speciality-hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.75) 0%, rgba(59, 130, 246, 0.65) 100%);
-            z-index: 2;
-        }
-
-        .speciality-hero-content {
-            position: relative;
-            z-index: 3;
-            padding: 2rem;
-            max-width: 900px;
-        }
-
-        .speciality-hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
-            font-weight: 700;
-        }
-
-        .speciality-hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: rgba(255,255,255,0.98);
-            line-height: 1.8;
-        }
-
         /* Fixed Header Overlay */
         header, .global-header {
             position: fixed;
@@ -90,6 +31,7 @@
         }
 
         .speciality-content {
+            padding-top: 100px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 2rem;
@@ -399,11 +341,6 @@
     <div id="header-container"></div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="speciality-hero">
-            <img src="images/pani-puri.jpg" alt="Pani Puri" class="speciality-hero-img">
-        </section>
-
         <div class="speciality-content">
             <!-- Introduction Section -->
             <section class="intro-section">
