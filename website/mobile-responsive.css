@@ -758,12 +758,9 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         visibility: visible !important;
     }
     
-    
-    /* Hide any existing footer bottom content and replace with copyright */
-    footer .footer-bottom {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+    /* Hide duplicate footer-bottom paragraphs - only show first one */
+    .footer-bottom p:not(:first-of-type) {
+        display: none !important;
     }
     
     /* Footer - ensure it's visible in mobile */
