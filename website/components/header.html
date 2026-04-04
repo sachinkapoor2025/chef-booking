@@ -228,9 +228,9 @@
         }
     }
 
-    /* Hamburger menu color - Black with proper spacing */
+    /* Hamburger menu - Hidden on Desktop, shown only on Mobile */
     .mobile-menu-toggle {
-        display: flex !important;
+        display: none !important; /* Hidden by default (desktop) */
         flex-direction: column !important;
         justify-content: space-between !important;
         width: 30px !important;
@@ -240,6 +240,13 @@
         background: transparent !important;
         border: none !important;
         z-index: 10001 !important;
+    }
+    
+    /* Show hamburger only on mobile */
+    @media (max-width: 768px) {
+        .mobile-menu-toggle {
+            display: flex !important;
+        }
     }
 
     .mobile-menu-toggle span {

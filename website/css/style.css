@@ -4225,8 +4225,9 @@ footer hr {
 
 /* Tablet responsive styles for dropdowns */
 @media (min-width: 769px) and (max-width: 992px) {
+  /* Hamburger hidden on tablet - only show on mobile */
   .mobile-menu-toggle {
-    display: flex;
+    display: none !important;
   }
 
   .nav-menu {
