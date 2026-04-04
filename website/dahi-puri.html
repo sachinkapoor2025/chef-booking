@@ -19,22 +19,39 @@
     
     <style>
         .speciality-hero {
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
             position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             overflow: hidden;
         }
 
-        .speciality-hero::before {
-            content: '';
+        .speciality-hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .speciality-hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 50%);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.7) 0%, rgba(234, 88, 12, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .speciality-hero-content {
+            position: relative;
+            z-index: 3;
+            padding: 2rem;
         }
 
         .speciality-hero h1 {
@@ -42,7 +59,6 @@
             margin-bottom: 1rem;
             color: white;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-            position: relative;
         }
 
         .speciality-hero p {
@@ -50,7 +66,6 @@
             max-width: 700px;
             margin: 0 auto;
             color: rgba(255,255,255,0.95);
-            position: relative;
         }
 
         .speciality-content {
@@ -352,8 +367,12 @@
 
     <main>
         <section class="speciality-hero">
-            <h1><i class="fas fa-cookie-bite"></i> Dahi Puri</h1>
-            <p>Crispy golden puris filled with creamy yogurt, tangy chutneys, and a burst of Indian spices</p>
+            <img src="images/dahi-puri.jpg" alt="Dahi Puri" class="speciality-hero-img">
+            <div class="speciality-hero-overlay"></div>
+            <div class="speciality-hero-content">
+                <h1><i class="fas fa-cookie-bite"></i> Dahi Puri</h1>
+                <p>Crispy golden puris filled with creamy yogurt, tangy chutneys, and a burst of Indian spices</p>
+            </div>
         </section>
 
         <div class="speciality-content">
