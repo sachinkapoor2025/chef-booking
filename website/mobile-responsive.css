@@ -691,11 +691,6 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         visibility: visible !important;
     }
     
-    /* Ensure copyright text is visible in mobile */
-    .footer-bottom p::before {
-        content: "© 2026 Maharaja Chef Services. All rights reserved.";
-        display: inline;
-    }
     
     /* Hide any existing footer bottom content and replace with copyright */
     footer .footer-bottom {
