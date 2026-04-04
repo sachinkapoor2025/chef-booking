@@ -167,15 +167,31 @@
             right: 20px;
         }
         
-        /* Live Counters Section */
+        /* Live Counters Section - Same as Catering Services */
         .live-counters-section {
-            padding: 80px 20px;
-            background: white;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 50%, #e8f4ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .live-counters-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            pointer-events: none;
         }
         
         .section-header {
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
         }
         
         .section-header h2 {
@@ -203,104 +219,124 @@
         .counters-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1200px;
+            gap: 35px;
+            max-width: 1300px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .counter-card {
             background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            overflow: visible;
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .counter-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8, #3b82f6);
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .counter-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.2);
             border-color: #3b82f6;
         }
         
+        .counter-card:hover::before {
+            opacity: 1;
+        }
+        
         .counter-image {
-            height: 220px;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            height: auto;
+            min-height: 200px;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .counter-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: shimmer 3s infinite linear;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            overflow: visible;
+            border-radius: 24px 24px 0 0;
         }
         
         .counter-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+            height: auto;
+            max-height: 280px;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.4s ease;
+            border: none;
+            outline: none;
+        }
+        
+        .counter-card:hover .counter-image img {
+            transform: scale(1.05);
         }
         
         .counter-image i {
-            font-size: 5rem;
-            color: white;
-            opacity: 0.9;
-            z-index: 1;
+            font-size: 4rem;
+            color: #3b82f6;
+            opacity: 0.8;
         }
         
         .counter-content {
             padding: 25px;
             text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 0 0 24px 24px;
         }
         
         .counter-content h3 {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             color: #1e3a8a;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 700;
+            letter-spacing: -0.02em;
         }
         
         .counter-content p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #64748b;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         
         .counter-btn {
-            display: inline-block;
-            padding: 12px 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .counter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .counter-btn i {
+            font-size: 0.85rem;
         }
         
         /* Catering Services Section - Enhanced */
