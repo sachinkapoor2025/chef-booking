@@ -228,27 +228,61 @@
         }
     }
 
-    /* Hamburger menu color - Blue */
+    /* Hamburger menu color - Black with proper spacing */
+    .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        width: 30px !important;
+        height: 24px !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 10001 !important;
+    }
+
     .mobile-menu-toggle span {
-        background-color: #3b82f6 !important;
+        display: block !important;
+        width: 100% !important;
+        height: 3px !important;
+        min-height: 3px !important;
+        background-color: #000000 !important;
+        border-radius: 2px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transform-origin: center !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
-    .hamburger,
-    .hamburger-menu,
-    .menu-toggle,
-    #hamburger,
-    .mobile-menu-btn,
-    .hamburger-icon,
-    .hamburger span,
-    .hamburger-line {
-        background-color: #3b82f6 !important;
-        color: #3b82f6 !important;
+
+    .mobile-menu-toggle span:nth-child(1) {
+        transform-origin: center center !important;
     }
-    .hamburger svg,
-    .hamburger i,
-    .hamburger-menu svg,
-    .hamburger-menu i {
-        fill: #3b82f6 !important;
-        color: #3b82f6 !important;
+
+    .mobile-menu-toggle span:nth-child(2) {
+        transform-origin: center center !important;
+    }
+
+    .mobile-menu-toggle span:nth-child(3) {
+        transform-origin: center center !important;
+    }
+
+    /* Active state - X transformation */
+    .mobile-menu-toggle.active span {
+        background-color: #333 !important;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px) !important;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0 !important;
+        transform: scaleX(0) !important;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px) !important;
     }
     
     /* Mobile Menu Buttons - Solid Blue Background with White Text */
