@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-999Q8EMQJM');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maharaja Chef - Premium Live Counters & Catering Services</title>
+    <meta name="description" content="Experience authentic Indian street food with our premium live counters - Pani Puri, Dahi Puri, Papdi Chaat, Dahi Vada. Perfect for events and celebrations.">
+    <meta name="keywords" content="live counters, pani puri, dahi puri, papdi chaat, dahi vada, indian street food, catering services, event catering">
+    <link rel="canonical" href="https://maharajachef.com/home-new.html">
+    <meta name="theme-color" content="#3b82f6">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="mobile-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <style>
+        /* New Home Page Styles - Clean White & Blue Theme */
+        
+        /* Banner Carousel Section */
+        .banner-carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+        
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .banner-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .banner-placeholder h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .banner-placeholder p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Banner Navigation Dots */
+        .banner-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        
+        .banner-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .banner-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .banner-dot:hover {
+            background: rgba(255,255,255,0.8);
+        }
+        
+        /* Banner Arrows */
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #3b82f6;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .banner-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .banner-arrow.prev {
+            left: 20px;
+        }
+        
+        .banner-arrow.next {
+            right: 20px;
+        }
+        
+        /* Live Counters Section */
+        .live-counters-section {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .section-header .subtitle {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .section-header .accent-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        .counters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .counter-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .counter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+        
+        .counter-image {
+            height: 220px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s infinite linear;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .counter-image i {
+            font-size: 5rem;
+            color: white;
+            opacity: 0.9;
+            z-index: 1;
+        }
+        
+        .counter-content {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .counter-content h3 {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .counter-content p {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .counter-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .counter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Why Choose Us Section */
+        .why-choose-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.1);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            font-size: 1rem;
+            color: #64748b;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn.primary {
+            background: white;
+            color: #1e3a8a;
+        }
+        
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .cta-btn.secondary:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .counters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .banner-carousel {
+                height: 400px;
+            }
+            
+            .banner-placeholder h2 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-placeholder i {
+                font-size: 3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .counters-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .banner-carousel {
+                height: 350px;
+            }
+            
+            .banner-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .live-counters-section,
+            .why-choose-section {
+                padding: 50px 15px;
+            }
+            
+            .counter-image {
+                height: 180px;
+            }
+            
+            .counter-image i {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header -->
+    <div id="header-container"></div>
+    
+    <main>
+        <!-- Banner Carousel Section -->
+        <section class="banner-carousel" id="bannerCarousel">
+            <!-- Slide 1 -->
+            <div class="banner-slide active" data-slide="1">
+                <div class="banner-placeholder">
+                    <i class="fas fa-image"></i>
+                    <h2>Your Banner Here</h2>
+                    <p>Add your promotional banner image</p>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="banner-slide" data-slide="2">
+                <div class="banner-placeholder">
+                    <i class="fas fa-image"></i>
+                    <h2>Your Banner Here</h2>
+                    <p>Add your promotional banner image</p>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="banner-slide" data-slide="3">
+                <div class="banner-placeholder">
+                    <i class="fas fa-image"></i>
+                    <h2>Your Banner Here</h2>
+                    <p>Add your promotional banner image</p>
+                </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="banner-slide" data-slide="4">
+                <div class="banner-placeholder">
+                    <i class="fas fa-image"></i>
+                    <h2>Your Banner Here</h2>
+                    <p>Add your promotional banner image</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button class="banner-arrow prev" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="banner-arrow next" onclick="changeSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Navigation Dots -->
+            <div class="banner-dots">
+                <span class="banner-dot active" onclick="goToSlide(1)"></span>
+                <span class="banner-dot" onclick="goToSlide(2)"></span>
+                <span class="banner-dot" onclick="goToSlide(3)"></span>
+                <span class="banner-dot" onclick="goToSlide(4)"></span>
+            </div>
+        </section>
+        
+        <!-- Live Counters Section -->
+        <section class="live-counters-section">
+            <div class="section-header">
+                <h2>Our Live Counters</h2>
+                <p class="subtitle">Experience the magic of fresh, authentic Indian street food prepared right before your eyes</p>
+                <div class="accent-line"></div>
+            </div>
+            
+            <div class="counters-grid">
+                <!-- Pani Puri -->
+                <div class="counter-card">
+                    <div class="counter-image">
+                        <i class="fas fa-circle-notch"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Pani Puri</h3>
+                        <p>Crispy hollow puris filled with tangy tamarind water, spicy mint chutney, and savory fillings. A burst of flavors in every bite!</p>
+                        <a href="pani-puri.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Dahi Puri -->
+                <div class="counter-card">
+                    <div class="counter-image">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Dahi Puri</h3>
+                        <p>Crispy puris topped with creamy yogurt, sweet chutney, and aromatic spices. A perfect blend of sweet and savory!</p>
+                        <a href="dahi-puri.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Papdi Chaat -->
+                <div class="counter-card">
+                    <div class="counter-image">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Papdi Chaat</h3>
+                        <p>Crispy papdis layered with potatoes, chickpeas, yogurt, and chutneys. A delightful medley of textures and flavors!</p>
+                        <a href="papdi-chaat.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Dahi Vada -->
+                <div class="counter-card">
+                    <div class="counter-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Dahi Vada</h3>
+                        <p>Soft lentil dumplings soaked in creamy yogurt, topped with chutneys and spices. A melt-in-mouth delicacy!</p>
+                        <a href="dahi-vada.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-section">
+            <div class="section-header">
+                <h2>Why Choose Us</h2>
+                <p class="subtitle">We bring the authentic taste of Indian street food to your events</p>
+                <div class="accent-line"></div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Fresh Preparation</h3>
+                    <p>Every dish is prepared fresh on-site, ensuring the best taste and quality for your guests.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Experienced Team</h3>
+                    <p>Our skilled chefs bring years of expertise in preparing authentic Indian street food.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>We use only the finest ingredients to deliver an unforgettable culinary experience.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Event Customization</h3>
+                    <p>Tailored menus and setups to match your event theme and preferences perfectly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Guest Satisfaction</h3>
+                    <p>We prioritize your guests' experience and ensure everyone leaves with a smile.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Hygiene Standards</h3>
+                    <p>We maintain the highest standards of cleanliness and food safety at every event.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Add Flavor to Your Event?</h2>
+            <p>Book our live counters for your next celebration and treat your guests to an unforgettable experience.</p>
+            <div class="cta-buttons">
+                <a href="contact-us.html" class="cta-btn primary">Contact Us</a>
+                <a href="enquiry-form.html" class="cta-btn secondary">Get a Quote</a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium live counters and catering services. Bringing authentic Indian street food to your events.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Live Counters</h3>
+                <ul>
+                    <li><a href="pani-puri.html">Pani Puri</a></li>
+                    <li><a href="dahi-puri.html">Dahi Puri</a></li>
+                    <li><a href="papdi-chaat.html">Papdi Chaat</a></li>
+                    <li><a href="dahi-vada.html">Dahi Vada</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home-new.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="enquiry-form.html">Enquiry</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/global-header.js" defer></script>
+    <script src="js/header.js" defer></script>
+    
+    <!-- Banner Carousel Script -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+        let autoSlideInterval;
+        
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.banner-slide');
+            const dots = document.querySelectorAll('.banner-dot');
+            
+            // Handle wrap around
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+            
+            // Remove active class from all
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current
+            slides[currentSlide - 1].classList.add('active');
+            dots[currentSlide - 1].classList.add('active');
+        }
+        
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+        
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+        
+        function autoSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(autoSlide, 5000); // Change every 5 seconds
+        }
+        
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+        
+        // Start auto-slide on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            startAutoSlide();
+        });
+    </script>
+    
+    <!-- Chatbot Integration -->
+    <script>
+        fetch('chatbot.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const chatbotContainer = doc.querySelector('.chatbot-container');
+                const styleTags = doc.querySelectorAll('style');
+                
+                styleTags.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
+                });
+                
+                document.body.appendChild(chatbotContainer.cloneNode(true));
+                
+                const scriptTags = doc.querySelectorAll('script');
+                scriptTags.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading chatbot:', error);
+            });
+    </script>
+</body>
+</html>
