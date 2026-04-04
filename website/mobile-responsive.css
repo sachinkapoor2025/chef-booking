@@ -456,22 +456,36 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     #faq > div > div {
         margin-bottom: 1rem !important;
     }
-    /* Header and Navigation */
+    /* Header and Navigation - Logo left, Hamburger right */
     .global-nav {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         padding: 0.5rem 1rem;
+        flex-wrap: wrap;
     }
 
-    .header-left, .header-center, .header-right {
+    .header-left {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+        order: 1;
+    }
+    
+    .header-right {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+        order: 2;
+        margin-top: 0;
+        margin-left: auto;
+    }
+    
+    .header-center {
         flex: none;
         width: 100%;
         max-width: 100%;
-    }
-
-    .header-right {
-        justify-content: flex-start;
-        margin-top: 1rem;
+        order: 3;
     }
 
     .action-buttons {
@@ -760,6 +774,16 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     
     /* Hide duplicate footer-bottom paragraphs - only show first one */
     .footer-bottom p:not(:first-of-type) {
+        display: none !important;
+    }
+    
+    /* Hide duplicate footer-bottom divs - only show first one */
+    footer .footer-bottom:not(:first-of-type) {
+        display: none !important;
+    }
+    
+    /* Ensure only one footer-bottom is visible */
+    .footer-bottom + .footer-bottom {
         display: none !important;
     }
     
