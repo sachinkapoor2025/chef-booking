@@ -1,9 +1,9 @@
 /* Mobile Responsive CSS - Comprehensive Fixes */
 
 /* ========== HAMBURGER MENU FIXES FOR ALL PAGES ========== */
-/* Ensure hamburger menu lines are properly visible and separated on ALL pages */
+/* Hamburger menu - HIDDEN on Desktop by default, only shown on mobile */
 .mobile-menu-toggle {
-    display: flex !important;
+    display: none !important; /* Hidden on desktop */
     flex-direction: column !important;
     justify-content: space-between !important;
     width: 30px !important;
@@ -156,6 +156,11 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 
 /* Mobile responsive styles - FIXED VERSION */
 @media (max-width: 768px) {
+    
+    /* ========== HAMBURGER MENU - SHOW ON MOBILE ONLY ========== */
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
     
     /* ========== BUTTON TEXT STYLING FOR MOBILE ========== */
     /* Ensure button text is clear and readable on mobile */
