@@ -624,28 +624,45 @@
                 display: block !important;
                 width: 24px !important;
                 height: 3px !important;
-                background-color: #3b82f6 !important;
+                background-color: #000000 !important;
                 border-radius: 2px !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 transform-origin: center !important;
+                transition: all 0.3s ease !important;
             }
             
+            /* Hamburger closed state - three lines */
             .mobile-menu-toggle span:nth-child(1) {
                 transform: none !important;
             }
             
             .mobile-menu-toggle span:nth-child(2) {
                 transform: none !important;
+                opacity: 1 !important;
             }
             
             .mobile-menu-toggle span:nth-child(3) {
                 transform: none !important;
             }
             
+            /* Hamburger open state - X shape */
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px) !important;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0 !important;
+                transform: scaleX(0) !important;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px) !important;
+            }
+            
             .banner-carousel {
                 width: 100%;
-                background: #1e3a8a;
+                background: transparent;
             }
             
             .banner-slide {
@@ -655,13 +672,12 @@
             .banner-img {
                 width: 100%;
                 height: auto;
-                min-height: 350px;
                 object-fit: contain;
                 object-position: center;
             }
             
             .banner-placeholder {
-                min-height: 350px;
+                min-height: 200px;
             }
             
             .banner-placeholder h2 {
