@@ -607,7 +607,9 @@
         
         @media (max-width: 768px) {
             .banner-carousel {
-                height: 400px;
+                height: auto;
+                min-height: auto;
+                background: transparent;
             }
             
             .banner-placeholder h2 {
@@ -658,10 +660,6 @@
         }
         
         @media (max-width: 480px) {
-            .banner-carousel {
-                height: 350px;
-            }
-            
             .banner-arrow {
                 width: 40px;
                 height: 40px;
