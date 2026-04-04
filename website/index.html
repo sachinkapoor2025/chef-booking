@@ -292,10 +292,90 @@
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
         
+        /* Catering Services Section */
+        .catering-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+        
+        .catering-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .catering-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .catering-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.12);
+            border-color: #3b82f6;
+        }
+        
+        .catering-image {
+            height: 180px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .catering-image i {
+            font-size: 3.5rem;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .catering-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .catering-content h3 {
+            font-size: 1.15rem;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .catering-content p {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .catering-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .catering-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
         /* Why Choose Us Section */
         .why-choose-section {
             padding: 80px 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            background: white;
         }
         
         .features-grid {
@@ -407,8 +487,18 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .catering-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
         @media (max-width: 1024px) {
             .counters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .catering-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -435,6 +525,11 @@
             }
             
             .counters-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .catering-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
             }
@@ -604,6 +699,77 @@
             </div>
         </section>
         
+        <!-- Catering Services Section -->
+        <section class="catering-section">
+            <div class="section-header">
+                <h2>Our Catering Services</h2>
+                <p class="subtitle">Delicious options for your special events and celebrations</p>
+                <div class="accent-line"></div>
+            </div>
+            
+            <div class="catering-grid">
+                <!-- Samosa -->
+                <div class="catering-card">
+                    <div class="catering-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="catering-content">
+                        <h3>Samosa</h3>
+                        <p>Crispy golden pastries filled with spiced potatoes and peas. A classic Indian appetizer loved by all!</p>
+                        <a href="samosa-spanakopita.html" class="catering-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Vada Pav -->
+                <div class="catering-card">
+                    <div class="catering-image">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <div class="catering-content">
+                        <h3>Vada Pav</h3>
+                        <p>Mumbai's iconic street food - spicy potato fritter in a soft bun with chutneys. A flavorful delight!</p>
+                        <a href="vada-pav.html" class="catering-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Greek Salad -->
+                <div class="catering-card">
+                    <div class="catering-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="catering-content">
+                        <h3>Greek Salad</h3>
+                        <p>Cucumber, tomatoes, red & green bell peppers, feta cheese, mixed olives, oregano & salt.</p>
+                        <a href="greek-salad.html" class="catering-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Samosa / Spanakopita -->
+                <div class="catering-card">
+                    <div class="catering-image">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="catering-content">
+                        <h3>Samosa / Spanakopita</h3>
+                        <p>A fusion treat - crispy samosa with Greek spanakopita filling. Best of both worlds!</p>
+                        <a href="samosa-spanakopita.html" class="catering-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Feta Saganaki -->
+                <div class="catering-card">
+                    <div class="catering-image">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="catering-content">
+                        <h3>Feta Saganaki</h3>
+                        <p>Crispy fried with Greek herbs. A savory Greek delicacy with authentic Mediterranean flavors.</p>
+                        <a href="feta-saganaki.html" class="catering-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Why Choose Us Section -->
         <section class="why-choose-section">
             <div class="section-header">
@@ -686,8 +852,8 @@
                 <ul>
                     <li><a href="pani-puri.html">Pani Puri</a></li>
                     <li><a href="dahi-puri.html">Dahi Puri</a></li>
-                    <li><a href="papdi-chaat.html">Papdi Chaat</a></li>
                     <li><a href="dahi-vada.html">Dahi Vada</a></li>
+                    <li><a href="papdi-chaat.html">Papdi Chaat</a></li>
                 </ul>
             </div>
             <div class="footer-column">
