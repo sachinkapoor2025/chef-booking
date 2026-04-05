@@ -528,7 +528,7 @@ header {
     }
 
     .mobile-menu-toggle {
-        display: flex;
+        display: none !important;
     }
 
     .action-buttons {
@@ -4074,7 +4074,7 @@ footer hr {
 /* Mobile responsive styles for global header */
 @media (max-width: 768px) {
   .mobile-menu-toggle {
-    display: flex;
+    display: none !important;
   }
   
   .global-nav {
