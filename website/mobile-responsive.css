@@ -4,49 +4,11 @@
 /* Hamburger menu - HIDDEN on Desktop by default, only shown on mobile */
 .mobile-menu-toggle {
     display: none !important; /* Hidden on desktop */
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    width: 30px !important;
-    height: 24px !important;
-    padding: 4px 0 !important;
-    cursor: pointer !important;
-    background: transparent !important;
-    border: none !important;
-    z-index: 10001 !important;
-    position: relative !important;
-}
-
-.mobile-menu-toggle span {
-    display: block !important;
-    width: 100% !important;
-    height: 3px !important;
-    min-height: 3px !important;
-    background-color: #000000 !important;
-    border-radius: 2px !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    transform-origin: center !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Ensure spacing between hamburger lines */
-.mobile-menu-toggle span:nth-child(1) {
-    margin-bottom: 0 !important;
-    transform-origin: center center !important;
-}
-
-.mobile-menu-toggle span:nth-child(2) {
-    margin: 0 !important;
-}
-
-.mobile-menu-toggle span:nth-child(3) {
-    margin-top: 0 !important;
-    transform-origin: center center !important;
 }
 
 /* Active state - X transformation */
 .mobile-menu-toggle.active span {
-    background-color: #333 !important;
+    background-color: white !important;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
