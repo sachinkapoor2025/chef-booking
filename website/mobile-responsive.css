@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 768px) {
-    /* Force show hamburger on mobile - positioned on RIGHT side */
+    /* Force show hamburger on mobile - positioned on RIGHT corner */
     .mobile-menu-toggle {
         display: flex !important;
         flex-direction: column !important;
@@ -18,8 +18,10 @@
         z-index: 10001 !important;
         position: absolute !important;
         right: 15px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
+        top: 18px !important;
+        left: auto !important;
+        bottom: auto !important;
+        transform: none !important;
         background: transparent !important;
         border: none !important;
         padding: 0 !important;
@@ -34,6 +36,7 @@
         border-radius: 3px !important;
         transition: .25s ease-in-out !important;
         transform-origin: center center !important;
+        margin: 0 !important;
     }
     
     /* Hamburger Animation to X */
