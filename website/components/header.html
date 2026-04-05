@@ -9,14 +9,13 @@
                     </a>
                 </h1>
             </div>
+            <!-- New Hamburger Menu Button - Mobile Only - Right side of Logo -->
+            <button class="new-hamburger" id="new-hamburger" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
-
-        <!-- New Hamburger Menu Button - Mobile Only -->
-        <button class="new-hamburger" id="new-hamburger" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
 
         <div class="header-center">
             <ul class="nav-menu">
@@ -466,21 +465,26 @@
         @media (max-width: 768px) {
             .new-hamburger {
                 display: flex;
-                order: 2;
+                margin-left: 15px;
             }
             
-            /* Mobile header layout - logo left, hamburger right */
+            /* Mobile header layout - logo and hamburger in one row */
             .global-nav {
                 display: flex !important;
                 flex-direction: row !important;
                 align-items: center !important;
-                justify-content: space-between !important;
+                justify-content: flex-start !important;
                 padding: 0.75rem 1rem !important;
                 flex-wrap: wrap !important;
             }
             
+            /* Header-left contains logo + hamburger in one row */
             .header-left {
-                order: 1 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                width: 100% !important;
                 flex: 0 0 auto !important;
             }
             
