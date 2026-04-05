@@ -154,63 +154,92 @@
         
         /* Live Counters Section */
         .live-counters-section {
-            padding: 80px 20px;
-            background: white;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+        }
+        
+        .live-counters-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8, #3b82f6);
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
         
         .section-header h2 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: #1e3a8a;
             margin-bottom: 15px;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
         
         .section-header .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #64748b;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
+            line-height: 1.6;
         }
         
         .section-header .accent-line {
-            width: 80px;
-            height: 4px;
+            width: 100px;
+            height: 5px;
             background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-            margin: 20px auto 0;
-            border-radius: 2px;
+            margin: 25px auto 0;
+            border-radius: 3px;
         }
         
         .counters-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1200px;
+            gap: 35px;
+            max-width: 1300px;
             margin: 0 auto;
         }
         
         .counter-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+            position: relative;
+        }
+        
+        .counter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .counter-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
-            border-color: #3b82f6;
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.25);
+        }
+        
+        .counter-card:hover::before {
+            opacity: 1;
         }
         
         .counter-image {
-            height: 200px;
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            height: 220px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -218,76 +247,140 @@
             overflow: hidden;
         }
         
+        .counter-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
         .counter-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
         
         .counter-card:hover .counter-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         .counter-image .placeholder-icon {
-            font-size: 4rem;
+            font-size: 5rem;
             color: #3b82f6;
-            opacity: 0.7;
+            opacity: 0.6;
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        
+        .counter-card:hover .placeholder-icon {
+            transform: scale(1.1);
+            opacity: 0.8;
         }
         
         .counter-content {
-            padding: 25px;
+            padding: 30px 25px;
             text-align: center;
+            background: white;
         }
         
         .counter-content h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #1e3a8a;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 700;
         }
         
         .counter-content p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 25px;
         }
         
         .counter-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
         }
         
         .counter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.45);
+        }
+        
+        .counter-btn:hover::before {
+            left: 100%;
         }
         
         /* Catering Services Section */
         .catering-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+        }
+        
+        .catering-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1d4ed8, #3b82f6, #1d4ed8);
         }
         
         .catering-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1200px;
+            gap: 35px;
+            max-width: 1300px;
             margin: 0 auto;
         }
         
         .catering-bg {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+        }
+        
+        .catering-bg .placeholder-icon {
+            color: #d97706;
+        }
+        
+        .catering-section .counter-card::before {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+        
+        .catering-section .counter-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+        }
+        
+        .catering-section .counter-btn:hover {
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.45);
         }
         
         /* Why Choose Us Section */
