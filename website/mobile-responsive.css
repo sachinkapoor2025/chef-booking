@@ -1416,6 +1416,65 @@ body {
         width: 100% !important;
     }
     
+    /* ========== CATERING SERVICES PAGE MOBILE FIXES ========== */
+    /* Fix hero image for mobile */
+    #hero-large .hero-image {
+        min-width: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: 2rem !important;
+    }
+    
+    #hero-large .hero-image img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 200px !important;
+        object-fit: cover !important;
+        border-radius: 12px !important;
+    }
+    
+    /* Fix catering services cards images on mobile */
+    #catering-services img,
+    #catering-services .service-image,
+    .catering-card img,
+    .catering-service-img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 180px !important;
+        max-height: 280px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        border-radius: 12px 12px 0 0 !important;
+    }
+    
+    /* Make catering service cards full width on mobile */
+    #catering-services > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 0 15px !important;
+    }
+    
+    #catering-services > div[style*="grid-template-columns"] > div {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Fix food safety section images */
+    #food-safety img {
+        width: 100% !important;
+        max-width: 80px !important;
+        height: auto !important;
+    }
+    
+    /* Fix process section icons */
+    #catering-process .process-icon,
+    #catering-process img {
+        width: 60px !important;
+        height: 60px !important;
+        max-width: 60px !important;
+    }
+    
     /* ========== BECOME A CHEF PAGE MOBILE FIXES ========== */
     /* Why Join Us Section */
     #why-join-us {
