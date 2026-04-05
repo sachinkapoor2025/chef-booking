@@ -499,20 +499,32 @@ header {
 /* Mobile responsive styles for global header */
 @media (max-width: 768px) {
     .global-nav {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         padding: 0.5rem 1rem;
+        flex-wrap: wrap;
     }
 
-    .header-left, .header-center, .header-right {
+    .header-left {
+        flex: 0 0 auto;
+        width: auto;
+        order: 1;
+    }
+    
+    .header-right {
+        flex: 0 0 auto;
+        width: auto;
+        order: 2;
+        margin-left: auto;
+        margin-top: 0;
+        padding: 0;
+    }
+    
+    .header-center {
         flex: none;
         width: 100%;
-    }
-
-    .header-right {
-        justify-content: flex-end;
-        margin-top: 0;
-        padding: 0.5rem 0;
+        order: 3;
     }
 
     .mobile-menu-toggle {
@@ -4066,19 +4078,31 @@ footer hr {
   }
   
   .global-nav {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.5rem 1rem;
+    flex-wrap: wrap;
   }
 
-  .header-left, .header-center, .header-right {
+  .header-left {
+    flex: 0 0 auto;
+    width: auto;
+    order: 1;
+  }
+  
+  .header-right {
+    flex: 0 0 auto;
+    width: auto;
+    order: 2;
+    margin-left: auto;
+    margin-top: 0;
+  }
+  
+  .header-center {
     flex: none;
     width: 100%;
-  }
-
-  .header-right {
-    justify-content: flex-start;
-    margin-top: 1rem;
+    order: 3;
   }
 
   .action-buttons {

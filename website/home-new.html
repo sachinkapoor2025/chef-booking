@@ -195,22 +195,22 @@
         
         .counter-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: 1px solid #e2e8f0;
         }
         
         .counter-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
             border-color: #3b82f6;
         }
         
         .counter-image {
-            height: 220px;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            height: 200px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -218,27 +218,21 @@
             overflow: hidden;
         }
         
-        .counter-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: shimmer 3s infinite linear;
+        .counter-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        @keyframes shimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .counter-card:hover .counter-image img {
+            transform: scale(1.05);
         }
         
-        .counter-image i {
-            font-size: 5rem;
-            color: white;
-            opacity: 0.9;
-            z-index: 1;
+        .counter-image .placeholder-icon {
+            font-size: 4rem;
+            color: #3b82f6;
+            opacity: 0.7;
         }
         
         .counter-content {
@@ -278,10 +272,28 @@
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
         
+        /* Catering Services Section */
+        .catering-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+        
+        .catering-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .catering-bg {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
         /* Why Choose Us Section */
         .why-choose-section {
             padding: 80px 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            background: white;
         }
         
         .features-grid {
@@ -394,7 +406,8 @@
         
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .counters-grid {
+            .counters-grid,
+            .catering-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -420,7 +433,8 @@
                 font-size: 2rem;
             }
             
-            .counters-grid {
+            .counters-grid,
+            .catering-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
             }
@@ -443,6 +457,10 @@
                 width: 100%;
                 max-width: 280px;
             }
+            
+            .catering-section {
+                padding: 60px 15px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -457,7 +475,8 @@
             }
             
             .live-counters-section,
-            .why-choose-section {
+            .why-choose-section,
+            .catering-section {
                 padding: 50px 15px;
             }
             
@@ -465,8 +484,20 @@
                 height: 180px;
             }
             
-            .counter-image i {
-                font-size: 4rem;
+            .counter-image .placeholder-icon {
+                font-size: 3rem;
+            }
+            
+            .counter-content {
+                padding: 20px;
+            }
+            
+            .counter-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .counter-content p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -543,11 +574,11 @@
                 <!-- Pani Puri -->
                 <div class="counter-card">
                     <div class="counter-image">
-                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-circle-notch placeholder-icon"></i>
                     </div>
                     <div class="counter-content">
                         <h3>Pani Puri</h3>
-                        <p>Crispy hollow puris filled with tangy tamarind water, spicy mint chutney, and savory fillings. A burst of flavors in every bite!</p>
+                        <p>Crispy hollow puris filled with tangy tamarind water and spicy chutney. A burst of flavors!</p>
                         <a href="pani-puri.html" class="counter-btn">Learn More</a>
                     </div>
                 </div>
@@ -555,11 +586,11 @@
                 <!-- Dahi Puri -->
                 <div class="counter-card">
                     <div class="counter-image">
-                        <i class="fas fa-ice-cream"></i>
+                        <i class="fas fa-lemon placeholder-icon"></i>
                     </div>
                     <div class="counter-content">
                         <h3>Dahi Puri</h3>
-                        <p>Crispy puris topped with creamy yogurt, sweet chutney, and aromatic spices. A perfect blend of sweet and savory!</p>
+                        <p>Crispy puris topped with creamy yogurt and sweet chutney. A perfect blend of flavors!</p>
                         <a href="dahi-puri.html" class="counter-btn">Learn More</a>
                     </div>
                 </div>
@@ -567,11 +598,11 @@
                 <!-- Papdi Chaat -->
                 <div class="counter-card">
                     <div class="counter-image">
-                        <i class="fas fa-cookie"></i>
+                        <i class="fas fa-cookie-bite placeholder-icon"></i>
                     </div>
                     <div class="counter-content">
                         <h3>Papdi Chaat</h3>
-                        <p>Crispy papdis layered with potatoes, chickpeas, yogurt, and chutneys. A delightful medley of textures and flavors!</p>
+                        <p>Crispy papdis layered with potatoes, chickpeas, and chutneys. A delightful medley!</p>
                         <a href="papdi-chaat.html" class="counter-btn">Learn More</a>
                     </div>
                 </div>
@@ -579,12 +610,71 @@
                 <!-- Dahi Vada -->
                 <div class="counter-card">
                     <div class="counter-image">
-                        <i class="fas fa-cloud"></i>
+                        <i class="fas fa-bowl-food placeholder-icon"></i>
                     </div>
                     <div class="counter-content">
                         <h3>Dahi Vada</h3>
-                        <p>Soft lentil dumplings soaked in creamy yogurt, topped with chutneys and spices. A melt-in-mouth delicacy!</p>
+                        <p>Soft lentil dumplings soaked in creamy yogurt. A melt-in-mouth delicacy!</p>
                         <a href="dahi-vada.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Catering Services Section -->
+        <section class="catering-section">
+            <div class="section-header">
+                <h2>Catering Services</h2>
+                <p class="subtitle">Premium catering for all your special occasions and corporate events</p>
+                <div class="accent-line"></div>
+            </div>
+            
+            <div class="catering-grid">
+                <!-- Samosa / Spanakopita -->
+                <div class="counter-card">
+                    <div class="counter-image catering-bg">
+                        <i class="fas fa-pepper-hot placeholder-icon"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Samosa / Spanakopita</h3>
+                        <p>Crispy pastries filled with spiced potatoes or savory spinach. Perfect appetizers!</p>
+                        <a href="samosa-spanakopita.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Vada Pav -->
+                <div class="counter-card">
+                    <div class="counter-image catering-bg">
+                        <i class="fas fa-burger placeholder-icon"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Vada Pav</h3>
+                        <p>Mumbai's iconic spicy potato fritter in a soft bun. A street food favorite!</p>
+                        <a href="vada-pav.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Feta Saganaki -->
+                <div class="counter-card">
+                    <div class="counter-image catering-bg">
+                        <i class="fas fa-cheese placeholder-icon"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Feta Saganaki</h3>
+                        <p>Golden fried feta cheese with a crispy exterior. A Greek delicacy!</p>
+                        <a href="feta-saganaki.html" class="counter-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Greek Salad -->
+                <div class="counter-card">
+                    <div class="counter-image catering-bg">
+                        <i class="fas fa-leaf placeholder-icon"></i>
+                    </div>
+                    <div class="counter-content">
+                        <h3>Greek Salad</h3>
+                        <p>Fresh vegetables, olives, and feta cheese. A healthy Mediterranean delight!</p>
+                        <a href="greek-salad.html" class="counter-btn">Learn More</a>
                     </div>
                 </div>
             </div>
