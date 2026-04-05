@@ -1437,6 +1437,40 @@ body {
         margin: 2rem 0 !important;
     }
     
+    /* ========== LIVE COUNTERS & CATERING IMAGES MOBILE FIXES ========== */
+    /* Fix images being cut in mobile view for Live Counters and Catering sections */
+    .counter-image,
+    .catering-image {
+        height: auto !important;
+        min-height: 200px !important;
+        max-height: none !important;
+    }
+    
+    .counter-image img,
+    .catering-image img {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 200px !important;
+        max-height: 300px !important;
+        object-fit: contain !important;
+        object-position: center !important;
+    }
+    
+    /* Make cards wider in mobile for better image visibility */
+    .counters-grid,
+    .catering-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+        gap: 20px !important;
+        padding: 0 10px !important;
+    }
+    
+    .counter-card,
+    .catering-card {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+    
     /* ========== BECOME A CHEF PAGE MOBILE FIXES ========== */
     /* Why Join Us Section */
     #why-join-us {
