@@ -943,9 +943,9 @@ header {
 }
 
 .nav-menu a {
-    height: 38px;
-    padding: 0 16px;
-    min-width: 90px;
+    height: 42px;
+    padding: 0 18px;
+    min-width: 110px;
 
     display: inline-flex;
     align-items: center;
@@ -953,7 +953,7 @@ header {
     text-align: center;
 
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 0.025em;
     white-space: nowrap;
 
@@ -982,9 +982,9 @@ header {
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
-    min-width: 120px;
-    height: 42px;
+    padding: 0.75rem 1.75rem;
+    min-width: 150px;
+    height: 46px;
 
     display: inline-flex;
     align-items: center;
@@ -992,7 +992,7 @@ header {
     text-align: center;
 
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1rem;
     letter-spacing: 0.025em;
     white-space: nowrap;
 
