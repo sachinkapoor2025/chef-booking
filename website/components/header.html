@@ -11,6 +11,13 @@
             </div>
         </div>
 
+        <!-- New Hamburger Menu Button - Mobile Only -->
+        <button class="new-hamburger" id="new-hamburger" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
         <div class="header-center">
             <ul class="nav-menu">
 
@@ -407,4 +414,169 @@
         color: white !important;
     }
 </style>
+
+    <!-- New Hamburger Menu Styles -->
+    <style>
+        /* New Hamburger Button - Hidden on Desktop, Visible on Mobile */
+        .new-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 42px;
+            height: 36px;
+            padding: 7px 8px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            z-index: 10002;
+            position: relative;
+            flex-shrink: 0;
+            gap: 0;
+        }
+        
+        .hamburger-line {
+            display: block;
+            width: 26px;
+            height: 3px;
+            min-height: 3px;
+            background-color: #000000;
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center center;
+            margin: 0 !important;
+            flex-shrink: 0;
+        }
+        
+        /* Hamburger active state - X transformation */
+        .new-hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .new-hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        
+        .new-hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile Styles for New Hamburger */
+        @media (max-width: 768px) {
+            .new-hamburger {
+                display: flex;
+                order: 2;
+            }
+            
+            /* Mobile header layout - logo left, hamburger right */
+            .global-nav {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                padding: 0.75rem 1rem !important;
+                flex-wrap: wrap !important;
+            }
+            
+            .header-left {
+                order: 1 !important;
+                flex: 0 0 auto !important;
+            }
+            
+            .header-center {
+                order: 3 !important;
+                flex: 0 0 100% !important;
+                width: 100% !important;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out;
+                padding: 0 !important;
+            }
+            
+            .header-center.menu-open {
+                max-height: 2000px;
+                padding: 1rem 0 !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 0.5rem !important;
+                padding: 0 !important;
+            }
+            
+            .nav-menu li {
+                width: 100% !important;
+            }
+            
+            .nav-menu a {
+                width: 100% !important;
+                text-align: center !important;
+                padding: 0.75rem 1rem !important;
+                background: #3b82f6 !important;
+                color: white !important;
+                border-radius: 10px !important;
+            }
+            
+            .dropdown-menu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                box-shadow: none !important;
+                background: #f8f9fa !important;
+                border-radius: 8px !important;
+                margin: 0.25rem 0 !important;
+            }
+            
+            .dropdown-menu a {
+                background: white !important;
+                color: #3b82f6 !important;
+                border: 1px solid #3b82f6 !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+
+    <!-- New Hamburger Menu Toggle Script -->
+    <script>
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('new-hamburger');
+            const headerCenter = document.querySelector('.header-center');
+            
+            if (hamburger && headerCenter) {
+                hamburger.classList.toggle('active');
+                headerCenter.classList.toggle('menu-open');
+            }
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const hamburger = document.getElementById('new-hamburger');
+            const headerCenter = document.querySelector('.header-center');
+            
+            if (hamburger && headerCenter) {
+                if (!hamburger.contains(event.target) && !headerCenter.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    headerCenter.classList.remove('menu-open');
+                }
+            }
+        });
+        
+        // Close menu when window resizes to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const hamburger = document.getElementById('new-hamburger');
+                const headerCenter = document.querySelector('.header-center');
+                
+                if (hamburger && headerCenter) {
+                    hamburger.classList.remove('active');
+                    headerCenter.classList.remove('menu-open');
+                }
+            }
+        });
+    </script>
+
 <script src="js/mobile-dropdown.js"></script>

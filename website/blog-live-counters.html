@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Food Counters - The Ultimate Entertainment Experience | Maharaja Chef</title>
+    <meta name="description" content="Discover the magic of live food counters for your events. From Pani Puri to Dahi Vada, learn how interactive food stations elevate your celebration.">
+    <meta name="keywords" content="live counters, pani puri counter, dahi puri, live food stations, event catering, interactive dining">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="mobile-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.jpg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        .blog-detail {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            min-height: 100vh;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .blog-header h1 {
+            font-size: 3rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 1rem;
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .blog-featured-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .blog-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .blog-content h2 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .blog-content h3 {
+            color: #3b82f6;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-content p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .blog-content li {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-content li::marker {
+            color: #3b82f6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .highlight-box p {
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 0;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .counter-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .counter-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .counter-card i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .counter-card h4 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+            border: 2px solid #3b82f6;
+        }
+
+        .cta-section h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover {
+            color: #1d4ed8;
+        }
+
+        @media (max-width: 768px) {
+            .blog-detail {
+                padding: 2rem 1rem;
+            }
+
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-content {
+                padding: 1.5rem;
+            }
+
+            .blog-featured-image {
+                height: 250px;
+            }
+
+            .blog-meta {
+                gap: 1rem;
+            }
+
+            .blog-meta span {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <article class="blog-detail">
+            <a href="blogs.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to All Blogs
+            </a>
+
+            <header class="blog-header">
+                <h1>Live Food Counters: The Ultimate Entertainment Experience for Your Events</h1>
+                <div class="blog-meta">
+                    <span><i class="fas fa-calendar"></i> April 5, 2026</span>
+                    <span><i class="fas fa-user"></i> Chef Rajesh Kapoor</span>
+                    <span><i class="fas fa-clock"></i> 10 min read</span>
+                    <span><i class="fas fa-tag"></i> Live Counters</span>
+                </div>
+            </header>
+
+            <div class="blog-featured-image">
+                <img src="images/live-counter-blog.jpg" alt="Live Food Counter at Event">
+            </div>
+
+            <div class="blog-content">
+                <p>Looking to add excitement and interactivity to your next event? <strong>Live food counters</strong> are the perfect solution! These interactive cooking stations not only serve delicious food but also provide entertainment that your guests will remember long after the party ends.</p>
+
+                <h2>What Are Live Food Counters?</h2>
+                <p>Live food counters are interactive cooking stations where chefs prepare food fresh in front of your guests. Unlike traditional buffet setups, these counters create an engaging experience where guests can customize their dishes, watch the cooking process, and interact with skilled chefs.</p>
+
+                <div class="highlight-box">
+                    <h3><i class="fas fa-star"></i> Did You Know?</h3>
+                    <p>Events with live food counters see 40% higher guest engagement and satisfaction compared to traditional catering setups!</p>
+                </div>
+
+                <h2>Popular Live Counter Options</h2>
+                <p>At Maharaja Chef Services, we offer a variety of live food counters that bring authentic flavors and entertainment to your events:</p>
+
+                <div class="counter-grid">
+                    <div class="counter-card">
+                        <i class="fas fa-circle"></i>
+                        <h4>Pani Puri Counter</h4>
+                        <p>The beloved Indian street food where guests fill crispy puris with flavored water and fillings</p>
+                    </div>
+                    <div class="counter-card">
+                        <i class="fas fa-ice-cream"></i>
+                        <h4>Dahi Puri Counter</h4>
+                        <p>Crispy puris topped with yogurt, chutneys, and sev - a refreshing treat</p>
+                    </div>
+                    <div class="counter-card">
+                        <i class="fas fa-cookie"></i>
+                        <h4>Dahi Vada Counter</h4>
+                        <p>Soft lentil dumplings soaked in spiced yogurt - a protein-packed delicacy</p>
+                    </div>
+                    <div class="counter-card">
+                        <i class="fas fa-bread-slice"></i>
+                        <h4>Papdi Chaat Counter</h4>
+                        <p>Crispy wafers loaded with potatoes, chutneys, and fresh herbs</p>
+                    </div>
+                </div>
+
+                <h2>Why Choose Live Counters for Your Event?</h2>
+
+                <h3>1. Entertainment Value</h3>
+                <p>Watching skilled chefs prepare food is inherently entertaining. The sizzle of the pan, the artful assembly of ingredients, and the theatrical presentation all add to the spectacle. Your guests aren't just eating - they're experiencing a culinary show!</p>
+
+                <h3>2. Customization Options</h3>
+                <p>Live counters allow guests to customize their portions according to their preferences. Want extra chutney? No onions? Extra spicy? Our chefs accommodate individual tastes right at the counter.</p>
+
+                <h3>3. Freshness Guaranteed</h3>
+                <p>Food prepared live is food at its freshest. No sitting under heat lamps or in warming trays - each dish is made to order, ensuring optimal taste and temperature.</p>
+
+                <h3>4. Dietary Accommodations</h3>
+                <p>With live counters, it's easy to accommodate dietary restrictions. Our chefs can prepare separate batches for vegetarian, vegan, or allergen-free options, clearly labeled for your guests' peace of mind.</p>
+
+                <h2>Perfect Events for Live Counters</h2>
+                <ul>
+                    <li><strong>Wedding Receptions:</strong> Add a unique touch to your special day with interactive food stations</li>
+                    <li><strong>Corporate Events:</strong> Break the ice and encourage networking with shared food experiences</li>
+                    <li><strong>Birthday Parties:</strong> Create memorable moments for guests of all ages</li>
+                    <li><strong>Anniversary Celebrations:</strong> Add an element of surprise and delight</li>
+                    <li><strong>Cultural Festivals:</strong> Celebrate traditions with authentic live food preparation</li>
+                    <li><strong>Private Dinners:</strong> Elevate intimate gatherings with chef interaction</li>
+                </ul>
+
+                <h2>What to Expect from Our Live Counter Service</h2>
+                <p>When you book a live food counter with Maharaja Chef Services, you receive:</p>
+                <ol>
+                    <li><strong>Professional Setup:</strong> Complete counter setup with attractive presentation</li>
+                    <li><strong>Skilled Chefs:</strong> Experienced chefs who excel in both cooking and guest interaction</li>
+                    <li><strong>Fresh Ingredients:</strong> Premium quality ingredients prepared on-site</li>
+                    <li><strong>Customizable Menus:</strong> Options tailored to your event theme and guest preferences</li>
+                    <li><strong>Full Service:</strong> Setup, service, and cleanup included</li>
+                </ol>
+
+                <div class="highlight-box">
+                    <h3><i class="fas fa-lightbulb"></i> Pro Tip</h3>
+                    <p>Book at least 2-3 different live counter options for larger events to reduce wait times and offer variety. Our most popular combination is Pani Puri + Dahi Puri + Papdi Chaat!</p>
+                </div>
+
+                <h2>Book Your Live Counter Experience</h2>
+                <p>Ready to elevate your next event with live food counters? Our team at Maharaja Chef Services specializes in creating unforgettable culinary experiences. From intimate gatherings to large celebrations, we bring the magic of live cooking to you.</p>
+
+                <div class="cta-section">
+                    <h3>Plan Your Live Counter Experience Today!</h3>
+                    <p>Contact us to discuss your event requirements and get a customized quote.</p>
+                    <a href="enquiry-form.html" class="btn">
+                        <i class="fas fa-envelope"></i> Request a Quote
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharajachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+</body>
+</html>

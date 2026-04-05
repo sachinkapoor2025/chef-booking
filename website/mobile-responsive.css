@@ -1,5 +1,91 @@
 /* Mobile Responsive CSS - Comprehensive Fixes */
 
+/* ========== NEW HAMBURGER MENU STYLES ========== */
+/* New Hamburger - Black color with distinct lines */
+.new-hamburger {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .new-hamburger {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 42px !important;
+        height: 36px !important;
+        padding: 7px 8px !important;
+        cursor: pointer !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 10002 !important;
+        position: relative !important;
+        flex-shrink: 0 !important;
+        gap: 0 !important;
+        order: 2 !important;
+    }
+    
+    .hamburger-line {
+        display: block !important;
+        width: 26px !important;
+        height: 3px !important;
+        min-height: 3px !important;
+        background-color: #000000 !important;
+        border-radius: 2px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transform-origin: center center !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Active state - X transformation */
+    .new-hamburger.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px) !important;
+    }
+    
+    .new-hamburger.active .hamburger-line:nth-child(2) {
+        opacity: 0 !important;
+        transform: scaleX(0) !important;
+    }
+    
+    .new-hamburger.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px) !important;
+    }
+    
+    /* Mobile header layout - logo left, hamburger right */
+    .global-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0.75rem 1rem !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .header-left {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+    }
+    
+    .header-center {
+        order: 3 !important;
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.4s ease-in-out !important;
+        padding: 0 !important;
+        display: flex !important;
+    }
+    
+    .header-center.menu-open {
+        max-height: 2000px !important;
+        padding: 1rem 0 !important;
+    }
+}
+
 /* ========== HAMBURGER MENU FIXES FOR ALL PAGES ========== */
 /* Hamburger menu - HIDDEN on Desktop by default, only shown on mobile */
 .mobile-menu-toggle {

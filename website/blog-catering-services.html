@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-999Q8EMQJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-999Q8EMQJM');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Catering Services for Every Occasion | Maharaja Chef</title>
+    <meta name="description" content="Explore our premium catering services for weddings, corporate events, and private parties. From Indian delicacies to Mediterranean fusion, we create memorable dining experiences.">
+    <meta name="keywords" content="catering services, event catering, wedding catering, corporate catering, Indian catering, Mediterranean food">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="mobile-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.jpg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        .blog-detail {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%);
+            min-height: 100vh;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .blog-header h1 {
+            font-size: 3rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 1rem;
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .blog-featured-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .blog-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .blog-content h2 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .blog-content h3 {
+            color: #3b82f6;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-content p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .blog-content li {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-content li::marker {
+            color: #3b82f6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .highlight-box p {
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 0;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .menu-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .menu-card i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .menu-card h4 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .event-type {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .event-type h4 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-type p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+            border: 2px solid #3b82f6;
+        }
+
+        .cta-section h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover {
+            color: #1d4ed8;
+        }
+
+        @media (max-width: 768px) {
+            .blog-detail {
+                padding: 2rem 1rem;
+            }
+
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-content {
+                padding: 1.5rem;
+            }
+
+            .blog-featured-image {
+                height: 250px;
+            }
+
+            .blog-meta {
+                gap: 1rem;
+            }
+
+            .blog-meta span {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <main>
+        <article class="blog-detail">
+            <a href="blogs.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to All Blogs
+            </a>
+
+            <header class="blog-header">
+                <h1>Premium Catering Services: Transform Your Events into Culinary Celebrations</h1>
+                <div class="blog-meta">
+                    <span><i class="fas fa-calendar"></i> April 5, 2026</span>
+                    <span><i class="fas fa-user"></i> Chef Maria Rodriguez</span>
+                    <span><i class="fas fa-clock"></i> 12 min read</span>
+                    <span><i class="fas fa-tag"></i> Catering Services</span>
+                </div>
+            </header>
+
+            <div class="blog-featured-image">
+                <img src="images/catering-blog.jpg" alt="Premium Catering Setup">
+            </div>
+
+            <div class="blog-content">
+                <p>Planning an event and wondering about the food? <strong>Professional catering services</strong> can transform any gathering into an unforgettable culinary experience. At Maharaja Chef Services, we bring together the finest flavors from Indian and Mediterranean cuisines to create memorable dining moments for your special occasions.</p>
+
+                <h2>What Makes Great Catering?</h2>
+                <p>Exceptional catering goes beyond just serving food. It's about creating an experience that delights your guests, matches your event's theme, and leaves lasting impressions. From menu planning to presentation, every detail matters in crafting the perfect catering experience.</p>
+
+                <div class="highlight-box">
+                    <h3><i class="fas fa-utensils"></i> Our Catering Philosophy</h3>
+                    <p>We believe that great catering combines authentic flavors, fresh ingredients, beautiful presentation, and impeccable service to create memories that last a lifetime.</p>
+                </div>
+
+                <h2>Our Signature Catering Menu</h2>
+                <p>Our catering menu features a fusion of Indian and Mediterranean flavors, carefully curated to suit diverse palates:</p>
+
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <i class="fas fa-cookie-bite"></i>
+                        <h4>Samosa & Spanakopita</h4>
+                        <p>Crispy Indian samosas meet Greek spinach triangles - perfect appetizers</p>
+                    </div>
+                    <div class="menu-card">
+                        <i class="fas fa-hamburger"></i>
+                        <h4>Vada Pav</h4>
+                        <p>Mumbai's iconic street food - spicy potato fritters in soft buns</p>
+                    </div>
+                    <div class="menu-card">
+                        <i class="fas fa-cheese"></i>
+                        <h4>Feta Saganaki</h4>
+                        <p>Golden-fried Greek cheese with a squeeze of fresh lemon</p>
+                    </div>
+                    <div class="menu-card">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Greek Salad</h4>
+                        <p>Fresh Mediterranean salad with olives, feta, and olive oil dressing</p>
+                    </div>
+                </div>
+
+                <h2>Catering for Every Occasion</h2>
+                
+                <div class="event-type">
+                    <h4><i class="fas fa-heart"></i> Wedding Receptions</h4>
+                    <p>Your wedding day deserves the finest cuisine. We create custom menus that reflect your cultural heritage while surprising guests with innovative fusion dishes. From intimate ceremonies to grand celebrations, we handle every detail.</p>
+                </div>
+
+                <div class="event-type">
+                    <h4><i class="fas fa-briefcase"></i> Corporate Events</h4>
+                    <p>Impress clients and energize your team with our corporate catering. We offer everything from working lunch boxes to elegant dinner galas, all designed to suit professional settings.</p>
+                </div>
+
+                <div class="event-type">
+                    <h4><i class="fas fa-birthday-cake"></i> Private Parties</h4>
+                    <p>Birthday celebrations, anniversary dinners, graduation parties - we bring restaurant-quality dining to your home, tailored to your guest list and preferences.</p>
+                </div>
+
+                <div class="event-type">
+                    <h4><i class="fas fa-mosque"></i> Cultural Celebrations</h4>
+                    <p>Diwali, Eid, Holi, Greek Easter, and more - we understand the traditional dishes that make cultural celebrations special and prepare them with authenticity.</p>
+                </div>
+
+                <h2>Why Choose Maharaja Chef Catering?</h2>
+
+                <h3>1. Culinary Excellence</h3>
+                <p>Our chefs bring decades of combined experience in Indian and Mediterranean cuisines. Each dish is prepared with authentic techniques and the finest ingredients, ensuring restaurant-quality taste at your event.</p>
+
+                <h3>2. Customizable Menus</h3>
+                <p>No two events are the same, and neither should be the menu. We work closely with you to create a customized menu that reflects your tastes, dietary requirements, and event theme.</p>
+
+                <h3>3. Dietary Accommodations</h3>
+                <p>We cater to all dietary needs including vegetarian, vegan, gluten-free, halal, and allergy-specific requirements. Every guest deserves to enjoy delicious food safely.</p>
+
+                <h3>4. Professional Service</h3>
+                <p>Our trained service staff ensures seamless execution from setup to cleanup. We handle all the details so you can focus on enjoying your event.</p>
+
+                <h2>Our Catering Process</h2>
+                <ol>
+                    <li><strong>Consultation:</strong> We discuss your event details, guest count, preferences, and budget</li>
+                    <li><strong>Menu Planning:</strong> Our chefs create a customized menu proposal for your approval</li>
+                    <li><strong>Tasting Session:</strong> Sample selected dishes to ensure they meet your expectations</li>
+                    <li><strong>Event Execution:</strong> Our team handles preparation, delivery, setup, and service</li>
+                    <li><strong>Cleanup:</strong> We leave your venue spotless after the event</li>
+                </ol>
+
+                <div class="highlight-box">
+                    <h3><i class="fas fa-lightbulb"></i> Planning Tip</h3>
+                    <p>Book your catering at least 2-4 weeks in advance for small events and 6-8 weeks for large celebrations. This ensures menu availability and gives time for any special preparations needed.</p>
+                </div>
+
+                <h2>What Our Clients Say</h2>
+                <p>Don't just take our word for it - here's what clients have shared about their catering experience:</p>
+                <ul>
+                    <li>"The fusion menu was a hit at our wedding! Guests are still talking about the samosas and spanakopita." - Priya & Michael</li>
+                    <li>"Corporate lunch catered flawlessly. Professional service and delicious food." - Tech Solutions Inc.</li>
+                    <li>"Made my mother's 70th birthday special with authentic dishes she loved." - The Sharma Family</li>
+                </ul>
+
+                <h2>Book Your Catering Experience</h2>
+                <p>Ready to elevate your next event with exceptional catering? Our team is here to help you create a memorable dining experience. From intimate dinners to grand celebrations, Maharaja Chef Services delivers culinary excellence to your doorstep.</p>
+
+                <div class="cta-section">
+                    <h3>Start Planning Your Event Menu Today!</h3>
+                    <p>Contact us for a free consultation and customized quote.</p>
+                    <a href="catering-enquiry.html" class="btn">
+                        <i class="fas fa-envelope"></i> Request Catering Quote
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Maharaja Chef Services</h3>
+                <p>Premium personal chef services across the USA. Bringing restaurant-quality dining to your home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chef-services.html">Services</a></li>
+                    <li><a href="explore-chefs.html">Explore Chefs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #333;">
+                    <p><i class="fas fa-phone"></i> 408-690-1610</p>
+                    <p><i class="fas fa-envelope"></i> info@maharajachef.com</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61587294953271" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/maharachef/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/maharajachef" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharaja Chef Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/global-header.js"></script>
+</body>
+</html>
