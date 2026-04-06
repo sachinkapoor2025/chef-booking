@@ -199,15 +199,16 @@
 
     /* Mobile Styles */
     @media (max-width: 768px) {
-        /* Header layout - Logo left, Hamburger right */
+        /* Header layout - Logo left, Hamburger right - same line */
         .global-nav {
             padding: 10px 15px !important;
             display: flex !important;
             flex-direction: row !important;
-            flex-wrap: wrap !important;
+            flex-wrap: nowrap !important;
             align-items: center !important;
             justify-content: space-between !important;
             position: relative !important;
+            min-height: 60px !important;
         }
         
         .header-left {
