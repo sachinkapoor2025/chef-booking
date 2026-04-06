@@ -924,22 +924,40 @@
             }
         }
         
+        @media (max-width: 768px) {
+            .catering-image {
+                height: 200px !important;
+            }
+            .catering-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+            .counter-image {
+                height: 200px !important;
+            }
+            .counter-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+        }
         @media (max-width: 480px) {
             .banner-arrow {
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
             }
-            
             .live-counters-section,
             .why-choose-section {
                 padding: 50px 15px;
             }
-            
             .counter-image {
-                height: 180px;
+                height: 180px !important;
             }
-            
+            .catering-image {
+                height: 180px !important;
+            }
             .counter-image i {
                 font-size: 4rem;
             }
