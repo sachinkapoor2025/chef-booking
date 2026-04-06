@@ -8,12 +8,12 @@
                     </a>
                 </h1>
             </div>
-            <!-- Simple Hamburger Menu - Mobile Only - Right next to Logo -->
-            <div class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+        </div>
+        <!-- Simple Hamburger Menu - Mobile Only - Right Corner -->
+        <div class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <div class="header-center" id="nav-menu">
@@ -228,7 +228,7 @@
             height: 50px !important;
         }
         
-        /* Simple Hamburger - Three Black Lines - positioned right next to logo */
+        /* Simple Hamburger - Three Black Lines - positioned at right corner */
         .mobile-menu-toggle {
             display: flex !important;
             flex-direction: column !important;
@@ -237,10 +237,12 @@
             height: 24px !important;
             cursor: pointer !important;
             z-index: 10001 !important;
-            position: relative !important;
+            position: absolute !important;
+            right: 15px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
             flex-shrink: 0 !important;
             margin: 0 !important;
-            margin-left: 15px !important;
             padding: 0 !important;
         }
         
