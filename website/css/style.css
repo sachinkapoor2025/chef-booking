@@ -643,7 +643,65 @@ header {
     .dropdown-menu a:last-child {
         border-bottom: none;
     }
+   /* =========================
+   REMOVE SPACE ABOVE HEADER
+   ========================= */
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
+body {
+    padding-top: 0 !important;
+}
+
+header,
+.global-header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    top: 0 !important;
+    position: relative !important;
+}
+
+/* Remove space from first wrapper sections */
+body > *:first-child,
+body > div:first-child,
+body > section:first-child,
+.site,
+.site-content,
+.site-header,
+#page,
+#wrapper,
+#wrapper-navbar,
+#content,
+.elementor,
+.elementor-section-wrap {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* WordPress admin bar fix */
+html[lang] {
+    margin-top: 0 !important;
+}
+
+body.admin-bar header,
+body.admin-bar .global-header {
+    top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* If theme adds top bar */
+.top-bar,
+.header-top,
+.site-top-bar,
+.top-header,
+.topheader {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: none !important; /* remove only if not needed */
+}
     /* Mobile sticky CTA improvements */
     .sticky-cta-bar {
         padding: 0.75rem 1rem;
