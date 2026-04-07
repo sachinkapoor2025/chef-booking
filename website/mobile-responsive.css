@@ -1,11 +1,6 @@
 /* Mobile Responsive CSS - Comprehensive Fixes */
 
     /* ========== HAMBURGER MENU STYLES ========== */
-/* Simple Hamburger - Three Black Lines for Mobile */
-.mobile-menu-toggle {
-    display: none;
-}
-
 @media (max-width: 768px) {
     /* Force show hamburger on mobile - positioned on RIGHT corner opposite logo */
     .mobile-menu-toggle {
