@@ -2,7 +2,7 @@
 
     /* ========== HAMBURGER MENU STYLES ========== */
 @media (max-width: 768px) {
-    /* Force show hamburger on mobile - positioned on RIGHT corner opposite logo */
+    /* Force show hamburger on mobile - positioned on LEFT corner */
     .mobile-menu-toggle {
         display: flex !important;
         flex-direction: column !important;
@@ -17,6 +17,7 @@
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
+        order: 1 !important;
     }
     
     .mobile-menu-toggle span {
@@ -43,18 +44,20 @@
         transform: rotate(-45deg) translate(7px, -6px) !important;
     }
     
-    /* Header left container - logo on left */
+    /* Header left container - logo positioned on RIGHT side */
     .header-left {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        justify-content: flex-start !important;
-        flex: 0 0 auto !important;
+        justify-content: flex-end !important;
+        flex: 1 1 auto !important;
         padding-right: 0 !important;
+        order: 2 !important;
     }
     
     .logo {
-        text-align: left !important;
+        text-align: right !important;
+        margin-left: auto !important;
     }
 }
 
@@ -450,7 +453,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     #faq > div > div {
         margin-bottom: 1rem !important;
     }
-    /* Header and Navigation - Logo left, Hamburger right on SAME LINE */
+    /* Header and Navigation - Hamburger on LEFT, Logo on RIGHT on SAME LINE */
     .global-nav {
         flex-direction: row !important;
         flex-wrap: wrap !important;
@@ -931,6 +934,57 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 
     .nav-menu {
         will-change: transform;
+    }
+
+    /* ========== CATERING SERVICES IMAGES FIX - FULL WIDTH ON MOBILE ========== */
+    /* Fix catering services images to be full width on mobile view */
+    .catering-image,
+    .catering-services img,
+    .services-section img,
+    #catering img,
+    .catering-banner img,
+    [class*="catering"] img,
+    [id*="catering"] img,
+    img[src*="catering"],
+    img[src*="cattering"],
+    .services img,
+    .service-card img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: cover !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        float: none !important;
+        clear: both !important;
+    }
+    
+    /* Fix catering containers */
+    .catering-services,
+    .catering-section,
+    #catering-services,
+    .catering-container,
+    .services-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+    
+    /* Ensure catering service cards are full width */
+    .catering-card,
+    .service-item,
+    .service-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        float: none !important;
+        margin: 1rem 0 !important;
+        box-sizing: border-box !important;
     }
 
     /* Reduced motion for accessibility */
