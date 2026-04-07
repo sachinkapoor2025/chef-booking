@@ -466,14 +466,17 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        justify-content: flex-start !important;
-        flex: 0 0 auto !important;
+        justify-content: flex-end !important;
+        flex: 1 1 auto !important;
         gap: 0 !important;
         margin-bottom: 0 !important;
+        order: 2 !important;
     }
     
     .logo {
         margin: 0 !important;
+        margin-left: auto !important;
+        text-align: right !important;
     }
     
     .logo img {
