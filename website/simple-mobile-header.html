@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Mobile Header</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* =================================
+           SIMPLE MOBILE HEADER - NO TRICKS
+           ================================= */
+        
+        /* THIS IS ALWAYS VISIBLE */
+        .simple-mobile-header {
+            width: 100%;
+            height: 60px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            border-bottom: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999999999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .simple-logo {
+            height: 45px;
+        }
+
+        .simple-logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        /* ✅ HAMBURGER - RIGHT SIDE */
+        .simple-hamburger {
+            width: 35px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 5px 0;
+            background-color: yellow;
+            border: 3px solid black;
+            border-radius: 4px;
+        }
+
+        .simple-hamburger span {
+            width: 100%;
+            height: 4px;
+            background-color: #000000;
+            display: block;
+            border-radius: 2px;
+        }
+
+        body {
+            padding-top: 70px;
+        }
+
+        .page-content {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ ALWAYS VISIBLE HEADER - NO MEDIA QUERIES -->
+    <div class="simple-mobile-header">
+        <!-- LEFT SIDE - LOGO -->
+        <div class="simple-logo">
+            <a href="index.html">
+                <img src="images/logo.jpg" alt="Logo">
+            </a>
+        </div>
+
+        <!-- RIGHT SIDE - HAMBURGER -->
+        <div class="simple-hamburger" onclick="alert('✅ HAMBURGER CLICKED!')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <h1>✅ SIMPLE MOBILE HEADER</h1>
+        <h2 style="color: green;">HAMBURGER IS VISIBLE NOW</h2>
+        
+        <ul style="margin: 20px 0; font-size: 18px; line-height: 2;">
+            <li>✅ LOGO ON LEFT SIDE</li>
+            <li>✅ HAMBURGER ON RIGHT SIDE</li>
+            <li>✅ HAMBURGER HAS YELLOW BACKGROUND</li>
+            <li>✅ HAMBURGER HAS BLACK BORDER</li>
+            <li>✅ NO MEDIA QUERIES - SHOWS EVERYWHERE</li>
+            <li>✅ HIGHEST POSSIBLE Z-INDEX</li>
+            <li>✅ ABSOLUTELY NO CONFLICTS</li>
+        </ul>
+
+        <p style="font-size: 16px; color: #666;">
+        This is the simplest possible header. No complex CSS, no media queries, no conflicts. The hamburger will <strong>always</strong> be visible on the right side.
+        </p>
+    </div>
+
+</body>
+</html>
