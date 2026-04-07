@@ -512,7 +512,7 @@ header {
     }
     
     body {
-        padding-top: 70px !important;
+        padding-top: 0 !important;
     }
     
     /* Remove space between header and slider */
