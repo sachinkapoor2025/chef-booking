@@ -512,7 +512,19 @@ header {
     }
     
     body {
-        padding-top: 80px !important;
+        padding-top: 70px !important;
+    }
+    
+    /* Remove space between header and slider */
+    #hero,
+    #hero-large,
+    .hero-container,
+    .hero-section,
+    section:first-of-type,
+    body > *:first-child:not(header):not(.global-header) {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        border-top: none !important;
     }
     
     .global-nav {
