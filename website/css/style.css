@@ -12,6 +12,7 @@ body {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-top: 90px !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3338,6 +3339,19 @@ footer hr {
         max-width: 100%;
         overflow-x: hidden;
         width: 100%;
+        padding-top: 80px !important;
+    }
+
+    /* Consistent logo size on all mobile pages (same as pani puri page) */
+    .logo img {
+        height: 52px !important;
+        width: auto !important;
+        max-height: 52px !important;
+        min-height: 52px !important;
+    }
+
+    .logo h1 {
+        font-size: 1.4rem !important;
     }
     
     /* Ensure all containers fit within screen width */
