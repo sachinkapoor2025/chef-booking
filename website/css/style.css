@@ -643,9 +643,9 @@ header {
     .dropdown-menu a:last-child {
         border-bottom: none;
     }
-   /* =========================
-   REMOVE SPACE ABOVE HEADER
-   ========================= */
+/* =========================
+REMOVE SPACE ABOVE HEADER
+========================= */
 html,
 body {
     margin: 0 !important;
@@ -661,7 +661,7 @@ header,
     margin-top: 0 !important;
     padding-top: 0 !important;
     top: 0 !important;
-    position: relative !important;
+    /* position: relative !important; - REMOVED to keep sticky positioning */
 }
 
 /* Remove space from first wrapper sections */
