@@ -18,8 +18,23 @@ body {
 /* Adjust body padding for mobile header height */
 @media (max-width: 768px) {
     body {
-        padding-top: 82px !important;
+        padding-top: 70px !important;
     }
+    
+    header,
+    .global-header {
+        top: 0 !important;
+        margin-top: 0 !important;
+        position: fixed !important;
+    }
+}
+
+/* Fix extra space above header on all devices */
+header,
+.global-header {
+    top: 0 !important;
+    margin-top: 0 !important;
+    position: fixed !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
