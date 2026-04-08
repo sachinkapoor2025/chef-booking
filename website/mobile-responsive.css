@@ -990,6 +990,61 @@ textarea:focus {
     will-change: transform;
 }
 
+/* ========== FORCE SLIDER TO SHOW ON MOBILE - CRITICAL FIX ========== */
+@media (max-width: 768px) {
+    #bannerCarousel,
+    .banner-carousel {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 1 !important;
+    }
+
+    .banner-carousel .banner-slide,
+    #bannerCarousel .banner-slide {
+        display: none !important;
+        opacity: 0 !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 280px !important;
+    }
+
+    .banner-carousel .banner-slide.active,
+    #bannerCarousel .banner-slide.active {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .banner-carousel .banner-img,
+    #bannerCarousel .banner-img {
+        display: block !important;
+        width: 100% !important;
+        height: 280px !important;
+        object-fit: cover !important;
+        visibility: visible !important;
+    }
+
+    .banner-carousel .banner-dots,
+    #bannerCarousel .banner-dots {
+        display: flex !important;
+        bottom: 15px !important;
+        z-index: 10 !important;
+    }
+
+    .banner-carousel .banner-dot,
+    #bannerCarousel .banner-dot {
+        display: block !important;
+        width: 12px !important;
+        height: 12px !important;
+    }
+}
+
 /* ========== CATERING SERVICES IMAGES FIX - FULL WIDTH ON MOBILE ========== */
 /* Fix catering services images to be full width on mobile view */
 .catering-image,
