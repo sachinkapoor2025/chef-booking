@@ -601,8 +601,8 @@ header {
     }
 
     .mobile-menu-toggle {
-        display: none !important;
-    }
+    display: flex !important;
+}
 
     .action-buttons {
         width: 100%;
@@ -694,7 +694,7 @@ header {
         color: #333;
         box-shadow: none;
         margin: 0;
-        width: 100%;
+        width: 12e00%;
         border-radius: 0;
         border: none;
     }
@@ -1284,7 +1284,7 @@ header {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+padding: 0 1rem 2rem 1rem;
 }
 
 /* Hero section */
@@ -1353,6 +1353,43 @@ main {
 
 .hero-image img:hover {
     transform: scale(1.02);
+}
+/* ===== HOME PAGE BANNER FULL WIDTH FIX ===== */
+.banner-carousel {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    line-height: 0 !important;
+    background: #ffffff !important;
+}
+
+.banner-slide {
+    display: none;
+    width: 100% !important;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.banner-slide.active {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.banner-img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Large Hero Section specific styles */
