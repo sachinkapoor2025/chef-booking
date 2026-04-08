@@ -1,0 +1,70 @@
+/* ✅ MOBILE CARDS FIX - 1 COLUMN FULL WIDTH */
+@media (max-width: 768px) {
+    /* ALL CARD GRIDS - FORCE 1 COLUMN ON MOBILE */
+    .why-choose-grid,
+    .testimonials-grid,
+    .services,
+    .chef-cards,
+    .pricing-cards,
+    .menu-categories,
+    .areas-grid,
+    .benefits-list,
+    .steps,
+    .how-it-works-steps,
+    .live-counters-grid,
+    .catering-services-grid,
+    .gallery-images,
+    .videos-gallery,
+    .photos-gallery,
+    .blog-posts {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 1.5rem !important;
+        padding: 0 !important;
+        margin: 2rem auto !important;
+    }
+
+    /* ALL CARDS - FULL WIDTH ON MOBILE */
+    .why-choose-item,
+    .testimonial-card,
+    .service,
+    .chef-card,
+    .pricing-card,
+    .area-item,
+    .benefit,
+    .step,
+    .step-card,
+    .live-counter-card,
+    .catering-service-card,
+    .photo-item,
+    .video-item,
+    .blog-post {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding: 1.75rem !important;
+    }
+
+    /* READABILITY IMPROVEMENTS */
+    .why-choose-item h3,
+    .testimonial-card h4,
+    .service h3,
+    .chef-card h3,
+    .step-card h3 {
+        font-size: 1.15rem !important;
+        line-height: 1.4 !important;
+        white-space: normal !important;
+    }
+
+    .why-choose-item p,
+    .testimonial-card blockquote,
+    .service p,
+    .chef-card p,
+    .step-card p {
+        font-size: 0.95rem !important;
+        line-height: 1.55 !important;
+    }
+}
