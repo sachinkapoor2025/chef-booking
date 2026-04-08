@@ -160,6 +160,54 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     
     /* ========== HAMBURGER MENU - SHOW ON MOBILE ========== */
     /* Hamburger styling is at the top of this file */
+
+    /* ========== BANNER CAROUSEL - SHOW ON MOBILE ========== */
+    .banner-carousel {
+        display: block !important;
+        margin-bottom: 40px;
+    }
+
+    .banner-slide {
+        height: 300px !important;
+    }
+
+    .banner-placeholder {
+        height: 300px !important;
+        padding: 1.5rem !important;
+    }
+
+    .banner-placeholder h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .banner-placeholder p {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .banner-dots {
+        bottom: 15px !important;
+    }
+
+    .banner-dot {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .banner-arrow {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+    }
+
+    .banner-arrow.prev {
+        left: 10px !important;
+    }
+
+    .banner-arrow.next {
+        right: 10px !important;
+    }
     
     /* ========== BUTTON TEXT STYLING FOR MOBILE ========== */
     /* Ensure button text is clear and readable on mobile */
@@ -1006,12 +1054,12 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 /* Tablet responsiveness */
 @media (min-width: 769px) and (max-width: 1024px) {
     .why-choose-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: 2rem;
     }
 
     .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: 1.5rem;
     }
 
