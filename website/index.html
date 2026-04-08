@@ -836,6 +836,126 @@
             background: white;
             color: #1e3a8a;
         }
+        /* Fix Hamburger Menu for Mobile */
+        @media (max-width: 768px) {
+            .banner-carousel {
+                width: 100%;
+                background: transparent;
+            }
+            
+            .banner-slide {
+                width: 100%;
+            }
+            
+            .banner-img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                object-position: center;
+            }
+            
+            .banner-placeholder {
+                min-height: 200px;
+            }
+            
+            .banner-placeholder h2 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-placeholder i {
+                font-size: 3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .counters-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .catering-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+                background: white !important;
+                color: #1e3a8a !important;
+            }
+            
+            .cta-btn.primary {
+                background: white !important;
+                color: #1e3a8a !important;
+            }
+            
+            .cta-btn.secondary {
+                background: white !important;
+                color: #1e3a8a !important;
+                border: 2px solid white !important;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .catering-image {
+                height: 200px !important;
+            }
+            .catering-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+            .counter-image {
+                height: 200px !important;
+            }
+            .counter-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .banner-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .live-counters-section,
+            .why-choose-section {
+                padding: 50px 15px;
+            }
+            .counter-image {
+                height: 180px !important;
+            }
+            .catering-image {
+                height: 180px !important;
+            }
+            .counter-image i {
+                font-size: 4rem;
+            }
+        }
         
         /* Responsive Design */
         @media (max-width: 1200px) {
