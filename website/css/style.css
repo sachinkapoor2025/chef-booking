@@ -647,18 +647,18 @@ header {
         border-bottom: none;
     }
 
-    .nav-menu a {
-        width: 100%;
-        text-align: left;
-        padding: 0.75rem 1rem;
-        margin: 0.125rem 0;
-        border-radius: 6px;
-        font-size: 0.95rem;
-        background: transparent;
-        color: #333;
-        border: none;
-        transition: all 0.2s ease;
-    }
+  .nav-menu a {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    margin: 0.125rem 0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white !important;
+    color: #3b82f6 !important;
+    border: 1px solid #3b82f6 !important;
+    transition: all 0.2s ease;
+  }
 
     .nav-menu a:hover {
         background-color: rgba(59, 130, 246, 0.1);
@@ -3827,11 +3827,63 @@ footer hr {
     }
 
     /* Why Choose Us mobile styles */
+    /* ✅ Professional Why Choose Us Section - Mobile View */
+    #why-choose-us {
+        padding: 2.5rem 1rem !important;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+    }
+    
+    #why-choose-us h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
     .why-choose-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        max-width: 100%;
-        box-sizing: border-box;
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 0 0.5rem !important;
+    }
+
+    .why-choose-item {
+        background: white !important;
+        padding: 1.75rem 1.5rem !important;
+        border-radius: 16px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        border: 1px solid #f0f0f0 !important;
+        text-align: center !important;
+        margin: 0 !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .why-choose-item i {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+        color: #3b82f6 !important;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%) !important;
+        width: 70px !important;
+        height: 70px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .why-choose-item h3 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.75rem !important;
+        color: #1e293b !important;
+        font-weight: 600 !important;
+    }
+
+    .why-choose-item p {
+        font-size: 0.95rem !important;
+        color: #64748b !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
     }
 
     .testimonials-grid {
