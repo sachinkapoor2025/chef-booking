@@ -1341,8 +1341,10 @@ padding: 0 1rem 2rem 1rem;
 .hero-image img {
     max-width: 100%;
     height: 350px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 12px;
+    width: 100%;
+    background-color: #f8fafc;
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
     visibility: visible !important;
@@ -1407,8 +1409,9 @@ padding: 0 1rem 2rem 1rem;
     height: auto !important;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
+    background-color: #f8fafc;
     display: block;
     max-height: 600px;
     visibility: visible !important;
@@ -1445,7 +1448,8 @@ padding: 0 1rem 2rem 1rem;
     .hero-image img {
         height: 250px;
         width: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        background-color: #f8fafc;
     }
 }
 
@@ -1464,6 +1468,8 @@ padding: 0 1rem 2rem 1rem;
     
     .hero-image img {
         height: 200px;
+        object-fit: contain;
+        background-color: #f8fafc;
     }
 }
 
