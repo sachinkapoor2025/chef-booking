@@ -952,103 +952,106 @@ h1, h2, h3, h4, h5, h6, p, span, div {
         color: white !important;
     }
 
-    /* Content spacing improvements */
-    main {
-        padding: 1.5rem 1rem;
-    }
+/* Content spacing improvements */
+main {
+    padding: 1rem 1rem;
+}
 
-    .hero-content {
-        padding: 0 1rem;
-    }
+.hero-content {
+    padding: 0 1rem;
+}
 
-    .chef-details,
-    .pricing-section,
-    .menu-options,
-    .dietary-tags,
-    .reviews-section,
-    .booking-cta {
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
+.chef-details,
+.pricing-section,
+.menu-options,
+.dietary-tags,
+.reviews-section,
+.booking-cta {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
-    /* Accessibility improvements */
-    a:focus,
-    button:focus,
-    input:focus,
-    select:focus,
-    textarea:focus {
-        outline: 3px solid #007bff;
-        outline-offset: 2px;
-    }
+/* Accessibility improvements */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #007bff;
+    outline-offset: 2px;
+}
 
-    /* Performance optimizations for mobile */
-    .global-header {
-        will-change: transform;
-    }
+/* Performance optimizations for mobile */
+.global-header {
+    will-change: transform;
+}
 
-    .nav-menu {
-        will-change: transform;
-    }
+.nav-menu {
+    will-change: transform;
+}
 
-    /* ========== CATERING SERVICES IMAGES FIX - FULL WIDTH ON MOBILE ========== */
-    /* Fix catering services images to be full width on mobile view */
-    .catering-image,
-    .catering-services img,
-    .services-section img,
-    #catering img,
-    .catering-banner img,
-    [class*="catering"] img,
-    [id*="catering"] img,
-    img[src*="catering"],
-    img[src*="cattering"],
-    .services img,
-    .service-card img {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        display: block !important;
-        object-fit: cover !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-        float: none !important;
-        clear: both !important;
-    }
-    
-    /* Fix catering containers */
-    .catering-services,
-    .catering-section,
-    #catering-services,
-    .catering-container,
-    .services-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-    }
-    
-    /* Ensure catering service cards are full width */
-    .catering-card,
-    .service-item,
-    .service-box {
-        width: 100% !important;
-        max-width: 100% !important;
-        display: block !important;
-        float: none !important;
-        margin: 1rem 0 !important;
-        box-sizing: border-box !important;
-    }
+/* ========== CATERING SERVICES IMAGES FIX - FULL WIDTH ON MOBILE ========== */
+/* Fix catering services images to be full width on mobile view */
+.catering-image,
+.catering-services img,
+.services-section img,
+#catering img,
+.catering-banner img,
+[class*="catering"] img,
+[id*="catering"] img,
+img[src*="catering"],
+img[src*="cattering"],
+.services img,
+.service-card img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    float: none !important;
+    clear: both !important;
+}
 
-    /* Reduced motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
+/* Fix catering containers */
+.catering-services,
+.catering-section,
+#catering-services,
+.catering-container,
+.services-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* Ensure catering service cards are full width */
+.catering-card,
+.service-item,
+.service-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    float: none !important;
+    margin: 1rem 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
+}
+
+/* End of mobile responsive styles */
+}
 }
 
 /* Tablet responsiveness */
@@ -1738,17 +1741,23 @@ body {
         gap: 1rem !important;
     }
     
-    /* Chef Testimonials Section */
-    #chef-testimonials {
-        padding: 3rem 15px !important;
-    }
-    
-    #chef-testimonials h2 {
-        font-size: 1.8rem !important;
-    }
-    
-    #chef-testimonials .testimonials-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-    }
+/* Chef Testimonials Section */
+#chef-testimonials {
+    padding: 3rem 15px !important;
+}
+
+#chef-testimonials h2 {
+    font-size: 1.8rem !important;
+}
+
+#chef-testimonials .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+}
+
+/* End of mobile responsive styles */
+}
+
+/* End of mobile responsive styles */
+}
 }
