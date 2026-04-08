@@ -37,6 +37,30 @@ header,
     position: fixed !important;
 }
 
+/* Remove space between header and banner on home page */
+.banner-carousel {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: relative;
+    top: 0;
+}
+
+/* Remove blue space after slider - Live Counters section fix */
+.live-counters-section {
+    padding-top: 40px !important;
+    background: #ffffff !important;
+    margin-top: 0 !important;
+}
+
+.live-counters-section::before {
+    display: none !important;
+}
+
+/* Ensure no gaps between sections */
+.banner-carousel + * {
+    margin-top: 0 !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     font-weight: 600;
