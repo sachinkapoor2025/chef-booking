@@ -12,7 +12,14 @@ body {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-top: 0 !important;
+    padding-top: 96px !important;
+}
+
+/* Adjust body padding for mobile header height */
+@media (max-width: 768px) {
+    body {
+        padding-top: 82px !important;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
