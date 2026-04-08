@@ -52,7 +52,20 @@ header,
     margin-top: 0 !important;
 }
 
-.live-counters-section::before {
+.live-counters-section::before,
+.live-counters-section::after {
+    display: none !important;
+}
+
+/* Remove blue space after live counters - Catering section fix */
+.catering-section {
+    padding-top: 40px !important;
+    background: #ffffff !important;
+    margin-top: 0 !important;
+}
+
+.catering-section::before,
+.catering-section::after {
     display: none !important;
 }
 
