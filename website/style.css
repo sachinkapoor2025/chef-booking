@@ -2408,13 +2408,25 @@ footer hr {
     }
 }
 
-/* Banner Carousel Spacing Fix */
+/* Banner Carousel Spacing Fix - Match other pages spacing */
 .banner-carousel {
     margin-top: 110px !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .banner-carousel {
         margin-top: 130px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-carousel {
+        margin-top: 160px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-carousel {
+        margin-top: 170px !important;
     }
 }
