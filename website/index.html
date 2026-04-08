@@ -101,6 +101,26 @@
             height: auto;
             display: block;
         }
+
+        @media (max-width: 768px) {
+            .banner-carousel {
+                display: block !important;
+            }
+            
+            .banner-slide {
+                height: 280px !important;
+            }
+            
+            .banner-slide.active {
+                display: block !important;
+            }
+            
+            .banner-img {
+                height: 280px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+        }
         
         /* Banner Navigation Dots */
         .banner-dots {
