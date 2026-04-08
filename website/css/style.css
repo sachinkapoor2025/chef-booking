@@ -3827,6 +3827,21 @@ footer hr {
     }
 
     /* Why Choose Us mobile styles */
+    /* ✅ Hide Home Page Slider on Mobile Only */
+    #hero-large,
+    .banner-carousel,
+    .hero-slider,
+    .slider-container,
+    #hero-slider {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+
     /* ✅ Professional Why Choose Us Section - Mobile View */
     #why-choose-us {
         padding: 2.5rem 1rem !important;
