@@ -998,18 +998,6 @@ main {
     border-radius: 50%;
     width: 70px;
     height: 70px;
-}
-
-/* Banner Carousel Spacing Fix */
-.banner-carousel {
-    margin-top: 110px !important;
-}
-
-@media (max-width: 768px) {
-    .banner-carousel {
-        margin-top: 130px !important;
-    }
-}
     font-size: 1.8rem;
     cursor: pointer;
     display: flex;
@@ -2417,5 +2405,16 @@ footer hr {
     .video-modal-body video {
         max-width: 100%;
         max-height: 100%;
+    }
+}
+
+/* Banner Carousel Spacing Fix */
+.banner-carousel {
+    margin-top: 110px !important;
+}
+
+@media (max-width: 768px) {
+    .banner-carousel {
+        margin-top: 130px !important;
     }
 }
