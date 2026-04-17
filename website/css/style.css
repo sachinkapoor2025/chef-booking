@@ -18,14 +18,14 @@ body {
 /* Adjust body padding for mobile header height */
 @media (max-width: 768px) {
     body {
-        padding-top: 70px !important;
+        padding-top: 0 !important;
     }
     
     header,
     .global-header {
-        top: 0 !important;
+        top: auto !important;
         margin-top: 0 !important;
-        position: fixed !important;
+        position: relative !important;
     }
 }
 
