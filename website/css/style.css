@@ -39,11 +39,18 @@ header,
 
 /* Add proper spacing between header and banner on home page */
 .banner-carousel {
-    margin-top: 0;
+    margin-top: 100px !important;
     padding-top: 0;
     position: relative;
     top: 0;
     z-index: 5;
+    clear: both;
+}
+
+@media (max-width: 768px) {
+    .banner-carousel {
+        margin-top: 70px !important;
+    }
 }
 
 /* Remove blue space after slider - Live Counters section fix */
