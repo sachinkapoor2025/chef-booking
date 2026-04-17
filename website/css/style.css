@@ -18,7 +18,7 @@ body {
 /* Adjust body padding for mobile header height */
 @media (max-width: 768px) {
     body {
-        padding-top: 0 !important;
+        padding-top: 50 !important;
     }
     
     header,
